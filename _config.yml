@@ -1,1 +1,10 @@
 remote_theme: pmarsceill/just-the-docs
+
+title: Just the Docs
+description: A Jekyll theme for documentation
+
+aux_links:
+  "Open Integration Hub on GitHub":
+    - "//github.com/openintegrationhub"
+    
+footer_content: "Copyright &copy; 2017-2019 <a href=\"https://cloudecosystem.org\">Cloud Ecosystem e.V.</a>"
