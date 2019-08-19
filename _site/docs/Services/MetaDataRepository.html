@@ -1,0 +1,138 @@
+<!DOCTYPE html> <html lang="en-US"> <head> <meta charset="UTF-8"> <meta http-equiv="X-UA-Compatible" content="IE=Edge"> <title>Meta Data Repository - </title> <link rel="shortcut icon" href="http://localhost:4000/favicon.ico" type="image/x-icon"> <link rel="stylesheet" href="http://localhost:4000/assets/css/just-the-docs.css"> <script type="text/javascript" src="http://localhost:4000/assets/js/vendor/lunr.min.js"></script> <script type="text/javascript" src="http://localhost:4000/assets/js/just-the-docs.js"></script> <meta name="viewport" content="width=device-width, initial-scale=1"> <!-- Begin Jekyll SEO tag v2.6.1 --> <title>Meta Data Repository</title> <meta name="generator" content="Jekyll v3.8.6" /> <meta property="og:title" content="Meta Data Repository" /> <meta property="og:locale" content="en_US" /> <link rel="canonical" href="http://localhost:4000/docs/Services/MetaDataRepository.html" /> <meta property="og:url" content="http://localhost:4000/docs/Services/MetaDataRepository.html" /> <script type="application/ld+json"> {"@type":"WebPage","url":"http://localhost:4000/docs/Services/MetaDataRepository.html","headline":"Meta Data Repository","@context":"https://schema.org"}</script> <!-- End Jekyll SEO tag --> </head> <body> <div class="page-wrap"> <div class="side-bar"> <div class="site-header"> <a href="http://localhost:4000" class="site-title lh-tight"></a> <button class="menu-button fs-3 js-main-nav-trigger" data-text-toggle="Hide" type="button">Menu</button> </div> <div class="navigation main-nav js-main-nav"> <nav role="navigation" aria-label="Main navigation"> <ul class="navigation-list"><li class="navigation-list-item"><a href="http://localhost:4000/" class="navigation-list-link">Home</a></li><li class="navigation-list-item active"><a href="http://localhost:4000/docs/Services/Services.html" class="navigation-list-link">Services</a><ul class="navigation-list-child-list "><li class="navigation-list-item "><a href="http://localhost:4000/docs/Services/AuditLog.html" class="navigation-list-link">Auditlog</a></li><li class="navigation-list-item "><a href="http://localhost:4000/docs/Services/ComponentOrchestrator.html" class="navigation-list-link">Component Orchestrator</a></li><li class="navigation-list-item "><a href="http://localhost:4000/docs/Services/ComponentRepository.html" class="navigation-list-link">Component Repository</a></li><li class="navigation-list-item "><a href="http://localhost:4000/docs/Services/FlowRepository.html" class="navigation-list-link">Flow Repository</a></li><li class="navigation-list-item "><a href="http://localhost:4000/docs/Services/IdentityManagement.html" class="navigation-list-link">Indentity Access Management</a></li><li class="navigation-list-item "><a href="http://localhost:4000/docs/Services/MessageOrientedMiddleware.html" class="navigation-list-link">Message Oriented Middleware</a></li><li class="navigation-list-item active"><a href="http://localhost:4000/docs/Services/MetaDataRepository.html" class="navigation-list-link active">Meta Data Repository</a></li><li class="navigation-list-item "><a href="http://localhost:4000/docs/Services/Scheduler.html" class="navigation-list-link">Scheduler</a></li><li class="navigation-list-item "><a href="http://localhost:4000/docs/Services/SecretService.html" class="navigation-list-link">Secret Service</a></li></ul></li><li class="navigation-list-item"><a href="http://localhost:4000/docs/Service%20Collaboration/ServiceCollaborationOverview.html" class="navigation-list-link">Service Collaboration</a><ul class="navigation-list-child-list "><li class="navigation-list-item "><a href="http://localhost:4000/docs/Service%20Collaboration/serviceEvents.html" class="navigation-list-link">Component Orchestrator</a></li></ul></li></ul> </nav> </div> <footer class="site-footer"> <p class="text-small text-grey-dk-000 mb-4">This site uses <a href="https://github.com/pmarsceill/just-the-docs">Just the Docs</a>, a documentation theme for Jekyll.</p> </footer> </div> <div class="main-content-wrap js-main-content" tabindex="0"> <div class="main-content"> <div class="page-header js-page-header"> <div class="search"> <div class="search-input-wrap"> <input type="text" class="js-search-input search-input" tabindex="0" placeholder="Search " aria-label="Search " autocomplete="off"> <svg width="14" height="14" viewBox="0 0 28 28" xmlns="http://www.w3.org/2000/svg" class="search-icon"><title>Search</title><g fill-rule="nonzero"><path d="M17.332 20.735c-5.537 0-10-4.6-10-10.247 0-5.646 4.463-10.247 10-10.247 5.536 0 10 4.601 10 10.247s-4.464 10.247-10 10.247zm0-4c3.3 0 6-2.783 6-6.247 0-3.463-2.7-6.247-6-6.247s-6 2.784-6 6.247c0 3.464 2.7 6.247 6 6.247z"/><path d="M11.672 13.791L.192 25.271 3.02 28.1 14.5 16.62z"/></g></svg> </div> <div class="js-search-results search-results-wrap"></div> </div> </div> <div class="page"> <nav class="breadcrumb-nav"> <ol class="breadcrumb-nav-list"> <li class="breadcrumb-nav-list-item"><a href="http://localhost:4000/docs/Services/Services.html">Services</a></li> <li class="breadcrumb-nav-list-item"><span>Meta Data Repository</span></li> </ol> </nav> <div id="main-content" class="page-content" role="main"> <!-- TOC depthFrom:1 depthTo:6 withLinks:1 updateOnSave:1 orderedList:0 --> <ul> <li><a href="#Introduction">Introduction</a></li> <li><a href="#Description">Description</a> <ul> <li><a href="#Purpose-of-the-Microservice-Meta-Data-Repository">Purpose of the Microservice Meta Data Repository</a></li> </ul> </li> <li><a href="#Technologies-used">Technologies used</a></li> <li><a href="#Service-Implementation">Service Implementation</a></li> <li><a href="#Requirements">Requirements</a></li> <li><a href="#Conceptional-Elaborations">Conceptional Elaborations</a> <ul> <li><a href="#Basic-Version">Basic Version</a> <ul> <li><a href="#Model-Structure">Model Structure</a> <ul> <li><a href="#Domain-Object">Domain Object</a></li> <li><a href="#Model-Object">Model Object</a></li> </ul> </li> </ul> </li> </ul> </li> <li><a href="#Open-questions--Discussion">Open questions / Discussion</a> <ul> <li><a href="#How-does-a-transformer-passreference-the-model-from-metadata-repository">How does a transformer pass/reference the model from metadata repository</a></li> <li><a href="#Where-is-the-transfomer-output-validated">Where is the transfomer output validated</a></li> <li><a href="#oihdatarecord"><em>oihdatarecord</em></a></li> </ul> </li> <li><a href="#User-Stories">User Stories</a></li> </ul> <!-- /TOC --> <h1 id="introduction"> <a href="#introduction" class="anchor-heading"><svg class="d-inline-block v-align-middle" viewBox="0 0 16 16" version="1.1" width="18" height="18" aria-hidden="true"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a> Introduction </h1> <p>The meta data repository is responsible for storing domains and their master data models. The models stored within this service are consulted for different tasks such as data validation. The meta models are also used by the transformer to map the incoming data onto the Open Integration Hub standard.</p> <p>In addition, this service also manages the <em>oihdatarecord</em> and concatenates it with the master data models.</p> <h1 id="description"> <a href="#description" class="anchor-heading"><svg class="d-inline-block v-align-middle" viewBox="0 0 16 16" version="1.1" width="18" height="18" aria-hidden="true"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a> Description </h1> <h2 id="purpose-of-the-microservice-meta-data-repository"> <a href="#purpose-of-the-microservice-meta-data-repository" class="anchor-heading"><svg class="d-inline-block v-align-middle" viewBox="0 0 16 16" version="1.1" width="18" height="18" aria-hidden="true"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a> Purpose of the Microservice Meta Data Repository </h2> <p>If we talk about metadata in this context, we mean the description of the domains and their corresponding Master Data Models. An OIH Master Data Model (OMDM) describes the data of a certain domain in a depth which is sufficient enough to map and synchronize the specific data of multiple applications in that domain. The meta data delivers all the information a user or customer needs to work with data within a specific domain.</p> <p>The domain models are specified by special workgroups. Please see the specific domain model repository for further informations on a domain and its master data model.</p> <h1 id="technologies-used"> <a href="#technologies-used" class="anchor-heading"><svg class="d-inline-block v-align-middle" viewBox="0 0 16 16" version="1.1" width="18" height="18" aria-hidden="true"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a> Technologies used </h1> <p>For storing the meta data this service could use MongoDB. We will use Mongoose for object modeling. Mongoose is built on top of the official MongoDB Node.js driver. For documenting the API we will use the SwaggerUI.</p> <p>This is a common technology stack and widely used inside the OIH.</p> <h1 id="service-implementation"> <a href="#service-implementation" class="anchor-heading"><svg class="d-inline-block v-align-middle" viewBox="0 0 16 16" version="1.1" width="18" height="18" aria-hidden="true"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a> Service Implementation </h1> <p><strong>Framework Part:</strong> Tbd</p> <p><strong>Reference Implementation:</strong> <a href="https://github.com/openintegrationhub/openintegrationhub/tree/master/services/meta-data-repository">meta data repository</a></p> <h1 id="requirements"> <a href="#requirements" class="anchor-heading"><svg class="d-inline-block v-align-middle" viewBox="0 0 16 16" version="1.1" width="18" height="18" aria-hidden="true"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a> Requirements </h1> <p>Some required functionalities of the meta data service can be derived from the already designed <a href="http://35.198.133.5/api-docs/">Smart Data Framework API</a>:</p> <ul> <li>Create a new domain</li> <li>Create a new master data model for a domain</li> <li>Retrieve a list of all domains for an authenticated user</li> <li>Retrieve a specific domain</li> <li>Retrieve a list of all model for an authenticated user</li> <li>Retrieve a specific model</li> <li>Retrieve all models for a specific domain for an authenticated user</li> <li>Update a domain</li> <li>Update a master data model</li> <li>Delete an existing domain (and all relating models)</li> <li>Delete an existing master data model</li> <li>Add the <em>oihdatarecord</em> schema to a master data model when the model is requested</li> </ul> <p>For some user stories see section <a href="#user-stories">user stories</a>.</p> <h1 id="conceptional-elaborations"> <a href="#conceptional-elaborations" class="anchor-heading"><svg class="d-inline-block v-align-middle" viewBox="0 0 16 16" version="1.1" width="18" height="18" aria-hidden="true"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a> Conceptional Elaborations </h1> <h2 id="basic-version"> <a href="#basic-version" class="anchor-heading"><svg class="d-inline-block v-align-middle" viewBox="0 0 16 16" version="1.1" width="18" height="18" aria-hidden="true"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a> Basic Version </h2> <h3 id="model-structure"> <a href="#model-structure" class="anchor-heading"><svg class="d-inline-block v-align-middle" viewBox="0 0 16 16" version="1.1" width="18" height="18" aria-hidden="true"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a> Model Structure </h3> <p>As aforementioned the service is mainly responsible for storing meta models and domains. In order to unify the meta data to describe domains and models we need a model structure for both objects.</p> <h4 id="domain-object"> <a href="#domain-object" class="anchor-heading"><svg class="d-inline-block v-align-middle" viewBox="0 0 16 16" version="1.1" width="18" height="18" aria-hidden="true"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a> Domain Object </h4> <p>The domain object is responsible describing the domain itself. Thus, the following object structure is proposed:</p><pre><code class="language-JSON">{  
+  "$schema":"http://json-schema.org/draft-06/schema#",
+  "$id":"http://json-schema.org/draft-06/schema#",
+  "title":"Domain object description",
+  "properties":{  
+    "id":{  
+      "type":"string",
+      "description":"Unique identifier of the domain",
+      "examples":[  
+        1
+      ]
+    },
+    "name":{  
+      "type":"string",
+      "description":"Name of the domain",
+      "examples":[  
+        "products"
+      ]
+    },
+    "description":{  
+      "type":"string",
+      "description":"Short description of the domain",
+      "examples":[  
+        "This domain includes all product related models"
+      ]
+    },
+    "owners":{  
+      "type":"array",
+      "description":"List of owners, who have access to this domain",
+      "items": {
+        "properties": {
+      "id": {
+        "type": "string"
+      },
+      "type": {
+        "type": "string"
+      }
+    }
+      },
+      "examples":[  
+        {
+      "id": "5bffec99a43c7f3ca95b09e6",
+      "type": "tenant"
+    }
+      ]
+    }
+  }
+}
+</code></pre><h4 id="model-object"> <a href="#model-object" class="anchor-heading"><svg class="d-inline-block v-align-middle" viewBox="0 0 16 16" version="1.1" width="18" height="18" aria-hidden="true"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a> Model Object </h4> <p>The model object is responsible for describing the meta model and should have a reference to the superordinated domain. Therefore, the following structure is supposed:</p><pre><code class="language-JSON">{  
+  "$schema":"http://json-schema.org/draft-06/schema#",
+  "$id":"http://json-schema.org/draft-06/schema#",
+  "title":"Domain object description",
+  "properties":{  
+    "id":{  
+      "type":"string",
+      "description":"Unique identifier of the model",
+      "examples":[  
+        "13"
+      ]
+    },
+    "domaindId":{  
+      "type":"string",
+      "description":"Unique identifier of the domain the model belongs to",
+      "examples":[  
+        "1"
+      ]
+    },
+    "description":{  
+      "type":"string",
+      "description":"Short description of the model",
+      "examples":[  
+        "Master Data Model Products v1"
+      ]
+    },
+    "owners":{  
+      "type":"array",
+      "description":"List of owners, who have access to this domain",
+      "items": {
+        "properties": {
+      "id": {
+        "type": "string"
+      },
+      "type": {
+        "type": "string"
+      }
+    }
+      },
+      "examples":[  
+        {
+      "id": "5bffec99a43c7f3ca95b09e6",
+      "type": "tenant"
+    }
+      ]
+    },
+    "model":{  
+      "type":"object",
+      "description":"A JSON schema of the actual model",
+      "examples":[  
+        {  
+          "$schema":"http://json-schema.org/schema#",
+          "$id":"https://github.com/openintegrationhub/Data-and-Domain-Models/blob/master/src/main/schema/addresses/personV2.json",
+          "title":"Person",
+          "description":"Describes a natural person",
+          "type":"object",
+          "allOf":[  
+            {  
+              "$ref":"../oih-data-record.json"
+            }
+          ],
+          "properties":{  
+            "title":{  
+              "type":"string",
+              "description":"Title of the person",
+              "examples":[  
+                "Dr."
+              ]
+            },
+            "salutation":{  
+              "type":"string",
+              "description":"Salutation of the person",
+              "examples":[  
+                "Mr."
+              ]
+            },
+            "firstName":{  
+              "type":"string",
+              "description":"Given name of the person",
+              "examples":[  
+                "Max"
+              ]
+            }
+          }
+        }
+      ]
+    }
+  }
+}
+</code></pre><h1 id="open-questions--discussion"> <a href="#open-questions--discussion" class="anchor-heading"><svg class="d-inline-block v-align-middle" viewBox="0 0 16 16" version="1.1" width="18" height="18" aria-hidden="true"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a> Open questions / Discussion </h1> <h2 id="how-does-a-transformer-passreference-the-model-from-metadata-repository"> <a href="#how-does-a-transformer-passreference-the-model-from-metadata-repository" class="anchor-heading"><svg class="d-inline-block v-align-middle" viewBox="0 0 16 16" version="1.1" width="18" height="18" aria-hidden="true"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a> How does a transformer pass/reference the model from metadata repository </h2> <p>For each transformer in a flow, the user could define which domain + models should be used. When a transformer creates an output how does it reference the exact model representing the data? The transformer could support multiple models, but in order for OIH to validate and process the output, it needs at least to know which model matches which output. Are models named, e.g. <strong>person</strong> and the domain is preselected by the user, when configuring the transfomer?</p> <p>The <a href="https://github.com/openintegrationhub/Data-and-Domain-Models/tree/master/MasterDataModels#json-schema">Master-Data-Model document</a> defines following requirement:</p> <blockquote> <p>for every sub-model of an OMDM there must be a seperate JSON schema describing the entity or aggregate. Can a <strong>person</strong> be a sub-model of <strong>addresses</strong> with a unique URI?</p> </blockquote> <h2 id="where-is-the-transfomer-output-validated"> <a href="#where-is-the-transfomer-output-validated" class="anchor-heading"><svg class="d-inline-block v-align-middle" viewBox="0 0 16 16" version="1.1" width="18" height="18" aria-hidden="true"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a> Where is the transfomer output validated </h2> <ul> <li>Done by a separate validator component or metadata repository?</li> </ul> <h2 id="oihdatarecord"> <a href="#oihdatarecord" class="anchor-heading"><svg class="d-inline-block v-align-middle" viewBox="0 0 16 16" version="1.1" width="18" height="18" aria-hidden="true"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a> <em>oihdatarecord</em> </h2> <p>In order for the transformer to embed the <em>oihdatarecord</em> into the model via <strong>allOf</strong>, it needs the reference/uri of the <em>oihdatarecord</em>, e.g. env vars.</p> <h1 id="user-stories"> <a href="#user-stories" class="anchor-heading"><svg class="d-inline-block v-align-middle" viewBox="0 0 16 16" version="1.1" width="18" height="18" aria-hidden="true"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a> User Stories </h1> <div class="table-wrapper"><table> <thead> <tr> <th style="text-align: left">User Story Id</th> <th style="text-align: left">User Story</th> </tr> </thead> <tbody> <tr> <td style="text-align: left">uMs-meDa1</td> <td style="text-align: left">As an OIH operator I want to upload new versions of a master data model, so that I always the newest model version is stored in my OIH instance</td> </tr> <tr> <td style="text-align: left">uMs-meDa2</td> <td style="text-align: left">As an OIH operator I want to delete existing models, so that only the newest model version is stored</td> </tr> <tr> <td style="text-align: left">uMs-meDa3</td> <td style="text-align: left">As a customer I want to upload new master data models, so that I can choose from a variety of models for a domain</td> </tr> <tr> <td style="text-align: left">uMs-meDa4</td> <td style="text-align: left">As a customer or OIH operator I want to upload new domains, so that I can operate in further domains</td> </tr> <tr> <td style="text-align: left">uMs-meDa5</td> <td style="text-align: left">As a customer I want to retrieve a list of all my domains, to get an overview of all domains I can operate with</td> </tr> <tr> <td style="text-align: left">uMs-meDa6</td> <td style="text-align: left">As a customer or OIH operator I want to retrieve information about a specific domain, so that I can see information about the domain and all its models</td> </tr> <tr> <td style="text-align: left">uMs-meDa7</td> <td style="text-align: left">As an OIH operator I want to retrieve a list of all domain models available for a specific user, so that the user is able to choose which model he/she wants to use</td> </tr> <tr> <td style="text-align: left">uMs-meDa8</td> <td style="text-align: left">As an OIH operator I want to retrieve a specific model, so that I can generate a dynamic mapping interface that I can provide my customer</td> </tr> <tr> <td style="text-align: left">uMs-meDa9</td> <td style="text-align: left">As a customer I want to retrieve a specific model, so that I know the structure of the model and write a mapping between my data model and the master data model</td> </tr> <tr> <td style="text-align: left">uMs-meDa10</td> <td style="text-align: left">As an OIH operator I want to retrieve a specific model, so that I can validate the output of a transformer</td> </tr> <tr> <td style="text-align: left">uMs-meDa11</td> <td style="text-align: left">As an OIH operator I want to be able to store multiple versions of one model, so that backward compatibility is ensured</td> </tr> <tr> <td style="text-align: left">uMs-meDa12</td> <td style="text-align: left">As an OIH operator I want that a user can only see the domains he is authorized for</td> </tr> <tr> <td style="text-align: left">uMs-meDa13</td> <td style="text-align: left">As an OIH operator I want that a user can only see the models he is authorized for</td> </tr> <tr> <td style="text-align: left">uMs-meDa14</td> <td style="text-align: left">As an OIH operator I want that a user can only delete domains he is authorized for</td> </tr> <tr> <td style="text-align: left">uMs-meDa15</td> <td style="text-align: left">As an OIH operator I want that a user can only delete models he is authorized for</td> </tr> </tbody> </table></div> </div> </div> </div> </div> </body> </html>
