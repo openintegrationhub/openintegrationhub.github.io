@@ -41,7 +41,7 @@ This example describes the scenario of starting a flow. Once the user starts a f
 7. `Scheduler` receives the `flow.started` event and starts scheduling the flow, according to it's cron property.
 8. When a client stops a running flow using flow repository's REST API, the event `flow.stopping` is raised which is causing an inverse reaction chain of events.
 
-![startFlow](https://github.com/openintegrationhub/openintegrationhub.github.io/blob/master/assets/images/EventCollaborationStartFlow.png)
+<img src="https://github.com/openintegrationhub/openintegrationhub/blob/master/docs/assets/EventCollaborationStartFlow.png"/>
 
 Figure: _startFlow_
 
