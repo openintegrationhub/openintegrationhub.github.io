@@ -58,4 +58,4 @@ Identity and Access Management (short: IAM) is one of the core components in OIH
 
 ## Integration Content Repository
 
-All connected solutions to the Open Integration Hub and the work they are doing there are represented by an "integration flow". These flows have to be stored, retrieved, updated and deleted. The Integration Content Repository will provide these functionabilities: [/RepositoryManagement/IntegrationContentRepository](/RepositoryManagement/IntegrationContentRepository.md)
+All connected solutions to the Open Integration Hub and the work they are doing there are represented by an "integration flow". These flows have to be stored, retrieved, updated and deleted. The Integration Content Repository will provide these functionabilities: [/RepositoryManagement/IntegrationContentRepository](https://github.com/openintegrationhub/openintegrationhub/blob/master/docs/services/FlowRepository.md)
