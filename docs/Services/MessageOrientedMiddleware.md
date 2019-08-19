@@ -2,7 +2,7 @@
 layout: default
 title: Message Oriented Middleware
 parent: Services
-nav_order: 6
+nav_order: 7
 ---
 
 # Introduction

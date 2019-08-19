@@ -5,57 +5,57 @@ nav_order: 2
 has_children: true
 ---
 
-# Introduction
+# Overview
 
-This folder contains the documentation about the Open Integration Hub Services. A short version of the functionalities can be found below:
+The Open Integration Hub framework consists of a variety of service. This will give you a good overview:
+
+## Auditlog
+The Auditlog serves to receive, store, and return logging information about important user actions and system events. Other services generate audit messages and pass them on to the Audit Log via the message and event bus or a simple HTTP POST request.
+
+Stored Logs can be retrieved by authorized users through a simple REST API. [Auditlog](https://openintegrationhub.github.io/docs/Services/AuditLog.html)
+
+## Component Orchestrator
+
+The Component Orchestrator orchestrates flow lifecycle. It creates queues in RabbitMQ and manages Docker containers (deploy/stop/remove) for each flow node whenever a flow is created, stopped or removed. For further information see: .[Component Orchestrator](https://openintegrationhub.github.io/docs/Services/ComponentOrchestrator.html).
 
 ## Component Repository
 
 A component is a piece of software that connects another application to Open Integration Hub. This includes Adapters and Transformer. Components are lightweight and stand-alone Docker images stored in a
 component repository: [Component Repository](https://openintegrationhub.github.io/docs/Services/ComponentRepository.html).
 
-## Scheduler and Resource Coordinator
+## Flow Repository
 
-There are two ways to trigger a flow execution: to poll changes periodically or to receive notifications through webhooks.
-The majority of integration flows poll perform polling as the most of APIs out there don't support webhooks. The polling
-is performed periodically with the help of the *Scheduler*.
+All connected solutions to the Open Integration Hub and the work they are doing there are represented by an "integration flow". The Flow Repository is responsible for storing, retrieving, updating and deleting integration flows: [Flow Repository](https://openintegrationhub.github.io/docs/Services/FlowRepository.html)
 
-Because Integration Hub is a multi-tenant environment, it is theoretically possible that some tenants cause starvation
-of others through an unfair usage of shared resources. The *Resource Coordinator* enforces  every tenant to comply with
-the defined policies on resource sharing.
+## Identity Access Management
 
-Please read more details on scheduler and resource coordinator: [SchedulerResourceCoordinator](SchedulerResourceCoordinator.md).
+Identity Access Management (IAM) provides secure authentication and authorization of users/clients. The IAM Service can be configured to use JWT tokens with HMAC or RSA. It has also support for OpenId Connect: [IAM](https://openintegrationhub.github.io/docs/Services/IdentityManagement.html)
 
-## Communication Router
+## Integration Layer Services
 
-In contrast to polling a flow can be started by an external event. Modern APIs provide support for webhooks in order to
-avoid wasting of resources when polling. The external system can be configured with a webhook url to be called upon
-changes in the external system. The *Communication Router* is used to expose externally-reachable URLs for integration
-flows that can be used to implement webhook-triggered flows. These URLS may be registered in external systems to sent
-notifications to. See more details on communication router: [MessageProcessing/CommunicationRouter](MessageProcessing/CommunicationRouter.md).
-
-## Logging & Monitoring
-
-Integration Hub micro-services and integration flows are running in a Kubernetes
-cluster. Read details on cluster-level logging architectures: [ManagementServices/LoggingMonitoring](ManagementServices/LoggingMonitoring.md).
+The basic purpose of the Integration Layer Service is to receive data objects from one or several incoming flows, apply some business logic on them (such as a merge or split), validate them against a supplied schema, and then provide the resulting valid objects as input to other flows. For this purpose, the ILS is capable of temporarily storing these objects in a database until they are no longer required. [Integration Layer Service](https://openintegrationhub.github.io/docs/Services/IntegrationLayerService.html)
 
 ## Message Oriented Middleware
 
 All the communication between steps of an integration flow in runtime is happening through a message broker. Two steps
 of an integration flow are separate Docker container isolated from each other. They are connected through a messaging
-queue than provides them a reliable and asynchronous communication protocol. See more details on  message oriented middleware: [MessageProcessing/MessageOrientedMiddleware](MessageProcessing/MessageOrientedMiddleware.md).
+queue than provides them a reliable and asynchronous communication protocol. See more details on  message oriented middleware: [MessageProcessing/MessageOrientedMiddleware](https://openintegrationhub.github.io/docs/Services/MessageOrientedMiddleware.html).
 
-## Secure-Key-Management
+## Meta Data Repository
 
-An integration flow defines how data flow between various external systems and how these data are transformed between
-steps of that flow. However an integration flow does not define how to connect to these external systems. An integration
-can be considered as a clonable template that must not contain any sensible user data, such as API credentials. The API
-credentials are stored in the secure-key-management: [SecureAccessControl/SecureKeyManagement](SecureAccessControl/SecureKeyManagement.md)).
+The Meta Data Repository is responsible for storing domains and their master data models. The models stored within this service are consulted for different tasks such as data validation. The meta models are also used by the transformer to map the incoming data onto the Open Integration Hub standard. For further information see:[Meta Data Repository](https://openintegrationhub.github.io/docs/Services/MetaDataRepository.html)
 
-## Identity and Access Management
+## Scheduler
 
-Identity and Access Management (short: IAM) is one of the core components in OIH which is needed to provide a secure authentication and authorization of users/clients. The IAM Service can be configured to use JWT tokens with HMAC or RSA. It has also support for OpenId Connect: [IAM Concept](SecureAccessControl/IAMConcept.md))
+There are two ways to trigger a flow execution: to poll changes periodically or to receive notifications through webhooks.
+The majority of integration flows poll perform polling as the most of APIs out there don't support webhooks. The polling
+is performed periodically with the help of the Scheduler: [Scheduler](https://openintegrationhub.github.io/docs/Services/Scheduler.html)
 
-## Integration Content Repository
+## Secret Service
 
-All connected solutions to the Open Integration Hub and the work they are doing there are represented by an "integration flow". These flows have to be stored, retrieved, updated and deleted. The Integration Content Repository will provide these functionabilities: [/RepositoryManagement/IntegrationContentRepository](https://github.com/openintegrationhub/openintegrationhub.github.io/blob/master/docs/Services/FlowRepository.md)
+The Secret Service is used to  securely store and access client/user credentials. For further information see: [Secret Service](https://openintegrationhub.github.io/docs/Services/SecretService.html).
+
+## Webhooks
+
+The webhooks service is used to expose externally-reachable URLs for integration
+flows that can be used to implement webhook-triggered flows. The webhooks service receives http calls and passes messages to execution. For further information: [Webhooks](https://openintegrationhub.github.io/docs/Services/Webhooks.html).
