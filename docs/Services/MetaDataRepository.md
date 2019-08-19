@@ -5,26 +5,6 @@ parent: Services
 nav_order: 8
 ---
 
-<!-- TOC depthFrom:1 depthTo:6 withLinks:1 updateOnSave:1 orderedList:0 -->
-
-- [Introduction](#Introduction)
-- [Description](#Description)
-  - [Purpose of the Microservice Meta Data Repository](#Purpose-of-the-Microservice-Meta-Data-Repository)
-- [Technologies used](#Technologies-used)
-- [Service Implementation](#Service-Implementation)
-- [Requirements](#Requirements)
-- [Conceptional Elaborations](#Conceptional-Elaborations)
-  - [Basic Version](#Basic-Version)
-    - [Model Structure](#Model-Structure)
-      - [Domain Object](#Domain-Object)
-      - [Model Object](#Model-Object)
-- [Open questions / Discussion](#Open-questions--Discussion)
-  - [How does a transformer pass/reference the model from metadata repository](#How-does-a-transformer-passreference-the-model-from-metadata-repository)
-  - [Where is the transfomer output validated](#Where-is-the-transfomer-output-validated)
-  - [_oihdatarecord_](#oihdatarecord)
-- [User Stories](#User-Stories)
-
-<!-- /TOC -->
 # Introduction
 
 The meta data repository is responsible for storing domains and their master data models. The models stored within this service are consulted for different tasks such as data validation. The meta models are also used by the transformer to map the incoming data onto the Open Integration Hub standard.

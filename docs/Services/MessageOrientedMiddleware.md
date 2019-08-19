@@ -9,10 +9,6 @@ nav_order: 7
 
 The message oriented middleware is a central part of the Open Integration Hub and is needed to store and route messages while transferring them from senders to receivers.
 
-# Description
-
-The documents describes an integration flow and how two steps are connected via a message oriented middleware.
-
 # Technologies used
 
 - RabbitMQ

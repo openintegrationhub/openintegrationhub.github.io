@@ -9,9 +9,6 @@ nav_order: 3
 
 The component repository is needed to store integration components such as adapters & transformer.
 
-# Description
-
-The documents shorty describes integration components and how they are stored, retreived and managed.
 
 # Service Implementation
 

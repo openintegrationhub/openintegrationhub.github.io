@@ -16,7 +16,7 @@ Stored Logs can be retrieved by authorized users through a simple REST API. [Aud
 
 ## Component Orchestrator
 
-The Component Orchestrator orchestrates flow lifecycle. It creates queues in RabbitMQ and manages Docker containers (deploy/stop/remove) for each flow node whenever a flow is created, stopped or removed. For further information see: .[Component Orchestrator](https://openintegrationhub.github.io/docs/Services/ComponentOrchestrator.html).
+The Component Orchestrator orchestrates flow lifecycle. It creates queues in RabbitMQ and manages Docker containers (deploy/stop/remove) for each flow node whenever a flow is created, stopped or removed. For further information see:[Component Orchestrator](https://openintegrationhub.github.io/docs/Services/ComponentOrchestrator.html).
 
 ## Component Repository
 
@@ -39,7 +39,7 @@ The basic purpose of the Integration Layer Service is to receive data objects fr
 
 All the communication between steps of an integration flow in runtime is happening through a message broker. Two steps
 of an integration flow are separate Docker container isolated from each other. They are connected through a messaging
-queue than provides them a reliable and asynchronous communication protocol. See more details on  message oriented middleware: [MessageProcessing/MessageOrientedMiddleware](https://openintegrationhub.github.io/docs/Services/MessageOrientedMiddleware.html).
+queue than provides them a reliable and asynchronous communication protocol. See more details on  message oriented middleware: [MessageOrientedMiddleware](https://openintegrationhub.github.io/docs/Services/MessageOrientedMiddleware.html).
 
 ## Meta Data Repository
 

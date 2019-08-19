@@ -9,10 +9,6 @@ nav_order: 9
 
 The service scheduler is responsible for a periodical execution of integration flows.
 
-# Description
-
-The document shortly describes the service and its functionality.
-
 # Technologies used
 
 - Cron-Deamon

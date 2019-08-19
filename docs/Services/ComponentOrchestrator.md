@@ -10,9 +10,6 @@ nav_order: 2
 
 The service component orchestrator is responsible for a fair resource distribution.
 
-# Description
-
-The document shortly describes the service and its functionality.
 
 # Service Implementation
 
