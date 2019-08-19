@@ -9,11 +9,10 @@ has_children: true
 
 This folder contains the documentation about the Open Integration Hub Services. A short version of the functionalities can be found below:
 
-## Integration Component (Adapter) Repository
+## Component Repository
 
-The integration components are lightweight and stand-alone Docker images that include everything needed to run the
-component, including the component's code, a runtime, libraries and dependencies. The component images are stored in an
-integration component repository: [Integration Component Repository](IntegrationComponentRepository.md).
+A component is a piece of software that connects another application to Open Integration Hub. This includes Adapters and Transformer. Components are lightweight and stand-alone Docker images stored in a
+component repository: [Component Repository](https://openintegrationhub.github.io/docs/Services/ComponentRepository.html).
 
 ## Scheduler and Resource Coordinator
 

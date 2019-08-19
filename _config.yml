@@ -1,4 +1,5 @@
 remote_theme: pmarsceill/just-the-docs
+theme: just-the-docs
 
 title: Open Integration Hub
 description: Open Source Integration Framework
@@ -6,5 +7,5 @@ description: Open Source Integration Framework
 aux_links:
   "Open Integration Hub on GitHub":
     - "//github.com/openintegrationhub"
-    
-footer_content: "Copyright &copy; 2017-2019 <a href=\"https://cloudecosystem.org\">Cloud Ecosystem e.V.</a>"
+
+footer_content: "Copyright &copy; 2019 <a href=\"https://cloudecosystem.org\">Cloud Ecosystem e.V.</a>"
