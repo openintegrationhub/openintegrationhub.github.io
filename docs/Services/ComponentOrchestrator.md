@@ -2,24 +2,36 @@
 layout: default
 title: Component Orchestrator
 parent: Services
-nav_order: 2
+nav_order: 3
 ---
 
+<!-- Description Guidelines
 
-# Introduction
+Please note:
+Use the full links to reference other files or images! Relative links will not work under our theme settings settings.
+-->
 
-The service component orchestrator is responsible for a fair resource distribution.
+<!-- please choose the appropriate batch and delete/comment the others  -->
+![prod](https://img.shields.io/badge/Status-Production-brightgreen.svg)
+![alpha](https://img.shields.io/badge/Alpha-yellowgreen.svg)
+![wip](https://img.shields.io/badge/Work%20in%20progress-orange.svg)
 
+# **Component Orchestrator** <!-- make sure spelling is consistent with other sources and within this document -->
 
-# Service Implementation
+## Introduction
+<!-- 2 sentences: what does it do and how -->
 
-**Framework Part:** [component orchestrator lib](https://github.com/openintegrationhub/openintegrationhub/tree/master/lib/component-orchestrator)
+The Component Orchestrator is responsible for a fair resource distribution.
 
-**Reference Implementation:** [component orchestrator service](https://github.com/openintegrationhub/openintegrationhub/tree/master/services/component-orchestrator)
+<!--[API Reference](){: .btn .fs-5 .mb-4 .mb-md-0 }-->
+[Implementation](https://github.com/openintegrationhub/openintegrationhub/tree/master/services/component-orchestrator){: .btn .fs-5 .mb-4 .mb-md-0 }
+[Service File](https://github.com/openintegrationhub/openintegrationhub/tree/master/lib/component-orchestrator){: .btn .fs-5 .mb-4 .mb-md-0 }
 
-# Conceptional Elaborations
+## Technologies used
+<!-- please name and elaborate on other technologies or standards the service uses -->
 
-## Component Orchestrator
+## How it works
+<!-- describe core functionalities and underlying concepts in more detail -->
 
 In a multi-tenant environment it must be guaranteed that a user or tenant
 (intentionally or unintentionally) may not get an unfair usage of shared

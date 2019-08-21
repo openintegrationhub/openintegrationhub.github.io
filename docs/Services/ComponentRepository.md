@@ -2,27 +2,36 @@
 layout: default
 title: Component Repository
 parent: Services
-nav_order: 3
+nav_order: 4
 ---
+<!-- Description Guidelines
 
-# Introduction
+Please note:
+Use the full links to reference other files or images! Relative links will not work under our theme settings settings.
+-->
 
-The component repository is needed to store integration components such as adapters & transformer.
+<!-- please choose the appropriate batch and delete/comment the others  -->
+![prod](https://img.shields.io/badge/Status-Production-brightgreen.svg)
 
+# **Service Name** <!-- make sure spelling is consistent with other sources and within this document -->
 
-# Service Implementation
+## Introduction
+<!-- 2 sentences: what does it do and how -->
 
-**Framework Part:** [component repository lib](https://github.com/openintegrationhub/openintegrationhub/tree/master/lib/component-repository)
+The Component Repository stores integration components such as adapters & transformer.
 
-**Reference Implementation:** [component orchestrator service](https://github.com/openintegrationhub/openintegrationhub/tree/master/services/component-repository)
+[API Reference](http://component-repository.openintegrationhub.com/api-docs/){: .btn .fs-5 .mb-4 .mb-md-0 }
+[Implementation](https://github.com/openintegrationhub/openintegrationhub/tree/master/services/component-repository){: .btn .fs-5 .mb-4 .mb-md-0 }
+[Service File](https://github.com/openintegrationhub/openintegrationhub/tree/master/lib/component-repository){: .btn .fs-5 .mb-4 .mb-md-0 }
 
-## Reasoning
-
+## Technologies used
+<!-- please name and elaborate on other technologies or standards the service uses -->
 - Docker Registry: Stateless, highly scalable storage for Docker images
 
-# Conceptional Elaborations
+## How it works
+<!-- describe core functionalities and underlying concepts in more detail -->
 
-The integration components are lightweight and stand-alone Docker images that include everything needed to run the
+Integration components are lightweight and stand-alone Docker images that include everything needed to run the
 component, including the component's code, a runtime, libraries and dependencies. Each component is based on an Open Integration Hub
 [parent image](https://docs.docker.com/engine/userguide/eng-image/baseimages/) which provides the component runtime.
 For example, for Java component the parent images provides the JDK and for Node.js component the parent image provides

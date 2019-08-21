@@ -11,7 +11,7 @@ This document is designed to describe different service collaboration examples. 
 Most of the examples are triggered by user interactions (e.g. starting a flow) and only the "happy path" i.e. success scenario is described.
 
 Each example is described through a graphical overview, a textual description and pre-conditions.
-For further information for a specific version please have a look at the [services](../../../services) itself.
+For further information for a specific version please have a look at the [services](https://github.com/openintegrationhub/openintegrationhub/tree/master/services) itself.
 
 - [Introduction](#introduction)
   - [Starting a flow](#starting-a-flow)

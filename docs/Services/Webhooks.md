@@ -2,15 +2,36 @@
 layout: default
 title: Webhooks
 parent: Services
-nav_order: 11
+nav_order: 13
 ---
 
+<!-- Description Guidelines
 
-# Webhooks
+Please note:
+Use the full links to reference other files or images! Relative links will not work under our theme settings settings.
+-->
 
-Receives http calls and passes messages to execution. Based on [@openintegrationhub/webhooks](../../lib/webhooks).
+<!-- please choose the appropriate batch and delete/comment the others  -->
+![prod](https://img.shields.io/badge/Status-Production-brightgreen.svg)
+![alpha](https://img.shields.io/badge/Alpha-yellowgreen.svg)
+![wip](https://img.shields.io/badge/Work%20in%20progress-orange.svg)
+
+# **Webhooks** <!-- make sure spelling is consistent with other sources and within this document -->
+
+## Introduction
+
+<!-- 2 sentences: what does it do and how -->
+Receives http calls and passes messages to execution.
+
+<!-- [API Reference](){: .btn .fs-5 .mb-4 .mb-md-0 }-->
+[Implementation](https://github.com/openintegrationhub/openintegrationhub/tree/master/services/webhooks){: .btn .fs-5 .mb-4 .mb-md-0 }
+[Service File](https://github.com/openintegrationhub/openintegrationhub/tree/master/lib/webhooks){: .btn .fs-5 .mb-4 .mb-md-0 }
+
+## Technologies used
+<!-- please name and elaborate on other technologies or standards the service uses -->
 
 ## How it works
+<!-- describe core functionalities and underlying concepts in more detail -->
 
 It listens for incoming HTTP connections, serializes incoming data and puts it to the queue of the first node of the flow. The message is being consumed and processed by the component.
 

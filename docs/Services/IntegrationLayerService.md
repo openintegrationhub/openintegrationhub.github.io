@@ -2,27 +2,49 @@
 layout: default
 title: Integration Layer Service
 parent: Services
-nav_order: 6
+nav_order: 8
 ---
 
+<!-- Description Guidelines
 
-# Integration Layer Service (ILS)
-The basic purpose of the ILS is to receive data objects from one or several incoming flows, apply some business logic on them (such as a merge or split), validate them against a supplied schema, and then provide the resulting valid objects as input to other flows. For this purpose, the ILS is capable of temporarily storing these objects in a database until they are no longer required.
+Please note:
+Use the full links to reference other files or images! Relative links will not work under our theme settings settings.
+-->
 
-Objects can be posted to the ILS through a simple REST-API, and retrieved the same way. The ILS will only deliver objects that have been successfully validated against the supplied definition. This communication should generally be conducted through the Integration Layer Adapter.
+<!-- please choose the appropriate batch and delete/comment the others  -->
+![prod](https://img.shields.io/badge/Status-Production-brightgreen.svg)
 
-## Use case: Merging objects
-For the current prototypical implementation, the chosen core functionality is the merging of incomplete objects from separate sources until all required data has been added. For this purpose, all incoming POST requests must supply a *common identifier* (cid) by which incoming objects can be matched against each other. Each time a new object comes in, the ILS first looks up its database to check whether another object with a matching cid is already stored. If one is found, the new data is merged into the existing object. If not, the incoming object is saved as-is.
+
+# **Integration Layer Service (ILS)** <!-- make sure spelling is consistent with other sources and within this document -->
+
+## Introduction
+<!-- 2 sentences: what does it do and how -->
+
+The Integration Layer Service receives data objects from one or several incoming flows, applies some business logic (such as a merge or split), validates them against a supplied schema, and provides the resulting valid objects as input to other flows. ILS can temporarily store these objects. Objects can be posted to the ILS through a REST-API, and be retrieved the same way.
+
+
+[API Reference](){: .btn .fs-5 .mb-4 .mb-md-0 }
+[Implementation](https://github.com/openintegrationhub/openintegrationhub/tree/master/services/ils){: .btn .fs-5 .mb-4 .mb-md-0 }
+[Service File](){: .btn .fs-5 .mb-4 .mb-md-0 }
+
+## Technologies used
+<!-- please name and elaborate on other technologies or standards the service uses -->
+
+## How it works
+<!-- describe core functionalities and underlying concepts in more detail -->
+
+### Use case: Merging objects
+A core functionality is merging of incomplete objects from separate sources until all required data has been added. For this purpose, all incoming POST requests must supply a *common identifier* (cid) by which incoming objects can be matched against each other. Each time a new object comes in, the ILS first looks up its database to check whether another object with a matching cid is already stored. If one is found, the new data is merged into the existing object. If not, the incoming object is saved as-is.
 
 In either case, the resulting object is then validated against a supplied definition, which includes a list of required fields. A valid object will be marked as such, and can then be retrieved by another component. If an object is invalid, it cannot be retrieved, and will instead be stored until the necessary data has been merged into it and it passes validation.
 
-## Use case: Splitting objects
+### Use case: Splitting objects
 ILS comes into play when the user would like to split an object into smaller or other objects containing properties from the main object. Let's say that the user want to split the object containing employee's `firstName`, `lastName`, `salutation`, `organization`, `email`, `street` and `streetNumber` into two separate objects. The first one should have the properties `firstName`, `lastName`  and `salutation` ant the second one should contain the rest. In this case the user must provide `splitSchema` array containing two objects and each of them must have the properties `meta` and `payload`. Meta has the special property `splitKey` which servers as an identifier and `payload` consists of the fields which the new splitted object must contain. After successful splitting each new object should hold  the `splitKey` and `payload` properties.
 
 On the other hand the user would like to `GET` a new/splitted object. In such a case an `ilaId` and a `splitKey` must be provided. Then ILS will return an array of all objects which have the same `splitKey`.
 
 
-## Technical description
+### Technical description
 
 The ILS API currently supports the following endpoints:  
 
@@ -74,12 +96,5 @@ To `GET /chunks/${ilaId}?key=${splitKey}` the user should provide the `ilaId` an
 For storage, the ILS uses MongoDB. Stored objects are endowed with a Time To Live of one hour, which is refreshed every time new data is merged into them.
 
 
-## Integration Layer Adapter (ILA)
+### Integration Layer Adapter (ILA)
 The ILA is a generic component used to allow flows to communicate with the ILS. In posting mode, it automatically passes on any data objects received by other flow components, and endows them with the metadata listed above. In polling mode, it will automatically fetch all valid combined objects and pass them on to other components just like any other flow component. For further information about the ILA, see its [GitHub Repository](https://github.com/openintegrationhub/integration-layer-adapter)
-
-## Local installation/development
-To install the necessary dependencies, first run `npm install`. The service can then be started via `npm start`, and is reachable on http://localhost:3002.
-
-## REST-API documentation
-
-Visit http://localhost:3002/api-docs to view the Swagger API-Documentation

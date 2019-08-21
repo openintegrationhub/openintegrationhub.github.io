@@ -2,28 +2,38 @@
 layout: default
 title: Scheduler
 parent: Services
-nav_order: 9
+nav_order: 11
 ---
 
-# Introduction
+<!-- Description Guidelines
 
+Please note:
+Use the full links to reference other files or images! Relative links will not work under our theme settings settings.
+-->
+
+<!-- please choose the appropriate batch and delete/comment the others  -->
+![prod](https://img.shields.io/badge/Status-Production-brightgreen.svg)
+
+# **Scheduler** <!-- make sure spelling is consistent with other sources and within this document -->
+
+## Introduction
+
+<!-- 2 sentences: what does it do and how -->
 The service scheduler is responsible for a periodical execution of integration flows.
 
-# Technologies used
+<!-- [API Reference](){: .btn .fs-5 .mb-4 .mb-md-0 } -->
+[Implementation](https://github.com/openintegrationhub/openintegrationhub/tree/master/services/scheduler){: .btn .fs-5 .mb-4 .mb-md-0 }
+[Service File](https://github.com/openintegrationhub/openintegrationhub/tree/master/lib/scheduler){: .btn .fs-5 .mb-4 .mb-md-0 }
 
+## Technologies used
+
+<!-- please name and elaborate on other technologies or standards the service uses -->
 - Cron-Deamon
 
-# Service Implementation
+## How it works
+<!-- describe core functionalities and underlying concepts in more detail -->
 
-**Framework Part:** [scheduler lib](https://github.com/openintegrationhub/openintegrationhub/tree/master/lib/scheduler)
-
-**Reference Implementation:** [scheduler service](https://github.com/openintegrationhub/openintegrationhub/tree/master/services/scheduler)
-
-# Conceptional Elaborations
-
-## Scheduler
-
-In the Integration Hub there is a great number of active integration flows
+In the Open Integration Hub there is a great number of active integration flows
 to be executed periodically. Each integration can be configured with a
 [Cron](https://en.wikipedia.org/wiki/Cron) expression defining flow's execution
 interval. Let's consider the following Cron expression:

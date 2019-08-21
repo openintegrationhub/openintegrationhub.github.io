@@ -2,24 +2,32 @@
 layout: default
 title: Message Oriented Middleware
 parent: Services
-nav_order: 7
+nav_order: 9
 ---
+<!-- Description Guidelines
 
-# Introduction
+Please note:
+Use the full links to reference other files or images! Relative links will not work under our theme settings settings.
+-->
 
-The message oriented middleware is a central part of the Open Integration Hub and is needed to store and route messages while transferring them from senders to receivers.
+<!-- please choose the appropriate batch and delete/comment the others  -->
+![prod](https://img.shields.io/badge/Status-Production-brightgreen.svg)
 
-# Technologies used
 
+# **Message Oriented Middleware** <!-- make sure spelling is consistent with other sources and within this document -->
+
+## Introduction
+<!-- 2 sentences: what does it do and how -->
+
+The Message Oriented Middleware stores and routes messages while transferring them from senders to receivers.
+
+## Technologies used
+<!-- please name and elaborate on other technologies or standards the service uses -->
 - RabbitMQ
 
-## Reasoning
+## How it works
 
-RabbitMQ can handle more than 1M messages per second. Additionally to that, Organizations in XPC are not communicating with each other, which gives us a perfect case for horizontal scalability - we deploy multiple RabbitMQ instances to handle load linearly.
-
-# Conceptional Elaborations
-
-
+<!-- describe core functionalities and underlying concepts in more detail -->
 An integration flow is represented by a directed acyclic graph in which
 nodes are represented by integration components communicating with a
 particular API or executing some custom logic. The edges of the

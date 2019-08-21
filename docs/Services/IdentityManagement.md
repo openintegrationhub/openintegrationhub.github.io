@@ -1,104 +1,340 @@
 ---
 layout: default
-title: Indentity Access Management
+title: Identity and Access Management
 parent: Services
-nav_order: 5
+nav_order: 7
 ---
+<!-- Description Guidelines
 
-# Identity Management
+Please note:
+Use the full links to reference other files or images! Relative links will not work under our theme settings settings.
+-->
 
-This document describes the evaluation of identity and access management within the Open Integration Hub.
-
-## Why is Identity and Access Management necessary?
-
-
-
-## Types of identities
-OIH consists of multiple services and agents with different roles and authorization. Given the fact, that we are dealing primarily with machine-to-machine interaction, we can use machine identites (aka. `Service Accounts`) for authentication and authorization of these machines.
+<!-- please choose the appropriate batch and delete/comment the others  -->
+![prod](https://img.shields.io/badge/Status-Production-brightgreen.svg)
 
 
-## Which entities should be managed?
+# **Service Name** <!-- make sure spelling is consistent with other sources and within this document -->
 
-We can cluster the digital identites of OIH into three categories:
- * `Master` (e.g. administrative application which managed the OIH via REST-API)
- * `Connector`
- * `Tenant`
+## Introduction
+<!-- 2 sentences: what does it do and how -->
 
+Identity and Access Management (short: IAM) provides secure authentication and authorization of users/clients. Further features of an IAM system are user and roles management as well as audit logging.
 
-### Master
-This actor has a privleged admin access to OIH and can define which Connectors should be (de)-provisioned. This actor can also define intergration flows on behalf of a tenant between two or more ISV connectors.
-Additionally, this system is authorized to manage identites/accounts (e.g. service accounts) for connectors, tenants, etc.
+[API Reference](http://iam.openintegrationhub.com/api-docs/){: .btn .fs-5 .mb-4 .mb-md-0 }
+[Implementation](https://github.com/openintegrationhub/openintegrationhub/tree/master/services/iam){: .btn .fs-5 .mb-4 .mb-md-0 }
+[Service File](https://github.com/openintegrationhub/openintegrationhub/tree/master/lib/iam-utils){: .btn .fs-5 .mb-4 .mb-md-0 }
 
-### Connector
-A connector is a service which can trigger an action on behalf of the user or master, e.g. create a tenant, modify tenants customer data. This requires the connector to provide a valid access token or a valid service account containing these priveleges. The required privilges are granted by tenant account (or tenant admin) through OIH. Whenever such change occurs, the connector could send an event to OIH providing it's access token. OIH verifies the access token and the claims.
+## Technologies used
 
-### Tenant and Tenant Users
-Each tenant and tenant users have an identity in OIH (main identity). Whenever a tenant account is created in one of the ISV systems via OIH, a new remote identity is created in OIH and linked to the main identity. This creates a relation (a graph) between the main identity and all corresponding remote identites.
-Tenant (or tenant admin) have access to tenant resources and can grant access to a connector via OIH to read/write to these resources.
-Example: tenant can grant access to an ISV connector C1 read and write access to it's customer data and another ISV Connector C2 only read access. These access grants are required to define an integration flow of customer data from C1 to C2.
+**[JWT](https://jwt.io/)**
+JSON Web Token (JWT) is an open standard (RFC 7519) that defines a compact and self-contained way for securely transmitting information between parties as a JSON object. This information can be verified and trusted because it is digitally signed. JWTs can be signed using a secret (with the HMAC algorithm) or a public/private key pair using RSA. See [JWT Introduction](https://jwt.io/introduction/) for more details.
 
-![Tenant Identities](https://github.com/openintegrationhub/Microservices/blob/master/SecureAccessControl/assets/identities-linked.png)
+**[OAuth 2.0](https://oauth.net/2/)**
+OAuth 2.0 is the industry-standard protocol for authorization.
 
+**[OpenId Connect](http://openid.net/connect/)**
+OpenID Connect is a simple identity layer on top of the OAuth 2.0 protocol, which allows computing clients to verify the identity of an end-user based on the authentication performed by an authorization server, as well as to obtain basic profile information about the end-user in an interoperable and REST-like manner.
 
+## How it works
+<!-- describe core functionalities and underlying concepts in more detail -->
+Basic IAM setup
+===============
 
+This approach aims at a very basic and simple operation of OIH using only a minimal set of microservices. We assume a scenario where an individual or a company uses OIH in the intranet without the need for external identity providers and using a simple authentication and authorization mechanisms.
 
-In a very basic scenario one could use a `Master` account to provision connectors, to manage tenants, etc.
+The basic parameters of this setup are:
 
-The `Master` account is preveleged to create a `Tenant` and thus a tenant identity. For any further API calls to OIH on behalf of the tenant organization (e.g. to create the tenant in one of the vendor application through a corresponding `Connector`) it could be favorable to use the tenant identity instead of the `Master` identity. This allows for authorization mechanisms by design and better means of audit logging. In case of a marketplace like _Basaas_, the `Tenant` and all `Tenant` users   SSO mechanisms are managed by the marketplace. This also means, that the marketplace could store and transmit for each `Tenant` their specific Token/Service Account. To accomplish that, the `Master` system like the marketplace would also need either to store these Tokens/Service Accounts or to be able to fetch them from OIH.
-
-The following example workflow tries to illustrate such scenario:
-
-
- * Master System uses `service account` to create a `tenant`
-  * OIH creates `tenant`
-  * Master System fetches the `tenant service account` and stores it for future requests
- * `Tenant admin` creates an account in the solution ACME Inc.
-  * Master System uses the `tenant service account` to create a tenant account in ACME Inc. through OIH
-  * OIH triggers the `Connector`to create the tenant in ACME Inc.
-  * `Connector` creates tenant and returns it's internal `TenantId`
-  * OIH saves the new `TenantId` and connects it to the existing OIH tenant-id
-
-Following figure illustrates the services and the identities/service accounts.
-
-![Service Accounts](https://github.com/openintegrationhub/Microservices/blob/master/SecureAccessControl/assets/identities-oih.png)
-
-
-Another case of identities in use is when a `Connector` requires authorization for a vendor backend. Assuming an ISV named ACME Inc. has an RESTful API with OAuth 2.0 support. ACME creates a Connector. For every REST call the connector has to provide a valid access token for the associated tenant account. Given that a connector has no persistence, such tokens and other authentication/authorization mechanisms can be stored and provided from OIH. A possible workflow might be as follows:
- * OIH and connector negotiate the supported authentication methods between OIH ↔ Connector ↔ ACME Backend or the OIH supports only OAuth 2.0 and requires access token for ACME
- * OIH triggers a connector to create a tenant account in ACME ~~and provides an access token for this operation~~
- * Connector calls ACME backend with ~~the given~~ token and creates a tenant on behalf of OIH
- * ACME returns new access token for this particular tenant
- * Connector transmits this tenant specific access token to OIH
- * OIH saves the token and either uses it for all future calls for this particular tenant or provides means for a connector to fetch such token when needed
- * Tenant admin creates an action through OIH
- * OIH requests tenant consent (UI) and triggers the requested action afterwards
-
- ![Access Mngmt OIH - Basaas - ISV](https://github.com/openintegrationhub/Microservices/blob/master/SecureAccessControl/assets/access-mngmt-oih-basaas-isv.png)
-
-
-There are most likely different strategies/possibilities to use identity management to perform actions on behalf of the user. Some of these actions may be:
- * Modify use data, e.g. user changed her lastname
- * Extract tenant data from an ISV and import that data into another ISV
-
-Given the fact that some ISVs may have an existing API based on OAuth, Rest with Access Control, etc. we must consider if there is a "one size fits all" solution or whether the OIH must be capable of applying different strategies, e.g. requiring user's authorization by using her identity in context of OAuth 2.
+*   Authentication is a dedicated service (AuthService)
+*   Authorization mechanisms are either part of the said AuthService or is a utility library integrated into a separate gateway or microservice
+*   Use of HS256 or HS512 symmetric encryption with a strong secret key
 
 
 
-## Identity Resources and Identity provider
+We also assume that in a basic use case there isn't necessary a user interface for the OIH. And although the OIH does provide a REST-API, the client is most likely to be _curl_, _Postman_ or some other (Micro)-Service interacting with the REST-API. The later could make use of an OAuth Library and thus have an easy way to use access and refresh tokens. But in the case of using _curl_ or _Postman_, it would be more convenient and easy to have a long living JWT access token (e.g. with an expiration time of 1h) without the need to refresh the token every few minutes. This of course comes at the cost of risks when using long living tokens similar to those risks when using solely Basic Authentication.
 
-
- The conceptual design of OIH allows the use of custom data models and integration flows of such data between multiple ISVs via connectors. An example of such data is customer data. In a simplified scenario without a data hub, a tenant can define which ISV should be primary or leading system for a specific data model (in this case – customer data). This could mean, that this ISV could be in theory the resource provider for customer data. This leads to an assumption, that we may not have a centralized resource provider without a data hub. Each ISV could be granted the privilege of a resource provider. Each caller trying to access such data must provide a valid access token established by the identity provider. An ISV connector may require a Resource API as part of it's SDK to be able to access and validate tokens.
- **TBD: conceptual design and analysis of federated identites.**
+> The AuthService is intended to support both cookie and Authorization Header based authentication. In case of a browser, the AuthService will set the JWT as a cookie and automatically prolong it, if the user makes a HTTP request to the AuthServer before the JWT expires.
 
 
 
-## Machine-to-Machine Authentication/Authorization
+Identity Store
+--------------
 
-A machine-to-machine authorization is when the client makes calls to the Resource Server (i.e. the API) on its own behalf.
-For situations like this where there is no user interaction involved, the Client Credentials Grant is ideal. With Client Credentials Grant (defined in [RFC 6749, section 4.4](https://tools.ietf.org/html/rfc6749#section-4.4)) a Client can directly request an access_token from the Authorization Server by using its Client Credentials (a Client Id and a Client Secret). Instead of identifying a Resource Owner, this token will represent the Client itself.
-See: https://auth0.com/docs/architecture-scenarios/application/server-api/part-1
+For a basic setup we will be using a MongoDB with Passport.js to store and authenticate users. Account management is done by the AuthService. 
+
+In a more advanced approach, one could use LDAP or Active Directory as an identity store.
+
+> If no other information except a unique identifier of the user (e.g. user_id) is needed, we can store all user data (e.g. Name, E-Mail) in the AuthService. Should this data also be required in other microservices as well, for example for data aggregation, performance, etc., then we will have to introduce an identity/user provisioning mechanism. This provisioning mechanism would allow synchronization and merging of user data in all affected services. A very simplified solution for user provisioning could be accomplished through the message queue – all subscribes are notified with new data set, when an account has been modified. The subscribers can then merge/import the data into their own system. Same goes for the de-provisioning.
 
 
-## Challenges
 
- 1. Multiple Services are using the same OAuth2 Access Token. One Service uses the Refresh Token which creates a new Access Token and invalidates the previous token. How should the services handle this?
+
+
+Authorization and Roles
+-----------------------
+
+The precise role definitions of OIH may change at a later stage, for the sake of simplicity, we will use the current state of roles and privileges of elastic.io platform, which are _Admin_, _Organization-Guest_ and _Organization-Admin_.
+
+*   A user can be part of more than one organization and can have different roles in each of her organizations
+*   An Admin can manage organizations
+*   Organization-User can create and start her own flows and organization flows (organization flows are accessible for all organization users, but each user may have their own private flows)
+*   Organization-Admin can do everything what Organization-Users can do, plus manage her organization data and Organization-Users (invite, change role, remove from organization)
+
+
+![Users and Identities in OIH](./Assets/users_in_oih.png)
+
+
+User management
+---------------
+
+In contrast to a more tenant centric user management where a user can only be assigned to a single tenant, we propose a user centric IAM. This means that users can be created in OIH and can be assigned to more than one organization/tenant and have different roles in each organization. Every user can edit her personal data and password individually. The current [elastic.io](http://elastic.io) platform adopts a similar approach.
+
+The Admin can create organizations, create/invite users and assign them to an organization, whereas an Organization-Admin can only invite users to her organization or exclude them from it.
+
+
+
+Authentication and authorization flows
+--------------------------------------
+
+The following diagram visualizes a simple authentication flow from a client perspective.
+
+![Authentication in OIH](./Assets/oihIamConcept.png)
+
+
+
+The client either has an access token (JWT) or will be redirected to the AuthService for authentication. The authentication can be a simple username + password process, returning the JWT token. The client has to save this token and use it in the Authorization Bearer header for all future requests. 
+
+The access token is a JWT token which contains at least the following data:
+
+*   user_id
+*   username
+*   firstname
+*   lastname
+*   roles – an array of objects, containing organization_id and the role name within that organization
+
+
+
+As mentioned earlier, a user can be part of more than one organization, which is why we propose the use of context, similar to the context of kubernetes. Upon authentication, the client can fetch all contexts which it has, e.g.:
+
+```bash
+curl -i https://heimdal.example-oih.com/api/v1/context \
+  -H "Authorization: Bearer mytoken123"
+```
+
+This will return the list of contexts the client/user is assigned to, e.g.:
+
+```javascript
+[
+  {
+    "org": "some-org-id-1",
+    "role": "ORG_ADMIN"
+  },
+  {
+    "org": "some-org-id-2",
+    "role": "USER"
+  }
+]
+```
+
+The cient an then choose the desired role and will receive a new JWT containing the claims for that specific context:
+
+```bash
+curl -X POST -i https://heimdal.example-oih.com/api/v1/context/some-org-id-1 \
+  -H "Authorization: Bearer mytoken123"
+```
+
+Corresponsing JWT payload:
+
+```javascript
+{
+  "sub": "1234567890",
+  "name": "John Doe",
+  "role": "ORG_ADMIN",
+  "org_id": "some-org-id-1"
+}
+```
+
+The advantage of setting a context is that, the underlying services can focus on the current user role and her current tenant/ogranization without knowledge of 1 to n relationsgip between a user and organizations.
+
+The Gateway in this diagram is representative for any other gatekeeper module or service. Due to the fact that OIH consists of many services, it would be an obvious choice to have the authentication and authorization validation in one module or service and limited to one distrinct location instead of distributing it accross many services and thus requiring the synchronization/updates at many points. We will view the alternatives in the advanced examples.
+
+The core idea of this basic approach is to validate the token at gateway level and pass the token as an HTTP-Header to the services behind the gateway. These service can react to the claims, assuming that these cannot have been tampered with if the request has passed the gateway. Different approaches are possible in order for the gateway to validate the token:
+
+* Gateway and AuthService share a secret
+	* Gateway does not have to communicate with the AuthService
+    * Changing the secret must be propagated to AuthService and Gateway
+* Gateway uses the public JWS key from AuthService to validate the tokens
+    * See the JWS documentation for details 
+* Gateway calls the AuthService to validate a token and caches that token (or the "jti"-Id of a JWT) for a short time
+
+
+
+For a very simple and basic scenario, we will be using the first approach with a shared secret.
+
+This basic scenario does not deal with token revocation, which is why the tokens might be long living (at least 1 hour). Upon expiry, the user needs to re-authenticate to receive a new access token.
+
+
+
+List of supported Methods and Routes
+------------------------------------
+
+| endpoint        | method           | description  | comments |
+| ------------- |:-------------:| -----|------|
+| /healthcheck | GET | Returns 200 OK when Service is up | Could be used for Kubernetes and liveliness checks |
+| /login | POST | Returns 200 and a JWT. <br>JWT ist returned and additionally set as a cookie. The JWT Token is used to authenticate to other Services | JWT can have role information in it |
+| /logout | POST | Returns a 200 OK and will remove the corresponding cookie(s) |  |
+
+
+
+Connectors and external services
+--------------------------------
+
+Specific connectors like Adapters can have read/write access to the Smart Data Framework API (short: SDF). The OIH is a multi-tenant environment, which is why there should also be means to limit the data a connector can access.
+
+Given the fact that a separate Docker container is launched for each component of an integration flow, we could generate an access token for each connector on start-up. Such access tokens will contain the current tenant/organization id and allow the SDF to enforce it's authorization mechanisms. 
+
+>**Important notice**
+We refrain from generating refresh tokens and create the access tokens for connectors without an expiration time.
+
+>Typically, refresh tokens are stored by an AuthService permanently and do not change. This would mean, that we would need to create a separate refresh token for each connector on start-up and to delete that refresh token when the connector shuts down. Any given connector may crash, hang, be manually or atomatically restarted, the OIH plattform could have an unexpected outage, etc. If the AuthService should store refresh tokens, there there should be a mechanism or a dedicated daemon in the OIH, which instructs the AuthService to remove old refresh tokens.
+
+>From a security perspective, the sole purpose of this connector access token is to access OIH internal services like SDF. In this environment, we do not see the risk of leaking a long-living access token greater than the risk of leaking a long-living refresh token.
+
+
+
+
+
+
+
+
+
+Advanced setup
+==============
+
+In a more complex scenario we will make use of an external identity provider on OpenId Connect basis (e.g. Basaas Marketplace) to authenticate with the OIH.
+
+Other mentionable difference to the basic setup are:
+
+*   Use of RS265 or RS512 for assymetric encryption
+*   JWT is signed using the private key from AuthService
+*   Gateway can validate the authenticity of the JWT signature using the public from AuthService
+
+
+
+IAM in context of OIH and microservices
+---------------------------------------
+
+In a microservice architecture like the OIH a client (or a service on behalf of a user) can communicate to multiple other services. In terms of multi-tenancy, we require a sophisticated authorization, for example allowing access only to those integration flows and credentials the current user is actually eligibile for. As described in the basic scenario, our approach is to make use of signed JWT tokens containing the claims/grants of the user/client. The following example illustrates the access to credentials store.
+
+![Authentication in OIH](./Assets/authorization_types.png)
+
+Flow:
+
+1.  Client authenticates
+2.  Client receive the JWT containing the claims and current context
+3.  Client accesses the credentials for org1 in OIH. Gateway validates, that the JWT is valid.
+4.  Credentials Service can either use
+    1.  a middleware/library to verify that the client is authorized to access the ressource (business logic within credentials service)
+    2.  or make a request to the authorization service, which maps all authorization policies
+
+**TODO** > Our preferred version ist the use of middleware for authorization and a model which allows adding attriibute based access control (ABAC) to role based (RBAC).
+Our preferred version ist the use of middleware for authorization and a model which allows adding attriibute based access control (ABAC) to role based (RBAC). See the AccessControl documentation for more details.
+
+The validation of JWT can be done by the Gateway, but also by any service/module, which has access to the JWS public key of the AuthService. 
+
+### Authentication/Authorization Middleware
+The authentication middleware is a depedency, e.g. node module, which can be used by any (micro)-service, in order to validate the JWT. For this, the middleware would only require the endpoint uri of the AuthService to fetch the public JWS key. This can be done on startup of the service and be automatically refreshed with a configurable TTL.
+
+**TODO** > Define a scenario with rotating public keys and a fault tolerant approach, to refresh the public key on-demand.
+
+### Authorization
+
+For the OIH, we consider the authorization within each microservice as the best alternative:
+
+*   We have a very limited set of roles and applying rules and also a low number of APIs accessible from outside (currently only two: Integration Framework and Smart Data Framework)
+*   A seperate authorization policy service would require much coordination within different working groups
+*   Each microservice could have their own interpretation of what an specific combination of user role and attributes mean
+
+All these points could lead to inconsistent policies when managing them all at one point instead of doing it in the dedicated services.
+
+Single Sign-On
+--------------
+
+There are scenarios, for example in context of the Basaas marketplace, where we want the identity provider to be outside of OIH and allow the users to login into OIH using their external credentials. We will use OpenId Connect to achieve this.
+
+Authentication in the context of a generic ecosystem
+----------------------------------------------------
+
+In this section we will define a concept for user authentication to OIH inside a generic ecosystem. It utilizes OpenID Connect (http://openid.net/specs/openid-connect-core-1_0.html) which extends the OAuth2 protocol (https://tools.ietf.org/html/rfc6749). The core idea is to just authenticate the user and separate this process from authorization.
+
+
+### Authentication Flow
+
+![Authentication in OIH](./Assets/Authentication-steps.png)
+
+This abstract flow illustrates the interaction between the three roles and includes the following steps:
+
+(precondition) A registered account containing a valid OIH-uid is required.
+
+(A) A User requests access to OIH in order to interact via interface. Since OIH is Relying Party (http://openid.net/specs/openid-connect-core-1_0.html#Authentication) it is initializing OpenID Connect flow. 
+
+(B) OIH sends an authentication request (AuthN) to specified OpenID Provider (OP). The HTTP request parameter "response\_type" holds "id\_token token", so it corresponds to implicit flow according to the specifications (http://openid.net/specs/openid-connect-core-1_0.html#id_tokenExample).
+
+Example request
+
+*(values need to be url encoded)*
+```
+https://127.0.0.1:3002/op/auth?
+client_id=react&
+redirect_uri=https%3A%2F%2F127.0.0.1%3A3000%2Fcallback&
+response_type=id_token%20token&
+scope=openid%20email&
+state=716195036c014abaace6ff4b7e3df427&
+nonce=ea0da03dddf7453f9ad1e3c01c01df2e
+```
+
+(C) If this auth request is verified by OP, the User will be forwarded to login page. After he entered sufficient credentials, OP authenticates him.
+
+(D) Once he is logged in and has been authenticated locally, the OP creates id token (JWT) and request token. Thereafter OP signs the id token and redirects the User back to OIH with both tokens stored in redirect URIs fragment (http://openid.net/specs/openid-connect-implicit-1_0.html#ImplicitCallback).
+
+Example redirect URI
+
+```
+https://127.0.0.1:3000/callback #
+id_token=eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6InIxTGtiQm8zOTI1UmIyWkZGckt5VTNNVmV4OVQyODE3S3gwdmJpNmlfS2MifQ.eyJzdWIiOiI1YWI5MThmMjA0NDI1NGNjYjM2MjM0NDQiLCJlbWFpbCI6ImFkbWluQGJhc2Fhcy5jb20iLCJub25jZSI6ImVhMGRhMDNkZGRmNzQ1M2Y5YWQxZTNjMDFjMDFkZjJlIiwic2lkIjoiZTA5YjI2N2EtMDk2Yi00YWMxLTg2NjAtNTU0NzY3OWE2YmY0IiwiYXRfaGFzaCI6IjRCTi1YT1R2VzdtSGRDUndTOTNqSVEiLCJzX2hhc2giOiJMY3dYbXNEM1lvbTRvZnRmSzJsSXFRIiwiYXVkIjoicmVhY3QiLCJleHAiOjE1MjMyODU5OTIsImlhdCI6MTUyMzI4MjM5MiwiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDozMDAyIn0.BsYNuSFjIkg0SnNq6Euvsm6D-x5pQL29crHX0ol0_bHHi3Eh9ObCQ2Zd-LpJAGcw8vudXNBeCshihlSCAFuD94Zl7Vv9L5YYltL94-20knd8kXGq9-5vTn-LuJe8y64P558qHEFnlD4pCu9MOv6iwjCAxYoAZJhaq3Mr5ZT3dP6w49U0H9Va0fVNPDaqq-US1ILHI9uQCKrtWPZb_G-InTOZ8Gt7z7ib7Oq7tEgCShnwZ7XQdejuJmuiyK7be0gzqkb0I-0DOOKY2QWMgLB1araGPx9FIZCRuqJsdV5GJqxCNGGmEM_o8ys26UJFZgBZ6wa4LnV1CmUdoUNyJF6Y6A&
+access_token=MzEyNWY0YjEtMGNmMy00MmNkLWE3MGYtOWRkMjZmNjg1ZWMwnMF_21ukS1eGBMvkOfmoYtLW1ZmnDnQ7WdyY9aOynLj897CINblj3gx8K4kB3seETd5Z5GiMzy6xbM25Ik_SUg&
+expires_in=3600&token_type=Bearer&state=716195036c014abaace6ff4b7e3df427&
+session_state=2710dbb0eb0e5c7cf7e28ef125e637ddb9124c9aa0e6d78047ac0fbc313da057.f9d7df278636a29a
+```
+
+Decoded id token
+
+Header
+```javascript
+{
+  "alg": "RS256",
+  "typ": "JWT",
+  "kid": "r1LkbBo3925Rb2ZFFrKyU3MVex9T2817Kx0vbi6i_Kc"
+}
+```
+
+Payload
+```javascript
+{
+  "sub": "5ab918f2044254ccb3623444",
+  "email": "admin@basaas.com",
+  "nonce": "ea0da03dddf7453f9ad1e3c01c01df2e",
+  "sid": "e09b267a-096b-4ac1-8660-5547679a6bf4",
+  "at_hash": "4BN-XOTvW7mHdCRwS93jIQ",
+  "s_hash": "LcwXmsD3Yom4oftfK2lIqQ",
+  "aud": "react",
+  "exp": 1523285992,
+  "iat": 1523282392,
+  "iss": "http://localhost:3002"
+}
+```
+
+(E*) After the signature of id token has been verified or userinfo has been obtained(http://openid.net/specs/openid-connect-core-1_0.html#UserInfo), the User authentication succeeded.
+
+
+This authentication flow brings several benefits. It relies on established standards, so an implementation will be covered by detailed documentation. In addition, Users get an interface that should already be known to them, since large providers (e. g. maintained by Google or Facebook) have been around for a couple of years.

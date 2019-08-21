@@ -27,7 +27,7 @@ component repository: [Component Repository](https://openintegrationhub.github.i
 
 All connected solutions to the Open Integration Hub and the work they are doing there are represented by an "integration flow". The Flow Repository is responsible for storing, retrieving, updating and deleting integration flows: [Flow Repository](https://openintegrationhub.github.io/docs/Services/FlowRepository.html)
 
-## Identity Access Management
+## Identity and Access Management
 
 Identity Access Management (IAM) provides secure authentication and authorization of users/clients. The IAM Service can be configured to use JWT tokens with HMAC or RSA. It has also support for OpenId Connect: [IAM](https://openintegrationhub.github.io/docs/Services/IdentityManagement.html)
 
