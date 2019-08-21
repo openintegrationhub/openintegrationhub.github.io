@@ -38,10 +38,19 @@ Make sure that minikube is endowed with sufficient resources. We suggest at leas
 - _8GB of memory_
 - _4 CPUs_
 
-![Windows](https://img.shields.io/badge/Windows-blue.svg)
+<div style="
+    margin: 10px 0px;
+    background: #f8f8f8;
+    padding: 10px;
+    border-radius: 3px;
+    font-size: 1em;
+    border: 1px solid #9c9c9c;">
+    <div style="float: left; margin-right: 10px;">
+<img src="https://img.shields.io/badge/Windows-blue.svg" height="30">
+</div>
+If you're using Windows we suggest to use virtual box. In order to use it, Hyper-V must be disabled <a href="https://docs.microsoft.com/de-de/virtualization/hyper-v-on-windows/quick-start/enable-hyper-v">Enable/Disable Hyper-V on Windows 10</a>
+</div>
 
-|If you're using Windows we suggest to use virtual box. In order to use it, Hyper-V must be disabled [Enable/Disable Hyper-V on Windows 10](https://docs.microsoft.com/de-de/virtualization/hyper-v-on-windows/quick-start/enable-hyper-v).
-|---|
 
 # Installation
 
@@ -70,10 +79,20 @@ For further information about how to set up minikube, see here:
 - [Install Minikube](https://kubernetes.io/docs/tasks/tools/install-minikube/)
 - [Installing Kubernetes with Minikube](https://kubernetes.io/docs/setup/learning-environment/minikube/)
 
-![Windows](https://img.shields.io/badge/Windows-blue.svg)
 
-|If you're using Docker for Windows it overwrites the acutal kubectl version. In order to fix this download the `kubectl.exe` from [Install kubectl on Windows](https://kubernetes.io/docs/tasks/tools/install-kubectl/#install-kubectl-on-windows). Navigate to the docker directory (e.g. Program Files\Docker\Docker\resources\bin) andreplace the kubectl.exe in this folder with the one you just downloaded.
-|---|
+<div style="
+    margin: 10px 0px;
+    background: #f8f8f8;
+    padding: 10px;
+    border-radius: 3px;
+    font-size: 1em;
+    border: 1px solid #9c9c9c;">
+    <div style="float: left; margin-right: 10px;">
+<img src="https://img.shields.io/badge/Windows-blue.svg" height="30">
+</div>
+If you're using Docker for Windows it overwrites the acutal kubectl version. In order to fix this download the `kubectl.exe` from <a href="https://kubernetes.io/docs/tasks/tools/install-kubectl/#install-kubectl-on-windows">Install kubectl on Windows</a>. Navigate to the docker directory (e.g. Program Files\Docker\Docker\resources\bin) and replace the kubectl.exe in this folder with the one you just downloaded.
+</div>
+
 
 ## Basic Open Integration Hub Infrastructure Setup
 
@@ -296,7 +315,7 @@ The timer component is used to trigger flows on a provided interval, while the c
 In order to add those components, visit the web ui (`web-ui.localoih.com`) and navigate to the `Components` section.
 
 <p align="left">
-  <img src="assets/menu.png" alt="Sublime's custom image" width="150"/>
+  <img src="https://raw.githubusercontent.com/openintegrationhub/openintegrationhub.github.io/master/assets/images/menu.png" alt="Sublime's custom image" width="150"/>
 </p>
 
 Now click on the `ADD+` button. A popup window will appear where you can add the code provided above.
