@@ -1,14 +1,14 @@
 ---
 layout: default
-title: Component Orchestrator
+title: Service Events
 parent: Service Collaboration
 nav_order: 1
 ---
 
 
-The OIH microservices mostly communicate asynchronously and via message queues. Most services emitts and consumes several events.
+Open Integration Hub services mostly communicate asynchronously and via message queues. Most services emitts and consumes several events.
 
-This document is designed to list all (for now: audit log relevant) events per service.
+This document is designed to list all events per service.
 
 
 The currently used Event format provided by the Event Bus library was adopted for overall use. The schema is:
