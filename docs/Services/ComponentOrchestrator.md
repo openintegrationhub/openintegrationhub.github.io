@@ -13,8 +13,7 @@ Use the full links to reference other files or images! Relative links will not w
 
 <!-- please choose the appropriate batch and delete/comment the others  -->
 ![prod](https://img.shields.io/badge/Status-Production-brightgreen.svg)
-![alpha](https://img.shields.io/badge/Alpha-yellowgreen.svg)
-![wip](https://img.shields.io/badge/Work%20in%20progress-orange.svg)
+
 
 # **Component Orchestrator** <!-- make sure spelling is consistent with other sources and within this document -->
 
