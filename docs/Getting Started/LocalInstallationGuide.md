@@ -40,7 +40,7 @@ Make sure that minikube is endowed with sufficient resources. We suggest at leas
 
 ![Windows](https://img.shields.io/badge/Windows-blue.svg)
 
-|If you're using Windows we suggest to use virtual box. In order to use it, Hyper-V must be disabled [Enable/Disable Hyper-V on Windows 10](https://docs.microsoft.com/de-de/virtualization/hyper-v-on-windows/quick-start/enable-hyper-v).|
+|If you're using Windows we suggest to use virtual box. In order to use it, Hyper-V must be disabled [Enable/Disable Hyper-V on Windows 10](https://docs.microsoft.com/de-de/virtualization/hyper-v-on-windows/quick-start/enable-hyper-v).
 |---|
 
 # Installation
@@ -72,7 +72,7 @@ For further information about how to set up minikube, see here:
 
 ![Windows](https://img.shields.io/badge/Windows-blue.svg)
 
-|If you're using Docker for Windows it overwrites the acutal kubectl version. In order to fix this download the `kubectl.exe` from [Install kubectl on Windows](https://kubernetes.io/docs/tasks/tools/install-kubectl/#install-kubectl-on-windows). Navigate to the docker directory (e.g. Program Files\Docker\Docker\resources\bin) andreplace the kubectl.exe in this folder with the one you just downloaded.|
+|If you're using Docker for Windows it overwrites the acutal kubectl version. In order to fix this download the `kubectl.exe` from [Install kubectl on Windows](https://kubernetes.io/docs/tasks/tools/install-kubectl/#install-kubectl-on-windows). Navigate to the docker directory (e.g. Program Files\Docker\Docker\resources\bin) andreplace the kubectl.exe in this folder with the one you just downloaded.
 |---|
 
 ## Basic Open Integration Hub Infrastructure Setup
