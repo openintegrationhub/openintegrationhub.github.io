@@ -5,28 +5,24 @@ nav_order: 4
 has_children: true
 ---
 
-# Introduction
-
 This document is designed to describe different service collaboration examples. It should act as a starting point to easily understanding the architecture of the Open Integration Hub.
 Most of the examples are triggered by user interactions (e.g. starting a flow) and only the "happy path" i.e. success scenario is described.
 
 Each example is described through a graphical overview, a textual description and pre-conditions.
 For further information for a specific version please have a look at the [services](https://github.com/openintegrationhub/openintegrationhub/tree/master/services) itself.
 
-- [Introduction](#introduction)
-  - [Starting a flow](#starting-a-flow)
-    - [Detailed Service Consideration](#detailed-service-consideration)
-      - [Flow repository](#flow-repository)
-      - [Webhooks](#webhooks)
-      - [Scheduler](#scheduler)
-  - [Execute Polling Flow](#execute-polling-flow)
-  - [Execute Webhook Flow](#execute-webhook-flow)
-    - [POST Request](#post-request)
-    - [GET Request](#get-request)
-  - [Request Resources](#request-resources)
-  - [Creating audit log records](#creating-audit-log-records)
+- [Starting a flow](#starting-a-flow)
+  - [Flow repository](#flow-repository)
+  - [Webhooks](#webhooks)
+  - [Scheduler](#scheduler)
+- [Execute Polling Flow](#execute-polling-flow)
+- [Execute Webhook Flow](#execute-webhook-flow)
+  - [POST Request](#post-request)
+  - [GET Request](#get-request)
+- [Request Resources](#request-resources)
+- [Creating audit log records](#creating-audit-log-records)
 
-## Starting a flow
+# Starting a flow
 
 **Pre-Conditions:** None.
 
@@ -45,11 +41,9 @@ This example describes the scenario of starting a flow. Once the user starts a f
 
 Figure: _startFlow_
 
-### Detailed Service Consideration
+Now let's discuss the individual services in detail:
 
-Now let's discuss the individual services in details.
-
-#### Flow repository
+## Flow repository
 
 - `POST /flows/{id}/start`: Used to start a flow
 - `POST /flows/{id}/stop`: Used to stop a flow
@@ -83,7 +77,7 @@ Event:
 
 The `payload` property is an arbitrary object to be sent with the event. Flow repository will send the entire flow as `payload`.
 
-#### Webhooks
+## Webhooks
 
 Upon receiving `flow.starting` event the service checks if the `cron` property is **not** set. If so, the service persist a data record in his local DB but **doesn't start receiving HTTP requests** for the given flow yet. The following table demonstrates an example of such records.
 
@@ -100,7 +94,7 @@ Please note that the webhooks service ignores the event if the following conditi
 
 Upon receiving the `flow.stopping` event, the service deletes the record for the given flow and stops accepting requests.
 
-#### Scheduler
+## Scheduler
 
 Upon receiving `flow.starting` event the service checks if the `cron` property is set. If so, the service persist a data record in his local DB, but **doesn't start scheduling** the given flow yet. The following table demonstrates an example of such records.
 
@@ -117,7 +111,7 @@ Please note that the scheduler service ignores the event if the following condit
 
 Upon receiving the `flow.stopping` event, the service deletes the record for the given flow and stops scheduling flow executions.
 
-## Execute Polling Flow
+# Execute Polling Flow
 
 **Pre-Conditions:** Starting a flow.
 
@@ -148,9 +142,9 @@ The message format of the messages emitted by scheduler have the following struc
 
 Figure: _executePollingFlow_
 
-## Execute Webhook Flow
+# Execute Webhook Flow
 
-### POST Request
+## POST Request
 
 **Pre-Conditions:** Starting a flow.
 
@@ -178,7 +172,7 @@ The following example shows the message format of Webhooks messages:
 
 Figure: _executeWebhookFlowPost_
 
-### GET Request
+## GET Request
 
 **Pre-Conditions:** Starting a flow.
 
@@ -204,7 +198,7 @@ An examplary webhook GET request could look like the following: `GET /hook/<flow
 
 Figure: _executeWebhookFlowGet_
 
-## Request Resources
+# Request Resources
 
 The following example shows how a user can request a resource using IAM. The graphic below shows how this example would look like if a user request a resource from the flow repository.
 
@@ -226,7 +220,7 @@ Figure: _requestResourceSuccess_
 **2**: Service makes request with service account token<br>
 **3**: User information e.g.: username, tenant, tenant specific role, permissions
 
-## Creating audit log records
+# Creating audit log records
 
 To create a record that should be stored in the audit log a service simply has to put a message onto the queue with a predefined topic. Each service decides on its own, which events should be stored in the audit log service.
 Audit log listens to all events having `audit.*` as topic.
