@@ -21,7 +21,7 @@
 //$grey-dk-250: #302d36;
 //$grey-dk-300: #27262b;
 
-//$grey-lt-000: #f5f6fa;
+$grey-lt-000: #f5f6fa;
 //$grey-lt-100: #eeebee;
 //$grey-lt-200: #ecebed;
 //$grey-lt-300: #e6e1e8;
@@ -127,3 +127,221 @@ $btn-primary-color: $grey-dk-100;
 //lg: $content-width + $nav-width,
 //xl: 1400px
 //);
+
+$oih-orange: #ff8200;
+$oih-red: #ff2473;
+
+.oih-docs-learn-overview-container {
+    width: 100%;
+
+    a {
+        display: block;
+        width: 100%;
+        background: $grey-lt-000;
+        text-align: center;
+        padding: 8px;
+        margin: 6px;
+        border-radius: 8px;
+        color: #27262b;
+        font-size: 14px;
+        font-weight: 500;
+        line-height: 1.3;
+
+        &:hover {
+            background: linear-gradient(73deg, $oih-orange, $oih-red); ;
+            color: white;
+            text-decoration: none;
+        }
+    }
+
+    .item {
+        height: 80px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        text-overflow: unset;
+        overflow: unset;
+        white-space: unset;
+        user-select: none;
+    }
+
+    .inner-wrapper {
+        display: flex;
+        position: relative;
+
+        .column {
+            padding: 16px 16px 120px 16px;
+            border: 3px solid $oih-orange;
+            margin-right: 0;
+            margin-left: 8px;
+            border-radius: 8px;
+            
+            &:first-of-type {
+                margin-right: 8px;
+                margin-left: 0;
+            }
+
+            .headline {
+                display: block;
+                color: #27262b;
+                margin: 4px 0 16px;
+                font-size: 24px;
+                font-weight: 500;
+                line-height: 1.15;
+                text-align: center;
+            }
+        }
+
+        .item {
+            flex-basis: calc(50% - 12px);
+        }
+
+        .inner-container {
+            display: flex;
+            flex-wrap: wrap;
+
+        }
+    }
+
+    .fixed-element {
+        position: absolute;
+        bottom: 16px;
+        width: 100%;
+        padding: 16px;
+
+        .item {
+            width: calc(100% - 16px);
+            margin: 0 auto;
+        }
+    }
+
+    .container-further {
+        display: flex;
+        padding: 16px;
+    }
+
+    @media (max-width: 66.5rem) {
+        // background: yellow;
+
+        .inner-wrapper {
+            .item {
+                flex-basis: unset;
+            }
+        }
+    }
+
+    @media (max-width: 31.25rem) {
+        // background: lightblue;
+
+        .inner-wrapper {
+            display: block;
+            border-bottom: 1px solid $grey-lt-000;
+            
+            .item {
+                flex-basis: calc(50% - 12px);
+            }
+
+            .column {
+                margin: 24px 0 8px 0 !important;
+                padding: 16px;
+            }
+        }
+
+        .fixed-element {
+            position: unset;
+        }
+    
+        .container-further {
+            flex-direction: column;
+        }
+    
+    }
+
+}
+
+
+
+.oih-docs-overview-container {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+
+    .item {
+        display: block;
+        width: 100%;
+        height: 160px;
+        background: $grey-lt-000;
+        text-align: center;
+        padding: 24px;
+        margin: 8px;
+        border-radius: 8px;
+        color: #27262b;
+        font-size: 14px;
+        font-weight: 500;
+        line-height: 1.3;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        flex-basis: calc(33.33% - 24px);
+        text-overflow: unset;
+        overflow: unset;
+        white-space: unset;
+        user-select: none;
+
+        &:hover {
+            background: linear-gradient(73deg, $oih-orange, $oih-red); ;
+            color: white;
+            text-decoration: none;
+
+            svg {
+                g {
+                    fill: #fff;
+                }
+            }
+        }
+
+        svg {
+            width: 40px;
+            height: 40px;
+            margin: 0 auto 12px;
+
+            g {
+                fill: #27262b;
+            }
+        }
+
+        .headline, .description {
+            display: block;
+            text-align: center;
+        }
+
+        .title {
+            font-size: 16px;
+            font-weight: 500;
+            line-height: 1.15;
+            margin-bottom: 4px;
+        }
+
+        .description {
+            font-size: 14px;
+            font-weight: 400;
+            line-height: 1.15;
+            opacity: .72;
+        }
+    }
+
+    @media (max-width: 66.5rem) {
+
+        .item {
+            flex-basis: calc(50% - 16px);
+        }
+    }
+
+
+    @media (max-width: 31.25rem) { 
+
+        .item {
+            flex-basis: unset;
+        }
+    }
+}
