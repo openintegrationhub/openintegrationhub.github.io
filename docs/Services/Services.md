@@ -37,14 +37,14 @@ The Open Integration Hub framework consists of a variety of service. This will g
             </div>
         </div>
         <div class="fixed-element">
-            <a class="item" href="#">Queue / Message oriented Middleware</a>
+            <a class="item" href="https://openintegrationhub.github.io//docs/Services/MessageOrientedMiddleware.html">Queue / Message Oriented Middleware</a>
         </div>
     </div>
     <div class="container-further">
         <a class="item" href="#">Web UI</a>
         <a class="item" href="#">Postman</a>
-        <a class="item" href="#">Own Setup</a>
-        <a class="item" href="#">Service Collaboration</a>
+        <a class="item" href="https://openintegrationhub.github.io//docs/Getting%20Started/LocalInstallationGuide.html">Local Setup</a>
+        <a class="item" href="https://openintegrationhub.github.io//docs/Service%20Collaboration/ServiceCollaborationOverview.html">Service Collaboration</a>
     </div>
 </div>
 
