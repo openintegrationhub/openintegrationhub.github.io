@@ -74,6 +74,6 @@ Open Integration Hub system admins have neither of these restrictions, and can f
 ### Interaction with other Services
 The Audit Log can receive events from all other services, but only directly interacts with two of them:
 
-[Message Oriented Middleware](https://openintegrationhub.github.io//docs/Services/MessageOrientedMiddleware.html): The Audit Log receives all events it is supposed to store through the Message Oriented Middleware.
+- [Message Oriented Middleware](https://openintegrationhub.github.io//docs/Services/MessageOrientedMiddleware.html): The Audit Log receives all events it is supposed to store through the Message Oriented Middleware.
 
 - [Identity Management](https://openintegrationhub.github.io//docs/Services/IdentityManagement.html): The Audit Log requires a bearer token created by the Identity Management to determine which logs the current user is allowed to view.

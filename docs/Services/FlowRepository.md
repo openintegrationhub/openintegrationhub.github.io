@@ -84,7 +84,7 @@ Additionally, manipulation of flows is further limited by the permissions of the
 ### Interaction with other Services
 The Flow Repository interacts with these Services:
 
-- [Identity Management](https://openintegrationhub.github.io//docs/Services/IdentityManagement.html): The Flow Repository relies on a bearer token supplied by the Identity Management to decide which integration flows the current user may see, and which actions they may take.
+- [Identity Management](https://openintegrationhub.github.io//docs/Services/IdentityManagement.html): The Flow Repository relies on a bearer token supplied by the Identity Management to determine which integration flows the current user may see, and which actions they may take.
 
 - [Component Orchestrator](https://openintegrationhub.github.io//docs/Services/ComponentOrchestrator.html): Whenever an integration flow is started or stopped, the Flow Repository notifies the Component Orchestrator to take the necessary actions. Conversely, when an integration flow successfully becomes active or inactive, the Component Orchestrator notifies the Flow Repository of this change.
 
