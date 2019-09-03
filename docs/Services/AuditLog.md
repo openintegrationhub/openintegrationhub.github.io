@@ -38,6 +38,42 @@ These messages are called *events*, and are saved as *logs*. Each event has a na
 
 The Audit Log maintains a list of event names it listens for. Each time an event with a name from the list is spawned somewhere in the Open Integration Hub, the Audit Log automatically saves it as a log. Events with names that are not on this list are ignored by the Audit Log.
 
+### List of listened-for events
+The names of events generally follow the schema of `[context].[object].[action]`. This is the list of all event names that the Audit Log currently listens for:
+
+```
+'iam.user.created',
+'iam.user.deleted',
+'iam.user.modified',
+'iam.user.removedFromTenant',
+'iam.user.assignedToTenant',
+'iam.user.loginFailed',
+'iam.tenant.created',
+'iam.tenant.deleted',
+'iam.tenant.modified',
+'iam.role.created',
+'iam.role.deleted',
+'iam.role.modified',
+'iam.token.created',
+'iam.token.deleted',
+'iam.token.modified',
+'iam.permission.created',
+'iam.permission.deleted',
+'iam.permission.modified',
+'secret-service.secret.created',
+'secret-service.secret.deleted',
+'secret-service.token.get',
+'metadata.domain.created',
+'metadata.domain.deleted',
+'metadata.domain.modified',
+'metadata.schema.created',
+'metadata.schema.deleted',
+'metadata.schema.modified',
+'flowrepo.flow.created',
+'flowrepo.flow.modified',
+'flowrepo.flow.deleted',
+```
+
 ### Log Schema
 All logs are stored in this schema:
 ```json
@@ -67,12 +103,12 @@ Additionally, there is another endpoint `POST /logs` that allows a user to manua
 For further information and examples about the API, please refer to the [API Reference](http://auditlog.openintegrationhub.com/api-docs/).
 
 ### Ownership and Permissions
-As the Audit Log stores information about system-wide events, regular users are heavily restricted in which logs they can view. They can only see logs whose `user` or `tenant` ids match their own. Furthermore, regular users required the relevant permission to be able to view logs. For further information about permissions, please refer to the documentation of the [Identity Management](https://openintegrationhub.github.io//docs/Services/IdentityManagement.html).
+As the Audit Log stores information about system-wide events, regular users are heavily restricted in which logs they can view. They can only see logs whose `user` or `tenant` ids match their own. Furthermore, regular users are required to have the relevant permission to be able to view logs. For further information about permissions, please refer to the documentation of the [Identity Management](https://openintegrationhub.github.io//docs/Services/IdentityManagement.html).
 
-Open Integration Hub system admins have neither of these restrictions, and can freely view all logs.
+Open Integration Hub system administrators have neither of these restrictions, and can freely view all logs.
 
 ### Interaction with other Services
-The Audit Log can receive events from all other services, but only directly interacts with two of them:
+The Audit Log can receive events from any service, but only directly interacts with two of them:
 
 - [Message Oriented Middleware](https://openintegrationhub.github.io//docs/Services/MessageOrientedMiddleware.html): The Audit Log receives all events it is supposed to store through the Message Oriented Middleware.
 
