@@ -13,7 +13,7 @@ nav_order: 1
 ## Resources
 <!-- 2 sentences: what does it do and how -->
 #### UML Diagram
-[UML Diagram](https://github.com/openintegrationhub/openintegrationhub.github.io/blob/master/assets/DataModels/Addresses/MasterDataModelAddressV2.svg){: .btn .fs-5 .mb-4 .mb-md-0 }
+[UML Diagram](https://github.com/openintegrationhub/openintegrationhub.github.io/blob/master/assets/DataModels/Addresses/MasterDataModelAddress.svg){: .btn .fs-5 .mb-4 .mb-md-0 }
 #### JSON Schema
 [Person](https://github.com/openintegrationhub/openintegrationhub.github.io/blob/master/assets/DataModels/Addresses/personV2.json){: .btn .fs-5 .mb-4 .mb-md-0 }
 [Organization](https://github.com/openintegrationhub/openintegrationhub.github.io/blob/master/assets/DataModels/Addresses/organizationV2.json){: .btn .fs-5 .mb-4 .mb-md-0 }
@@ -27,7 +27,7 @@ nav_order: 1
 
 The addresses data model consists of different types of objects: `organizations` and `persons`. A `relations` object is used to describes the connections between other objects.
 
-![](https://raw.githubusercontent.com/openintegrationhub/openintegrationhub.github.io/master/assets/DataModels/Addresses/MasterDataModelAddressV2.png)
+![](https://raw.githubusercontent.com/openintegrationhub/openintegrationhub.github.io/master/assets/DataModels/Addresses/MasterDataModelAddress.png)
 
 ## Relations
 Generally there are three types of relations:
