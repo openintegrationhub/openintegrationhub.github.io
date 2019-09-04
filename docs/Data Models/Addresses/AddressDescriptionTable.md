@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Description Table
-parent: Adresses
+parent: Addresses
 nav_order: 1
 ---
 
