@@ -28,7 +28,7 @@ nav_order: 1
 
 The addresses data model consists of different types of objects: `organizations` and `persons`. A `relations` object is used to describes the connections between other objects.
 
-![](https://raw.githubusercontent.com/openintegrationhub/openintegrationhub.github.io/master/assets/DataModels/Addresses/MasterDataModelAddressV2.svg)
+![](https://raw.githubusercontent.com/openintegrationhub/openintegrationhub.github.io/master/assets/DataModels/Addresses/MasterDataModelAddressV2.png)
 
 ## Relations
 Generally there are three types of relations:
