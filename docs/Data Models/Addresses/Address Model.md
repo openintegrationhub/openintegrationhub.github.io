@@ -13,12 +13,12 @@ nav_order: 1
 ## Resources
 <!-- 2 sentences: what does it do and how -->
 #### UML Diagram
-[UML Diagram](https://raw.githubusercontent.com/openintegrationhub/openintegrationhub.github.io/master/assets/DataModels/Addresses/MasterDataModelAddressesV2.svg){: .btn .fs-5 .mb-4 .mb-md-0 }
+[UML Diagram](https://github.com/openintegrationhub/openintegrationhub.github.io/blob/master/assets/DataModels/Addresses/MasterDataModelAddressV2.svg){: .btn .fs-5 .mb-4 .mb-md-0 }
 #### JSON Schema
 [Person](https://openintegrationhub/openintegrationhub.github.io/master/assets/DataModels/Addresses/personV2.json){: .btn .fs-5 .mb-4 .mb-md-0 }
 [Organization](https://openintegrationhub/openintegrationhub.github.io/master/assets/DataModels/Addresses/organizationV2.json){: .btn .fs-5 .mb-4 .mb-md-0 }
-[Relation](https://openintegrationhub/openintegrationhub.github.io/master/assets/DataModels/Addresses/relationsV2.json)){: .btn .fs-5 .mb-4 .mb-md-0 }
-[Shared Definitions](https://openintegrationhub/openintegrationhub.github.io/master/assets/DataModels/Addresses/sharedDefinitionsV2.json)){: .btn .fs-5 .mb-4 .mb-md-0 }
+[Relation](https://openintegrationhub/openintegrationhub.github.io/master/assets/DataModels/Addresses/relationsV2.json){: .btn .fs-5 .mb-4 .mb-md-0 }
+[Shared Definitions](https://openintegrationhub/openintegrationhub.github.io/master/assets/DataModels/Addresses/sharedDefinitionsV2.json){: .btn .fs-5 .mb-4 .mb-md-0 }
 #### Description Table
 [Description Table](https://openintegrationhub.github.io//docs/Data%20Models/Adresses/AddressDescriptionTable.html){: .btn .fs-5 .mb-4 .mb-md-0 }
 
@@ -27,7 +27,7 @@ nav_order: 1
 
 The addresses data model consists of different types of objects: `organizations` and `persons`. A `relations` object is used to describes the connections between other objects.
 
-![UML Diagram Addresses](https://raw.githubusercontent.com/openintegrationhub/openintegrationhub.github.io/master/assets/DataModels/Addresses/MasterDataModelAddressesV2.svg)
+![UML Diagram Addresses](https://github.com/openintegrationhub/openintegrationhub.github.io/blob/master/assets/DataModels/Addresses/MasterDataModelAddressV2.svg)
 
 ## Relations
 Generally there are three types of relations:
