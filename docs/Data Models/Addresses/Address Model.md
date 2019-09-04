@@ -15,12 +15,12 @@ nav_order: 1
 #### UML Diagram
 [UML Diagram](https://github.com/openintegrationhub/openintegrationhub.github.io/blob/master/assets/DataModels/Addresses/MasterDataModelAddressV2.svg){: .btn .fs-5 .mb-4 .mb-md-0 }
 #### JSON Schema
-[Person](https://openintegrationhub/openintegrationhub.github.io/master/assets/DataModels/Addresses/personV2.json){: .btn .fs-5 .mb-4 .mb-md-0 }
-[Organization](https://openintegrationhub/openintegrationhub.github.io/master/assets/DataModels/Addresses/organizationV2.json){: .btn .fs-5 .mb-4 .mb-md-0 }
-[Relation](https://openintegrationhub/openintegrationhub.github.io/master/assets/DataModels/Addresses/relationsV2.json){: .btn .fs-5 .mb-4 .mb-md-0 }
-[Shared Definitions](https://openintegrationhub/openintegrationhub.github.io/master/assets/DataModels/Addresses/sharedDefinitionsV2.json){: .btn .fs-5 .mb-4 .mb-md-0 }
+[Person](https://github.com/openintegrationhub/openintegrationhub.github.io/blob/master/assets/DataModels/Addresses/personV2.json){: .btn .fs-5 .mb-4 .mb-md-0 }
+[Organization](https://github.com/openintegrationhub/openintegrationhub.github.io/blob/master/assets/DataModels/Addresses/organizationV2.json){: .btn .fs-5 .mb-4 .mb-md-0 }
+[Relation](https://github.com/openintegrationhub/openintegrationhub.github.io/blob/master/assets/DataModels/Addresses/relationsV2.json){: .btn .fs-5 .mb-4 .mb-md-0 }
+[Shared Definitions](https://github.com/openintegrationhub/openintegrationhub.github.io/blob/master/assets/DataModels/Addresses/sharedDefinitionsV2.json){: .btn .fs-5 .mb-4 .mb-md-0 }
 #### Description Table
-[Description Table](https://openintegrationhub.github.io//docs/Data%20Models/Adresses/AddressDescriptionTable.html){: .btn .fs-5 .mb-4 .mb-md-0 }
+[Description Table](https://openintegrationhub.github.io//docs/Data%20Models/Addresses/AddressDescriptionTable.html){: .btn .fs-5 .mb-4 .mb-md-0 }
 
 
 ## General Structure
