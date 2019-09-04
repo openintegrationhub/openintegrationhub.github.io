@@ -48,3 +48,6 @@ very slow, its consumption rate is lower than the publish rate. The
 result is that the queue is growing. That's why 2 instances of `Step 2`
 are started, each consuming messages from the same queue. The message
 broker makes sure that the messages are sent to a single consumer only.
+
+### Interaction with other Services
+<!-- list and link the services this one interacts with and describe each interaction briefly (1-2 sentences) -->

@@ -338,3 +338,6 @@ Payload
 
 
 This authentication flow brings several benefits. It relies on established standards, so an implementation will be covered by detailed documentation. In addition, Users get an interface that should already be known to them, since large providers (e. g. maintained by Google or Facebook) have been around for a couple of years.
+
+### Interaction with other Services
+<!-- list and link the services this one interacts with and describe each interaction briefly (1-2 sentences) -->

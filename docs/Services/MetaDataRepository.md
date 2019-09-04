@@ -195,3 +195,5 @@ Therefore, the following structure is supposed:
   }
 }
 ```
+### Interaction with other Services
+<!-- list and link the services this one interacts with and describe each interaction briefly (1-2 sentences) -->

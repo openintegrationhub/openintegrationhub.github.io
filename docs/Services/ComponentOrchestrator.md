@@ -46,3 +46,6 @@ The Component Orchestrator is responsible for:
 * Making sure that a flow or its steps are not deployed multiple times
 * If scaling is configured for a flow, the specified number of instances must be deployed
 * Detection of policy violations and punishment of "bad citizens"
+
+### Interaction with other Services
+<!-- list and link the services this one interacts with and describe each interaction briefly (1-2 sentences) -->

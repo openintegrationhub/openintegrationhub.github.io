@@ -27,3 +27,6 @@ Use the full links to reference other files or images! Relative links will not w
 
 ## How it works
 <!-- describe core functionalities and underlying concepts in more detail -->
+
+### Interaction with other Services
+<!-- list and link the services this one interacts with and describe each interaction briefly (1-2 sentences) -->

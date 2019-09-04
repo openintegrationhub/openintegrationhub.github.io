@@ -54,3 +54,6 @@ With the following Cron expression a flow is executed every Sunday at 6:00 am:
 The Scheduler iterates over all active integration flows and evaluates
 their Cron expressions. Is a flow due to be executed, Scheduler tells the
 Resource Coordinator to deploy the integration flow for execution.
+
+### Interaction with other Services
+<!-- list and link the services this one interacts with and describe each interaction briefly (1-2 sentences) -->
