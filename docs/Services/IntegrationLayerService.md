@@ -63,12 +63,6 @@ The ILS offers a REST API through which chunks can be stored, splitted, validate
 | /chunks/{ilaId}?key={splitKey} | GET | Returns chunks by `ilaId` and `splitKey`.| SplitKey is on optional parameter for fetching chunks which are splitted by the same `splitSchema` |
 
 
-The ILS API currently supports the following endpoints:  
-
-`POST /chunks` -  Create a new chunk object  
-`POST /chunks/split` - Split a chunk into objects  
-`GET /chunks/${ilaId}?key=${splitKey}` - fetch chunks by `ilaId` and `splitKey`. SplitKey is on optional parameter for fetching chunks which are splitted by the same `splitSchema`
-
 These operations ought to be conducted via the ILA, but can also be targeted manually for testing and development purposes.
 
 For `POST /chunks`, the body format is expected to match this format:
