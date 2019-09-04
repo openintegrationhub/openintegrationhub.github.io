@@ -158,6 +158,7 @@ In order to secure proper data integration, please satisfy the prescribed standa
 
 
 ## Calendar
+
 |Attribute|Type|Properties|Description|Example|Possible Enumeration Options|
 |---|---|---|---|---|---|
 |calendar|String|-|URI to the persons' calendar|http://cal.example.com/calA|-|
@@ -166,6 +167,7 @@ In order to secure proper data integration, please satisfy the prescribed standa
 |label|String|-|Can be used for a textual description the calendar|primary|-|
 
 ## OrganizationToPersonRelationship
+
 |Attribute|Type|Properties|Description|Example|Possible Enumeration Options|
 |---|---|---|---|---|---|
 |label|String|-|Describes the relationship between a person and an organization|"employee"|-|
@@ -173,12 +175,14 @@ In order to secure proper data integration, please satisfy the prescribed standa
 |department|String|-|Name of the department of the person's company |"Sales"|-|
 
 ## PersonToPersonRelationship
+
 |Attribute|Type|Properties|Description|Example|Possible Enumeration Options|
 |---|---|---|---|---|---|
 |label|String|-|Describes the relationship between two persons|"employee"|-|
 
 
 ## PersonToOrganizationRelationship
+
 |Attribute|Type|Properties|Description|Example|Possible Enumeration Options|
 |---|---|---|---|---|---|
 |label|String|-|Describes the relationship between two organizations|"employee"|-|
