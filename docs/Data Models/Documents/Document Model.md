@@ -40,17 +40,17 @@ In order to be suitable for all scenarios, this model is split into several impl
 
 The `basic model` describes a basic implementation for sharing documents and files without the need of handling metadata or additional information.
 
-![Documents Basic Version](https://github.com/openintegrationhub/openintegrationhub.github.io/blob/master/assets/DataModels/Documents/Document Model.png)
+![Documents Basic Version](https://raw.githubusercontent.com/openintegrationhub/openintegrationhub.github.io/master/assets/DataModels/Documents/DocumentModel.png)
 
 
 For the `comfort model`, Metadata definitions can be additionally queried.
 
-![Generic Metadata](https://github.com/openintegrationhub/openintegrationhub.github.io/blob/master/assets/DataModels/Documents/OIHDataModelDocumentMetadataSpecification.svg)
+![Generic Metadata](https://raw.githubusercontent.com/openintegrationhub/openintegrationhub.github.io/master/assets/DataModels/Documents/OIHDataModelDocumentMetadataSpecification.png)
 
 
 The `extended model` specification does contain all properties that are required in order to handle additional functionalities of DMS/ECM/EIM systems.
 
-![Documents Extended Version](https://github.com/openintegrationhub/openintegrationhub.github.io/blob/master/assets/DataModels/Documents/OIHDataModelDocuments.png)
+![Documents Extended Version](https://raw.githubusercontent.com/openintegrationhub/openintegrationhub.github.io/master/assets/DataModels/Documents/OIHDataModelDocuments.png)
 
 
 The following may give you a better understanding of the variety of services and possible use cases.

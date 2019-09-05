@@ -29,7 +29,7 @@ While talking about products, we generally refer to goods, which are purchased, 
 Products often require industry or goods specific properties and may vary strongly form one type of good to another. For example, perishable goods from the food industry are very different from construction materials, textile or services. This data model intents to cover the most common properties across all products and serve as a generic base model. It is however extendable for individual applications.
 
 
-![Products](https://github.com/openintegrationhub/openintegrationhub.github.io/blob/master/assets/DataModels/Products/productModelV2.png)
+![Products](https://raw.githubusercontent.com/openintegrationhub/openintegrationhub.github.io/master/assets/DataModels/Products/productModelV2.png)
 
 
 

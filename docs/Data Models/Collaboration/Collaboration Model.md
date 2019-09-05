@@ -36,7 +36,7 @@ In all three areas it is important to know which person created a certain elemen
 
 The models inherit the most important properties from this main `collaboration element`.
 
-![Collaboration](https://github.com/openintegrationhub/openintegrationhub.github.io/blob/master/assets/DataModels/Collaboration/OIH_collaboration.png)
+![Collaboration](https://raw.githubusercontent.com/openintegrationhub/openintegrationhub.github.io/master/assets/DataModels/Collaboration/OIH%20collaboration.png)
 
 
 
