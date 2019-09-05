@@ -3,7 +3,7 @@ layout: default
 title: Addresses
 parent: Master Data Models
 has_children: true
-nav_order: 1
+nav_order: 3
 ---
 
 ![prod](https://img.shields.io/badge/Status-Production-brightgreen.svg)

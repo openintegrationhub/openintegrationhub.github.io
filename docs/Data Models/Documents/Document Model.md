@@ -3,7 +3,7 @@ layout: default
 title: Documents
 parent: Master Data Models
 has_children: true
-nav_order: 2
+nav_order: 5
 ---
 
 ![prod](https://img.shields.io/badge/Status-Production-brightgreen.svg)
@@ -50,7 +50,7 @@ For the `comfort model`, Metadata definitions can be additionally queried.
 
 The `extended model` specification does contain all properties that are required in order to handle additional functionalities of DMS/ECM/EIM systems.
 
-![Documents Extended Version](https://github.com/openintegrationhub/openintegrationhub.github.io/blob/master/assets/DataModels/Documents/OIHDataModelDocuments.svg)
+![Documents Extended Version](https://github.com/openintegrationhub/openintegrationhub.github.io/blob/master/assets/DataModels/Documents/OIHDataModelDocuments.png)
 
 
 The following may give you a better understanding of the variety of services and possible use cases.
