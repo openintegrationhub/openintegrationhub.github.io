@@ -16,7 +16,7 @@ nav_order: 6
 [Basic Version](https://github.com/openintegrationhub/openintegrationhub.github.io/blob/master/assets/DataModels/Products/productModelV2.svg){: .btn .fs-5 .mb-4 .mb-md-0 }
 
 #### JSON Schema
-[Document](https://github.com/openintegrationhub/openintegrationhub.github.io/blob/master/assets/DataModels/DProducts/product.json){: .btn .fs-5 .mb-4 .mb-md-0 }
+[Document](https://github.com/openintegrationhub/openintegrationhub.github.io/blob/master/assets/DataModels/Products/product.json){: .btn .fs-5 .mb-4 .mb-md-0 }
 
 #### Description Table
 [Description Table](https://openintegrationhub.github.io//docs/Data%20Models/Products/ProductDescriptionTable.html){: .btn .fs-5 .mb-4 .mb-md-0 }

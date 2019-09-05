@@ -13,7 +13,7 @@ nav_order: 4
 ## Resources
 
 #### UML Diagram
-[UML Diagram](https://github.com/openintegrationhub/openintegrationhub.github.io/blob/master/assets/DataModels/Collaboration/OIH_collaboration.png){: .btn .fs-5 .mb-4 .mb-md-0 }
+[UML Diagram](https://github.com/openintegrationhub/openintegrationhub.github.io/blob/master/assets/DataModels/Collaboration/OIH%20collaboration.png){: .btn .fs-5 .mb-4 .mb-md-0 }
 #### JSON Schema
 [Collabrotation](https://github.com/openintegrationhub/openintegrationhub.github.io/blob/master/assets/DataModels/Documents/collaborationElement.json){: .btn .fs-5 .mb-4 .mb-md-0 }
 [Calendar](https://github.com/openintegrationhub/openintegrationhub.github.io/blob/master/assets/DataModels/Documents/calendarEvent.json){: .btn .fs-5 .mb-4 .mb-md-0 }
