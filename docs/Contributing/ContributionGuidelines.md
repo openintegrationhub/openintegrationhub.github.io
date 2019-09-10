@@ -4,6 +4,9 @@ title: Contribution Guidelines
 nav_order: 8
 ---
 
+<p align="center">
+  <img src="https://raw.githubusercontent.com/openintegrationhub/openintegrationhub.github.io/master/assets/images/large-oih-vertikal-zentriert.png" alt="Open Integration Hub" width="400"/>
+</p>
 
 # Open Integration Hub Contributor Guide
 

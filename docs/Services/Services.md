@@ -6,7 +6,7 @@ has_children: true
 ---
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/openintegrationhub/openintegrationhub.github.io/master/assets/images/oih-einzeilig-zentriert.svg" alt="Open Integration Hub" width="400"/>
+  <img src="https://raw.githubusercontent.com/openintegrationhub/openintegrationhub.github.io/master/assets/images/large-oih-vertikal-zentriert.png" alt="Open Integration Hub" width="400"/>
 </p>
 
 
@@ -45,6 +45,8 @@ The Open Integration Hub framework consists of a variety of service. This will g
             <a class="item" href="https://openintegrationhub.github.io//docs/Services/MessageOrientedMiddleware.html">Queue / Message Oriented Middleware</a>
         </div>
     </div>
+
+
 
 If you would like to learn more about the general concepts or how to get started, these are a good places to start:
 

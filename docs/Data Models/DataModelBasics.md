@@ -5,6 +5,10 @@ nav_order: 7
 has_children: true
 ---
 
+<p align="center">
+  <img src="https://raw.githubusercontent.com/openintegrationhub/openintegrationhub.github.io/master/assets/images/large-oih-vertikal-zentriert.png" alt="Open Integration Hub" width="400"/>
+</p>
+
 # Master Data Models
 
 ## Why Master Data Models?

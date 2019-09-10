@@ -5,6 +5,10 @@ nav_order: 4
 has_children: true
 ---
 
+<p align="center">
+  <img src="https://raw.githubusercontent.com/openintegrationhub/openintegrationhub.github.io/master/assets/images/large-oih-vertikal-zentriert.png" alt="Open Integration Hub" width="400"/>
+</p>
+
 # Service Collaboration
 
 This document is designed to describe different service collaboration examples. It acts as a starting point to easily understanding the architecture of the Open Integration Hub.

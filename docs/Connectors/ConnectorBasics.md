@@ -5,6 +5,10 @@ nav_order: 6
 has_children: true
 ---
 
+<p align="center">
+  <img src="https://raw.githubusercontent.com/openintegrationhub/openintegrationhub.github.io/master/assets/images/large-oih-vertikal-zentriert.png" alt="Open Integration Hub" width="400"/>
+</p>
+
 # Connector Guidelines
 
 The Open Integration Hub enables data synchronization across a variety of applications. To create a connection and enable interaction a link is needed between the software application and the Open Integration Hub - the Open Integration Hub connector.
