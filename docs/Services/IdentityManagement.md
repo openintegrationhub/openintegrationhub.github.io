@@ -38,8 +38,9 @@ OpenID Connect is a simple identity layer on top of the OAuth 2.0 protocol, whic
 
 ## How it works
 <!-- describe core functionalities and underlying concepts in more detail -->
+
 Basic IAM setup
-===============
+---
 
 This approach aims at a very basic and simple operation of OIH using only a minimal set of microservices. We assume a scenario where an individual or a company uses OIH in the intranet without the need for external identity providers and using a simple authentication and authorization mechanisms.
 
