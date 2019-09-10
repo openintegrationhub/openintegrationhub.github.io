@@ -2,7 +2,7 @@
 layout: default
 title: Data Hub
 parent: Services
-nav_order: 5
+nav_order: 6
 ---
 
 <!-- Description Guidelines

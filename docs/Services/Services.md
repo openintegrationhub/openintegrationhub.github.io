@@ -31,7 +31,7 @@ The Open Integration Hub framework consists of a variety of service. This will g
                 <a class="item" href="https://openintegrationhub.github.io/docs/Services/AuditLog.html">Audit Log</a>
                 <a class="item" href="#">Logging & Monitoring</a>
                 <a class="item" href="https://openintegrationhub.github.io/docs/Services/MetaDataRepository.html">Metadata Repository</a>
-                <a class="item" href="#">Conflict-Management</a>
+                <a class="item" href="https://openintegrationhub.github.io/docs/Services/ConflictManagement.html">Conflict Management</a>
                 <a class="item" href="https://openintegrationhub.github.io//docs/Services/DataHub.html">Data Hub</a>
                 <a class="item" href="https://openintegrationhub.github.io/docs/Services/IntegrationLayerService.html">Integration Layer Service</a>
             </div>
