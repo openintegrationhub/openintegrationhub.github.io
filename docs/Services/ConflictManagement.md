@@ -36,7 +36,7 @@ The CFM operates on a set of *Rules*. Each rule is associated with a given numbe
 Both sets of *Rules* and *Resolvers* are expandable. Should the included default selection be unsuitable for a particular application, the adapter developer can add their own *Rules* and/or *Resolvers* in place and use them right away.
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/openintegrationhub/openintegrationhub/master/lib/cfm/assets/CFM.png" alt="OIH-CFM workflow" width="400"/>
+  <img src="https://raw.githubusercontent.com/openintegrationhub/openintegrationhub/master/lib/cfm/assets/CFM.png" alt="OIH-CFM workflow" />
 </p>
 
 ## Technical description
