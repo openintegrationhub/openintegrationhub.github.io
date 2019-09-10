@@ -32,7 +32,8 @@ The Flow Repository is responsible for storing, retrieving and updating the inte
 <!-- describe core functionalities and underlying concepts in more detail -->
 ### Integration Flows
  An integration flow is described by a JSON document, containing all information required to run the flow. The core of each integration flow is its *graph*, containing *nodes* and *edges*. Data is passed along between nodes in the direction indicated by the edges. For (a minimal) example:
-```JSON
+ 
+```json
 {
   "name": "Example Integration Flow",
   "description": "Transfers data from the example origin to the example destination",
@@ -56,6 +57,7 @@ The Flow Repository is responsible for storing, retrieving and updating the inte
   }
 }
 ```
+
 Note that in practice, most nodes will have additional fields, such as what component they use or secrets/arguments to be used by that component.
 
 For a full overview of the integration flow schema and further examples, please refer to the *Models* section in the [API Reference](http://flow-repository.openintegrationhub.com/api-docs/).
