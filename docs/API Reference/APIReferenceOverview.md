@@ -4,7 +4,13 @@ title: API Reference Documentation
 nav_order: 5
 ---
 
-# Overview
+<p align="center">
+  <img src="https://raw.githubusercontent.com/openintegrationhub/openintegrationhub.github.io/master/assets/images/oih-einzeilig-zentriert.svg" alt="Open Integration Hub" width="400"/>
+</p>
+
+
+
+# API Reference Documentation
 
 The Open Integration Hub framework consists of a variety of service. Most services interact via a REST API:
 
@@ -14,10 +20,10 @@ The Open Integration Hub framework consists of a variety of service. Most servic
             <span class="headline">Integration Framework</span>
             <div class="inner-container">
                 <a class="item" href="http://iam.openintegrationhub.com/api-docs/">Identity Access Management</a>
-                <a class="item" href="http://skm.openintegrationhub.com/api-docs/">Secret-Service</a>
+                <a class="item" href="http://skm.openintegrationhub.com/api-docs/">Secret Service</a>
                 <a class="item" href="http://flow-repository.openintegrationhub.com/api-docs/">Flow Repository</a>
                 <a class="item" href="http://component-repository.openintegrationhub.com/api-docs/">Component Repository</a>
-                <a class="item" href="http://attachment-storage-service.openintegrationhub.com/api-docs">Attachment-Storage-Service</a>
+                <a class="item" href="http://attachment-storage-service.openintegrationhub.com/api-docs">Attachment Storage-Service</a>
             </div>
         </div>
         <div class="column">

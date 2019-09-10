@@ -4,6 +4,7 @@ title: Getting Started
 nav_order: 2
 ---
 
+# Local Installation Guide
 
 ![linux](https://img.shields.io/badge/Linux-red.svg) ![Windows](https://img.shields.io/badge/Windows-blue.svg)
 

@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Adapter Guide
-nav_order: 2
+nav_order: 1
 parent: Connectors
 ---
 # Guide for creating an Adapter
