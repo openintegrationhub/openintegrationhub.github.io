@@ -6,8 +6,10 @@ has_children: true
 ---
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/openintegrationhub/openintegrationhub.github.io/master/assets/images/large-oih-vertikal-zentriert.png" alt="Open Integration Hub" width="400"/>
+  <img src="https://raw.githubusercontent.com/openintegrationhub/openintegrationhub.github.io/master/assets/images/large-oih-vertikal-zentriert.png" alt="Open Integration Hub" width="300"/>
 </p>
+<br>
+<br>
 
 # Connector Guidelines
 
@@ -27,7 +29,7 @@ The following illustration provides a holistic overview of a connector:
 An adapter is a module for the syntactic connection of an external application and its data to the Open Integration Hub. This includes protocol translation, data format transformation, etc.
 Furthermore it provides functionalities to perform e.g. CRUD operations within the source system.
 
-For further information please read through the information within the [adapter folder](https://openintegrationhub.github.io//docs/Connectors/AdapterGuide.html).
+For further information please read through the information within the [adapter folder](https://openintegrationhub.github.io//docs/Connectors/Adapter.html).
 
 
 ### Transformer

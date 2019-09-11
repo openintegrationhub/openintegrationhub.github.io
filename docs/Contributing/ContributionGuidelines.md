@@ -5,17 +5,20 @@ nav_order: 8
 ---
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/openintegrationhub/openintegrationhub.github.io/master/assets/images/large-oih-vertikal-zentriert.png" alt="Open Integration Hub" width="400"/>
+  <img src="https://raw.githubusercontent.com/openintegrationhub/openintegrationhub.github.io/master/assets/images/large-oih-vertikal-zentriert.png" alt="Open Integration Hub" width="300"/>
 </p>
+<br>
+<br>
 
-# Open Integration Hub Contributor Guide
+
+# Contributor Guide
 
 <!--
 -->
 
 This document aggregates all information on how to contribute to the project.
 
-For technical specifications and guidelines like naming conventions, styleguides, definitions of done or operations, please refer to the corresponding workgroup and repository or browse the developer's [guideline folder](https://github.com/openintegrationhub/BusinessCommittee/tree/Contribution-Guide/Contributing/Development).
+For technical specifications and guidelines like naming conventions, styleguides, definitions of done or operations, please refer to the corresponding workgroup and repository.
 
 
 # Table of Content
@@ -58,7 +61,7 @@ Please read and observe our [Code of Conduct](https://github.com/openintegration
 # How to contribute
 ## GitHub Workflow
 
-We follow the general GitHub workflow, if you are not familiar with working with GitHub, please refer to [the GitHub Workflow Guide](./github-workflow.md).
+We follow the general GitHub workflow, if you are not familiar with working with GitHub, please refer to [the GitHub Workflow Guide](https://guides.github.com/introduction/flow/).
 
 ## Pull Requests
 
@@ -111,4 +114,4 @@ Contact: info@cloudecosystem.org
 
 ## Roles within the Community
 
-There are several roles you can take on within the community, starting by being a Contributor. If you want to learn more, check out the [Community Guide](https://github.com/openintegrationhub/BusinessCommittee/blob/Contribution-Guide/Community_Guide.md)
+There are several roles you can take on within the community, starting by being a Contributor. If you want to learn more, check out the [Community Guide](https://github.com/openintegrationhub/BusinessCommittee/blob/master/Community_Guide.md)
