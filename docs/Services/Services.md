@@ -46,7 +46,7 @@ The Open Integration Hub framework consists of a variety of service. This will g
         <div class="fixed-element">
             <a class="item" href="https://openintegrationhub.github.io//docs/Services/MessageOrientedMiddleware.html">Queue / Message Oriented Middleware</a>
         </div>
-    </div>\
+    </div>
 
 
 

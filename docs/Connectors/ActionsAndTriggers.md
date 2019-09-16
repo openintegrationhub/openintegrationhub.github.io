@@ -1,30 +1,27 @@
 ---
 layout: default
-title: Adapter
-nav_order: 1
+title: Actions and Triggers
+nav_order: 2
 parent: Connectors
+has_children: true
 ---
-# Adapter
+# Actions and Triggers
+As laid out in the development example, actions and triggers are the part of any component, that really defines what you can do with it. Most parts like credentials or the component.json are fairly standard and reusable. Actions and triggers however have to be specifically adapted to your solutions API.
+
+This guide helps to classify your API and derive a set of functionalities that can be performed by an Adapter. We focus on the Adapter, as the Transformer is even simpler. So once you understand the Adapter, the rest is a piece of cake.
 
 The Adapter is a single, reusable piece of functionality that stands between your solution’s API and the Transformer. To enable communication between you and Open Integration Hub, the Adapter syntactically normalizes and transforms your applications data into a JSON object. For example, transforming CSV-, JS-, XML- files into JSON objects. The Adapter exposes the endpoint of your SaaS solution’s API via pre-defined actions and triggers. Those make sure that the four basic operations of persistent storage are available, such as create, read, update and delete a file.
 
-This guide helps to classify an API and to derive a set of functionalities that can be performed by an Adapter with the given API.
-
 ## Table of Contents
 
-- [Guide for creating an Adapter](#guide-for-creating-an-adapter)
-    - [Table of Contents](#table-of-contents)
-    - [Given an API how should an Adapter behave](#given-an-api-how-should-an-adapter-behave)
-        - [Questions](#questions)
-            - [Question 1: Is the list of business objects dynamic](#question-1-is-the-list-of-business-objects-dynamic)
-            - [Question 2: Is the structure of objects dynamic](#question-2-is-the-structure-of-objects-dynamic)
-            - [Question 3: Does the API support Webhooks](#question-3-does-the-api-support-webhooks)
-    - [Desired Adapter Behavior](#desired-adapter-behavior)
-    - [DocumentationGuidelines](#documentationguidelines)
-        - [Must Have](#must-have)
-        - [Should Have](#should-have)
-        - [Could Have](#could-have)
-          
+  - [Given an API how should an Adapter behave](#given-an-api-how-should-an-adapter-behave)
+      - [Questions](#questions)
+          - [Question 1: Is the list of business objects dynamic](#question-1-is-the-list-of-business-objects-dynamic)
+          - [Question 2: Is the structure of objects dynamic](#question-2-is-the-structure-of-objects-dynamic)
+          - [Question 3: Does the API support Webhooks](#question-3-does-the-api-support-webhooks)
+  - [Desired Adapter Behavior](#desired-adapter-behavior)
+
+
 ## Given an API how should an Adapter behave
 
 The expected actions and triggers of an adapter depend on the behavior of the
@@ -251,66 +248,3 @@ including functionality to
 - [ ] [lookupObjectByField](https://github.com/openintegrationhub/Connectors/blob/master/Adapters/AdapterBehaviorStandardization/StandardizedActionsAndTriggers.md#lookup-object-at-most-1) including functionality to
   - [ ] the static list of readable objects
   - [ ] the static list of fields that can be searched
-
-## DocumentationGuidelines
-
-Adapter Repository Requirements:
-
-### Must Have
-
-#### README.md
-
-- [ ] Description of the application adapter connects to
-- [ ] List of environment variables that need to be configured (e.g. OAuth ClientID/Secret)
-- [ ] Description of the incoming message and outgoing message for each action/trigger (e.g. Update Contact Action)
-  - [ ] Description of any attachments generated or consumed for each action/trigger
-
-#### Component.json
-
-The component.json acts as an entry point for systems. It holds meta information about the adapters functionality and can be used in several ways e.g. to generate an user interface
-
-See the [AdapterJsonSchema](https://github.com/openintegrationhub/Connectors/blob/master/Adapters/AdapterJsonSchema.json) for a template to create the `component.json` file.
-
-- [ ] `component.json` should have a global `description` field filled.
-- [ ] `component.json` should have a link to the documentation, e.g. `README` file below
-- [ ] Each field in credentials should have a `note` on it explaining what exactly is required here (unless it's obvious, e.g. password)
-- [ ] Each field except `password` should have a `placeholder` configured with a meaningful sample (unless it's obvious)
-- [ ] Each trigger and action should have a `description` field configured explaining what given trigger/action does
-- [ ] Each field in the trigger/action should have a `note` explaining what expected to be there as well as meaningful example
- in `placeholder` which could be (for optional fields) a default value if field is empty
-
-#### Other Files
-
-- [ ] License file
-
-### Should Have
-
-#### README.md
-
-- [ ] Documentation for the authentication process (How to find API key, etc.)
-- [ ] Screen shot of the parameters for each action/trigger with sample meaningful values (if parameters are defined for given trigger/action)
-- [ ] Description of the parameters (if any) for each action/trigger
-- [ ] Sample of the minimum viable input (e.g. for updating or creating something) for each action/trigger
-- [ ] Description of the dynamic metadata generation rules, metadata discovery rules for each action/trigger
-
-#### AdapterFunctionalityChecklist.md
-
-- [ ] A copy of the [Adapter FunctionalityChecklist](https://github.com/openintegrationhub/Connectors/blob/master/Adapters/AdapterChecklists/AdapterFunctionalityChecklist.md) which tracks which functionality has been implemented in the component.
-
-#### Other Files
-
-- [ ] Logo - 128x128 PNG file with transparent background
-- [ ] Changelog
-
-### Could Have
-
-#### README.md
-
-- [ ] Version and compatibility information
-- [ ] Known limitations, may be with link to the issue
-- [ ] Contribution guidelines (they should be standardized)
-- [ ] License and copyright
-
-#### AdapterDescriptionAndDocumentationChecklist
-
-- [ ] A copy of this checklist which tracks completeness of the documentation.

@@ -13,27 +13,30 @@ has_children: true
 
 # Connector Guidelines
 
-The Open Integration Hub enables data synchronization across a variety of applications. To create a connection and enable interaction a link is needed between the software application and the Open Integration Hub - the Open Integration Hub connector.
+The Open Integration Hub enables data synchronization across a variety of applications. To enable interaction with any software an technical component is needed to the Open Integration Hub - the connector. It consists of two distinct parts: the adapter and the transformer.
 
-<!-- TOC depthFrom:2 depthTo:6 withLinks:1 updateOnSave:1 orderedList:0 -->
-<!-- /TOC -->
+An **adapter** is a module for the syntactic connection of an external application and its data to the Open Integration Hub. This includes protocol translation, data format transformation, etc.
+Furthermore it provides functionalities to perform e.g. CRUD operations within the source system.
 
-A connector connects a software solution to the Open Integration Hub. It consists of two distinct parts, namely adapter and transformer.  It contains different functionalities e.g. to fetch and transform data. These functionalities are further explained in the sections [adapter](#adapter) and [transformer](#transformer). In order to achieve our goal to establish a successful open source community we need to steadily increase the number of connectors. So join us and help us grow as an open source community!
-
+A **transformer** is responsible to semantically transform an incoming JSON object into another JSON object. Thus the mapping between two data models is done within the transformer.
 
 The following illustration provides a holistic overview of a connector:
 ![Connector](https://raw.githubusercontent.com/openintegrationhub/openintegrationhub.github.io/master/assets/images/ConnectorsV3.png)
 
-### Adapter
+## Open Source Connectors
 
-An adapter is a module for the syntactic connection of an external application and its data to the Open Integration Hub. This includes protocol translation, data format transformation, etc.
-Furthermore it provides functionalities to perform e.g. CRUD operations within the source system.
+Like the Open Integration Hub services, connectors are also standardized components that can be reused in any implementation of the framework. There are several contributors that provide a wide range of open source connectors already. So before you start your own, check out what's already there:
 
-For further information please read through the information within the [adapter folder](https://openintegrationhub.github.io//docs/Connectors/Adapter.html).
+[Open Integration Hub](https://github.com/openintegrationhub){: .btn .fs-5 .mb-4 .mb-md-0 }
+[Flowground](https://github.com/flowground){: .btn .fs-5 .mb-4 .mb-md-0 }
+[elastic.io](https://github.com/elasticio){: .btn .fs-5 .mb-4 .mb-md-0 }
 
+If you want to build your own connector, we suggest you start with a our node.js example, to understand the structure and what you need to get going. Most components are build in node.js, although you can choose any language you want.
 
-### Transformer
+[node.js example](https://openintegrationhub.github.io//docs/Connectors/building-nodejs-component.html)
 
-A transformer is responsible to semantically transform an incoming JSON object into another JSON object. Thus the mapping between two data models is done within the transformer.
+If you prefer a real world example, the wice components are good place to get inspiration.
 
-For further information please read through the information within the [transformer folder](https://openintegrationhub.github.io//docs/Connectors/Transformer.html).
+[Wice Adapter](https://github.com/openintegrationhub/wicecrm-adapter)
+
+[Wice Transformer](https://github.com/openintegrationhub/wicecrm-transformer)
