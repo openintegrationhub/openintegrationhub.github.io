@@ -37,7 +37,7 @@ In addition to setting up the Open Integration Hub on a cloud infrastructure suc
 
 # Requirements
 
-**Please make sure to clone the monorepo before you start.**
+**Please make sure to clone the [monorepo](https://github.com/openintegrationhub/openintegrationhub) before you start.**
 
 Make sure that minikube is endowed with sufficient resources. We suggest at least:
 
@@ -54,7 +54,8 @@ Make sure that minikube is endowed with sufficient resources. We suggest at leas
     <div style="float: left; margin-right: 10px;">
 <img src="https://img.shields.io/badge/Windows-blue.svg" height="30">
 </div>
-If you're using Windows we suggest to use virtual box. In order to use it, Hyper-V must be disabled <a href="https://docs.microsoft.com/de-de/virtualization/hyper-v-on-windows/quick-start/enable-hyper-v">Enable/Disable Hyper-V on Windows 10</a>
+If you're using Windows we suggest to use virtual box. In order to use it, Hyper-V must be disabled <a href="https://docs.microsoft.com/de-de/virtualization/hyper-v-on-windows/quick-start/enable-hyper-v">Enable/Disable Hyper-V on Windows 10.
+You may also have to enable virtualisation features in you BIOS.</a>
 </div>
 
 
@@ -64,7 +65,7 @@ If you're using Windows we suggest to use virtual box. In order to use it, Hyper
 
 Make certain minikube is installed, configured, and started. The command for allocating sufficient resources is
 
-    minikube start --memory 8096 --cpus 4
+    minikube start --memory 8192 --cpus 4
 
 If you already have an installed minikube instance that is using the virtualbox driver you can do
 
@@ -72,13 +73,15 @@ If you already have an installed minikube instance that is using the virtualbox 
 
 and then
 
-    VBoxManage modifyvm "minikube" --memory 8096 --cpus 4
+    VBoxManage modifyvm "minikube" --memory 8192 --cpus 4
 
 to adjust the resource limits before starting again.
 
 In particular, ensure that its ingress module is enabled (`minikube addons enable ingress`).  Also make certain that `kubectl` is configured to use minikube. To see if its correctly configured use
 
-    `kubectl config current-context`
+    `kubectl config current-context
+    or
+    cluster info`
 
 For further information about how to set up minikube, see here:
 
@@ -101,6 +104,8 @@ If you're using Docker for Windows it overwrites the acutal kubectl version. In 
 
 
 ## Basic Open Integration Hub Infrastructure Setup
+
+**Please make sure to clone the [monorepo](https://github.com/openintegrationhub/openintegrationhub) before you start. You will need the files in the minikube folder.**
 
 Set up the basic OIH infrastructure. To do this, simply execute
 
