@@ -307,6 +307,7 @@ Below you will find code snippets for two exemplary components. For the beginnin
         "access": "public",
         "name": "Node.js code",
         "description": "Node.js code component that executes the provided code"
+      }
 }
 ```
 
