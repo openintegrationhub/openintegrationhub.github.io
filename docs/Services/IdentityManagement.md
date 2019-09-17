@@ -2,7 +2,7 @@
 layout: default
 title: Identity and Access Management
 parent: Services
-nav_order: 7
+nav_order: 8
 ---
 <!-- Description Guidelines
 
@@ -38,8 +38,9 @@ OpenID Connect is a simple identity layer on top of the OAuth 2.0 protocol, whic
 
 ## How it works
 <!-- describe core functionalities and underlying concepts in more detail -->
+
 Basic IAM setup
-===============
+---
 
 This approach aims at a very basic and simple operation of OIH using only a minimal set of microservices. We assume a scenario where an individual or a company uses OIH in the intranet without the need for external identity providers and using a simple authentication and authorization mechanisms.
 
@@ -338,3 +339,6 @@ Payload
 
 
 This authentication flow brings several benefits. It relies on established standards, so an implementation will be covered by detailed documentation. In addition, Users get an interface that should already be known to them, since large providers (e. g. maintained by Google or Facebook) have been around for a couple of years.
+
+### Interaction with other Services
+<!-- list and link the services this one interacts with and describe each interaction briefly (1-2 sentences) -->

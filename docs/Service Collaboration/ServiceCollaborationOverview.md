@@ -5,11 +5,19 @@ nav_order: 4
 has_children: true
 ---
 
-This document is designed to describe different service collaboration examples. It should act as a starting point to easily understanding the architecture of the Open Integration Hub.
+<p align="center">
+  <img src="https://raw.githubusercontent.com/openintegrationhub/openintegrationhub.github.io/master/assets/images/large-oih-vertikal-zentriert.png" alt="Open Integration Hub" width="300"/>
+</p>
+<br>
+<br>
+
+# Service Collaboration
+
+This document is designed to describe different service collaboration examples. It acts as a starting point to easily understanding the architecture of the Open Integration Hub.
 Most of the examples are triggered by user interactions (e.g. starting a flow) and only the "happy path" i.e. success scenario is described.
 
 Each example is described through a graphical overview, a textual description and pre-conditions.
-For further information for a specific version please have a look at the [services](https://github.com/openintegrationhub/openintegrationhub/tree/master/services) itself.
+For further information for a specific version please have a look at the [services](https://openintegrationhub.github.io//docs/Services/Services.html).
 
 - [Starting a flow](#starting-a-flow)
   - [Flow repository](#flow-repository)
@@ -138,7 +146,7 @@ The message format of the messages emitted by scheduler have the following struc
 }
 ```
 
-![webhookPost](assets/ExecutePollingFlow.png)
+![webhookPost](https://raw.githubusercontent.com/openintegrationhub/openintegrationhub.github.io/master/assets/images/ExecutePollingFlow.png)
 
 Figure: _executePollingFlow_
 
@@ -168,7 +176,7 @@ The following example shows the message format of Webhooks messages:
 }
 ```
 
-![webhookPost](assets/ExecuteWebhookFlowPost.png)
+![webhookPost](https://raw.githubusercontent.com/openintegrationhub/openintegrationhub.github.io/master/assets/images/ExecuteWebhookFlowPost.png)
 
 Figure: _executeWebhookFlowPost_
 
@@ -194,7 +202,7 @@ The following example shows the message format of Webhooks messages:
 
 An examplary webhook GET request could look like the following: `GET /hook/<flow-id>?param1=value&param2=value`
 
-![webhookPost](assets/ExecuteWebhookFlowGET.png)
+![webhookPost](https://raw.githubusercontent.com/openintegrationhub/openintegrationhub.github.io/master/assets/images/ExecuteWebhookFlowGET.png)
 
 Figure: _executeWebhookFlowGet_
 
@@ -212,7 +220,7 @@ The following example shows how a user can request a resource using IAM. The gra
 
 Illustration of this process:  (Figur _requestResourceSuccess_).
 
-![requestResourceSuccess](assets/requestResourceSuccess.png)
+![requestResourceSuccess](https://raw.githubusercontent.com/openintegrationhub/openintegrationhub.github.io/master/assets/images/requestResourceSuccess.png)
 
 Figure: _requestResourceSuccess_
 
@@ -225,4 +233,4 @@ Figure: _requestResourceSuccess_
 To create a record that should be stored in the audit log a service simply has to put a message onto the queue with a predefined topic. Each service decides on its own, which events should be stored in the audit log service.
 Audit log listens to all events having `audit.*` as topic.
 
-![creatingAuditLogEvents](assets/CreatingAuditLog.png)
+![creatingAuditLogEvents](https://raw.githubusercontent.com/openintegrationhub/openintegrationhub.github.io/master/assets/images/CreatingAuditLog.png)

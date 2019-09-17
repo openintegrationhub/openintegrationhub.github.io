@@ -43,3 +43,6 @@ distributed in/from [Docker Cloud](https://cloud.docker.com) so that they would 
 (cloud or on-prem) out of the box. For `private` components private Docker Registry can be maintained locally so that
 no components are exposed to the cloud. Each on prem installation could decide whether to use private repos on Docker
 Cloud or installing a private Docker Registry on prem for their private components.
+
+### Interaction with other Services
+<!-- list and link the services this one interacts with and describe each interaction briefly (1-2 sentences) -->

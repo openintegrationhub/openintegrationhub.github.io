@@ -1,12 +1,12 @@
 # openintegrationhub.github.io
 Developer Documentation Site
 
-**currently under construction**
+**The site is auto deployed. Your changes will be visible immediately**
 
-please refer to the following repos for documentation, until this site is finalized:
+# Contributing
 
-[Framework](https://github.com/openintegrationhub/openintegrationhub)
+Please clone this repo and test locally before submitting your changes.
 
-[Connectors](https://github.com/openintegrationhub/Connectors)
+To test locally, make sure [jekyll is installed](https://jekyllrb.com/docs/installation/) on your system.
 
-[Data Models](https://github.com/openintegrationhub/Data-and-Domain-Models)
+Mind our [contribution guideline](https://openintegrationhub.github.io//docs/Contributing/ContributionGuidelines.html) and open a [pull request](https://github.com/openintegrationhub/openintegrationhub.github.io/pulls) to submit your changes.

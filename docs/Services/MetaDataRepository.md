@@ -2,7 +2,7 @@
 layout: default
 title: Meta Data Repository
 parent: Services
-nav_order: 10
+nav_order: 11
 ---
 <!-- Description Guidelines
 
@@ -48,7 +48,7 @@ The service is mainly responsible for storing meta models and domains. In order 
 
 The domain object is responsible describing the domain itself. Thus, the following object structure is proposed:
 
-```JSON
+```json
 {  
   "$schema":"http://json-schema.org/draft-06/schema#",
   "$id":"http://json-schema.org/draft-06/schema#",
@@ -104,7 +104,7 @@ The domain object is responsible describing the domain itself. Thus, the followi
 The model object is responsible for describing the meta model and should have a reference to the superordinated domain.
 Therefore, the following structure is supposed:
 
-```JSON
+```json
 {  
   "$schema":"http://json-schema.org/draft-06/schema#",
   "$id":"http://json-schema.org/draft-06/schema#",
@@ -195,3 +195,5 @@ Therefore, the following structure is supposed:
   }
 }
 ```
+### Interaction with other Services
+<!-- list and link the services this one interacts with and describe each interaction briefly (1-2 sentences) -->
