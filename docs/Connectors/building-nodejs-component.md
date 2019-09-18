@@ -5,6 +5,8 @@ nav_order: 1
 parent: Connectors
 ---
 
+# Node.js Development Example
+
 Open Integration Hub supports `Node.js` programming language for building integration components such as Adapters and Transformers.
 
 To help you create an Adapter in `Node.js` we have created a simple [Petstore component in Node.js](https://github.com/openintegrationhub/petstore-component-nodejs) which connects to the [Petstore API](https://petstore.elastic.io/docs/). This component is specified for the elastic.io iPaaS platform, which uses many Open Integration Hub services. Using elastic.io for learning the concepts makes it easier for you, as you can interact with the components via user interface - which is just more comfortable than using the framework alone. But don't worry, the technological basics are the same.

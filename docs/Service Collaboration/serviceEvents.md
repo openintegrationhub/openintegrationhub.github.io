@@ -5,6 +5,7 @@ parent: Service Collaboration
 nav_order: 1
 ---
 
+# Service Events
 
 Open Integration Hub services mostly communicate asynchronously and via message queues. Most services emitts and consumes several events.
 

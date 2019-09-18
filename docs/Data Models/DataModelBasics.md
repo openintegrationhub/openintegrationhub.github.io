@@ -13,8 +13,6 @@ has_children: true
 
 # Master Data Models
 
-## Why Master Data Models?
-
 A fundamental challenge of data integration is mapping data, because applications usually use different properties and structures to represent their data.
 Traditionally the mapping is manually, where the data is copied between the objects. This is not very efficient, time consuming and does not scale.
 
