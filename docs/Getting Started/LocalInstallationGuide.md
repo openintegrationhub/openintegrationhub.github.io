@@ -54,8 +54,7 @@ Make sure that minikube is endowed with sufficient resources. We suggest at leas
     <div style="float: left; margin-right: 10px;">
 <img src="https://img.shields.io/badge/Windows-blue.svg" height="30">
 </div>
-If you're using Windows we suggest to use virtual box. In order to use it, Hyper-V must be disabled <a href="https://docs.microsoft.com/de-de/virtualization/hyper-v-on-windows/quick-start/enable-hyper-v">Enable/Disable Hyper-V on Windows 10.
-You may also have to enable virtualisation features in you BIOS.</a>
+If you're using Windows we suggest to use virtual box. In order to use it, Hyper-V must be disabled <a href="https://docs.microsoft.com/de-de/virtualization/hyper-v-on-windows/quick-start/enable-hyper-v">Enable/Disable Hyper-V on Windows 10.</a> You may also have to enable virtualisation features in you BIOS.
 </div>
 
 
@@ -63,7 +62,7 @@ You may also have to enable virtualisation features in you BIOS.</a>
 
 ## Install Minikube
 
-Make certain minikube is installed, configured, and started. The command for allocating sufficient resources is
+Make sure minikube is installed, configured, and started. The command for allocating sufficient resources is
 
     minikube start --memory 8192 --cpus 4
 
@@ -77,7 +76,7 @@ and then
 
 to adjust the resource limits before starting again.
 
-In particular, ensure that its ingress module is enabled (`minikube addons enable ingress`).  Also make certain that `kubectl` is configured to use minikube. To see if its correctly configured use
+In particular, ensure that its ingress module is enabled (`minikube addons enable ingress`).  Also make sure that `kubectl` is configured to use minikube. To see if its correctly configured use
 
     `kubectl config current-context
     or
@@ -107,7 +106,7 @@ If you're using Docker for Windows it overwrites the acutal kubectl version. In 
 
 **Please make sure to clone the [monorepo](https://github.com/openintegrationhub/openintegrationhub) before you start. You will need the files in the minikube folder.**
 
-Set up the basic OIH infrastructure. To do this, simply execute
+Set up the basic Open Integration Hub infrastructure. To do this, simply execute
 
 `kubectl apply -f ./1-Platform`
 
@@ -127,7 +126,23 @@ echo "$(minikube ip) iam.localoih.com smk.localoih.com flow-repository.localoih.
 a **Windows** distribution, you can find the host files under:
 
 ```console
-windows\system32\etc\hosts
+c:\windows\system32\etc\hosts
+or
+c:\windows\system32\drivers\etc\hosts
+
+then add
+
+your_minikube_ip iam.localoih.com
+your_minikube_ip smk.localoih.com
+your_minikube_ip flow-repository.localoih.com
+your_minikube_ip auditlog.localoih.com
+your_minikube_ip metadata.localoih.com
+your_minikube_ip component-repository.localoih.com
+your_minikube_ip webhooks.localoih.com
+your_minikube_ip attachment-storage-service.localoih.com
+your_minikube_ip data-hub.localoih.com
+your_minikube_ip ils.localoih.com
+your_minikube_ip web-ui.localoih.com
 ```
 
 ## Identity and Access Management Deployment
@@ -136,7 +151,7 @@ Deploy the OIH Identity and Access Management. To do so, simply execute `kubectl
 
 ## Service Account Creation
 
-Create a service account and token for the other services in the OIH IAM. Using Postman (or another similar tool of choice), send these POST requests the IAM.
+Create a service account and token for the other services in the IAM. Using Postman (or another similar tool of choice), send these POST requests to the IAM.
 
 **Base URL:** `iam.localoih.com`
 
@@ -278,11 +293,12 @@ The Open Integration Hub is now running and ought to function just as it would i
 - **Web UI**. A basic browser-based UI to control certain other services.
   - `web-ui.localoih.com`
 
-Most of these services have an OpenAPI documentation of their API available through the path `/api-docs`. Additionally, you can check their readmes in the `services` folder of the OIH Repository: [Open Integration Hub Services](https://github.com/openintegrationhub/openintegrationhub/tree/master/services)
+Most of these services have an OpenAPI documentation of their API available through the path `/api-docs`. You can also check the [API Reference Documentation](https://openintegrationhub.github.io/docs/API%20Reference/APIReferenceOverview.html). If you want to learn more about the services, check the [Service Documentation](https://openintegrationhub.github.io/docs/Services/Services.html) or their readmes in the `services` folder of the GitHub Repository: [Open Integration Hub Services](https://github.com/openintegrationhub/openintegrationhub/tree/master/services)
 
-# Usage
+# User Tutorial
 
-The following step-by-step guide will show you how you can add your first components and create a flow with these components via the provided web ui. All actions are also performable via postman or similar tools.
+The following step-by-step guide will show you how you can add your first components and create a flow with these components via the web ui which you deployed already.
+All actions are also performable via postman or similar tools.
 
 ## Creating Components
 
@@ -432,7 +448,7 @@ After some time the status changes to `active` and the flow is running (you may 
 
 ## Lessons Learned
 
-In this usage section you have learned...
+In this tutorial you have learned...
 
 1. How to create components via the web ui
 2. How to create a flow within the Open Integration Hub using existing components
