@@ -54,7 +54,7 @@ Make sure that minikube is endowed with sufficient resources. We suggest at leas
     <div style="float: left; margin-right: 10px;">
 <img src="https://img.shields.io/badge/Windows-blue.svg" height="30">
 </div>
-If you're using Windows we suggest to use virtual box. In order to use it, Hyper-V must be disabled <a href="https://docs.microsoft.com/de-de/virtualization/hyper-v-on-windows/quick-start/enable-hyper-v">Enable/Disable Hyper-V on Windows 10.</a> You may also have to enable virtualisation features in you BIOS.
+If you're using Windows we suggest to use virtual box. In order to use it, Hyper-V must be disabled <a href="https://docs.microsoft.com/de-de/virtualization/hyper-v-on-windows/quick-start/enable-hyper-v">Enable/Disable Hyper-V on Windows 10.</a> You may also have to enable virtualisation features in your BIOS.
 </div>
 
 
