@@ -82,7 +82,7 @@ The precise role definitions of OIH may change at a later stage, for the sake of
 *   Organization-Admin can do everything what Organization-Users can do, plus manage her organization data and Organization-Users (invite, change role, remove from organization)
 
 
-![Users and Identities in OIH](./Assets/users_in_oih.png)
+![Users and Identities in OIH](https://raw.githubusercontent.com/openintegrationhub/openintegrationhub.github.io/master/assets/images/users_in_oih.png)
 
 
 User management
@@ -99,7 +99,7 @@ Authentication and authorization flows
 
 The following diagram visualizes a simple authentication flow from a client perspective.
 
-![Authentication in OIH](./Assets/oihIamConcept.png)
+![Authentication in OIH](https://raw.githubusercontent.com/openintegrationhub/openintegrationhub.github.io/master/assets/images/oihIamConcept.png)
 
 
 
@@ -227,7 +227,7 @@ IAM in context of OIH and microservices
 
 In a microservice architecture like the OIH a client (or a service on behalf of a user) can communicate to multiple other services. In terms of multi-tenancy, we require a sophisticated authorization, for example allowing access only to those integration flows and credentials the current user is actually eligibile for. As described in the basic scenario, our approach is to make use of signed JWT tokens containing the claims/grants of the user/client. The following example illustrates the access to credentials store.
 
-![Authentication in OIH](./Assets/authorization_types.png)
+![Authentication in OIH](https://raw.githubusercontent.com/openintegrationhub/openintegrationhub.github.io/master/assets/images/authorization_types.png)
 
 Flow:
 
@@ -271,7 +271,7 @@ In this section we will define a concept for user authentication to OIH inside 
 
 ### Authentication Flow
 
-![Authentication in OIH](./Assets/Authentication-steps.png)
+![Authentication in OIH](https://raw.githubusercontent.com/openintegrationhub/openintegrationhub.github.io/master/assets/images/Authentication-steps.png)
 
 This abstract flow illustrates the interaction between the three roles and includes the following steps:
 
@@ -335,10 +335,10 @@ Payload
 }
 ```
 
-(E*) After the signature of id token has been verified or userinfo has been obtained(http://openid.net/specs/openid-connect-core-1_0.html#UserInfo), the User authentication succeeded.
+(E*) After the signature of id token has been verified or userinfo has been obtained (http://openid.net/specs/openid-connect-core-1_0.html#UserInfo), the User authentication succeeded.
 
 
 This authentication flow brings several benefits. It relies on established standards, so an implementation will be covered by detailed documentation. In addition, Users get an interface that should already be known to them, since large providers (e. g. maintained by Google or Facebook) have been around for a couple of years.
 
-### Interaction with other Services
-<!-- list and link the services this one interacts with and describe each interaction briefly (1-2 sentences) -->
+<!-- ### Interaction with other Services
+ list and link the services this one interacts with and describe each interaction briefly (1-2 sentences) -->
