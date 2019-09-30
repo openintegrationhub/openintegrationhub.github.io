@@ -196,4 +196,8 @@ Therefore, the following structure is supposed:
 }
 ```
 ### Interaction with other Services
-<!-- list and link the services this one interacts with and describe each interaction briefly (1-2 sentences) -->
+Meta Data Repository can receive events from any service, but only directly interacts with two of them:
+
+- [Message Oriented Middleware](https://openintegrationhub.github.io/docs/Services/MessageOrientedMiddleware.html): It receives all events through the Message Oriented Middleware. It publishes several events for most important actions e.g. "metadata.domain.deleted".
+
+- [Identity Management](https://openintegrationhub.github.io/docs/Services/IdentityManagement.html): It requires a bearer token created by the Identity Management to determine current user and check required permissions.
