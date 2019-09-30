@@ -168,4 +168,8 @@ Compared to other solutions, we find that HashiCorp Vault [fits best](https://ww
 In the section Access Control we mentioned an alternative where connectors fetch the secrets directly from the Secret-Service. This approach has an advantage if at some point either Secret-Service or a correlating service also manages OAuth access tokens. In practice, this means that a connector would call Secret-Service an request an access token of a specific OAuth secret. The Secret-Service can then either return the access token, if it has a valid one or fetch the access token using for example client id and client secret. If more than one connector rely on a single access token (an identical access token), then fetching and refreshing of an access token is done ideally by a singleton – in our case Secret-Service or a correlating service responsible for this types of requests.
 
 ### Interaction with other Services
-<!-- list and link the services this one interacts with and describe each interaction briefly (1-2 sentences) -->
+Secret Service can receive events from any service, but only directly interacts with two of them:
+
+- [Message Oriented Middleware](https://openintegrationhub.github.io/docs/Services/MessageOrientedMiddleware.html): It receives all events through the Message Oriented Middleware. It publishes several events for most important actions e.g. "secrets.secret.created".
+
+- [Identity Management](https://openintegrationhub.github.io/docs/Services/IdentityManagement.html): It requires a bearer token created by the Identity Management to determine current user and check required permissions.
