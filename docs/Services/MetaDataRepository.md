@@ -22,15 +22,14 @@ The Meta Data Repository is responsible for storing domains and their master dat
 
 [API Reference](http://metadata.openintegrationhub.com/api-docs/){: .btn .fs-5 .mb-4 .mb-md-0 }
 [Implementation](https://github.com/openintegrationhub/openintegrationhub/tree/master/services/meta-data-repository){: .btn .fs-5 .mb-4 .mb-md-0 }
+[Event Controller](https://github.com/openintegrationhub/openintegrationhub/tree/master/services/meta-data-repository#event-controller){: .btn .fs-5 .mb-4 .mb-md-0 }
 <!--[Service File](){: .btn .fs-5 .mb-4 .mb-md-0 }-->
 
 ## Technologies used
 <!-- please name and elaborate on other technologies or standards the service uses -->
-
-
-## How it works
-<!-- describe core functionalities and underlying concepts in more detail -->
-
+- [Node.js](https://nodejs.org)
+- [MongoDB](https://www.mongodb.com)
+- [JSON Schema](https://json-schema.org/)
 
 ## Purpose of the Microservice Meta Data Repository
 
