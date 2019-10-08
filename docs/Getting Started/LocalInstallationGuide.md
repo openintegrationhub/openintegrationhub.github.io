@@ -1,7 +1,8 @@
 ---
 layout: default
-title: Getting Started
-nav_order: 2
+title: Local Installation
+parent: Getting Started
+nav_order: 1
 ---
 <p align="center">
   <img src="https://raw.githubusercontent.com/openintegrationhub/openintegrationhub.github.io/master/assets/images/large-oih-vertikal-zentriert.png" alt="Open Integration Hub" width="300"/>

@@ -54,6 +54,7 @@ The Open Integration Hub framework consists of a variety of service. This will g
 
     <div class="container-further">
         <a class="item" href="https://openintegrationhub.github.io//docs/Getting%20Started/LocalInstallationGuide.html">Local Setup</a>
+        <a class="item" href="https://openintegrationhub.github.io//docs/Getting%20Started/GCPInstallationGuide.html">Google Cloud Platform Setup</a>
         <a class="item" href="https://openintegrationhub.github.io//docs/Service%20Collaboration/ServiceCollaborationOverview.html">Service Collaboration</a>
     </div>
 </div>
