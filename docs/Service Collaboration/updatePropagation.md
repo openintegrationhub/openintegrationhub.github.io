@@ -38,6 +38,6 @@ The following figure shows what happens within the Smart Data Framework if  a cr
 
 ### Delete or Update Events
 
-The following figure shows what happens within the Smart Data Framework if  a delte or update event is received:
+The following figure shows what happens within the Smart Data Framework if a delete or update event is received:
 
 ![updateOrDelete](https://raw.githubusercontent.com/openintegrationhub/openintegrationhub.github.io/master/assets/images/UpdateOrDelete-SDFCommunication.png)
