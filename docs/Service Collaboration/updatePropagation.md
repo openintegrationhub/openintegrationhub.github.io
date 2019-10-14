@@ -12,7 +12,7 @@ A connector flow always contains an adapter, transformer and Smart Data Framewor
 
 The following graphic illustrates how update propagation works while using the hub and spoke architecture within the Open Integration Hub:
 
-![hubAndSpoke](assets/hubAndSpoke.png)
+![hubAndSpoke](https://raw.githubusercontent.com/openintegrationhub/openintegrationhub.github.io/master/assets/images/hubAndSpoke.png)
 
 ## Source Flow
 
@@ -34,10 +34,10 @@ Target flows always start with an instance of the SDF adapter. The SDF Adapter s
 
 The following figure shows what happens within the Smart Data Framework if  a create event is received:
 
-![CreateEvent](assets/Create-SDFCommunication.png)
+![CreateEvent](https://raw.githubusercontent.com/openintegrationhub/openintegrationhub.github.io/master/assets/images/Create-SDFCommunication.png)
 
 ### Delete or Update Events
 
 The following figure shows what happens within the Smart Data Framework if  a delte or update event is received:
 
-![updateOrDelete](assets/UpdateOrDelete-SDFCommunication.png)
+![updateOrDelete](https://raw.githubusercontent.com/openintegrationhub/openintegrationhub.github.io/master/assets/images/UpdateOrDelete-SDFCommunication.png)
