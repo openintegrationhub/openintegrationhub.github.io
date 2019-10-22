@@ -13,7 +13,7 @@ Use the full links to reference other files or images! Relative links will not w
 <!-- please choose the appropriate batch and delete/comment the others  -->
 ![prod](https://img.shields.io/badge/Status-Production-brightgreen.svg)
 
-# **Service Name** <!-- make sure spelling is consistent with other sources and within this document -->
+# **Component Repository** <!-- make sure spelling is consistent with other sources and within this document -->
 
 ## Introduction
 <!-- 2 sentences: what does it do and how -->
