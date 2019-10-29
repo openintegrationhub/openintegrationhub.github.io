@@ -658,9 +658,10 @@ N/A
 
 ### Webhooks
 
-*This action has not been fully standardized.*
+Receives data pushed to the Open Integration Hub from an external system.
 
-Receives data pushed to the iPaas from an external system.
+The webhook URL is being provided by the [Webhook Service](https://openintegrationhub.github.io/docs/Services/Webhooks.html) for each flow.
+
 
 ### Bulk Extract
 
