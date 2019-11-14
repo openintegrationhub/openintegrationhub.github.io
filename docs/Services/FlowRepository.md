@@ -2,7 +2,7 @@
 layout: default
 title: Flow Repository
 parent: Services
-nav_order: 7
+nav_order: 8
 ---
 <!-- Description Guidelines
 
@@ -32,7 +32,7 @@ The Flow Repository is responsible for storing, retrieving and updating the inte
 <!-- describe core functionalities and underlying concepts in more detail -->
 ### Integration Flows
  An integration flow is described by a JSON document, containing all information required to run the flow. The core of each integration flow is its *graph*, containing *nodes* and *edges*. Data is passed along between nodes in the direction indicated by the edges. For (a minimal) example:
- 
+
 ```json
 {
   "name": "Example Integration Flow",

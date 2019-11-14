@@ -2,7 +2,7 @@
 layout: default
 title: Dispatcher Service
 parent: Services
-nav_order: 15
+nav_order: 7
 ---
 <!-- Description Guidelines
 
