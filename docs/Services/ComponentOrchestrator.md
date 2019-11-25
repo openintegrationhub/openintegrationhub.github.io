@@ -15,7 +15,7 @@ Use the full links to reference other files or images! Relative links will not w
 ![prod](https://img.shields.io/badge/Status-Production-brightgreen.svg)
 
 
-# **Component Orchestrator** <!-- make sure spelling is consistent with other sources and within this document -->
+# Component Orchestrator
 
 ## Introduction
 <!-- 2 sentences: what does it do and how -->
@@ -27,7 +27,9 @@ The Component Orchestrator is responsible for a fair resource distribution.
 [Service File](https://github.com/openintegrationhub/openintegrationhub/tree/master/lib/component-orchestrator){: .btn .fs-5 .mb-4 .mb-md-0 }
 
 ## Technologies used
-<!-- please name and elaborate on other technologies or standards the service uses -->
+- Node.js
+- Kubernetes
+- Docker
 
 ## How it works
 <!-- describe core functionalities and underlying concepts in more detail -->
@@ -48,4 +50,10 @@ The Component Orchestrator is responsible for:
 * Detection of policy violations and punishment of "bad citizens"
 
 ### Interaction with other Services
-<!-- list and link the services this one interacts with and describe each interaction briefly (1-2 sentences) -->
+- Interacts with IAM to introspect provided IAM token.
+- Gets events for starting a flow form the Flow Repository.
+- Deploys containers to the Kubernetes cluster.
+- Sends events into the event bus when the deployment is complete.
+- Creates IAM tokens in IAM service.
+- Gets Component information from the Component Repository.
+- Gets Snapshots from the Snapshots Service.

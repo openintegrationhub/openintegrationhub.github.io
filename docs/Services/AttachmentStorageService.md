@@ -14,18 +14,32 @@ Use the full links to reference other files or images! Relative links will not w
 <!-- please choose the appropriate batch and delete/comment the others  -->
 ![prod](https://img.shields.io/badge/Status-Production-brightgreen.svg)
 
-# **Attachment Storage** <!-- make sure spelling is consistent with other sources and within this document -->
+# Attachment Storage Service
 
 ## Introduction
-<!-- 2 sentences: what does it do and how -->
+Stores files involved in an integration. 
+
 [API Reference](http://attachment-storage-service.openintegrationhub.com/api-docs){: .btn .fs-5 .mb-4 .mb-md-0 }
 [Implementation](https://github.com/openintegrationhub/openintegrationhub/tree/master/services/attachment-storage-service){: .btn .fs-5 .mb-4 .mb-md-0 }
 [Service File](https://github.com/openintegrationhub/openintegrationhub/tree/master/lib/attachment-storage-service){: .btn .fs-5 .mb-4 .mb-md-0 }
 
 ## Technologies used
-<!-- please name and elaborate on other technologies or standards the service uses -->
+- Node.js
+- Typescript
+- Redis
 
 ## How it works
-<!-- describe core functionalities and underlying concepts in more detail -->
+Provides the REST API for storing and getting files. As a backend uses Redis.
+
+### Supported content types
+- application/octet-stream
+- application/json
+- application/xml
+- text/xml
+- text/plain
+- text/csv
+- text/tsv
+
 ### Interaction with other Services
-<!-- list and link the services this one interacts with and describe each interaction briefly (1-2 sentences) -->
+- Interacts with IAM to introspect provided IAM token.
+- Flow components are able to store and get their attachments into the Attachment Storage Service via the REST API.

@@ -13,20 +13,18 @@ Use the full links to reference other files or images! Relative links will not w
 <!-- please choose the appropriate batch and delete/comment the others  -->
 ![prod](https://img.shields.io/badge/Status-Production-brightgreen.svg)
 
-# **Component Repository** <!-- make sure spelling is consistent with other sources and within this document -->
+# Component Repository
 
 ## Introduction
-<!-- 2 sentences: what does it do and how -->
-
-The Component Repository stores integration components such as adapters & transformer.
+The Component Repository stores information about integration components such as adapters & transformer.
 
 [API Reference](http://component-repository.openintegrationhub.com/api-docs/){: .btn .fs-5 .mb-4 .mb-md-0 }
 [Implementation](https://github.com/openintegrationhub/openintegrationhub/tree/master/services/component-repository){: .btn .fs-5 .mb-4 .mb-md-0 }
 [Service File](https://github.com/openintegrationhub/openintegrationhub/tree/master/lib/component-repository){: .btn .fs-5 .mb-4 .mb-md-0 }
 
 ## Technologies used
-<!-- please name and elaborate on other technologies or standards the service uses -->
-- Docker Registry: Stateless, highly scalable storage for Docker images
+- Node.js
+- MongoDB
 
 ## How it works
 <!-- describe core functionalities and underlying concepts in more detail -->
@@ -45,4 +43,5 @@ no components are exposed to the cloud. Each on prem installation could decide w
 Cloud or installing a private Docker Registry on prem for their private components.
 
 ### Interaction with other Services
-<!-- list and link the services this one interacts with and describe each interaction briefly (1-2 sentences) -->
+- Interacts with IAM to introspect provided IAM token.
+- Component Orchestrator get the information about components from this service.
