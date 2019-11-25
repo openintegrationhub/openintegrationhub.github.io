@@ -33,4 +33,4 @@ Each of flow components running in its own Docker container and write its logs t
 These log entries are being collected by GCP Stack Driver. This service allows to get the logs page by page using a convenient API.
 
 ### Interaction with other Services
-- interacts with IAM to verify introspect provided IAM token
+- Interacts with IAM to introspect provided IAM token.

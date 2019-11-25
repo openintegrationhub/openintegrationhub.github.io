@@ -39,4 +39,6 @@ It connects to the RabbitMQ queue, which is in turn subscribed for the `snapshot
 The service consume the messages from the queue and writes it to the DB. The snapshots are then accessible via REST API.
 
 ### Interaction with other Services
-- consumes `snapshot` events from flow components via RabbitMQ
+- Interacts with IAM to introspect provided IAM token.
+- Consumes `snapshot` events from flow components via RabbitMQ.
+- Component Orchestrator queries the service and provides snapshots to each flow component. 
