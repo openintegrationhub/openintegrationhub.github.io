@@ -1,7 +1,7 @@
 <!-- Description Guidelines
 
 Please note:
-Use the full links to reference other files or images! Relative links will not work under our theme settings settings.
+Use the full links to reference other files or images! Relative links will not work under our theme settings.
 -->
 
 <!-- please choose the appropriate batch and delete/comment the others  -->
