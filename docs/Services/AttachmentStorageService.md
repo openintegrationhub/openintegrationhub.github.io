@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Attachment Storage
+title: Attachment Storage Service
 parent: Services
 nav_order: 1
 ---
