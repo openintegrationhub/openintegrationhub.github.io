@@ -2,7 +2,7 @@
 layout: default
 title: Logging Service
 parent: Services
-nav_order: 16
+nav_order: 11
 ---
 
 <!-- Description Guidelines

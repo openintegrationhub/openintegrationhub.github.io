@@ -2,7 +2,7 @@
 layout: default
 title: Snapshots Service
 parent: Services
-nav_order: 17
+nav_order: 16
 ---
 
 <!-- Description Guidelines
