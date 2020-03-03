@@ -75,7 +75,7 @@ After you changed the host entries execute the following commands:
 
 ## Setup Storage
 
-Next, you need to make sure to setup / connecto to a storage solution such as [mongoDB atlas](https://www.mongodb.com/cloud/atlas).
+Next, you need to make sure to setup / connect to a storage solution such as [MongoDB Atlas](https://www.mongodb.com/cloud/atlas).
 Optionally, the mongodb.yaml provided under `platform/mongodb.yaml` could be used. To do so:
 
 - apply minikube/1-Platform/volume.yaml
@@ -83,6 +83,8 @@ Optionally, the mongodb.yaml provided under `platform/mongodb.yaml` could be use
 - apply minikube/1-Platform/platform/mongodb.yaml
 
 Note: _We suggest to use the first variant i.e. an external storage solution_
+
+Irrespective of the solution you choose, ensure that each service uses its own database. This is necessary to ensure proper encapsulation and to avoid accidental data pollution. For more information about MongoDB databases, please refer to the official [MongoDB Documentation](https://docs.mongodb.com/manual/core/databases-and-collections/).
 
 ## Identity and Access Management Deployment
 
