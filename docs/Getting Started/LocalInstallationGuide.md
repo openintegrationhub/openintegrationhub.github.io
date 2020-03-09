@@ -121,7 +121,7 @@ If you are using...
 a **Linux** distribution, you can automate this by using this terminal command:
 
 ```console
-echo "$(minikube ip) iam.localoih.com smk.localoih.com flow-repository.localoih.com auditlog.localoih.com metadata.localoih.com component-repository.localoih.com webhooks.localoih.com attachment-storage-service.localoih.com data-hub.localoih.com ils.localoih.com web-ui.localoih.com" | sudo tee -a /etc/hosts
+echo "$(minikube ip) app-directory.localoih.com iam.localoih.com skm.localoih.com flow-repository.localoih.com auditlog.localoih.com metadata.localoih.com component-repository.localoih.com dispatcher-service.localoih.com webhooks.localoih.com attachment-storage-service.localoih.com data-hub.localoih.com ils.localoih.com web-ui.localoih.com" | sudo tee -a /etc/hosts
 ```
 
 a **Windows** distribution, you can find the host files under:
@@ -133,10 +133,12 @@ c:\windows\system32\drivers\etc\hosts
 
 then add
 
+your_minikube_ip app-directory.localoih.com
 your_minikube_ip iam.localoih.com
-your_minikube_ip smk.localoih.com
+your_minikube_ip skm.localoih.com
 your_minikube_ip flow-repository.localoih.com
 your_minikube_ip auditlog.localoih.com
+your_minikube_ip dispatcher-service.localoih.com
 your_minikube_ip metadata.localoih.com
 your_minikube_ip component-repository.localoih.com
 your_minikube_ip webhooks.localoih.com
