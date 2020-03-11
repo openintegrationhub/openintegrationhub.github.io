@@ -202,9 +202,7 @@ _Request Body:_
     "status":"ACTIVE",
     "password":"asd",
     "permissions":[
-      "iam.tokens.introspect",
-      "iam.token.introspect",
-      "components.get"
+      "all"
     ]
   }
   ```
@@ -248,10 +246,10 @@ _Request Body:_
 
 ```json
 {
-  "accountId": "{PASTE SERVICE ACCOUNT ID HERE}",
+  "accountId": "PASTE SERVICE ACCOUNT ID HERE",
   "expiresIn": -1,
-  "initiator": "{PASTE SERVICE ACCOUNT ID HERE}",
-  "inquirer": "{PASTE SERVICE ACCOUNT ID HERE}"
+  "initiator": "PASTE SERVICE ACCOUNT ID HERE",
+  "inquirer": "PASTE SERVICE ACCOUNT ID HERE"
 }
 ```
 
