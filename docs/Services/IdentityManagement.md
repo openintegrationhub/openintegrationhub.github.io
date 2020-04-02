@@ -14,7 +14,7 @@ Use the full links to reference other files or images! Relative links will not w
 ![prod](https://img.shields.io/badge/Status-Production-brightgreen.svg)
 
 
-# **Service Name** <!-- make sure spelling is consistent with other sources and within this document -->
+# **Identity and Access Management** <!-- make sure spelling is consistent with other sources and within this document -->
 
 ## Introduction
 <!-- 2 sentences: what does it do and how -->
