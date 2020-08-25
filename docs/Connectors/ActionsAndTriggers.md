@@ -96,28 +96,28 @@ have occurred.
 
 - [getObjectsPolling](https://github.com/openintegrationhub/Connectors/blob/master/Adapters/AdapterBehaviorStandardization/StandardizedActionsAndTriggers.md#get-new-and-updated-objects-polling)
  including functionality to
-- supply the list of readable objects
+    - supply the list of readable objects
 - [getObjectsWebhook](https://github.com/openintegrationhub/Connectors/blob/master/Adapters/AdapterBehaviorStandardization/StandardizedActionsAndTriggers.md#get-objects-webhook)
  including functionality to
-- supply the list of readable objects
-- supply the structure of the incoming objects
+    - supply the list of readable objects
+    - supply the structure of the incoming objects
 - [getDeletedObjectsWebhook](https://github.com/openintegrationhub/Connectors/blob/master/Adapters/AdapterBehaviorStandardization/StandardizedActionsAndTriggers.md#get-deleted-objects-webhook)
  including functionality to
-- supply the list of deletable objects
+    - supply the list of deletable objects
 
 #### Actions
 
 - [upsertObject](https://github.com/openintegrationhub/Connectors/blob/master/Adapters/AdapterBehaviorStandardization/StandardizedActionsAndTriggers.md#upsert-object)
  including functionality to
-- supply the list of writable objects
-- supply the structure of the incoming object
+    - supply the list of writable objects
+    - supply the structure of the incoming object
 - [deleteObject](https://github.com/openintegrationhub/Connectors/blob/master/Adapters/AdapterBehaviorStandardization/StandardizedActionsAndTriggers.md#delete-object)
 including functionality to
-- supply the list of deletable objects
+    - supply the list of deletable objects
 - [lookupObjectByField](https://github.com/openintegrationhub/Connectors/blob/master/Adapters/AdapterBehaviorStandardization/StandardizedActionsAndTriggers.md#lookup-object-at-most-1)
  including functionality to
-- supply the list of readable objects
-- supply the list of fields that can be searched
+    - supply the list of readable objects
+    - supply the list of fields that can be searched
 
 ### Case 2
 
