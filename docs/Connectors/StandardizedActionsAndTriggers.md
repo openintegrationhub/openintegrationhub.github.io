@@ -33,7 +33,7 @@ grand_parent: Connectors
 
 It is important to define common rules on how an adapter responds to changes and performs actions on generic domain objects.  
 
-If adapters follow common behaviors, then it is possible to build integrations by combining adapters which are developed by different developers.
+If adapters follow common behaviours, then it is possible to build integrations by combining adapters which are developed by different developers.
 
 ## Actions
 
@@ -44,10 +44,6 @@ If adapters follow common behaviors, then it is possible to build integrations b
 I have some contact data that I want to add to my CRM.  I don't necessarily know if there is already a contact in my CRM, so I want the connector to be smart and determine if the data needs to be matched to an existing contact or added to a new contract.
 
 #### Iteration 1: Upsert Object By ID
-
-##### Config Fields
-
-- Object Type (dropdown)
 
 ##### Input Metadata
 
@@ -84,10 +80,6 @@ I have some contact data that I want to add to my CRM.  I don't necessarily know
 
 #### Iteration 2: Update Object By Unique Criteria
 
-##### Additional Config Fields
-
-- Upsert Criteria: Drop down with all sets of unique constraints for the object in question
-
 ##### Input Metadata Changes
 
 - The fields that are part of the upsert criteria are marked as being part of the criteria.  If the criteria is something other than the ID, they should be marked as required.
@@ -119,12 +111,6 @@ I have some contact data that I want to add to my CRM.  I don't necessarily know
 I have a contact who works for a company.  I have an ID or other distinguishing characteristic (e.g. legal name) of the company and I want to learn some detail about the company (e.g. number of employees).
 
 #### Iteration 1: Lookup Object By ID
-
-##### Config Fields
-
-- Object Type (dropdown)
-- Allow ID to be omitted (dropdown/checkbox: yes/no)
-- Allow zero results (dropdown/checkbox: yes/no)
 
 ##### Input Metadata
 
@@ -168,10 +154,6 @@ I have a contact who works for a company.  I have an ID or other distinguishing 
 
 #### Iteration 2: Lookup Object By Unique Criteria
 
-##### Additional Config Fields
-
-- Lookup Criteria: Drop down with all sets of unique constraints for the object in question
-
 ##### Input Metadata Changes
 
 - The input matches the selected criteria
@@ -206,12 +188,6 @@ I have a contact who works for a company.  I have an ID or other distinguishing 
 ### Lookup Objects (Plural)
 ##### Example Use Case
 I want to search my CRM for data based on some criteria.
-
-##### Config Fields
-
-- Object Type (dropdown)
-- Behavior (dropdown: Fetch all, Fetch Page, Emit Individually)
-- Number of search terms (text field: integer >= 1) (iteration 2)
 
 ##### Input Metadata
 
@@ -269,10 +245,6 @@ I know the ID of a customer that I want to delete.
 
 #### Iteration 1: Delete Object By ID
 
-##### Config Fields
-
-- Object Type (dropdown)
-
 ##### Input Metadata
 
 - One input per field in the ID that is required.
@@ -299,10 +271,6 @@ I know the ID of a customer that I want to delete.
 - Make sure to Url Encode IDs appearing in HTTP urls
 
 #### Iteration 2: Delete Object By Unique Criteria
-
-##### Additional Config Fields
-
-- Upsert Criteria: Drop down with all sets of unique constraints for the object type in question
 
 ##### Input Metadata Changes
 
@@ -339,11 +307,6 @@ I salesperson is responsible for 0 to N accounts.  I would like to look up a pie
 
 #### Iteration 1: Lookup Object By ID
 #### Iteration 2: Lookup Object By Unique Criteria
-
-##### Config Fields
-
-- Object Type (dropdown)
-- Iteration 2: Unique Criteria (dropdown)
 
 ##### Input Metadata
 
@@ -457,11 +420,6 @@ Examples of this include constructing a query or statement in SQL, Salesforce’
 ##### Example Use Case
 Execute SQL query in SQL database
 
-##### Config Fields
-
-- Query Emit Behavior (dropdown: Fetch all, Emit Individually, Expect Single)
-- Query
-
 ##### Input Metadata
 
 - For each parameterized variable in the query, there should be an input
@@ -515,10 +473,6 @@ Given a field which can be set to a fixed list of options, ensure that this opti
 
 ##### Example Use Case
 You run a store where each product has a color.  The list of colors are finite (e.g. red, green, blue).  One day, you decide to add a new color option yellow.
-
-##### Config Fields
-
-- Object Type (Dropdown)
 
 ##### Input Metadata
 
@@ -590,14 +544,6 @@ It is possible to make batch variants for many of the above actions.  The batch 
 ### Get New and Updated Objects Polling
 ##### Example Use Case
 I want to learn about changes to contacts in my CRM when they happen.
-
-##### Config Fields
-
-- Object Type (dropdown)
-- Start Time (string, optional): Indicates the beginning time to start polling from (defaults to the begining of time)
-- End Time (string, optional): If provided, don’t fetch records modified after this time (defaults to never)
-- Size of Polling Page (optional; positive integer) Indicates the size of pages to be fetched. Defaults to 1000.
-- Single Page per Interval (dropdown/checkbox: yes/no; default yes) Indicates that if the number of changed records exceeds the maximum number of results in a page, instead of fetching the next page immediately, wait until the next flow start to fetch the next page.
 
 ##### Input Metadata
 

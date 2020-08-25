@@ -7,7 +7,7 @@ parent: Connectors
 
 # Deprecated :warning:
 
-This petstore example is only compactible with the legacy release of the openintegrationhub. An updated example will be released in the future. Please see one of the existing connectors for an updated example.
+This petstore example is only compatible with the legacy release of the Open Integration Hub. An updated example will be released in the future. Please see one of the existing connectors for an updated example.
 
 [Snazzy Contacts Adapter](https://github.com/openintegrationhub/snazzycontacts-adapter)
 
@@ -184,5 +184,9 @@ The use of any specific verification method depends on the project and the third
 ## Start your own
 Now that you have the basics down, we suggest to start with determining what functionality your connector should include. Essential for that is the API you are connecting with.
 [Actions and Triggers](https://openintegrationhub.github.io//docs/Connectors/ActionsAndTriggers.html){: .btn .fs-5 .mb-4 .mb-md-0 }
+
+For a quick start, you can check out to our [contacts adapter template](https://github.com/openintegrationhub/contacts-adapter-template). It contains a baseline for all the functions you'll need, which you can then adapt and expand for your own requirements.
+
+In the future, the sailor utility described earlier will be replaced by a new OIH-specific version called the Ferryman. The actual connector architecture and functionality will not be impacted by this. For more information about the Ferryman, check the [Ferryman documentation](https://github.com/openintegrationhub/openintegrationhub/tree/master/lib/ferryman)
 
 More advanced and optional additions to any connector include [Conflict Management](https://openintegrationhub.github.io//docs/Services/ConflictManagement.html).
