@@ -5,6 +5,15 @@ nav_order: 1
 parent: Connectors
 ---
 
+# :warning: Deprecated
+
+This petstore example is only compactible with the legacy release of the openintegrationhub. An updated example will be released in the future. Please see one of the existing connectors for an updated example.
+
+[Snazzy Contacts Adapter](https://github.com/openintegrationhub/snazzycontacts-adapter)
+
+[Snazzy Contacts Transformer](https://github.com/openintegrationhubsnazzycontacts-transformer)
+
+
 # Node.js Development Example
 
 Open Integration Hub supports `Node.js` programming language for building integration components such as Adapters and Transformers.

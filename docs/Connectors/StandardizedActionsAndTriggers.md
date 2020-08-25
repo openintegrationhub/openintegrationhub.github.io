@@ -30,16 +30,16 @@ parent: Actions and Triggers
   * [Webhooks](#webhooks)
   * [Bulk Extract](#bulk-extract)
 
-It is important to define common rules on how an adapter responds to changes
-and performs actions on generic domain objects.  If adapters follow
-common behaviors, then it is possible to build integrations by combining
-adapters which are developed by different developers.
+It is important to define common rules on how an adapter responds to changes and performs actions on generic domain objects.  
+
+If adapters follow common behaviors, then it is possible to build integrations by combining adapters which are developed by different developers.
 
 ## Actions
 
 ### Upsert Object
 
 ##### Example Use Case
+
 I have some contact data that I want to add to my CRM.  I don't necessarily know if there is already a contact in my CRM, so I want the connector to be smart and determine if the data needs to be matched to an existing contact or added to a new contract.
 
 #### Iteration 1: Upsert Object By ID
@@ -51,6 +51,7 @@ I have some contact data that I want to add to my CRM.  I don't necessarily know
 ##### Input Metadata
 
 - One input per field in the ID that is optional.  This field is marked as being the ID.
+
 - Inputs for other fields on the body.  All fields that are not nullable and can’t be populated by the system on create should be required.
 
 ##### Pseudo-Code
@@ -77,6 +78,7 @@ I have some contact data that I want to add to my CRM.  I don't necessarily know
 ##### Gotcha’s to lookout for
 
 - Updates should be partial updates
+
 - Make sure to Url Encode IDs appearing in HTTP urls
 
 #### Iteration 2: Update Object By Unique Criteria
@@ -88,6 +90,7 @@ I have some contact data that I want to add to my CRM.  I don't necessarily know
 ##### Input Metadata Changes
 
 - The fields that are part of the upsert criteria are marked as being part of the criteria.  If the criteria is something other than the ID, they should be marked as required.
+
   (There is a hypothetical edge case here where the system auto-populates the unique criteria)
 
 ##### Pseudo-Code

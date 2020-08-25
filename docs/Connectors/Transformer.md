@@ -26,7 +26,11 @@ As can be seen in the [connector overview](https://github.com/openintegrationhub
 1. From _source model_ to _Open Integration Hub master data model_
 2. From _Open Integration Hub master data model_ to _source model_
 
-A transformer expects a JSON object as an input. Depending on the direction of the transformation the input either represents the structure of the proprieraty data model (_flow direction 1_) or the structure of the Open Integration Hub master data model (_flow direction 2_). Afterwards it transforms the incoming JSON object into another JSON object e.g. via a transformation language (_We suggest JSONata for the transformation_).  Depending on the transformation direction, the transformer's output is then send either to the Open Integration Hub and is validated against a deposited JSON schema or to the corresponding adapter.
+A transformer expects a JSON object as an input. Depending on the direction of the transformation the input either represents the structure of the proprietary data model (_flow direction 1_) or the structure of the Open Integration Hub master data model (_flow direction 2_).
+
+Afterwards it transforms the incoming JSON object into another JSON object e.g. via a transformation language (_We suggest JSONata for the transformation_).  
+
+Depending on the transformation direction, the transformer's output is then send either to the Open Integration Hub and is validated against a deposited JSON schema or to the corresponding adapter.
 
 _Note: As the Open Integration Hub is feasible of storing different data models, it is also possible that the mapping of the source model is done against another model than the Open Integration Hub master data model. An example of how an implementation with individually uploaded data models could look like is presented under the section [possible implementations](#possible-implementations)._
 
@@ -38,7 +42,7 @@ For detailed information on transformation language and JSONata as well as a gen
 ## Transformer Evolution
 Sometimes there is a need to change the existing data model to adjust to different requirements. In this case, a transformer needs to be adjusted/updated in order to be compatible with the newest version of the data model.
 
-Some changes do not affect existing mappings/transformations and transformers can still be used (although they are not reffering to the newest model version). Thus, backward compatibility is automatically given. According to the [OData specification](http://docs.oasis-open.org/odata/odata/v4.0/errata03/os/complete/part1-protocol/odata-v4.0-errata03-os-part1-protocol-complete.html#_Toc453752210) (shortened/modified list) the following changes do not require a change within a transformer:
+Some changes do not affect existing mappings/transformations and transformers can still be used (although they are not referring to the newest model version). Thus, backward compatibility is automatically given. According to the [OData specification](http://docs.oasis-open.org/odata/odata/v4.0/errata03/os/complete/part1-protocol/odata-v4.0-errata03-os-part1-protocol-complete.html#_Toc453752210) (shortened/modified list) the following changes do not require a change within a transformer:
 
 - Adding an attribute that is nullable
 - Adding an object to the model

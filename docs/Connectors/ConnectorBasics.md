@@ -28,14 +28,16 @@ The following illustration provides a holistic overview of a connector:
 Like the Open Integration Hub services, connectors are also standardized components that can be reused in any implementation of the framework. There are several contributors that provide a wide range of open source connectors already. So before you start your own, check out what's already there:
 
 [Open Integration Hub](https://github.com/openintegrationhub){: .btn .fs-5 .mb-4 .mb-md-0 }
-[Flowground](https://github.com/flowground){: .btn .fs-5 .mb-4 .mb-md-0 }
-[elastic.io](https://github.com/elasticio){: .btn .fs-5 .mb-4 .mb-md-0 }
 
-If you want to build your own connector, we suggest you start with a our node.js example, to understand the structure and what you need to get going. Most components are build in node.js, although you can choose any language you want.
+<!-- If you want to build your own connector, we suggest you start with a our node.js example, to understand the structure and what you need to get going. Most components are build in node.js, although you can choose any language you want.
 
-[node.js example](https://openintegrationhub.github.io//docs/Connectors/building-nodejs-component.html)
+[node.js example](https://openintegrationhub.github.io//docs/Connectors/building-nodejs-component.html) -->
 
-If you prefer a real world example, the wice components are good place to get inspiration.
+If you prefer a real world example, the Snazzy Contacts  or Wice components are good place to get inspiration.
+
+[Snazzy Contacts Adapter](https://github.com/openintegrationhub/snazzycontacts-adapter)
+
+[Snazzy Contacts Transformer](https://github.com/openintegrationhubsnazzycontacts-transformer)
 
 [Wice Adapter](https://github.com/openintegrationhub/wicecrm-adapter)
 
