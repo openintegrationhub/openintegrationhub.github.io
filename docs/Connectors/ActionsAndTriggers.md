@@ -47,11 +47,12 @@ endpoint which can provide a list of all dynamic objects as well as the
 structure of every object.
 
 If the system has a fixed list of objects, then the adapter developer can
-provide a hardcoded list of objects that the adapter can interact with.  If
-the list of objects is dynamic and it is possible to use the API to learn the
-list of existing objects, the developer should write code to fetch that list and
-[provide that as dynamic
-configuration](https://support.elastic.io/support/solutions/articles/14000041559-selectview#dynamic-select).
+provide a hard-coded list of objects that the adapter can interact with.  
+
+If the list of objects is dynamic and it is possible to use the API to learn the
+list of existing objects, the developer should write code to fetch that list and provide that as dynamic
+configuration.
+
 Furthermore, in the case of a dynamic list of business objects, since the list
 of objects is unknown, the structure of objects is also unknown.  This means
 that an answer of *yes* to *Question 1* implies an answer of *yes* to *Question
@@ -75,11 +76,12 @@ to fetch the dynamic structure of that object.
 
 Some external systems support the concept of **Webhooks**.  The idea of a hook
 is that when a change occurs to an object in that external system, that external
-system proactively informs other systems about this change.  Webhooks are
-hooks where the information is transferred by having the system reporting the
-change make a REST API call to the system making the change.  [See here for more
-information about elastic.io
-webhooks.](https://support.elastic.io/support/solutions/folders/14000109800)
+system proactively informs other systems about this change.
+
+Webhooks are hooks where the information is transferred by having the system reporting the change make a REST API call to the system making the change.  [See here for more
+information about the
+webhook service.](https://github.com/openintegrationhub/openintegrationhub/tree/c605c602269f9454af5e2027b2e0d4a4b84b48ef/services/webhooks)
+
 This can be more efficient (both in terms of speed and machine resources) than
 having a scheduled job periodically make calls for changes that may or may not
 have occurred.
