@@ -5,7 +5,7 @@ nav_order: 1
 parent: Connectors
 ---
 
-# :warning: Deprecated
+# Deprecated :warning:
 
 This petstore example is only compactible with the legacy release of the openintegrationhub. An updated example will be released in the future. Please see one of the existing connectors for an updated example.
 
