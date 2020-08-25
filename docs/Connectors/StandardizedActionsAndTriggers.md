@@ -3,6 +3,7 @@ layout: default
 title: Standardized Examples
 nav_order: 1
 parent: Actions and Triggers
+grand_parent: Connectors
 ---
 
 # Descriptions of standardized actions or triggers
