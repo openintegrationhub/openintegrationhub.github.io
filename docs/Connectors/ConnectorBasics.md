@@ -39,7 +39,7 @@ For a quick start in developing your own connector, we offer a pair templates to
 
 [node.js example](https://openintegrationhub.github.io//docs/Connectors/building-nodejs-component.html) -->
 
-If you prefer a real world example, the Snazzy Contacts or Wice components are good place to get inspiration.
+If you prefer a real world example, the Snazzy Contacts and Wice components are a good place to get inspiration.
 
 [Snazzy Contacts Adapter](https://github.com/openintegrationhub/snazzycontacts-adapter)
 

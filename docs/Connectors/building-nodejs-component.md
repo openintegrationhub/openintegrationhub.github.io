@@ -128,3 +128,9 @@ Now that you have the basics down, we suggest to start with determining what fun
 [Actions and Triggers](https://openintegrationhub.github.io//docs/Connectors/ActionsAndTriggers.html){: .btn .fs-5 .mb-4 .mb-md-0 }
 
 All communication between your connector and the OIH platform is handled by the Ferryman module. For more information about the Ferryman and the functionalities it offers, check the [Ferryman documentation](https://github.com/openintegrationhub/openintegrationhub/tree/master/lib/ferryman)
+
+## Connector Testing
+
+Once you have begun building a new connector, the next step is testing it in concert with other connectors. Of course, one way of doing that is by simply connecting it with another existing connector in a flow similar to your intended use. But as an alternative, we also offer a minimal development connector with extensive logging of everything it sends and receives. Simply connect it with your own connector in a simple two-step flow and check the logs of the k8s deployment to see whether everything works as it should:
+
+[Development Connector](https://github.com/openintegrationhub/development-connector)
