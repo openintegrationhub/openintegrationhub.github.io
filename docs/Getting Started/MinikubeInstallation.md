@@ -7,12 +7,10 @@ nav_order: 1
 ---
 
 <p align="center">
-  <img src="https://github.com/openintegrationhub/openintegrationhub/blob/master/Assets/medium-oih-einzeilig-zentriert.jpg" alt="Sublime's custom image" width="400"/>
+  <img src="https://raw.githubusercontent.com/openintegrationhub/openintegrationhub.github.io/master/assets/images/large-oih-vertikal-zentriert.png" alt="Open Integration Hub" width="300"/>
 </p>
-
-Open source framework for easy data synchronization between business applications.
-
-Visit the official [Open Integration Hub homepage](https://www.openintegrationhub.de/)
+<br>
+<br>
 
 # Minikube Development Guide
 
