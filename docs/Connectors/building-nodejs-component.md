@@ -5,66 +5,52 @@ nav_order: 1
 parent: Connectors
 ---
 
-# Deprecated :warning:
-
-This petstore example is only compatible with the legacy release of the Open Integration Hub. An updated example will be released in the future. Please see one of the existing connectors for an updated example.
-
-[Snazzy Contacts Adapter](https://github.com/openintegrationhub/snazzycontacts-adapter)
-
-[Snazzy Contacts Transformer](https://github.com/openintegrationhubsnazzycontacts-transformer)
-
 
 # Node.js Development Example
 
 Open Integration Hub supports `Node.js` programming language for building integration components such as Adapters and Transformers.
 
-To help you create an Adapter in `Node.js` we have created a simple [Petstore component in Node.js](https://github.com/openintegrationhub/petstore-component-nodejs) which connects to the [Petstore API](https://petstore.elastic.io/docs/). This component is specified for the elastic.io iPaaS platform, which uses many Open Integration Hub services. Using elastic.io for learning the concepts makes it easier for you, as you can interact with the components via user interface - which is just more comfortable than using the framework alone. But don't worry, the technological basics are the same.
+To help you create an Adapter in `Node.js` we have created a simple template adapter component to start out with: [Contacts Adapter Template](https://github.com/openintegrationhub/contacts-adapter-template). It is a well-documented minimal adapter intended to fetch and push data of the Contacts domain from and to the SnazzyContacts API. It is built with modularity in mind, so that for your own case you should be able to re-use most of the code, needing only to switch out the parts specific to the API you would like to target.
 
 For now lets start with understanding the different parts a typical adapter:
 
-## Petstore Component
+## Contacts Component
 
-Let us have a look at the structure of the Petstore Component in Node.js:
+Let us have a look at the structure of the Contacts Component in Node.js:
 
 ```
-petstore-component-nodejs
+contacts-adapter-template
 
 ├── component.json                                          (1)
 ├── lib
 │   ├── actions                                             (2)
-│   │   ├── createPetWithGenerators.js
-│   │   └── createPetWithPromise.js
-│   ├── schemas                                             (3)
-│   │   ├── createPet.in.json
-│   │   ├── createPet.out.json
-│   │   └── getPetsByStatus.out.json
-│   └── triggers                                            (4)
-│       ├── getPetsByStatusWithDynamicSelectModel.js
-│       ├── getPetsByStatusWithGenerators.js
-│       └── getPetsByStatusWithPromises.js
-├── logo.png                                                (5)
-├── package.json                                            (6)
-└── verifyCredentials.js                                    (7)
+│   │   ├── deleteOrganization.js
+│   │   ├── deleteOrganization.js
+│   │   ├── upsertOrganization.js
+│   │   └── upsertPerson.js
+│   └── triggers                                            (3)
+│       ├── getOrganizationsPolling.js
+│       └── getPersonsPolling.js
+│   └── utils                                               (4)
+│       ├── authentication.js
+│       ├── helpers.js
+│       └── resolver.js
+├── package.json                                            (5)
 ```
 
-The Node.js components get built by NPM `run-script` which checks first the `package.json` (6) configuration file and starts initialising the `node` and `npm` versions and builds them. Next, the dependencies get downloaded and build. All node.js components must use the following dependencies:
+The Node.js components get built by NPM `run-script` which checks first the `package.json` (6) configuration file and starts initialising the `node` and `npm` versions and builds them. Next, the dependencies get downloaded and build. All node.js components must use the following dependency:
 
 ```javascript
 "dependencies": {
-  "elasticio-sailor-nodejs": "^2.2.0",
-  "elasticio-node": "^0.0.8"
+  "@openintegrationhub/ferryman": "^1.1.3",
 }
 ```
 
-Sailor is the Node.js SDK. It makes your component a citizen of the platform by providing a simple programming model for components and ensuring a smooth communication with the platform.
+Ferryman is the Node.js SDK. It makes your component a citizen of the platform by providing a simple programming model for components and ensuring a smooth communication with the platform.
 
 The `component.json` file (1) is the component descriptor interpreted by the platform to gather all the required information for presenting to the user in the platform user interface (UI). For example, you can define the component’s title in the component descriptor but also the component’s authentication mechanism. The descriptor is the only place to list the functionality provided by the component, the so called `triggers` and `actions`.
 
-The directory `lib` together with its sub-directories **actions** (2), **schemas** (3) and **triggers** (4) get defined in the `component.json` file. The Node.js sources are in the sub-directories `lib/actions` (2) and `lib/triggers` (4). The JSON schemas defining the component’s metadata  are in the sub-directory `lib/schemas` (3). We discuss them in more details [later in this article](#component-descriptor).
-
-If you have a logo for the component, you can place the file called `logo.png` (5) in the root directory of the component. Typically the logo of the API vendor gets used as component logo. If you did not provide any logo, the component will show a generic logo for your component.
-
-Last but not least, the `verifyCredentails.js` (7) file should contain the main verification mechanism for all the Node.js components built for the {{site.data.tenant.name}} platform. We cover this topic [later in the article](#verify-credentials).
+The directory `lib` together with its sub-directories **actions** (2) and **triggers** (3) get defined in the `component.json` file. The Node.js sources are in the sub-directories `lib/actions` (2) and `lib/triggers` (3).
 
 
 ## Component descriptor
@@ -73,120 +59,78 @@ As mentioned above, the `component.json` file is the component descriptor interp
 
 ```json
 {
-  "title": "Petstore API (Node.js)",                                       (1)
-  "description": "Component for the Petstore API",                         (2)
-  "credentials": {                                                         (3)
-    "fields": {
-      "apiKey": {
-        "label": "API key",
-        "required": true,
-        "viewClass": "TextFieldWithNoteView",
-        "note": "Please use <b>secret</b> as API key."
-      }
-    }
-  },
-  "triggers": {                                                            (4)
+  "title": "Contacts Adapter Template",                                       (1)
+  "description": "OIH contacts adapter example",                              (2)
+  "triggers": {                                                               (3)
     ...
     },
-  "actions": {                                                             (5)
+  "actions": {                                                                (4)
     ...
     }
   }
 }
 ```
-The component descriptor above defines the component title (1) and description (2). It also defines the fields used to ask the user to provide input for authentication (3). In this case a single field is define in which the user will input the `API key` for the Petstore API so that the component can communicate with the API on user’s behalf. The verification process is in the `verifyCredentails.js` file as mentioned above.
-
-The triggers (4) and actions (5) properties define the component’s triggers and actions.
+The component descriptor above defines the component title (1) and description (2). The triggers (3) and actions (4) properties define the component’s triggers and actions.
 
 ### Triggers
 
-Now let’s have a closer look on how to define the `triggers`. The example below demonstrates the triggers section from the `component.json` component descriptor file:
+Now let’s have a closer look on how to define the `triggers`. A trigger is any function that fetches data from the outside and then passes it forward, such as fetching a list of contacts from an API. Generally, triggers are the first step in any flow. The example below demonstrates the triggers section from the `component.json` component descriptor file:
 
 ```json
 "triggers": {
-    "getPetsByStatusWithGenerators": {                                  (1)
-      "main": "./lib/triggers/getPetsByStatusWithGenerators.js",        (2)
-      "type": "polling",                                                (3)
-      "title": "Get Pets By Status With Generators",
-      "fields": {                                                       (4)
-        "status": {
-          "label": "Pet Status",
-          "required": true,
-          "viewClass": "SelectView",
-          "model": {
-            "available": "Available",
-            "pending": "Pending",
-            "sold": "Sold"
-          },
-          "prompt": "Select Pet Status"
-        }
-      },
+    "getPersonsPolling": {                                                                        (1)
+      "title": "Fetch new and updated persons(getPersons - Polling)",
+      "description": "Get Snazzy Contacts persons which have recently been modified or created",
+      "main": "./lib/triggers/getPersonsPolling.js",                                              (2)
       "metadata": {
-        "out": "./lib/schemas/getPetsByStatus.out.json"                 (5)
+        "out": "./lib/schemas/getPersons.out.json"                                                (3)
       }
     }
   }
 ```
 
-The example above demonstrates that the trigger with id `getPetsByStatusWithGenerators` (1) gets implemented by the function described in the  `getPetsByStatusWithGenerators.js` file (2). The trigger is of `polling` type (3) meaning it will wake up periodically to poll for changes in the Petstore API. The triggers configuration is in the `fields` (4) and the out-metadata is in the file `getPetsByStatus.out.json` (5).
+The example above demonstrates that the trigger with id `getPersonsPolling` (1) gets implemented by the function described in the  `getPersonsPolling.js` file (2). The metadata field `out` can optionally refer to an example of the kind of data this trigger generates.
 
 ### Actions
 
-Let us check also the `actions`. The example below demonstrates the actions section from the `component.json` component descriptor file:
+Let us check also the `actions`. An action is any function that receives data from an earlier step in the flow (either an action or trigger itself) and then acts with and/or on that data in some fashion. The example below demonstrates the actions section from the `component.json` component descriptor file:
 
 ```json
 "actions": {
-    "createPetWithPromise": {                                           (1)
-      "main": "./lib/actions/createPetWithPromise.js",                  (2)
-      "title": "Create a Pet With Promise",
+    "upsertPerson": {                                      (1)
+      "title": "Upsert a person in Snazzy Contacts",
+      "main": "./lib/actions/upsertPerson.js",             (2)
       "metadata": {
-        "in": "./lib/schemas/createPet.in.json",                        (3)
-        "out": "./lib/schemas/createPet.out.json"                       (4)
+        "in": "./lib/schemas/upsertPerson.in.json",
+        "out": "./lib/schemas/upsertPerson.out.json"
       }
     }
   }
 ```
 
-In the example above the action with id `createPetWithPromise` (1) gets implemented by the function described in the `createPetWithPromise.js` file (2). It is possible to give actions in the `fields` configurations like in the triggers part, however, this component has none of it. Compared to the triggers, the action has 2 metadata files. One is for in-metadata `createPet.in.json` (3) and the other is for out-metadata `createPet.out.json` (4).
+In the example above the action with id `upsertPerson` (1) gets implemented by the function described in the `upsertPerson.js` file (2). Compared to the triggers, the action has 2 metadata files. One is for in-metadata `upsertPerson.in.json` (3) and the other is for out-metadata `upsertPerson.out.json` (4).
 
-## Verify Credentials
+### Utils
 
-When creating an {{site.data.tenant.name}} component you may allow users to check entered credentials for validity, during the integration flow creation. This feature is useful when users need to type-in passwords, host-names, IP addresses, etc. Credentials verification is an optional step but it makes the user flow much more reliable and usable.
+This folder contains various functions necessary for the actual functionality of the connector. Of course, it's entirely possible to have all the functionality contained entirely within the code of the respective trigger or action. But in practice we have found it's preferable to have a split like this, in order to aid maintainability and reduce redundancy.
 
-For node.js component you can use any libraries and/or functionality at your disposal to authorise the user credentials. But for the platform to find and call your verification code you have to make sure that:
+Here's a short overview over each file and its intended purpose:
 
-*   Your component has a `verifyCredentails.js` file in the **root of the folder structure**
-*   Your `verifyCredentials.js` file is a [common.js module](http://wiki.commonjs.org/wiki/Modules/1.1)
-*   It returns one function that accepts **two parameters**: `credentials` and `cb` (callback).
-*   All the credentials for verification gets passed through **credentials** parameter which is an object. This object can contain the properties that match or correspond to the account definition parameters from the `component.json`.
+- `authentication.js`: Handles the authentication necessary for taking privileged actions on the API, such as posting login data to the application and receiving an access token. This may not be necessary if your API allows for long-lived API keys or bearer tokens that can be passed on to the connector directly.
 
-Here is the skeleton structure for the verify Credentials for a reference. You are welcome to use it as a starting point to write your own `verifyCredentails.js`:
+- `helpers.js`: Contains all the functions necessary for actually communicating with the target API. It sends the necessary requests using a HTTP client and formats the responses so that they can be used by the rest of the flow. Generally, this boils down to returning the body of the request response, and converting it to JSON if necessary.
 
-```javascript
-// here you can place your variables
+- `resolver.js`: Contains an example implementation of the OIH Conflict Management module. This is somewhat more advanced and beyond the scope of this guide. If you would like to know more, check the documentation of the [Conflict Management](https://openintegrationhub.github.io/docs/Services/ConflictManagement.html)
 
-// This function gets called by the platform to verify credentials
-module.exports = function verifyCredentials(credentials, cb) {
-    // In credentials you will find what users entered in account form
-    console.log('Credentials passed for verification %j', credentials)
-    if (true) {
-        // Verified
-        return cb(null, {verified: true});
-    } else {
-       // Verification failed
-       return cb(null , {verified: false});
-    }
-}
-```
-
-The use of any specific verification method depends on the project and the third party API that gets communicated the credentials with. We will not dive into details of every possible solution for your chosen third party API here.
 
 ## Start your own
 Now that you have the basics down, we suggest to start with determining what functionality your connector should include. Essential for that is the API you are connecting with.
 [Actions and Triggers](https://openintegrationhub.github.io//docs/Connectors/ActionsAndTriggers.html){: .btn .fs-5 .mb-4 .mb-md-0 }
 
-For a quick start, you can check out to our [contacts adapter template](https://github.com/openintegrationhub/contacts-adapter-template). It contains a baseline for all the functions you'll need, which you can then adapt and expand for your own requirements.
+All communication between your connector and the OIH platform is handled by the Ferryman module. For more information about the Ferryman and the functionalities it offers, check the [Ferryman documentation](https://github.com/openintegrationhub/openintegrationhub/tree/master/lib/ferryman)
 
-In the future, the sailor utility described earlier will be replaced by a new OIH-specific version called the Ferryman. The actual connector architecture and functionality will not be impacted by this. For more information about the Ferryman, check the [Ferryman documentation](https://github.com/openintegrationhub/openintegrationhub/tree/master/lib/ferryman)
+## Connector Testing
 
-More advanced and optional additions to any connector include [Conflict Management](https://openintegrationhub.github.io//docs/Services/ConflictManagement.html).
+Once you have begun building a new connector, the next step is testing it in concert with other connectors. Of course, one way of doing that is by simply connecting it with another existing connector in a flow similar to your intended use. But as an alternative, we also offer a minimal development connector with extensive logging of everything it sends and receives. Simply connect it with your own connector in a simple two-step flow and check the logs of the k8s deployment to see whether everything works as it should:
+
+[Development Connector](https://github.com/openintegrationhub/development-connector)

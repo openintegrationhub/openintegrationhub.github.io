@@ -30,14 +30,16 @@ Like the Open Integration Hub services, connectors are also standardized compone
 [Open Integration Hub](https://github.com/openintegrationhub){: .btn .fs-5 .mb-4 .mb-md-0 }
 
 For a quick start in developing your own connector, we offer a pair templates to start out with. These contain the basic necessary structure and functions for functionality. While these are specific to the contact data domain, they can easily be adjusted or expanded to suit any other type of data or application.
+
 [Contacts Adapter Template](https://github.com/openintegrationhub/contacts-adapter-template)
+
 [Contacts Transformer Template](https://github.com/openintegrationhub/contacts-transformer-template)
 
 <!-- If you want to build your own connector, we suggest you start with a our node.js example, to understand the structure and what you need to get going. Most components are build in node.js, although you can choose any language you want.
 
 [node.js example](https://openintegrationhub.github.io//docs/Connectors/building-nodejs-component.html) -->
 
-If you prefer a real world example, the Snazzy Contacts or Wice components are good place to get inspiration.
+If you prefer a real world example, the Snazzy Contacts and Wice components are a good place to get inspiration.
 
 [Snazzy Contacts Adapter](https://github.com/openintegrationhub/snazzycontacts-adapter)
 
