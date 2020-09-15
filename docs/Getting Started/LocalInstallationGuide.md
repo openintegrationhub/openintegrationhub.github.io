@@ -305,32 +305,16 @@ All actions are also performable via postman or similar tools.
 
 First, we have to create two components in order to have a source and target component.
 
-Below you will find code snippets for two exemplary components. For the beginning we recommend to use those but feel free to use your own.
+Below you will find a code snippets for an exemplary component. For the beginning we recommend to use this one, but feel free to use your own.
 
-**Example 1:**
-
-```json
-{
-   "data":{
-      "distribution":{
-         "type":"docker",
-         "image":"elasticio/timer:ca9a6fea391ffa8f7c8593bd2a04143212ab63f6"
-      },
-      "access":"public",
-      "name":"Timer",
-      "description":"Timer component that periodically triggers flows on a given interval"
-   }
-}
-```
-
-**Example 2:**
+**Example:**
 
 ```json
 {
     "data": {
         "distribution": {
             "type": "docker",
-            "image": "elasticio/code-component:7bc2535df2f8a35c3653455e5becc701b010d681"
+            "image": "openintegrationhub/code-component:latest"
         },
         "access": "public",
         "name": "Node.js code",
@@ -339,9 +323,9 @@ Below you will find code snippets for two exemplary components. For the beginnin
 }
 ```
 
-The timer component is used to trigger flows on a provided interval, while the code component executes the code that was provided by the flow creator.
+The code component is a powerful tool that can run any node.js code provided through the flow definition. It is a quick and easy way to generate, manipulate, and output data, especially for testing and debugging purposes.
 
-In order to add those components, visit the web ui (`web-ui.localoih.com`) and navigate to the `Components` section.
+In order to add this component, visit the web ui (`web-ui.localoih.com`) and navigate to the `Components` section.
 
 <p align="left">
   <img src="https://raw.githubusercontent.com/openintegrationhub/openintegrationhub.github.io/master/assets/images/menu.png" alt="Sublime's custom image" width="150"/>
@@ -359,30 +343,32 @@ Now click on the `ADD+` button. A popup window will appear where you can add the
 
 **GREAT!** You created your first component.
 
-Repeat this step for the second component.
 
-**!!** In order to create the flow in the next step you have to copy the `ids` of the components you just created. **!!**
+**!!** In order to create the flow in the next step you have to copy the `id` of the component you just created. **!!**
 
 ## Creating Flows
 
 Now that you successfully created two components it is time to create your first flow.
 
-Below you will find code snippets for an example flow. This excample flow periodically triggers the flow and sends request to webhook.site. For the beginning we recommend to use this flow but feel free to create your own.
+Below you will find code snippets for an example flow. The first step spawns a simple object and hands it over to the second (the code component automatically hands over whichever object is returned by the passed function). The second step then POSTs that object to an external URI. For the beginning we recommend to use this flow but feel free to create your own.
 
-Please replace the `ADD COMPONENT ID HERE` with the `ids` you copied in the previous step. Furthermore please go to [](http://webhook.site/) and copy the link to you clipboard.
+Please replace the `ADD COMPONENT ID HERE` with the `id` you copied in the previous step. Furthermore please go to [](http://webhook.site/) and copy the link to you clipboard.
 Afterwards please replace the `ADD WEBHOOK URL HERE` with the link in your clipboard.
 
 ```json
 {
-   "name":"Timer To Code Component Example",
-   "description:": "This flow periodically triggers the flow and sends request to webhook.site",
+   "name":"Code Component Example",
+   "description:": "This flow periodically send a request to webhook.site",
    "graph":{
       "nodes":[
-         {
-            "id":"step_1",
-            "componentId":"ADD COMPONENT ID HERE",
-            "function":"timer"
-         },
+        {
+           "id":"step_1",
+           "componentId":"ADD COMPONENT ID HERE",
+           "function":"execute",
+           "fields":{
+              "code":"function* run() {console.log('Spawning object!');return { Hello: 'World' };}"
+           }
+        },
          {
             "id":"step_2",
             "componentId":"ADD COMPONENT ID HERE",
@@ -399,7 +385,7 @@ Afterwards please replace the `ADD WEBHOOK URL HERE` with the link in your clipb
          }
       ]
    },
-   "cron":"*/2 * * * *"
+   "cron":"* * * * *"
 }
 ```
 
@@ -423,7 +409,7 @@ Now click on the `ADD+` button. A popup window will appear where you can add the
 
 ## Starting Flows
 
-Now that you have created two components and a flow, it is time to start this flow.
+Now that you have created a components and a flow, it is time to start this flow.
 
 Stay in the flows section and look for the flow you just created. On the right side you will the a "play" symbol.
 
