@@ -64,6 +64,7 @@ Make sure that minikube is endowed with sufficient resources. We suggest at leas
     <div style="float: left; margin-right: 10px;">
 <img src="https://img.shields.io/badge/Windows-blue.svg" height="30">
 </div>
+<hr style="margin-bottom:1rem;"/>
 If you're using Windows we suggest to use virtual box. In order to use it, Hyper-V must be disabled <a href="https://docs.microsoft.com/de-de/virtualization/hyper-v-on-windows/quick-start/enable-hyper-v">Enable/Disable Hyper-V on Windows 10.</a> You may also have to enable virtualisation features in your BIOS.
 </div>
 
@@ -75,6 +76,22 @@ If you're using Windows we suggest to use virtual box. In order to use it, Hyper
 Make sure minikube is installed, configured, and started. The command for allocating sufficient resources is
 
     minikube start --memory 8192 --cpus 4
+
+<div style="
+    margin: 10px 0px;
+    background: #f8f8f8;
+    padding: 10px;
+    border-radius: 3px;
+    font-size: 1em;
+    border: 1px solid #9c9c9c;">
+
+<div style="float: left; margin-right: 10px;">
+    <img src="https://img.shields.io/badge/Windows-blue.svg" height="30">
+    <img src="https://img.shields.io/badge/Mac-green.svg" height="30">
+</div>
+<hr style="margin-bottom:1rem;"/>
+The OIH Framework requires the <i>ingress</i> addon for kubernetes. This is not supported via Docker Bridge for Mac and Windows. Therefore, on these Operating Systems, minikube must be started with the flag `--vm=true`. More information can be found on the <a href="https://github.com/kubernetes/minikube/issues/7332">minikube Github page</a>.
+</div>
 
 If you already have an installed minikube instance that is using the virtualbox driver you can do
 
@@ -109,27 +126,12 @@ For further information about how to set up minikube, see here:
 <img src="https://img.shields.io/badge/Windows-blue.svg" height="30">
 <img src="https://img.shields.io/badge/Mac-green.svg" height="30">
 </div>
+<hr style="margin-bottom:1rem;"/>
 If you're using Docker for Desktop it overwrites the acutal kubectl version. This version is generally not compatible with minikube. There are two options to correct this:
 <ul>
 <li> Download the `kubectl.exe` from <a href="https://kubernetes.io/docs/tasks/tools/install-kubectl/#install-kubectl-on-windows">Install kubectl on Windows</a>. Navigate to the docker directory (e.g. Program Files\Docker\Docker\resources\bin) andreplace the kubectl.exe in this folder with the one you just downloaded.</li>
 <li> Use the "Edge" version of Docker Desktop. This can be done by installing the edge version of the application from the <a href="https://docs.docker.com/desktop/">Docker Desktop site</a>. If you already have Docker Desktop installed, you can switch to the Edge version from the Docker menu. Select <b>Preferences > Command Line</b> and then activate the <b>Enable experimental features</b> toggle. After selecting <b>Apply & Restart</b>, Docker will update versions. More information can be found <a href="https://docs.docker.com/docker-for-mac/install/#switch-between-stable-and-edge-versions">here</a>.</li>
 </ul>
-</div>
-<div style="
-    margin: 10px 0px;
-    background: #f8f8f8;
-    padding: 10px;
-    border-radius: 3px;
-    font-size: 1em;
-    border: 1px solid #9c9c9c;">
-
-<div style="float: left; margin-right: 10px;">
-    <img src="https://img.shields.io/badge/Windows-blue.svg" height="30">
-    <img src="https://img.shields.io/badge/Mac-green.svg" height="30">
-</div>
-
-
-The OIH Framework requires the <i>ingress</i> addon for kubernetes. This is not supported via Docker Bridge for Mac and Windows. Therefore, on these Operating Systems, minikube must be started with the flag `--vm=true`. This is handled in the setup script. More information can be found on the <a href="https://github.com/kubernetes/minikube/issues/7332">minikube Github page</a>.
 </div>
 
 
