@@ -40,7 +40,7 @@ resources such as CPU, Memory, Network, etc. It must be guaranteed that
 every integration flow gets a chance to be executed, close to the intervals
 defined by its Cron expression.
 
-The Component Orchestrator is a micro-service defining the fairness policy
+The Component Orchestrator is a service defining the fairness policy
 and controlling that each user/flow/tenant is complying with that policy.
 The Component Orchestrator is responsible for:
 
