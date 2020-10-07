@@ -12,7 +12,7 @@ nav_order: 5
 
 # API Reference Documentation
 
-The Open Integration Hub framework consists of a variety of service. Most services interact via a REST API:
+The Open Integration Hub framework consists of a variety of services. Most services interact via a REST API:
 
 <div class="oih-docs-learn-overview-container">
     <div class="inner-wrapper">
