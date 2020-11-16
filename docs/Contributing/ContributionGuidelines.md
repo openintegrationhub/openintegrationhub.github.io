@@ -106,9 +106,10 @@ Business Committee responsible for all community-facing topics, as well as topic
 - If it is not possible to decide on a certain issue/topic it must be escalated to the corresponding committee
 
 # Community
-## Get involved
 
-[Meetups](https://www.meetup.com/de-DE/Open-Integration-Hub-Community/)
+## Join the Community
+
+Do you have questions, ideas, feedback or just want to chat about integration? Please join our growing developer community on [Slack]( https://join.slack.com/t/openintegrationhub/shared_invite/zt-jhw1e65c-6o1OsAtWjTRrpeoGz68YXQ)! 
 
 Contact: info@cloudecosystem.org
 
