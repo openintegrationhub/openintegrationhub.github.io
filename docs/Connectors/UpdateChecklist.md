@@ -83,6 +83,6 @@ In order to transform data from one schema to another you can either build seper
 You will have to implement these functions for each actions and trigger like shown in the general template:https://github.com/openintegrationhub/contacts-adapter-template/blob/09965e800eb7dd934a73b218cffcd428ff8aca8e/lib/triggers/getObjects.js#L19
 
 ### Stuff you can delete
-- the ```schema folder``` is not needed
+- the ```schema folder``` is not needed.
 - ```verifyCredentials.js``` is only needed for the elastic.io and not for the Open Integration Hub.
-- ```credentials``` within the component.json is only needed for elastic.io UI. Depedning on your implementation you may want to keep it. With regards to Open Integration Hub, it is not needed.
+- ```credentials``` within the ```component.json``` is only needed for elastic.io UI. Depending on your implementation you may want to keep it. With regards to Open Integration Hub, it is not needed.
