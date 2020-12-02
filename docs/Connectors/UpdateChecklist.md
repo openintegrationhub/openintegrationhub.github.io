@@ -9,19 +9,20 @@ Open Integration Hub is an open and community driven project. Customization and 
 In order to make modification of such components to fit the current framework version easier, this document will list some common changes you may see.
 
 # Elastic.io Components
-As one of the founding partners of the framework and contributor of several core services, elastic.io also provides many helpful [integration components](https://github.com/elasticio). Those are adjusted for the elastic.io platform. Check and adjust the following, when running it under "vanilla Open Integration Hub":
+As one of the founding partners of the framework and contributor of several core services, elastic.io also provides many helpful [integration components](https://github.com/elasticio). Those are tailored for the elastic.io platform. To run them under the "vanilla Open Integration Hub", check out and adjust the following:
 
 ## Must Have
 
 ### Ferryman Dependency
-Ferryman is the Node.js SDK of the Open Integration Hub. The main role is to make the component part of Open Integration Hub platform and it ensures a smooth communication with the platform. You need to add ferryman the package.json file:
+Ferryman is the Node.js SDK of the Open Integration Hub. Its main role is allowing smooth communication between the component and the Open Integration Hub platform. You'll need to add ferryman to your component's dependencies:
 
 ```json
 "dependencies": {
   "@openintegrationhub/ferryman": "^1.1.5"
 }
 ```
-Elastic.io's equivalent to the ferryman is the so called sailor. You may remove it's dependcies in case you just want to use the component in an Open Intergation Hub implementation.
+
+Elastic.io's equivalent to the ferryman is the elasticio-sailor. If you only want to use the component in the Open Integration Hub platform, you can remove it, as well as any other elasticio-specific dependencies.
 
 [Example](https://github.com/elasticio/sugarcrm-component/blob/69ea950d9ba57500d23b60dfc4d67a7c5eebdea8/package.json#L31-L33):
 
@@ -51,14 +52,14 @@ Elastic.io uses a different mechanism to build images and deploy components for 
 
 You can just copy and adjust a Dockerfile and existing component under https://github.com/openintegrationhub
 
-If the entrypoint is set to package.json, pelase make sure to add the necessary scripts there, as you can see in the general template:
+Importantly, the Dockerfile's entrypoint will need to point to ferryman's `runGlobal.js` script. An easy way to achieve this is to point your components npm start script to it, then simply call npm start from the Dockerfile. For an example, you can refer to the contacts adapter template:
 
 https://github.com/openintegrationhub/contacts-adapter-template/blob/master/Dockerfile
 https://github.com/openintegrationhub/contacts-adapter-template/blob/09965e800eb7dd934a73b218cffcd428ff8aca8e/package.json#L19
 
 ### IDs
 
-In order to identify data records across all the framework you will have to implement additional UIds:
+In order to identify data records across the framework you will have to implement additional UIds:
 
 ```
 /*
@@ -78,7 +79,7 @@ https://github.com/openintegrationhub/snazzycontacts-adapter/blob/45943075edb5bc
 ## Optional
 
 ### Transform Functions
-In order to transform data from one schema to another you can either build seperate Tranformer Components or use the [transformFunctions within the ferryman](https://github.com/openintegrationhub/openintegrationhub/blob/master/lib/ferryman/lib/transformer.js).
+In order to transform data from one schema to another you can either build a separate Tranformer Components or use the [transform Function within the ferryman](https://github.com/openintegrationhub/openintegrationhub/blob/master/lib/ferryman/lib/transformer.js).
 
 You will have to implement these functions for each actions and trigger like shown in the general template:https://github.com/openintegrationhub/contacts-adapter-template/blob/09965e800eb7dd934a73b218cffcd428ff8aca8e/lib/triggers/getObjects.js#L19
 
