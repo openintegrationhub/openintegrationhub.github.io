@@ -73,7 +73,7 @@ We follow the general GitHub workflow, if you are not familiar with working with
 6. Assign a descriptive label to the pull request
 7. Click on _"create pull request"_
 
-If you don't know whom to assign, choose: [@philecs](https://github.com/philecs)
+If you don't know whom to assign, choose: [@RobinBrinkmann](https://github.com/RobinBrinkmann)
 
 ## Issues
 
@@ -109,7 +109,7 @@ Business Committee responsible for all community-facing topics, as well as topic
 
 ## Join the Community
 
-Do you have questions, ideas, feedback or just want to chat about integration? Please join our growing developer community on [Slack]( https://join.slack.com/t/openintegrationhub/shared_invite/zt-jhw1e65c-6o1OsAtWjTRrpeoGz68YXQ)! 
+Do you have questions, ideas, feedback or just want to chat about integration? Please join our growing developer community on [Slack]( https://join.slack.com/t/openintegrationhub/shared_invite/zt-jhw1e65c-6o1OsAtWjTRrpeoGz68YXQ )! 
 
 Contact: info@cloudecosystem.org
 
