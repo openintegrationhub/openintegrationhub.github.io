@@ -17,7 +17,7 @@ A workflow is very similar to a BPMN process. It contains action steps – which
 
 ![Workflow](https://raw.githubusercontent.com/openintegrationhub/openintegrationhub.github.io/master/assets/images/Workflow-Repository-1.png)
 
-[API Reference](http://workflows.openintegrationhub.com/api-docs/){: .btn .fs-5 .mb-4 .mb-md-0 }
+[API Reference](https://workflows.openintegrationhub.com/api-docs/){: .btn .fs-5 .mb-4 .mb-md-0 }
 [Implementation](https://github.com/openintegrationhub/openintegrationhub/tree/master/services/workflows-repository-service){: .btn .fs-5 .mb-4 .mb-md-0 }
 
 ## Technologies used
@@ -68,7 +68,7 @@ OIH should provide SMEs (small and medium enterprises) a way to build and run bu
 
 # Workflow structure
 
-```javascript
+```json
 {
   "_id": "59f9f2ba112f28001921f274",
   "tenant": "59f9f2ba112f28001921f245",
@@ -81,7 +81,7 @@ OIH should provide SMEs (small and medium enterprises) a way to build and run bu
     },
     {
       "flowId": "59feb5ba112f28001921f234"
-    },
+    }
   ],
   "meta":{}
 }
