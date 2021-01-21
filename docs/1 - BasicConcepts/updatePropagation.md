@@ -1,8 +1,8 @@
 ---
 layout: default
-title: Update Propagation
-parent: Service Collaboration
-nav_order: 2
+title: Hub and Spoke Update Propagation
+parent: Basic Concepts
+nav_order: 4
 ---
 
 # Introduction
@@ -32,7 +32,7 @@ Target flows always start with an instance of the SDF adapter. The SDF Adapter s
 
 ### Create Events
 
-The following figure shows what happens within the Smart Data Framework if  a create event is received:
+The following figure shows what happens within the Smart Data Framework if a create event is received:
 
 ![CreateEvent](https://raw.githubusercontent.com/openintegrationhub/openintegrationhub.github.io/master/assets/images/Create-SDFCommunication.png)
 

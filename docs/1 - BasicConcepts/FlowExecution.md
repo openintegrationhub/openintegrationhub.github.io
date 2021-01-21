@@ -1,17 +1,12 @@
 ---
 layout: default
 title: Flow Execution
-nav_order: 4
-has_children: true
+parent: Basic Concepts
+nav_order: 3
+has_children: false
 ---
 
-<p align="center">
-  <img src="https://raw.githubusercontent.com/openintegrationhub/openintegrationhub.github.io/master/assets/images/large-oih-vertikal-zentriert.png" alt="Open Integration Hub" width="300"/>
-</p>
-<br>
-<br>
-
-# Service Collaboration
+# Flow Execution
 
 This document is designed to describes the basics of how flows are being executed. It acts as a starting point to get an understanding of the Open Integration Hub.
 Most of the examples are triggered by user interactions (e.g. starting a flow) and only the "happy path" i.e. success scenario is described.

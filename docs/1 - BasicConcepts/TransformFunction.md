@@ -1,21 +1,24 @@
----
+<!-- ---
 layout: default
 title: Transformer
 nav_order: 3
 parent: Connectors
----
+--- -->
+
+# !!! Outdated: has to be adjusted to transformation via ferryman!!!
 
 # Transformation Functions
+
 As already mentioned the transformation functions transforms one JSON object into another. Prior to this transformation a semantic mapping has to take place where the entities of the source model are mapped against the entities of the Open Integration Hub master data model.
 
 ## Table of Contents
+
 <!-- TOC depthFrom:2 depthTo:6 withLinks:1 updateOnSave:1 orderedList:0 -->
 
 - [Table of Contents](#table-of-contents)
 - [Transformer Concept](#transformer-concept)
 - [Transformation Language](#transformation-language)
 - [Transformer Evolution](#transformer-evolution)
-
 
 <!-- /TOC -->
 
@@ -28,11 +31,11 @@ As can be seen in the [connector overview](https://github.com/openintegrationhub
 
 A transformer expects a JSON object as an input. Depending on the direction of the transformation the input either represents the structure of the proprietary data model (_flow direction 1_) or the structure of the Open Integration Hub master data model (_flow direction 2_).
 
-Afterwards it transforms the incoming JSON object into another JSON object. This can also be done via a transformation language like _JSONata_.  
+Afterwards it transforms the incoming JSON object into another JSON object. This can also be done via a transformation language like _JSONata_.
 
 Depending on the transformation direction, the transformer's output is then send either to the Open Integration Hub and is validated against a deposited JSON schema or to the corresponding connector.
 
-_Note: As the Open Integration Hub is feasible of storing different data models, it is also possible that the mapping of the source model is done against another model than the Open Integration Hub master data model.
+\_Note: As the Open Integration Hub is feasible of storing different data models, it is also possible that the mapping of the source model is done against another model than the Open Integration Hub master data model.
 
 <!--An example of how an implementation with individually uploaded data models could look like is presented under the section [possible implementations](#possible-implementations)._-->
 

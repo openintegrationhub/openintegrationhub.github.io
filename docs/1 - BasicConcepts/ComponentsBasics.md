@@ -1,31 +1,23 @@
 ---
 layout: default
-title: Connectors
-nav_order: 6
-has_children: true
+title: Integration Components
+parent: Basic Concepts
+nav_order: 1
 ---
 
-<p align="center">
-  <img src="https://raw.githubusercontent.com/openintegrationhub/openintegrationhub.github.io/master/assets/images/large-oih-vertikal-zentriert.png" alt="Open Integration Hub" width="300"/>
-</p>
-<br>
-<br>
-
-# Connector Guidelines
+# Components Guidelines
 
 The Open Integration Hub enables data synchronization across a variety of applications. To achive this goal we are using Components which are implemented individualy for each API. The Components
-are set to each and every step of data syncronization flow and speak to each other using the tranformation model functions from the new Ferryman library from OIH.  
+are set to each and every step of data syncronization flow and speak to each other using the tranformation model functions from the new Ferryman library from OIH.
 
-A **Component** is the result of the union of the connector along with the transformation functions that are provided through the new Ferryman. It is the initialiser and translator of the data 
+A **Component** is the result of the union of the connector along with the transformation functions that are provided through the new Ferryman. It is the initialiser and translator of the data
 that comes in and goes out and it is assigned as a whole step in a OIH flow.
 
-An **connector** is a module for the syntactic connection of an external application and its data to the Open Integration Hub.Furthermore it provides functionalities to perform e.g. CRUD 
+An **connector** is a module for the syntactic connection of an external application and its data to the Open Integration Hub.Furthermore it provides functionalities to perform e.g. CRUD
 operations within the source system through the actions and the triggers that are provided to each individual connector.
 
-A **transform function** is responsible to semantically transform an incoming JSON object into another JSON object. The functionality is implemented in the component using the 
-new version of Ferryman and the imported necessary expressions in each connector. Therefore we have fewer steps on a flow while we still give the same functionality. 
-
-
+A **transform function** is responsible to semantically transform an incoming JSON object into another JSON object. The functionality is implemented in the component using the
+new version of Ferryman and the imported necessary expressions in each connector. Therefore we have fewer steps on a flow while we still give the same functionality.
 
 The following illustration provides a holistic overview of a Component:
 ![Connector](https://raw.githubusercontent.com/openintegrationhub/openintegrationhub.github.io/master/assets/images/ConnectorsV3.png)
