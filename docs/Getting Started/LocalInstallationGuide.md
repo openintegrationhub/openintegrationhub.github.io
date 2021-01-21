@@ -3,6 +3,7 @@ layout: default
 title: Local Installation
 parent: Getting Started
 nav_order: 1
+has_children: true
 ---
 <p align="center">
   <img src="https://raw.githubusercontent.com/openintegrationhub/openintegrationhub.github.io/master/assets/images/large-oih-vertikal-zentriert.png" alt="Open Integration Hub" width="300"/>
@@ -12,7 +13,7 @@ nav_order: 1
 
 # Local Installation Guide
 
-![linux](https://img.shields.io/badge/Linux-red.svg) ![Windows](https://img.shields.io/badge/Windows-blue.svg)
+![linux](https://img.shields.io/badge/Linux-red.svg) ![Windows](https://img.shields.io/badge/Windows-blue.svg) ![Mac](https://img.shields.io/badge/Mac-green.svg)
 
 
 In addition to setting up the Open Integration Hub on a cloud infrastructure such as GCP it is also possible to setup a local version of the framework. Make sure to perform the following to set up a local version of the OIH within your own minikube:
@@ -36,6 +37,14 @@ In addition to setting up the Open Integration Hub on a cloud infrastructure suc
   - [Starting Flows](#starting-flows)
   - [Lessons Learned](#lessons-learned)
 
+# Development Environments
+
+Besides the basic installation guide found here, the OIH monorepo provides two possible setups for a development environment. They are found in the `dev-tools/` folder in the monorepo. 
+
+- The [minikube instructions](https://openintegrationhub.github.io//docs/Getting%20Started/MinikubeInstallation.html) are based off of the basic local minikube installation found here. It adds the ability to optionally launch each service using local source code served over NFS instead of the public Docker image.
+- The [docker-compose installation](https://openintegrationhub.github.io//docs/Getting%20Started/DockerInstallation.html) contains configuration files and helper scripts to run local services directly from Docker. It still relies on minikube to execute flows.
+
+
 # Requirements
 
 **Please make sure to clone the [monorepo](https://github.com/openintegrationhub/openintegrationhub) before you start.**
@@ -55,6 +64,7 @@ Make sure that minikube is endowed with sufficient resources. We suggest at leas
     <div style="float: left; margin-right: 10px;">
 <img src="https://img.shields.io/badge/Windows-blue.svg" height="30">
 </div>
+<hr style="margin-bottom:1rem;"/>
 If you're using Windows we suggest to use virtual box. In order to use it, Hyper-V must be disabled <a href="https://docs.microsoft.com/de-de/virtualization/hyper-v-on-windows/quick-start/enable-hyper-v">Enable/Disable Hyper-V on Windows 10.</a> You may also have to enable virtualisation features in your BIOS.
 </div>
 
@@ -66,6 +76,22 @@ If you're using Windows we suggest to use virtual box. In order to use it, Hyper
 Make sure minikube is installed, configured, and started. The command for allocating sufficient resources is
 
     minikube start --memory 8192 --cpus 4
+
+<div style="
+    margin: 10px 0px;
+    background: #f8f8f8;
+    padding: 10px;
+    border-radius: 3px;
+    font-size: 1em;
+    border: 1px solid #9c9c9c;">
+
+<div style="float: left; margin-right: 10px;">
+    <img src="https://img.shields.io/badge/Windows-blue.svg" height="30">
+    <img src="https://img.shields.io/badge/Mac-green.svg" height="30">
+</div>
+<hr style="margin-bottom:1rem;"/>
+The OIH Framework requires the <i>ingress</i> addon for kubernetes. This is not supported via Docker Bridge for Mac and Windows. Therefore, on these Operating Systems, minikube must be started with the flag `--vm=true`. More information can be found on the <a href="https://github.com/kubernetes/minikube/issues/7332">minikube Github page</a>.
+</div>
 
 If you already have an installed minikube instance that is using the virtualbox driver you can do
 
@@ -98,8 +124,14 @@ For further information about how to set up minikube, see here:
     border: 1px solid #9c9c9c;">
     <div style="float: left; margin-right: 10px;">
 <img src="https://img.shields.io/badge/Windows-blue.svg" height="30">
+<img src="https://img.shields.io/badge/Mac-green.svg" height="30">
 </div>
-If you're using Docker for Windows it overwrites the acutal kubectl version. In order to fix this download the `kubectl.exe` from <a href="https://kubernetes.io/docs/tasks/tools/install-kubectl/#install-kubectl-on-windows">Install kubectl on Windows</a>. Navigate to the docker directory (e.g. Program Files\Docker\Docker\resources\bin) and replace the kubectl.exe in this folder with the one you just downloaded.
+<hr style="margin-bottom:1rem;"/>
+If you're using Docker for Desktop it overwrites the acutal kubectl version. This version is generally not compatible with minikube. There are two options to correct this:
+<ul>
+<li> Download the `kubectl.exe` from <a href="https://kubernetes.io/docs/tasks/tools/install-kubectl/#install-kubectl-on-windows">Install kubectl on Windows</a>. Navigate to the docker directory (e.g. Program Files\Docker\Docker\resources\bin) andreplace the kubectl.exe in this folder with the one you just downloaded.</li>
+<li> Use the "Edge" version of Docker Desktop. This can be done by installing the edge version of the application from the <a href="https://docs.docker.com/desktop/">Docker Desktop site</a>. If you already have Docker Desktop installed, you can switch to the Edge version from the Docker menu. Select <b>Preferences > Command Line</b> and then activate the <b>Enable experimental features</b> toggle. After selecting <b>Apply & Restart</b>, Docker will update versions. More information can be found <a href="https://docs.docker.com/docker-for-mac/install/#switch-between-stable-and-edge-versions">here</a>.</li>
+</ul>
 </div>
 
 
@@ -305,32 +337,16 @@ All actions are also performable via postman or similar tools.
 
 First, we have to create two components in order to have a source and target component.
 
-Below you will find code snippets for two exemplary components. For the beginning we recommend to use those but feel free to use your own.
+Below you will find a code snippets for an exemplary component. For the beginning we recommend to use this one, but feel free to use your own.
 
-**Example 1:**
-
-```json
-{
-   "data":{
-      "distribution":{
-         "type":"docker",
-         "image":"elasticio/timer:ca9a6fea391ffa8f7c8593bd2a04143212ab63f6"
-      },
-      "access":"public",
-      "name":"Timer",
-      "description":"Timer component that periodically triggers flows on a given interval"
-   }
-}
-```
-
-**Example 2:**
+**Example:**
 
 ```json
 {
     "data": {
         "distribution": {
             "type": "docker",
-            "image": "elasticio/code-component:7bc2535df2f8a35c3653455e5becc701b010d681"
+            "image": "openintegrationhub/code-component:latest"
         },
         "access": "public",
         "name": "Node.js code",
@@ -339,9 +355,9 @@ Below you will find code snippets for two exemplary components. For the beginnin
 }
 ```
 
-The timer component is used to trigger flows on a provided interval, while the code component executes the code that was provided by the flow creator.
+The code component is a powerful tool that can run any node.js code provided through the flow definition. It is a quick and easy way to generate, manipulate, and output data, especially for testing and debugging purposes.
 
-In order to add those components, visit the web ui (`web-ui.localoih.com`) and navigate to the `Components` section.
+In order to add this component, visit the web ui (`web-ui.localoih.com`) and navigate to the `Components` section.
 
 <p align="left">
   <img src="https://raw.githubusercontent.com/openintegrationhub/openintegrationhub.github.io/master/assets/images/menu.png" alt="Sublime's custom image" width="150"/>
@@ -359,30 +375,32 @@ Now click on the `ADD+` button. A popup window will appear where you can add the
 
 **GREAT!** You created your first component.
 
-Repeat this step for the second component.
 
-**!!** In order to create the flow in the next step you have to copy the `ids` of the components you just created. **!!**
+**!!** In order to create the flow in the next step you have to copy the `id` of the component you just created. **!!**
 
 ## Creating Flows
 
 Now that you successfully created two components it is time to create your first flow.
 
-Below you will find code snippets for an example flow. This excample flow periodically triggers the flow and sends request to webhook.site. For the beginning we recommend to use this flow but feel free to create your own.
+Below you will find code snippets for an example flow. The first step spawns a simple object and hands it over to the second (the code component automatically hands over whichever object is returned by the passed function). The second step then POSTs that object to an external URI. For the beginning we recommend to use this flow but feel free to create your own.
 
-Please replace the `ADD COMPONENT ID HERE` with the `ids` you copied in the previous step. Furthermore please go to [](http://webhook.site/) and copy the link to you clipboard.
+Please replace the `ADD COMPONENT ID HERE` with the `id` you copied in the previous step. Furthermore please go to [](http://webhook.site/) and copy the link to you clipboard.
 Afterwards please replace the `ADD WEBHOOK URL HERE` with the link in your clipboard.
 
 ```json
 {
-   "name":"Timer To Code Component Example",
-   "description:": "This flow periodically triggers the flow and sends request to webhook.site",
+   "name":"Code Component Example",
+   "description:": "This flow periodically send a request to webhook.site",
    "graph":{
       "nodes":[
-         {
-            "id":"step_1",
-            "componentId":"ADD COMPONENT ID HERE",
-            "function":"timer"
-         },
+        {
+           "id":"step_1",
+           "componentId":"ADD COMPONENT ID HERE",
+           "function":"execute",
+           "fields":{
+              "code":"function* run() {console.log('Spawning object!');return { Hello: 'World' };}"
+           }
+        },
          {
             "id":"step_2",
             "componentId":"ADD COMPONENT ID HERE",
@@ -399,7 +417,7 @@ Afterwards please replace the `ADD WEBHOOK URL HERE` with the link in your clipb
          }
       ]
    },
-   "cron":"*/2 * * * *"
+   "cron":"* * * * *"
 }
 ```
 
@@ -423,7 +441,7 @@ Now click on the `ADD+` button. A popup window will appear where you can add the
 
 ## Starting Flows
 
-Now that you have created two components and a flow, it is time to start this flow.
+Now that you have created a components and a flow, it is time to start this flow.
 
 Stay in the flows section and look for the flow you just created. On the right side you will the a "play" symbol.
 

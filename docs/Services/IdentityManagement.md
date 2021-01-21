@@ -42,7 +42,7 @@ OpenID Connect is a simple identity layer on top of the OAuth 2.0 protocol, whic
 Basic IAM setup
 ---
 
-This approach aims at a very basic and simple operation of OIH using only a minimal set of microservices. We assume a scenario where an individual or a company uses OIH in the intranet without the need for external identity providers and using a simple authentication and authorization mechanisms.
+This approach aims at a very basic and simple operation of OIH using only a minimal set of services. We assume a scenario where an individual or a company uses OIH in the intranet without the need for external identity providers and using a simple authentication and authorization mechanisms.
 
 The basic parameters of this setup are:
 
@@ -52,7 +52,7 @@ The basic parameters of this setup are:
 
 
 
-We also assume that in a basic use case there isn't necessary a user interface for the OIH. And although the OIH does provide a REST-API, the client is most likely to be _curl_, _Postman_ or some other (Micro)-Service interacting with the REST-API. The later could make use of an OAuth Library and thus have an easy way to use access and refresh tokens. But in the case of using _curl_ or _Postman_, it would be more convenient and easy to have a long living JWT access token (e.g. with an expiration time of 1h) without the need to refresh the token every few minutes. This of course comes at the cost of risks when using long living tokens similar to those risks when using solely Basic Authentication.
+We also assume that in a basic use case there isn't necessary a user interface for the OIH. And although the OIH does provide a REST-API, the client is most likely to be _curl_, _Postman_ or some other service interacting with the REST-API. The later could make use of an OAuth Library and thus have an easy way to use access and refresh tokens. But in the case of using _curl_ or _Postman_, it would be more convenient and easy to have a long living JWT access token (e.g. with an expiration time of 1h) without the need to refresh the token every few minutes. This of course comes at the cost of risks when using long living tokens similar to those risks when using solely Basic Authentication.
 
 > The AuthService is intended to support both cookie and Authorization Header based authentication. In case of a browser, the AuthService will set the JWT as a cookie and automatically prolong it, if the user makes a HTTP request to the AuthServer before the JWT expires.
 
@@ -250,11 +250,11 @@ The authentication middleware is a depedency, e.g. node module, which can be use
 
 ### Authorization
 
-For the OIH, we consider the authorization within each microservice as the best alternative:
+For the OIH, we consider the authorization within each service as the best alternative:
 
 *   We have a very limited set of roles and applying rules and also a low number of APIs accessible from outside (currently only two: Integration Framework and Smart Data Framework)
 *   A seperate authorization policy service would require much coordination within different working groups
-*   Each microservice could have their own interpretation of what an specific combination of user role and attributes mean
+*   Each service could have their own interpretation of what an specific combination of user role and attributes mean
 
 All these points could lead to inconsistent policies when managing them all at one point instead of doing it in the dedicated services.
 

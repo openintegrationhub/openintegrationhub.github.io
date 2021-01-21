@@ -31,7 +31,7 @@ The Meta Data Repository is responsible for storing domains and their master dat
 - [MongoDB](https://www.mongodb.com)
 - [JSON Schema](https://json-schema.org/)
 
-## Purpose of the Microservice Meta Data Repository
+## Purpose of the Meta Data Repository
 
 If we talk about metadata in this context, we mean the description of the domains and their corresponding Master Data Models. An Open Integration Hub Master Data Model (OMDM) describes the data of a certain domain in a depth which is sufficient enough to map and synchronize the specific data of multiple applications in that domain. The meta data delivers all the information a user or customer needs to work with data within a specific domain.
 

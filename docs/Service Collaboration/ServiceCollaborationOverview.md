@@ -16,7 +16,7 @@ has_children: true
 This document is designed to describe different service collaboration examples. It acts as a starting point to easily understanding the architecture of the Open Integration Hub.
 Most of the examples are triggered by user interactions (e.g. starting a flow) and only the "happy path" i.e. success scenario is described.
 
-Each example is described through a graphical overview, a textual description and pre-conditions.
+Each example is described through a graphical overview, a textual description, and pre-conditions.
 For further information for a specific version please have a look at the [services](https://openintegrationhub.github.io//docs/Services/Services.html).
 
 - [Starting a flow](#starting-a-flow)
@@ -36,18 +36,14 @@ For further information for a specific version please have a look at the [servic
 
 This example describes the scenario of starting a flow. Once the user starts a flow the following steps are processed:
 
-1. Client starts a flow using flow repository's REST API.
+1. The client starts a flow using the flow repository's REST API.
 2. `Flow Repository` sets the flow's `status` to `starting` and raises the event `flow.starting`.
-3. There are 3 services listening to the event `flow.starting`:  Webhooks, Scheduler and Component Orchestrator. `Webhooks` and `Scheduler` examine the event's payload and decide if they need to react appropriately. We will discuss the exact reaction of both services later in this document.
-4. Upon receiving `flow.starting` event the `Component Orchestrator` starts deploying the containers. Once all containers were deployed, `Component Orchestrator` raises the `flow.started` event.
+3. There are 3 services listening to the event `flow.starting`:  Webhooks, Scheduler, and Component Orchestrator. `Webhooks` and `Scheduler` examine the event's payload and decide if they need to react appropriately. We will discuss the exact reaction of both services later in this document.
+4. Upon receiving `flow.starting` event the `Component Orchestrator` starts deploying local components. Once all local components were deployed, `Component Orchestrator` raises the `flow.started` event – Keep in mind that global components need to be started manually.
 5. `Flow Repository` receives the `flow.started` event and switches flow's `status` property from `starting` to `started`.
 6. `Webhooks` receives the `flow.started` event and starts receiving incoming HTTP calls for the given flow.
-7. `Scheduler` receives the `flow.started` event and starts scheduling the flow, according to it's cron property.
-8. When a client stops a running flow using flow repository's REST API, the event `flow.stopping` is raised which is causing an inverse reaction chain of events.
-
-![](https://raw.githubusercontent.com/openintegrationhub/openintegrationhub.github.io/master/assets/images/EventCollaborationStartFlow.png)
-
-Figure: _startFlow_
+7. `Scheduler` receives the `flow.started` event and starts scheduling the flow, according to its cron property.
+8. When a client stops a running flow using the flow repository's REST API, the event `flow.stopping` is raised which is causing an inverse reaction chain of events.
 
 Now let's discuss the individual services in detail:
 
@@ -56,7 +52,7 @@ Now let's discuss the individual services in detail:
 - `POST /flows/{id}/start`: Used to start a flow
 - `POST /flows/{id}/stop`: Used to stop a flow
 
-Upon receiving the HTTP call for starting a flow, Flow Repository sets the flows `status` to starting. Upon receiving stopping request it sets the status to `stopping`. If the flow has been started and flow repsitory receives `flow.started` event it sets the status to `active` while it sets it to `inactive` upon receiving `flow.stopped`. The schema of the event payload is shown below.
+Upon receiving the HTTP call for starting a flow, Flow Repository sets the flows `status` to `starting`. Upon receiving a stopping request it sets the status to `stopping`. If the flow has been started and the flow repository receives `flow.started` event, it sets the status to `active` in contrast, it sets it to `inactive` upon receiving `flow.stopped`. The schema of the event payload is shown below.
 
 ```yaml
 Event:
@@ -87,14 +83,8 @@ The `payload` property is an arbitrary object to be sent with the event. Flow re
 
 ## Webhooks
 
-Upon receiving `flow.starting` event the service checks if the `cron` property is **not** set. If so, the service persist a data record in his local DB but **doesn't start receiving HTTP requests** for the given flow yet. The following table demonstrates an example of such records.
-
-| flowId        | queue           |
-| ------------- |:-------------:|
-| 58b41f5da9ee9d0018194bf3      | queue_58b41f5da9ee9d0018194bf3 |
-| 5b62c91afd98ea00112d5404      | queue_5b62c91afd98ea00112d5404      |
-
-After receiving the `flow.started` event, the service starts accepting incoming messages from the flow's webhook URL and sends them to the corresponding queues to be handled by flow nodes. This is actually how it is accomplished today. The only difference is that webhooks service is retrieving all the required data about a webhook flow from its local DB.
+Upon receiving `flow.starting` event the service checks if the `cron` property is **not** set. If so, the service persists a data record in his local DB but **doesn't start receiving HTTP requests** for the given flow yet.
+After receiving the `flow.started` event, the service starts accepting incoming messages from the flow's webhook URL and instructs `Component Orchestrator` by publishing the `flow.executed` event as soon as a valid webhook call is carried out.
 
 Please note that the webhooks service ignores the event if the following condition is met:
 
@@ -111,7 +101,7 @@ Upon receiving `flow.starting` event the service checks if the `cron` property i
 | 58b41f5da9ee9d0018194bf3      | */3 * * * * | 2019-01-25T13:39:28.172 |
 | 5b62c91afd98ea00112d5404      | 15 14 * * 1-5      |  2019-01-27T14:15:00.00 |
 
-Upon receiving the `flow.started` event the service starts scheduling the flow executions by retrieving the flow data from its local DB.
+Upon receiving the `flow.started` event the service starts scheduling the flow executions by retrieving the flow data from its local DB and instructing `Component Orchestrator` by publishing the `flow.executed` event.
 
 Please note that the scheduler service ignores the event if the following condition is met:
 
@@ -123,28 +113,8 @@ Upon receiving the `flow.stopping` event, the service deletes the record for the
 
 **Pre-Conditions:** Starting a flow.
 
-As described in [scheduler section](#scheduler) when a flow is started the service starts scheduling the flow executions. Once the scheduler finds a flow that is ready for execution it pushed a message including the relating flow ID to the queue. The recipient is the first node of the flow which is the application specific adapter. This adapter then makes a GET request to the aplications API to get the payload. Afterwards it pushes the message including the payload onto the queue.
+As described in [scheduler section](#scheduler) when a flow is started the service starts scheduling the flow executions. Once the scheduler finds a flow that is ready for execution it publishes `flow.executed`.
 
-The message format of the messages emitted by scheduler have the following structure:
-
-```js
-
-{
-    "id" : //some record uuid,
-    "attachments":{
-        //empty
-    },
-    "body": {
-        //empty
-    },
-    "headers": {
-        //empty
-    },
-    "metadata": {
-        //empty
-    }
-}
-```
 
 ![webhookPost](https://raw.githubusercontent.com/openintegrationhub/openintegrationhub.github.io/master/assets/images/ExecutePollingFlow.png)
 
@@ -156,25 +126,8 @@ Figure: _executePollingFlow_
 
 **Pre-Conditions:** Starting a flow.
 
-Once Webhooks receives a POST request it pushes the message to the queue. The recipient is the first node of the flow which is the application specific adapter.
+Once Webhooks receives a POST request it publishes `flow.executed`. 
 In contrast to the GET request, this request already includes the payload.
-
-The following example shows the message format of Webhooks messages:
-
-```js
-{
-  "headers": {
-    //GET request headers
-  },
-  "query": {
-    //POST request query parameters
-  },
-  "body": {
-    //POST request body
-  },
-  //other properties
-}
-```
 
 ![webhookPost](https://raw.githubusercontent.com/openintegrationhub/openintegrationhub.github.io/master/assets/images/ExecuteWebhookFlowPost.png)
 
@@ -184,21 +137,7 @@ Figure: _executeWebhookFlowPost_
 
 **Pre-Conditions:** Starting a flow.
 
-Once Webhooks receives a GET request it takes the url parameters and request headers and put it into the message. This means in particular the headers go to `headers` while query string parameters go to `body`. It then pushes the message to the queue. The recipient is the first node of the flow which is the application specific adapter. This adapter then makes a GET request to the aplications API to get the payload. Afterwards it pushes the message including the payload onto the queue.
-
-The following example shows the message format of Webhooks messages:
-
-```js
-{
-  "headers": {
-    //GET request headers
-  },
-  "body": {
-    //GET request query string parameters
-  },
-  //other properties
-}
-```
+Once Webhooks receives a GET request it takes the url parameters and request headers and put it into the message. This means in particular the headers go to `headers` while query string parameters go to `body`.
 
 An examplary webhook GET request could look like the following: `GET /hook/<flow-id>?param1=value&param2=value`
 
