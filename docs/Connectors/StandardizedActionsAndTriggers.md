@@ -31,9 +31,9 @@ grand_parent: Connectors
   * [Webhooks](#webhooks)
   * [Bulk Extract](#bulk-extract)
 
-It is important to define common rules on how an adapter responds to changes and performs actions on generic domain objects.  
+It is important to define common rules on how an connector responds to changes and performs actions on generic domain objects.  
 
-If adapters follow common behaviours, then it is possible to build integrations by combining adapters which are developed by different developers.
+If connectors follow common behaviours, then it is possible to build integrations by combining connectors which are developed by different developers.
 
 ## Actions
 

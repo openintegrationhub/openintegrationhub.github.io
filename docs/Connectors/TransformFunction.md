@@ -30,7 +30,7 @@ A transformer expects a JSON object as an input. Depending on the direction of t
 
 Afterwards it transforms the incoming JSON object into another JSON object. This can also be done via a transformation language like _JSONata_.  
 
-Depending on the transformation direction, the transformer's output is then send either to the Open Integration Hub and is validated against a deposited JSON schema or to the corresponding adapter.
+Depending on the transformation direction, the transformer's output is then send either to the Open Integration Hub and is validated against a deposited JSON schema or to the corresponding connector.
 
 _Note: As the Open Integration Hub is feasible of storing different data models, it is also possible that the mapping of the source model is done against another model than the Open Integration Hub master data model.
 

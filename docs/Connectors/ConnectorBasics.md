@@ -38,9 +38,9 @@ Like the Open Integration Hub services, components are also standardized that ca
 
 For a quick start in developing your own connector, we offer a pair templates to start out with. These contain the basic necessary structure and functions for functionality. While these are specific to the contact data domain, they can easily be adjusted or expanded to suit any other type of data or application.
 
-[Contacts Adapter Template](https://github.com/openintegrationhub/contacts-adapter-template)
+[Contacts Component Template](https://github.com/openintegrationhub/contacts-adapter-template)
 
-[Contacts Transformer Template](https://github.com/openintegrationhub/contacts-transformer-template)
+<!-- [Contacts Transformer Template](https://github.com/openintegrationhub/contacts-transformer-template) -->
 
 <!-- If you want to build your own connector, we suggest you start with a our node.js example, to understand the structure and what you need to get going. Most components are build in node.js, although you can choose any language you want.
 

@@ -24,9 +24,9 @@ The Adapter is a single, reusable piece of functionality that stands between you
 
 ## Given an API how should an Adapter behave
 
-The expected actions and triggers of an adapter depend on the behavior of the
+The expected actions and triggers of an connector depend on the behavior of the
 API.  If the API supports CRUD operations the following diagram explains which
-triggers and actions should exist in the adapter.  The triggers and actions
+triggers and actions should exist in the connector.  The triggers and actions
 should aim at covering 100% of the objects provided by the API.
 
  **Note:** Although RESTful APIs are preferred, the API does not necessarily have
@@ -46,8 +46,8 @@ endpoints).  In this case, it is common for the system to provide an API
 endpoint which can provide a list of all dynamic objects as well as the
 structure of every object.
 
-If the system has a fixed list of objects, then the adapter developer can
-provide a hard-coded list of objects that the adapter can interact with.  
+If the system has a fixed list of objects, then the connector developer can
+provide a hard-coded list of objects that the connector can interact with.  
 
 If the list of objects is dynamic and it is possible to use the API to learn the
 list of existing objects, the developer should write code to fetch that list and provide that as dynamic
@@ -68,7 +68,7 @@ users and admins to customize the structure of each object.  In this case, it is
 common for the system to provide an API endpoint which can provide the structure
 of any object in the system.
 
-If the objects have a fixed structure, then the adapter developer can hard code
+If the objects have a fixed structure, then the connector developer can hard code
 the schema of the objects produced.  Otherwise, the developer should write code
 to fetch the dynamic structure of that object.
 

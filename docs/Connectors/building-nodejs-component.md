@@ -10,7 +10,7 @@ parent: Connectors
 
 Open Integration Hub supports `Node.js` programming language for building integration components such as Components.
 
-To help you create a Connector in `Node.js` we have created a simple template adapter component to start out with: [Contacts Adapter Template](https://github.com/openintegrationhub/contacts-adapter-template). It is a well-documented minimal adapter intended to fetch and push data of the Contacts domain from and to the SnazzyContacts API. It is built with modularity in mind, so that for your own case you should be able to re-use most of the code, needing only to switch out the parts specific to the API you would like to target.
+To help you create a Connector in `Node.js` we have created a simple template component to start out with: [Contacts Component Template](https://github.com/openintegrationhub/contacts-adapter-template). It is a well-documented minimal component intended to fetch and push data of the Contacts domain from and to the SnazzyContacts API. It is built with modularity in mind, so that for your own case you should be able to re-use most of the code, needing only to switch out the parts specific to the API you would like to target.
 
 For now lets start with understanding the different parts a typical component:
 
@@ -19,12 +19,12 @@ For now lets start with understanding the different parts a typical component:
 Let us have a look at the structure of the Contacts Component in Node.js:
 
 ```
-contacts-adapter-template
+contacts-component-template
 
 ├── component.json                                          (1)
 ├── lib
 │   ├── actions                                             (2)
-│   │   ├── deleteOrganization.js
+│   │   ├── deletePerson.js
 │   │   ├── deleteOrganization.js
 │   │   ├── upsertOrganization.js
 │   │   └── upsertPerson.js
@@ -35,7 +35,13 @@ contacts-adapter-template
 │       ├── authentication.js
 │       ├── helpers.js
 │       └── resolver.js
-├── package.json                                            (5)
+│    └── tranformations                                     (5)
+│       ├── organizationFromOih.js
+│       ├── organizationToOih.js 
+│       ├── personFromOih.js
+│       └── personToOih.js
+
+├── package.json                                            (6)
 ```
 
 The Node.js components get built by NPM `run-script` which checks first the `package.json` (6) configuration file and starts initialising the `node` and `npm` versions and builds them. Next, the dependencies get downloaded and build. All node.js components must use the following dependency:
@@ -59,8 +65,8 @@ As mentioned above, the `component.json` file is the component descriptor interp
 
 ```json
 {
-  "title": "Contacts Adapter Template",                                       (1)
-  "description": "OIH contacts adapter example",                              (2)
+  "title": "Contacts Component Template",                                       (1)
+  "description": "OIH contacts component example",                              (2)
   "triggers": {                                                               (3)
     ...
     },
