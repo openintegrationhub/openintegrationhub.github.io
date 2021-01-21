@@ -5,13 +5,6 @@ parent: Getting Started
 nav_order: 2
 ---
 
-<p align="center">
-  <img src="https://raw.githubusercontent.com/openintegrationhub/openintegrationhub.github.io/master/assets/images/large-oih-vertikal-zentriert.png" alt="Open Integration Hub" width="300"/>
-</p>
-<br>
-<br>
-
-
 # Google Cloud Platform Deployment Guide
 
 The following guide helps to deploy the Open Integration Hub on the Google Cloud Platform.
@@ -99,7 +92,7 @@ host: iam.openintegrationhub.com
 
 Next, comment out all services except for IAM in the `platform/ingress.yaml` file, and apply:
 
- `kubectl apply -f platform/ingress.yaml`
+`kubectl apply -f platform/ingress.yaml`
 
 (for more information on staggered ingress deployment see the note on [GCP Ingress Behavior](#gcp-ingress-behavior))
 
@@ -149,7 +142,7 @@ First, you have to request a user token (for admin account). This step only need
 
 ### Login as Admin
 
- _Path_:
+_Path_:
 
 `/login`
 
@@ -158,18 +151,18 @@ _Request Body:_
 If you haven't changed the `admin_password` in the secret you created a few steps ago, you can use the following json. Otherwise replace the password with the new value.
 
 ```json
-  {
-    "username": "admin@openintegrationhub.com",
-    "password": "somestring"
-  }
+{
+  "username": "admin@openintegrationhub.com",
+  "password": "somestring"
+}
 ```
 
 _Response Body Structure:_
 
 ```json
-  {
-    "token": "string"
-  }
+{
+  "token": "string"
+}
 ```
 
 Use the returned `token` as a Bearer token for the remaining requests.
@@ -198,22 +191,22 @@ _Path:_
 
 _Request Body:_
 
-  ```json
-  {
-    "username":"servicename@serviceaccount.de",
-    "firstname":"a",
-    "lastname":"b",
-    "role":"SERVICE_ACCOUNT",
-    "status":"ACTIVE",
-    "password":"asd",
-    "permissions":[
-      "iam.token.introspect",
-      "components.get"
-    ]
-  }
-  ```
+```json
+{
+  "username": "servicename@serviceaccount.de",
+  "firstname": "a",
+  "lastname": "b",
+  "role": "SERVICE_ACCOUNT",
+  "status": "ACTIVE",
+  "password": "asd",
+  "permissions": [
+    "iam.token.introspect",
+    "components.get"
+  ]
+}
+```
 
- _Response Body Structure:_
+_Response Body Structure:_
 
 ```json
 {
@@ -226,15 +219,11 @@ _Request Body:_
   "roles": [
     {
       "name": "string",
-      "permissions": [
-        "all"
-      ],
+      "permissions": ["all"],
       "scope": "string"
     }
   ],
-  "permissions": [
-    "all"
-  ],
+  "permissions": ["all"],
   "confirmed": true,
   "img": "string"
 }
@@ -257,7 +246,7 @@ _Request Body:_
 }
 ```
 
-The returned token is the service token that will be used by the other services to authenticate themselves to the IAM. Copy the value, encode it in *base64* (for encoding you can use online tools such as: <https://www.base64encode.org/>), and then paste it into the secret files for each of the services listed at the [beginning](#service-account-creation) of this chapter.
+The returned token is the service token that will be used by the other services to authenticate themselves to the IAM. Copy the value, encode it in _base64_ (for encoding you can use online tools such as: <https://www.base64encode.org/>), and then paste it into the secret files for each of the services listed at the [beginning](#service-account-creation) of this chapter.
 
 ### Secret Creation
 
@@ -267,7 +256,7 @@ For each services listed in `./services` a secret file is needed. Thus, the foll
 - `Data` must include all `secretKeyRef`s from the `./k8s/deployment.yaml` of each service. E.g. flow repository: [flow-repository deployment.yaml](https://github.com/openintegrationhub/openintegrationhub/blob/master/services/flow-repository/k8s/deployment.yaml#L20-L29)
 - For each service that was listed at the [beginning](#service-account-creation) of this chapter make sure to add the persistent token as the value for the **iamtoken**.
 
-Example secret file for  **flow-repository**:
+Example secret file for **flow-repository**:
 
 ```yaml
 apiVersion: v1
@@ -299,9 +288,9 @@ host: iam.openintegrationhub.com
 
 Comment out all non-deployed services in the `platform/ingress.yaml` file, and apply:
 
- `kubectl apply -f platform/ingress.yaml`
+`kubectl apply -f platform/ingress.yaml`
 
- (for more information on staggered ingress deployment see the note on [GCP Ingress Behavior](#gcp-ingress-behavior))
+(for more information on staggered ingress deployment see the note on [GCP Ingress Behavior](#gcp-ingress-behavior))
 
 ## Service Availability
 
@@ -345,15 +334,15 @@ Below you will find code snippets for two exemplary components. For the beginnin
 
 ```json
 {
-    "data":{
-      "distribution":{
-          "type":"docker",
-          "image":"elasticio/timer:ca9a6fea391ffa8f7c8593bd2a04143212ab63f6"
-      },
-      "access":"public",
-      "name":"Timer",
-      "description":"Timer component that periodically triggers flows on a given interval"
-    }
+  "data": {
+    "distribution": {
+      "type": "docker",
+      "image": "elasticio/timer:ca9a6fea391ffa8f7c8593bd2a04143212ab63f6"
+    },
+    "access": "public",
+    "name": "Timer",
+    "description": "Timer component that periodically triggers flows on a given interval"
+  }
 }
 ```
 
@@ -361,15 +350,15 @@ Below you will find code snippets for two exemplary components. For the beginnin
 
 ```json
 {
-    "data": {
-        "distribution": {
-            "type": "docker",
-            "image": "elasticio/code-component:7bc2535df2f8a35c3653455e5becc701b010d681"
-        },
-        "access": "public",
-        "name": "Node.js code",
-        "description": "Node.js code component that executes the provided code"
-      }
+  "data": {
+    "distribution": {
+      "type": "docker",
+      "image": "elasticio/code-component:7bc2535df2f8a35c3653455e5becc701b010d681"
+    },
+    "access": "public",
+    "name": "Node.js code",
+    "description": "Node.js code component that executes the provided code"
+  }
 }
 ```
 
@@ -408,32 +397,32 @@ Afterwards please replace the `ADD WEBHOOK URL HERE` with the link in your clipb
 
 ```json
 {
-    "name":"Timer To Code Component Example",
-    "description:": "This flow periodically triggers the flow and sends request to webhook.site",
-    "graph":{
-      "nodes":[
-          {
-            "id":"step_1",
-            "componentId":"ADD COMPONENT ID HERE",
-            "function":"timer"
-          },
-          {
-            "id":"step_2",
-            "componentId":"ADD COMPONENT ID HERE",
-            "function":"execute",
-            "fields":{
-                "code":"function* run() {console.log('Calling external URL');yield request.post({uri: 'ADD WEBHOOK URL HERE', body: msg, json: true});}"
-            }
-          }
-      ],
-      "edges":[
-          {
-            "source":"step_1",
-            "target":"step_2"
-          }
-      ]
-    },
-    "cron":"*/2 * * * *"
+  "name": "Timer To Code Component Example",
+  "description:": "This flow periodically triggers the flow and sends request to webhook.site",
+  "graph": {
+    "nodes": [
+      {
+        "id": "step_1",
+        "componentId": "ADD COMPONENT ID HERE",
+        "function": "timer"
+      },
+      {
+        "id": "step_2",
+        "componentId": "ADD COMPONENT ID HERE",
+        "function": "execute",
+        "fields": {
+          "code": "function* run() {console.log('Calling external URL');yield request.post({uri: 'ADD WEBHOOK URL HERE', body: msg, json: true});}"
+        }
+      }
+    ],
+    "edges": [
+      {
+        "source": "step_1",
+        "target": "step_2"
+      }
+    ]
+  },
+  "cron": "*/2 * * * *"
 }
 ```
 

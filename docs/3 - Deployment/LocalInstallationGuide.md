@@ -3,18 +3,11 @@ layout: default
 title: Local Installation
 parent: Getting Started
 nav_order: 1
-has_children: true
 ---
-<p align="center">
-  <img src="https://raw.githubusercontent.com/openintegrationhub/openintegrationhub.github.io/master/assets/images/large-oih-vertikal-zentriert.png" alt="Open Integration Hub" width="300"/>
-</p>
-<br>
-<br>
 
 # Local Installation Guide
 
 ![linux](https://img.shields.io/badge/Linux-red.svg) ![Windows](https://img.shields.io/badge/Windows-blue.svg) ![Mac](https://img.shields.io/badge/Mac-green.svg)
-
 
 In addition to setting up the Open Integration Hub on a cloud infrastructure such as GCP it is also possible to setup a local version of the framework. Make sure to perform the following to set up a local version of the OIH within your own minikube:
 
@@ -39,11 +32,10 @@ In addition to setting up the Open Integration Hub on a cloud infrastructure suc
 
 # Development Environments
 
-Besides the basic installation guide found here, the OIH monorepo provides two possible setups for a development environment. They are found in the `dev-tools/` folder in the monorepo. 
+Besides the basic installation guide found here, the OIH monorepo provides two possible setups for a development environment. They are found in the `dev-tools/` folder in the monorepo.
 
 - The [minikube instructions](https://openintegrationhub.github.io//docs/Getting%20Started/MinikubeInstallation.html) are based off of the basic local minikube installation found here. It adds the ability to optionally launch each service using local source code served over NFS instead of the public Docker image.
 - The [docker-compose installation](https://openintegrationhub.github.io//docs/Getting%20Started/DockerInstallation.html) contains configuration files and helper scripts to run local services directly from Docker. It still relies on minikube to execute flows.
-
 
 # Requirements
 
@@ -67,7 +59,6 @@ Make sure that minikube is endowed with sufficient resources. We suggest at leas
 <hr style="margin-bottom:1rem;"/>
 If you're using Windows we suggest to use virtual box. In order to use it, Hyper-V must be disabled <a href="https://docs.microsoft.com/de-de/virtualization/hyper-v-on-windows/quick-start/enable-hyper-v">Enable/Disable Hyper-V on Windows 10.</a> You may also have to enable virtualisation features in your BIOS.
 </div>
-
 
 # Installation
 
@@ -103,7 +94,7 @@ and then
 
 to adjust the resource limits before starting again.
 
-In particular, ensure that its ingress module is enabled (`minikube addons enable ingress`).  Also make sure that `kubectl` is configured to use minikube. To see if its correctly configured use
+In particular, ensure that its ingress module is enabled (`minikube addons enable ingress`). Also make sure that `kubectl` is configured to use minikube. To see if its correctly configured use
 
     `kubectl config current-context
     or
@@ -113,7 +104,6 @@ For further information about how to set up minikube, see here:
 
 - [Install Minikube](https://kubernetes.io/docs/tasks/tools/install-minikube/)
 - [Installing Kubernetes with Minikube](https://kubernetes.io/docs/setup/learning-environment/minikube/)
-
 
 <div style="
     margin: 10px 0px;
@@ -133,7 +123,6 @@ If you're using Docker for Desktop it overwrites the acutal kubectl version. Thi
 <li> Use the "Edge" version of Docker Desktop. This can be done by installing the edge version of the application from the <a href="https://docs.docker.com/desktop/">Docker Desktop site</a>. If you already have Docker Desktop installed, you can switch to the Edge version from the Docker menu. Select <b>Preferences > Command Line</b> and then activate the <b>Enable experimental features</b> toggle. After selecting <b>Apply & Restart</b>, Docker will update versions. More information can be found <a href="https://docs.docker.com/docker-for-mac/install/#switch-between-stable-and-edge-versions">here</a>.</li>
 </ul>
 </div>
-
 
 ## Basic Open Integration Hub Infrastructure Setup
 
@@ -194,25 +183,25 @@ Create a service account and token for the other services in the IAM. Using Post
 
 ### Login as Admin
 
- _Path_:
+_Path_:
 
 `/login`
 
 _Request Body:_
 
 ```json
-  {
-    "username": "admin@openintegrationhub.com",
-    "password": "somestring"
-  }
+{
+  "username": "admin@openintegrationhub.com",
+  "password": "somestring"
+}
 ```
 
 _Response Body Structure:_
 
 ```json
-  {
-    "token": "string"
-  }
+{
+  "token": "string"
+}
 ```
 
 Use the returned `token` as a Bearer token for the remaining requests.
@@ -225,21 +214,19 @@ _Path:_
 
 _Request Body:_
 
-  ```json
-  {
-    "username":"test@test.de",
-    "firstname":"a",
-    "lastname":"b",
-    "role":"SERVICE_ACCOUNT",
-    "status":"ACTIVE",
-    "password":"asd",
-    "permissions":[
-      "all"
-    ]
-  }
-  ```
+```json
+{
+  "username": "test@test.de",
+  "firstname": "a",
+  "lastname": "b",
+  "role": "SERVICE_ACCOUNT",
+  "status": "ACTIVE",
+  "password": "asd",
+  "permissions": ["all"]
+}
+```
 
- _Response Body Structure:_
+_Response Body Structure:_
 
 ```json
 {
@@ -252,15 +239,11 @@ _Request Body:_
   "roles": [
     {
       "name": "string",
-      "permissions": [
-        "all"
-      ],
+      "permissions": ["all"],
       "scope": "string"
     }
   ],
-  "permissions": [
-    "all"
-  ],
+  "permissions": ["all"],
   "confirmed": true,
   "img": "string"
 }
@@ -285,7 +268,7 @@ _Request Body:_
 }
 ```
 
-The returned token is the service token that will be used by the other services to authenticate themselves to the IAM. Copy the value, encode it in *base64* (for encoding you can use online tools such as: <https://www.base64encode.org/>), and then past it into the file found at `./3-Secret/SharedSecret.yaml` at the indicated position (`REPLACE ME`).
+The returned token is the service token that will be used by the other services to authenticate themselves to the IAM. Copy the value, encode it in _base64_ (for encoding you can use online tools such as: <https://www.base64encode.org/>), and then past it into the file found at `./3-Secret/SharedSecret.yaml` at the indicated position (`REPLACE ME`).
 
 ## Shared Secret Application
 
@@ -343,15 +326,15 @@ Below you will find a code snippets for an exemplary component. For the beginnin
 
 ```json
 {
-    "data": {
-        "distribution": {
-            "type": "docker",
-            "image": "openintegrationhub/code-component:latest"
-        },
-        "access": "public",
-        "name": "Node.js code",
-        "description": "Node.js code component that executes the provided code"
-      }
+  "data": {
+    "distribution": {
+      "type": "docker",
+      "image": "openintegrationhub/code-component:latest"
+    },
+    "access": "public",
+    "name": "Node.js code",
+    "description": "Node.js code component that executes the provided code"
+  }
 }
 ```
 
@@ -375,7 +358,6 @@ Now click on the `ADD+` button. A popup window will appear where you can add the
 
 **GREAT!** You created your first component.
 
-
 **!!** In order to create the flow in the next step you have to copy the `id` of the component you just created. **!!**
 
 ## Creating Flows
@@ -389,35 +371,35 @@ Afterwards please replace the `ADD WEBHOOK URL HERE` with the link in your clipb
 
 ```json
 {
-   "name":"Code Component Example",
-   "description:": "This flow periodically send a request to webhook.site",
-   "graph":{
-      "nodes":[
-        {
-           "id":"step_1",
-           "componentId":"ADD COMPONENT ID HERE",
-           "function":"execute",
-           "fields":{
-              "code":"function* run() {console.log('Spawning object!');return { Hello: 'World' };}"
-           }
-        },
-         {
-            "id":"step_2",
-            "componentId":"ADD COMPONENT ID HERE",
-            "function":"execute",
-            "fields":{
-               "code":"function* run() {console.log('Calling external URL');yield request.post({uri: 'ADD WEBHOOK URL HERE', body: msg, json: true});}"
-            }
-         }
-      ],
-      "edges":[
-         {
-            "source":"step_1",
-            "target":"step_2"
-         }
-      ]
-   },
-   "cron":"* * * * *"
+  "name": "Code Component Example",
+  "description:": "This flow periodically send a request to webhook.site",
+  "graph": {
+    "nodes": [
+      {
+        "id": "step_1",
+        "componentId": "ADD COMPONENT ID HERE",
+        "function": "execute",
+        "fields": {
+          "code": "function* run() {console.log('Spawning object!');return { Hello: 'World' };}"
+        }
+      },
+      {
+        "id": "step_2",
+        "componentId": "ADD COMPONENT ID HERE",
+        "function": "execute",
+        "fields": {
+          "code": "function* run() {console.log('Calling external URL');yield request.post({uri: 'ADD WEBHOOK URL HERE', body: msg, json: true});}"
+        }
+      }
+    ],
+    "edges": [
+      {
+        "source": "step_1",
+        "target": "step_2"
+      }
+    ]
+  },
+  "cron": "* * * * *"
 }
 ```
 

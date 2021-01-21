@@ -1,12 +1,12 @@
 ---
 layout: default
 title: Getting Started
-nav_order: 2
+nav_order: 4
 has_children: true
 ---
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/openintegrationhub/openintegrationhub.github.io/master/assets/images/large-oih-vertikal-zentriert.png" alt="Open Integration Hub" width="300"/>
+  <img src="https://raw.githubusercontent.com/openintegrationhub/openintegrationhub.github.io/master/assets/images/large-oih-vertikal-zentriert.png" alt="Open Integration Hub" width="200"/>
 </p>
 <br>
 <br>

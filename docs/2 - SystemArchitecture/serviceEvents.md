@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Service Events
-parent: Service Collaboration
+parent: System Architecture
 nav_order: 1
 ---
 
@@ -11,7 +11,6 @@ Open Integration Hub services mostly communicate asynchronously and via message 
 
 This document is designed to list all events per service.
 
-
 The currently used Event format provided by the Event Bus library was adopted for overall use. The schema is:
 
 ```json
@@ -19,7 +18,7 @@ The currently used Event format provided by the Event Bus library was adopted fo
   "headers": {
     "serviceName": "string",
     "createdAt": "date",
-    "name": "string",
+    "name": "string"
   },
   "payload": {
     "user": "string",
@@ -29,14 +28,14 @@ The currently used Event format provided by the Event Bus library was adopted fo
 ```
 
 The field contents are:
-- `headers`: An object containing metadata about the event itself
-    - `serviceName`: The name of the spawning service. If using the event-bus module, this will be filled in automatically
-    - `createdAt`: A timestamp of the event's creation. If using the event-bus module, this will be filled in automatically.
-    - `name`: The name of the event. Also doubles as its routing key.
-- `payload`: An arbitrary JSON object, containing the content of the event. Two optional fields are reserved for logging purposes:
-    - `user`: The IAM-ID of a user who spawned the event
-    - `tenant`: The IAM-ID of a tenant in which this event occurred
 
+- `headers`: An object containing metadata about the event itself
+  - `serviceName`: The name of the spawning service. If using the event-bus module, this will be filled in automatically
+  - `createdAt`: A timestamp of the event's creation. If using the event-bus module, this will be filled in automatically.
+  - `name`: The name of the event. Also doubles as its routing key.
+- `payload`: An arbitrary JSON object, containing the content of the event. Two optional fields are reserved for logging purposes:
+  - `user`: The IAM-ID of a user who spawned the event
+  - `tenant`: The IAM-ID of a tenant in which this event occurred
 
 ## IAM
 
