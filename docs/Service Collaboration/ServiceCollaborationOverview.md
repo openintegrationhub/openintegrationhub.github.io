@@ -13,7 +13,7 @@ has_children: true
 
 # Service Collaboration
 
-This document is designed to describe different service collaboration examples. It acts as a starting point to easily understanding the architecture of the Open Integration Hub.
+This document is designed to describe different service collaboration examples. It acts as a starting point to get an understanding of the Open Integration Hub.
 Most of the examples are triggered by user interactions (e.g. starting a flow) and only the "happy path" i.e. success scenario is described.
 
 Each example is described through a graphical overview, a textual description, and pre-conditions.
@@ -36,18 +36,20 @@ For further information for a specific version please have a look at the [servic
 
 This example describes the scenario of starting a flow. Once the user starts a flow the following steps are processed:
 
-1. The client starts a flow using the flow repository's REST API.
-2. `Flow Repository` sets the flow's `status` to `starting` and raises the event `flow.starting`.
-3. There are 3 services listening to the event `flow.starting`:  Webhooks, Scheduler, and Component Orchestrator. `Webhooks` and `Scheduler` examine the event's payload and decide if they need to react appropriately. We will discuss the exact reaction of both services later in this document.
-4. Upon receiving `flow.starting` event the `Component Orchestrator` starts deploying local components. Once all local components were deployed, `Component Orchestrator` raises the `flow.started` event – Keep in mind that global components need to be started manually.
-5. `Flow Repository` receives the `flow.started` event and switches flow's `status` property from `starting` to `started`.
-6. `Webhooks` receives the `flow.started` event and starts receiving incoming HTTP calls for the given flow.
-7. `Scheduler` receives the `flow.started` event and starts scheduling the flow, according to its cron property.
+1. The user starts a flow using the flow repository's `REST API`.
+2. Flow Repository sets the flow's status from `inactive` to `starting` and raises the event `flow.starting`.
+3. There are three services listening to the event `flow.starting`:  Webhooks, Scheduler, and Component Orchestrator. Each of them examines the event's payload and decide if they need to react appropriately. We will discuss the exact reaction of `Webhooks` and `Scheduler` later in this document.
+4. Upon receiving `flow.starting` event the `Component Orchestrator` starts deploying local compontents. Once all local components were deployed, `Component Orchestrator` raises the `flow.started` event regardless of whether used global components are running – **Keep in mind that global components need to be started manually. otherwise, warnings are thrown**
+5. Flow Repository receives the `flow.started` event and switches flow's status property from `starting` to `started`.
+6. Webhooks receives the `flow.started` event and starts receiving incoming HTTP calls for the given flow.
+7. Scheduler receives the `flow.started` event and starts scheduling the flow, according to its cron property.
 8. When a client stops a running flow using the flow repository's REST API, the event `flow.stopping` is raised which is causing an inverse reaction chain of events.
 
 Now let's discuss the individual services in detail:
 
 ## Flow repository
+
+[Service Documentation](https://openintegrationhub.github.io//docs/Services/FlowRepository.html)
 
 - `POST /flows/{id}/start`: Used to start a flow
 - `POST /flows/{id}/stop`: Used to stop a flow
@@ -83,16 +85,24 @@ The `payload` property is an arbitrary object to be sent with the event. Flow re
 
 ## Webhooks
 
+[Service Documentation](https://openintegrationhub.github.io//docs/Services/Webhooks.html)
+
+Please note that Webhooks ignores a flow if the following condition is met:
+
+- `cron` property is set
+
 Upon receiving `flow.starting` event the service checks if the `cron` property is **not** set. If so, the service persists a data record in his local DB but **doesn't start receiving HTTP requests** for the given flow yet.
 After receiving the `flow.started` event, the service starts accepting incoming messages from the flow's webhook URL and instructs `Component Orchestrator` by publishing the `flow.executed` event as soon as a valid webhook call is carried out.
-
-Please note that the webhooks service ignores the event if the following condition is met:
-
-- `cron` property is set in the event
 
 Upon receiving the `flow.stopping` event, the service deletes the record for the given flow and stops accepting requests.
 
 ## Scheduler
+
+[Service Documentation](https://openintegrationhub.github.io//docs/Services/Scheduler.html)
+
+Please note that Scheduler ignores a flow if the following condition is met:
+
+- `cron` property is missing
 
 Upon receiving `flow.starting` event the service checks if the `cron` property is set. If so, the service persist a data record in his local DB, but **doesn't start scheduling** the given flow yet. The following table demonstrates an example of such records.
 
@@ -103,17 +113,15 @@ Upon receiving `flow.starting` event the service checks if the `cron` property i
 
 Upon receiving the `flow.started` event the service starts scheduling the flow executions by retrieving the flow data from its local DB and instructing `Component Orchestrator` by publishing the `flow.executed` event.
 
-Please note that the scheduler service ignores the event if the following condition is met:
-
-- `cron` property is **not** set in the event
-
 Upon receiving the `flow.stopping` event, the service deletes the record for the given flow and stops scheduling flow executions.
 
 # Execute Polling Flow
 
-**Pre-Conditions:** Starting a flow.
+**Pre-Conditions:** 
+- Starting a flow.
+- `cron` property is set
 
-As described in [scheduler section](#scheduler) when a flow is started the service starts scheduling the flow executions. Once the scheduler finds a flow that is ready for execution it publishes `flow.executed`.
+As described in [scheduler section](#scheduler) when a flow is started the service starts scheduling the flow executions. Once a flows `cron` condition is met it publishes `flow.executed`.
 
 
 ![webhookPost](https://raw.githubusercontent.com/openintegrationhub/openintegrationhub.github.io/master/assets/images/ExecutePollingFlow.png)
@@ -122,12 +130,16 @@ Figure: _executePollingFlow_
 
 # Execute Webhook Flow
 
+**Pre-Conditions:** 
+- Starting a flow.
+- `cron` property must **NOT** exist
+
+Once Webhooks receives a valid request it publishes `flow.executed`.
+Either `POST` or `GET` requests are accepted.
+
 ## POST Request
 
-**Pre-Conditions:** Starting a flow.
-
-Once Webhooks receives a POST request it publishes `flow.executed`. 
-In contrast to the GET request, this request already includes the payload.
+Requests of this kind should have their payload within the `body`.
 
 ![webhookPost](https://raw.githubusercontent.com/openintegrationhub/openintegrationhub.github.io/master/assets/images/ExecuteWebhookFlowPost.png)
 
@@ -135,9 +147,7 @@ Figure: _executeWebhookFlowPost_
 
 ## GET Request
 
-**Pre-Conditions:** Starting a flow.
-
-Once Webhooks receives a GET request it takes the url parameters and request headers and put it into the message. This means in particular the headers go to `headers` while query string parameters go to `body`.
+Requests of this kind have to be structured differently. Webhooks takes the url parameters and request headers and puts them into the message. This means in particular the headers go to `headers` while query string parameters go to `body`.
 
 An examplary webhook GET request could look like the following: `GET /hook/<flow-id>?param1=value&param2=value`
 
@@ -147,12 +157,12 @@ Figure: _executeWebhookFlowGet_
 
 # Request Resources
 
-The following example shows how a user can request a resource using IAM. The graphic below shows how this example would look like if a user request a resource from the flow repository.
+The following example shows every step necessary to allow a user to request a flow resource. The graphic below shows how this example would look like.
 
-1. User logs in into IAM.
-2. IAM responds with an ephemeral token.
-3. User uses the ephemeral token to request a cetrain resource (e.g. a specific flow by id).
-4. Flow repository introspects the ephemeral token at IAM (services accounts receive a permanent token when they first register) using IAM utils (middleware).
+1. User logs in into IAM. (e.g. Basic Auth)
+2. IAM responds with an access token token.
+3. User uses this access token to request a cetrain resource (e.g. a specific flow by id).
+4. Flow repository introspects the token at specific IAM endpoint (services accounts receive a permanent token when they first register) using IAM utils (middleware).
 5. IAM responds with user information such as username, tenant, tenant specific role and user permissions related to this token.
 6. Flow Repsitory checks if the user has the permission to request the resource.
 7. Flow repository responds with the requested information.
@@ -163,7 +173,7 @@ Illustration of this process:  (Figur _requestResourceSuccess_).
 
 Figure: _requestResourceSuccess_
 
-**1**: Ephemeral token<br>
+**1**: Access token<br>
 **2**: Service makes request with service account token<br>
 **3**: User information e.g.: username, tenant, tenant specific role, permissions
 
