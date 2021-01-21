@@ -14,7 +14,7 @@ Use the full links to reference other files or images! Relative links will not w
 <!-- please choose the appropriate batch and delete/comment the others  -->
 ![prod](https://img.shields.io/badge/Status-Production-brightgreen.svg)
 
-# **Scheduler** <!-- make sure spelling is consistent with other sources and within this document -->
+# **Ferryman** <!-- make sure spelling is consistent with other sources and within this document -->
 
 ## Introduction
 
