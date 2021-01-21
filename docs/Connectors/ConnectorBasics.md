@@ -17,13 +17,13 @@ The Open Integration Hub enables data synchronization across a variety of applic
 are set to each and every step of data syncronization flow and speak to each other using the tranformation model functions from the new Ferryman library from OIH.  
 
 A **Component** is the result of the union of the connector along with the transformation functions that are provided through the new Ferryman. It is the initialiser and translator of the data 
-that comes in and goes out and it is assigned as a whole step in a flow.
+that comes in and goes out and it is assigned as a whole step in a OIH flow.
 
-An **connector** is a module for the syntactic connection of an external application and its data to the Open Integration Hub. This includes protocol translation, data format transformation, etc.
-Furthermore it provides functionalities to perform e.g. CRUD operations within the source system through the actions and the triggers that are provided to each individual connector.
+An **connector** is a module for the syntactic connection of an external application and its data to the Open Integration Hub.Furthermore it provides functionalities to perform e.g. CRUD 
+operations within the source system through the actions and the triggers that are provided to each individual connector.
 
-A **transform function or tranformer in previous releases** is responsible to semantically transform an incoming JSON object into another JSON object. The functionality is implemented using the 
-new version of ferryman and importing the necessary expressions into each connector. Therefore we save some steps from a flow while we still give the same functionality. 
+A **transform function** is responsible to semantically transform an incoming JSON object into another JSON object. The functionality is implemented in the component using the 
+new version of Ferryman and the imported necessary expressions on each connector. Therefore we have fewer steps on a flow while we still give the same functionality. 
 
 
 

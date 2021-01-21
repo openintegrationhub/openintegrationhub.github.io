@@ -67,10 +67,10 @@ As mentioned above, the `component.json` file is the component descriptor interp
 {
   "title": "Contacts Component Template",                                       (1)
   "description": "OIH contacts component example",                              (2)
-  "triggers": {                                                               (3)
+  "triggers": {                                                                 (3)
     ...
     },
-  "actions": {                                                                (4)
+  "actions": {                                                                  (4)
     ...
     }
   }
