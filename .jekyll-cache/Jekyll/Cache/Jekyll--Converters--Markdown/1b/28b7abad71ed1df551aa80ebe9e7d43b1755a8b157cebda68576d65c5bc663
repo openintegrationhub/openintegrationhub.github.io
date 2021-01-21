@@ -1,0 +1,59 @@
+I"r
+<!-- Description Guidelines
+
+Please note:
+Use the full links to reference other files or images! Relative links will not work under our theme settings settings.
+-->
+
+<!-- please choose the appropriate batch and delete/comment the others  -->
+<p><img src="https://img.shields.io/badge/Status-Production-brightgreen.svg" alt="prod" /></p>
+
+<h1 id="component-orchestrator">Component Orchestrator</h1>
+
+<h2 id="introduction">Introduction</h2>
+<!-- 2 sentences: what does it do and how -->
+
+<p>The Component Orchestrator is responsible for a fair resource distribution.</p>
+
+<!--[API Reference](){: .btn .fs-5 .mb-4 .mb-md-0 }-->
+<p><a href="https://github.com/openintegrationhub/openintegrationhub/tree/master/services/component-orchestrator" class="btn fs-5 mb-4 mb-md-0">Implementation</a>
+<a href="https://github.com/openintegrationhub/openintegrationhub/tree/master/lib/component-orchestrator" class="btn fs-5 mb-4 mb-md-0">Service File</a></p>
+
+<h2 id="technologies-used">Technologies used</h2>
+<ul>
+  <li>Node.js</li>
+  <li>Kubernetes</li>
+  <li>Docker</li>
+</ul>
+
+<h2 id="how-it-works">How it works</h2>
+<!-- describe core functionalities and underlying concepts in more detail -->
+
+<p>In a multi-tenant environment it must be guaranteed that a user or tenant
+(intentionally or unintentionally) may not get an unfair usage of shared
+resources such as CPU, Memory, Network, etc. It must be guaranteed that
+every integration flow gets a chance to be executed, close to the intervals
+defined by its Cron expression.</p>
+
+<p>The Component Orchestrator is a micro-service defining the fairness policy
+and controlling that each user/flow/tenant is complying with that policy.
+The Component Orchestrator is responsible for:</p>
+
+<ul>
+  <li>Protection from over-scheduling: if an execution of a flow takes longer than its scheduling interval, the following executions must be skipped.</li>
+  <li>Making sure that a flow or its steps are not deployed multiple times</li>
+  <li>If scaling is configured for a flow, the specified number of instances must be deployed</li>
+  <li>Detection of policy violations and punishment of “bad citizens”</li>
+</ul>
+
+<h3 id="interaction-with-other-services">Interaction with other Services</h3>
+<ul>
+  <li>Interacts with IAM to introspect provided IAM token.</li>
+  <li>Gets events for starting a flow form the Flow Repository.</li>
+  <li>Deploys containers to the Kubernetes cluster.</li>
+  <li>Sends events into the event bus when the deployment is complete.</li>
+  <li>Creates IAM tokens in IAM service.</li>
+  <li>Gets Component information from the Component Repository.</li>
+  <li>Gets Snapshots from the Snapshots Service.</li>
+</ul>
+:ET

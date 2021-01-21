@@ -1,0 +1,37 @@
+I"·<h1 id="introduction">Introduction</h1>
+
+<p>If a message is sent to the Open Integration Hub via a connector flow there are several services within the Open Integration Hub that collaborate in order to propagate this message.
+A connector flow always contains an adapter, transformer and Smart Data Framework (SDF) adapter.</p>
+
+<p>The following graphic illustrates how update propagation works while using the hub and spoke architecture within the Open Integration Hub:</p>
+
+<p><img src="https://raw.githubusercontent.com/openintegrationhub/openintegrationhub.github.io/master/assets/images/hubAndSpoke.png" alt="hubAndSpoke" /></p>
+
+<h2 id="source-flow">Source Flow</h2>
+
+<p>In the source flow the triggering event is the reception of data by the adapter. This data is then passed to the transformer for a mapping and afterwards passed to the SDF adapter.
+The SDF adapter then sends the data to the Open Integration Hub (For more information: <a href="https://github.com/openintegrationhub/sdf-adapter">SDF Adapter</a>).</p>
+
+<h2 id="smart-data-framework">Smart Data Framework</h2>
+
+<p>Once the message is received by the Data Hub it creates or updates an oihDataRecord. After the successful operation it emits an event which is then received by the Dispatcher Service.
+The Dispatcher looks up configurations in which the source-flowId matches the incoming flowId. After all targets have been identified, the Dispatcher sends the new/updated dataset to the SDF Adapter . Furthermore, it sends start request(s) to the flow repository which itself emits an event for component orchestrator (For more information: <a href="https://github.com/openintegrationhub/openintegrationhub/blob/master/services/dispatcher-service/README.md">Dispatcher Service</a>, <a href="https://openintegrationhub.github.io/docs/Services/FlowRepository.html">Flow Repository</a>). The component orchestrator send starts all needed containers.</p>
+
+<h2 id="target-flows">Target Flows</h2>
+
+<p>Target flows always start with an instance of the SDF adapter. The SDF Adapter subscribes to a certain topic and passes the incoming message to transformer. After after a successful mapping, the Transformer passes the message to the adapter. The adapter then sends the data to the application and passes the recordUid of the entity to SDF adapter which sends it back to the Open Integration Hub for ID Linking (More on ID Linking: <a href="../../services/DataHub.md#id-linking">ID Linking in Open Integration Hub</a>).</p>
+
+<h2 id="create-and-update-operations">Create and Update Operations</h2>
+
+<h3 id="create-events">Create Events</h3>
+
+<p>The following figure shows what happens within the Smart Data Framework if  a create event is received:</p>
+
+<p><img src="https://raw.githubusercontent.com/openintegrationhub/openintegrationhub.github.io/master/assets/images/Create-SDFCommunication.png" alt="CreateEvent" /></p>
+
+<h3 id="delete-or-update-events">Delete or Update Events</h3>
+
+<p>The following figure shows what happens within the Smart Data Framework if a delete or update event is received:</p>
+
+<p><img src="https://raw.githubusercontent.com/openintegrationhub/openintegrationhub.github.io/master/assets/images/UpdateOrDelete-SDFCommunication.png" alt="updateOrDelete" /></p>
+:ET

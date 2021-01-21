@@ -1,0 +1,275 @@
+I")G<p align="center">
+  <img src="https://raw.githubusercontent.com/openintegrationhub/openintegrationhub.github.io/master/assets/images/large-oih-vertikal-zentriert.png" alt="Open Integration Hub" width="300" />
+</p>
+<p><br />
+<br /></p>
+
+<h1 id="service-collaboration">Service Collaboration</h1>
+
+<p>This document is designed to describe different service collaboration examples. It acts as a starting point to easily understanding the architecture of the Open Integration Hub.
+Most of the examples are triggered by user interactions (e.g. starting a flow) and only the “happy path” i.e. success scenario is described.</p>
+
+<p>Each example is described through a graphical overview, a textual description and pre-conditions.
+For further information for a specific version please have a look at the <a href="https://openintegrationhub.github.io//docs/Services/Services.html">services</a>.</p>
+
+<ul>
+  <li><a href="#starting-a-flow">Starting a flow</a>
+    <ul>
+      <li><a href="#flow-repository">Flow repository</a></li>
+      <li><a href="#webhooks">Webhooks</a></li>
+      <li><a href="#scheduler">Scheduler</a></li>
+    </ul>
+  </li>
+  <li><a href="#execute-polling-flow">Execute Polling Flow</a></li>
+  <li><a href="#execute-webhook-flow">Execute Webhook Flow</a>
+    <ul>
+      <li><a href="#post-request">POST Request</a></li>
+      <li><a href="#get-request">GET Request</a></li>
+    </ul>
+  </li>
+  <li><a href="#request-resources">Request Resources</a></li>
+  <li><a href="#creating-audit-log-records">Creating audit log records</a></li>
+</ul>
+
+<h1 id="starting-a-flow">Starting a flow</h1>
+
+<p><strong>Pre-Conditions:</strong> None.</p>
+
+<p>This example describes the scenario of starting a flow. Once the user starts a flow the following steps are processed:</p>
+
+<ol>
+  <li>Client starts a flow using flow repository’s REST API.</li>
+  <li><code class="language-plaintext highlighter-rouge">Flow Repository</code> sets the flow’s <code class="language-plaintext highlighter-rouge">status</code> to <code class="language-plaintext highlighter-rouge">starting</code> and raises the event <code class="language-plaintext highlighter-rouge">flow.starting</code>.</li>
+  <li>There are 3 services listening to the event <code class="language-plaintext highlighter-rouge">flow.starting</code>:  Webhooks, Scheduler and Component Orchestrator. <code class="language-plaintext highlighter-rouge">Webhooks</code> and <code class="language-plaintext highlighter-rouge">Scheduler</code> examine the event’s payload and decide if they need to react appropriately. We will discuss the exact reaction of both services later in this document.</li>
+  <li>Upon receiving <code class="language-plaintext highlighter-rouge">flow.starting</code> event the <code class="language-plaintext highlighter-rouge">Component Orchestrator</code> starts deploying the containers. Once all containers were deployed, <code class="language-plaintext highlighter-rouge">Component Orchestrator</code> raises the <code class="language-plaintext highlighter-rouge">flow.started</code> event.</li>
+  <li><code class="language-plaintext highlighter-rouge">Flow Repository</code> receives the <code class="language-plaintext highlighter-rouge">flow.started</code> event and switches flow’s <code class="language-plaintext highlighter-rouge">status</code> property from <code class="language-plaintext highlighter-rouge">starting</code> to <code class="language-plaintext highlighter-rouge">started</code>.</li>
+  <li><code class="language-plaintext highlighter-rouge">Webhooks</code> receives the <code class="language-plaintext highlighter-rouge">flow.started</code> event and starts receiving incoming HTTP calls for the given flow.</li>
+  <li><code class="language-plaintext highlighter-rouge">Scheduler</code> receives the <code class="language-plaintext highlighter-rouge">flow.started</code> event and starts scheduling the flow, according to it’s cron property.</li>
+  <li>When a client stops a running flow using flow repository’s REST API, the event <code class="language-plaintext highlighter-rouge">flow.stopping</code> is raised which is causing an inverse reaction chain of events.</li>
+</ol>
+
+<p><img src="https://raw.githubusercontent.com/openintegrationhub/openintegrationhub.github.io/master/assets/images/EventCollaborationStartFlow.png" alt="" /></p>
+
+<p>Figure: <em>startFlow</em></p>
+
+<p>Now let’s discuss the individual services in detail:</p>
+
+<h2 id="flow-repository">Flow repository</h2>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">POST /flows/{id}/start</code>: Used to start a flow</li>
+  <li><code class="language-plaintext highlighter-rouge">POST /flows/{id}/stop</code>: Used to stop a flow</li>
+</ul>
+
+<p>Upon receiving the HTTP call for starting a flow, Flow Repository sets the flows <code class="language-plaintext highlighter-rouge">status</code> to starting. Upon receiving stopping request it sets the status to <code class="language-plaintext highlighter-rouge">stopping</code>. If the flow has been started and flow repsitory receives <code class="language-plaintext highlighter-rouge">flow.started</code> event it sets the status to <code class="language-plaintext highlighter-rouge">active</code> while it sets it to <code class="language-plaintext highlighter-rouge">inactive</code> upon receiving <code class="language-plaintext highlighter-rouge">flow.stopped</code>. The schema of the event payload is shown below.</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">Event</span><span class="pi">:</span>
+  <span class="na">type</span><span class="pi">:</span> <span class="s">object</span>
+  <span class="na">required</span><span class="pi">:</span>
+    <span class="pi">-</span> <span class="s">headers</span>
+    <span class="pi">-</span> <span class="s">payload</span>
+  <span class="na">properties</span><span class="pi">:</span>
+    <span class="na">headers</span><span class="pi">:</span>
+      <span class="na">type</span><span class="pi">:</span> <span class="s">object</span>
+       <span class="s">required</span><span class="pi">:</span>
+         <span class="pi">-</span> <span class="s">name</span>
+         <span class="pi">-</span> <span class="s">createdAt</span>
+         <span class="pi">-</span> <span class="s">serviceName</span>
+      <span class="na">properties</span><span class="pi">:</span>
+        <span class="na">name</span><span class="pi">:</span>
+          <span class="na">type</span><span class="pi">:</span> <span class="s">string</span>
+        <span class="na">createdAt</span><span class="pi">:</span>
+          <span class="na">type</span><span class="pi">:</span> <span class="s">string</span>
+          <span class="na">format</span><span class="pi">:</span> <span class="s">date-time</span>
+        <span class="na">serviceName</span><span class="pi">:</span>
+          <span class="na">type</span><span class="pi">:</span> <span class="s">string</span>
+    <span class="na">payload</span><span class="pi">:</span>
+      <span class="na">type</span><span class="pi">:</span> <span class="s">object</span>
+</code></pre></div></div>
+
+<p>The <code class="language-plaintext highlighter-rouge">payload</code> property is an arbitrary object to be sent with the event. Flow repository will send the entire flow as <code class="language-plaintext highlighter-rouge">payload</code>.</p>
+
+<h2 id="webhooks">Webhooks</h2>
+
+<p>Upon receiving <code class="language-plaintext highlighter-rouge">flow.starting</code> event the service checks if the <code class="language-plaintext highlighter-rouge">cron</code> property is <strong>not</strong> set. If so, the service persist a data record in his local DB but <strong>doesn’t start receiving HTTP requests</strong> for the given flow yet. The following table demonstrates an example of such records.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>flowId</th>
+      <th style="text-align: center">queue</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>58b41f5da9ee9d0018194bf3</td>
+      <td style="text-align: center">queue_58b41f5da9ee9d0018194bf3</td>
+    </tr>
+    <tr>
+      <td>5b62c91afd98ea00112d5404</td>
+      <td style="text-align: center">queue_5b62c91afd98ea00112d5404</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>After receiving the <code class="language-plaintext highlighter-rouge">flow.started</code> event, the service starts accepting incoming messages from the flow’s webhook URL and sends them to the corresponding queues to be handled by flow nodes. This is actually how it is accomplished today. The only difference is that webhooks service is retrieving all the required data about a webhook flow from its local DB.</p>
+
+<p>Please note that the webhooks service ignores the event if the following condition is met:</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">cron</code> property is set in the event</li>
+</ul>
+
+<p>Upon receiving the <code class="language-plaintext highlighter-rouge">flow.stopping</code> event, the service deletes the record for the given flow and stops accepting requests.</p>
+
+<h2 id="scheduler">Scheduler</h2>
+
+<p>Upon receiving <code class="language-plaintext highlighter-rouge">flow.starting</code> event the service checks if the <code class="language-plaintext highlighter-rouge">cron</code> property is set. If so, the service persist a data record in his local DB, but <strong>doesn’t start scheduling</strong> the given flow yet. The following table demonstrates an example of such records.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>flowId</th>
+      <th style="text-align: center">cron</th>
+      <th style="text-align: center">dueExecution</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>58b41f5da9ee9d0018194bf3</td>
+      <td style="text-align: center">*/3 * * * *</td>
+      <td style="text-align: center">2019-01-25T13:39:28.172</td>
+    </tr>
+    <tr>
+      <td>5b62c91afd98ea00112d5404</td>
+      <td style="text-align: center">15 14 * * 1-5</td>
+      <td style="text-align: center">2019-01-27T14:15:00.00</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Upon receiving the <code class="language-plaintext highlighter-rouge">flow.started</code> event the service starts scheduling the flow executions by retrieving the flow data from its local DB.</p>
+
+<p>Please note that the scheduler service ignores the event if the following condition is met:</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">cron</code> property is <strong>not</strong> set in the event</li>
+</ul>
+
+<p>Upon receiving the <code class="language-plaintext highlighter-rouge">flow.stopping</code> event, the service deletes the record for the given flow and stops scheduling flow executions.</p>
+
+<h1 id="execute-polling-flow">Execute Polling Flow</h1>
+
+<p><strong>Pre-Conditions:</strong> Starting a flow.</p>
+
+<p>As described in <a href="#scheduler">scheduler section</a> when a flow is started the service starts scheduling the flow executions. Once the scheduler finds a flow that is ready for execution it pushed a message including the relating flow ID to the queue. The recipient is the first node of the flow which is the application specific adapter. This adapter then makes a GET request to the aplications API to get the payload. Afterwards it pushes the message including the payload onto the queue.</p>
+
+<p>The message format of the messages emitted by scheduler have the following structure:</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="p">{</span>
+    <span class="dl">"</span><span class="s2">id</span><span class="dl">"</span> <span class="p">:</span> <span class="c1">//some record uuid,</span>
+    <span class="dl">"</span><span class="s2">attachments</span><span class="dl">"</span><span class="p">:{</span>
+        <span class="c1">//empty</span>
+    <span class="p">},</span>
+    <span class="dl">"</span><span class="s2">body</span><span class="dl">"</span><span class="p">:</span> <span class="p">{</span>
+        <span class="c1">//empty</span>
+    <span class="p">},</span>
+    <span class="dl">"</span><span class="s2">headers</span><span class="dl">"</span><span class="p">:</span> <span class="p">{</span>
+        <span class="c1">//empty</span>
+    <span class="p">},</span>
+    <span class="dl">"</span><span class="s2">metadata</span><span class="dl">"</span><span class="p">:</span> <span class="p">{</span>
+        <span class="c1">//empty</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p><img src="https://raw.githubusercontent.com/openintegrationhub/openintegrationhub.github.io/master/assets/images/ExecutePollingFlow.png" alt="webhookPost" /></p>
+
+<p>Figure: <em>executePollingFlow</em></p>
+
+<h1 id="execute-webhook-flow">Execute Webhook Flow</h1>
+
+<h2 id="post-request">POST Request</h2>
+
+<p><strong>Pre-Conditions:</strong> Starting a flow.</p>
+
+<p>Once Webhooks receives a POST request it pushes the message to the queue. The recipient is the first node of the flow which is the application specific adapter.
+In contrast to the GET request, this request already includes the payload.</p>
+
+<p>The following example shows the message format of Webhooks messages:</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span>
+  <span class="dl">"</span><span class="s2">headers</span><span class="dl">"</span><span class="p">:</span> <span class="p">{</span>
+    <span class="c1">//GET request headers</span>
+  <span class="p">},</span>
+  <span class="dl">"</span><span class="s2">query</span><span class="dl">"</span><span class="p">:</span> <span class="p">{</span>
+    <span class="c1">//POST request query parameters</span>
+  <span class="p">},</span>
+  <span class="dl">"</span><span class="s2">body</span><span class="dl">"</span><span class="p">:</span> <span class="p">{</span>
+    <span class="c1">//POST request body</span>
+  <span class="p">},</span>
+  <span class="c1">//other properties</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p><img src="https://raw.githubusercontent.com/openintegrationhub/openintegrationhub.github.io/master/assets/images/ExecuteWebhookFlowPost.png" alt="webhookPost" /></p>
+
+<p>Figure: <em>executeWebhookFlowPost</em></p>
+
+<h2 id="get-request">GET Request</h2>
+
+<p><strong>Pre-Conditions:</strong> Starting a flow.</p>
+
+<p>Once Webhooks receives a GET request it takes the url parameters and request headers and put it into the message. This means in particular the headers go to <code class="language-plaintext highlighter-rouge">headers</code> while query string parameters go to <code class="language-plaintext highlighter-rouge">body</code>. It then pushes the message to the queue. The recipient is the first node of the flow which is the application specific adapter. This adapter then makes a GET request to the aplications API to get the payload. Afterwards it pushes the message including the payload onto the queue.</p>
+
+<p>The following example shows the message format of Webhooks messages:</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span>
+  <span class="dl">"</span><span class="s2">headers</span><span class="dl">"</span><span class="p">:</span> <span class="p">{</span>
+    <span class="c1">//GET request headers</span>
+  <span class="p">},</span>
+  <span class="dl">"</span><span class="s2">body</span><span class="dl">"</span><span class="p">:</span> <span class="p">{</span>
+    <span class="c1">//GET request query string parameters</span>
+  <span class="p">},</span>
+  <span class="c1">//other properties</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>An examplary webhook GET request could look like the following: <code class="language-plaintext highlighter-rouge">GET /hook/&lt;flow-id&gt;?param1=value&amp;param2=value</code></p>
+
+<p><img src="https://raw.githubusercontent.com/openintegrationhub/openintegrationhub.github.io/master/assets/images/ExecuteWebhookFlowGET.png" alt="webhookPost" /></p>
+
+<p>Figure: <em>executeWebhookFlowGet</em></p>
+
+<h1 id="request-resources">Request Resources</h1>
+
+<p>The following example shows how a user can request a resource using IAM. The graphic below shows how this example would look like if a user request a resource from the flow repository.</p>
+
+<ol>
+  <li>User logs in into IAM.</li>
+  <li>IAM responds with an ephemeral token.</li>
+  <li>User uses the ephemeral token to request a cetrain resource (e.g. a specific flow by id).</li>
+  <li>Flow repository introspects the ephemeral token at IAM (services accounts receive a permanent token when they first register) using IAM utils (middleware).</li>
+  <li>IAM responds with user information such as username, tenant, tenant specific role and user permissions related to this token.</li>
+  <li>Flow Repsitory checks if the user has the permission to request the resource.</li>
+  <li>Flow repository responds with the requested information.</li>
+</ol>
+
+<p>Illustration of this process:  (Figur <em>requestResourceSuccess</em>).</p>
+
+<p><img src="https://raw.githubusercontent.com/openintegrationhub/openintegrationhub.github.io/master/assets/images/requestResourceSuccess.png" alt="requestResourceSuccess" /></p>
+
+<p>Figure: <em>requestResourceSuccess</em></p>
+
+<p><strong>1</strong>: Ephemeral token<br />
+<strong>2</strong>: Service makes request with service account token<br />
+<strong>3</strong>: User information e.g.: username, tenant, tenant specific role, permissions</p>
+
+<h1 id="creating-audit-log-records">Creating audit log records</h1>
+
+<p>To create a record that should be stored in the audit log a service simply has to put a message onto the queue with a predefined topic. Each service decides on its own, which events should be stored in the audit log service.
+Audit log listens to all events having <code class="language-plaintext highlighter-rouge">audit.*</code> as topic.</p>
+
+<p><img src="https://raw.githubusercontent.com/openintegrationhub/openintegrationhub.github.io/master/assets/images/CreatingAuditLog.png" alt="creatingAuditLogEvents" /></p>
+:ET

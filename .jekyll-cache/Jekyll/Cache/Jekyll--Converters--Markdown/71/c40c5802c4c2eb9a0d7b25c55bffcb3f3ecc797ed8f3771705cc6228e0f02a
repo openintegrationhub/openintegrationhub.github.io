@@ -1,0 +1,73 @@
+I"*<p align="center">
+  <img src="https://raw.githubusercontent.com/openintegrationhub/openintegrationhub.github.io/master/assets/images/large-oih-vertikal-zentriert.png" alt="Open Integration Hub" width="300" />
+</p>
+<p><br />
+<br /></p>
+
+<h1 id="master-data-models">Master Data Models</h1>
+
+<p>A fundamental challenge of data integration is mapping data, because applications usually use different properties and structures to represent their data.
+Traditionally the mapping is manually, where the data is copied between the objects. This is not very efficient, time consuming and does not scale.</p>
+
+<p>The Open Integration Hub’s goal is to make integration easier, by providing reusable standard components. In this spirit, also mapping of data should be easier and scalable.</p>
+
+<p>In order to map data only once per application and not for every single integration flow, we make use of standardized <code class="language-plaintext highlighter-rouge">Transformers</code>. Those contain mappings of an applications data schema to a Master Data Model.</p>
+
+<p>Using the (optional) <em>Data Hub</em> enables <em>Master Data Management</em> for the respective domain by centrally storing the data of the integrated applications.</p>
+
+<h2 id="general-approach">General Approach</h2>
+
+<p>There is not <em>the one</em> canonical data model for Open Integration Hub. Instead a model for each context (domain) is defined:</p>
+
+<ul>
+  <li>A Master Data Model describes the data of a certain domain in a depth which is sufficient enough to map and synchronize the specific data of multiple applications in that domain.</li>
+  <li>The model is generic and it can be extended on the application level.</li>
+</ul>
+
+<h2 id="structure">Structure</h2>
+
+<p>Data models consists of numerous entities. Hence, it is necessary to split a data model into smaller parts to enable the transfer of optimized amounts of data:</p>
+
+<ul>
+  <li><strong>Every Master Data Model consists of one or multiple <em>loosely coupled</em> sub-models.</strong></li>
+</ul>
+
+<p>Although it is necessary to split (especially big) data models into smaller sub-models, it often does not make sense to send each entity on its own, when there is a <em>high cohesion</em> between certain entities. Hence,</p>
+
+<ul>
+  <li>
+    <p><strong>each sub-model can consist of one <em>or more</em> entities.</strong></p>
+  </li>
+  <li>
+    <p><strong>In case a sub-model consists of multiple entities, it <em>must</em> be modeled as an <em>aggregate</em>:</strong></p>
+  </li>
+</ul>
+
+<blockquote>
+  <p><strong>Aggregate</strong> is a pattern in Domain-Driven Design. A DDD aggregate is a cluster of domain objects that can be treated as a single unit. An example may be an order and its line-items, these will be separate objects, but it’s useful to treat the order (together with its line items) as a single aggregate.</p>
+
+  <p>An aggregate will have one of its component objects be the aggregate root. Any references from outside the aggregate should only go to the aggregate root. The root can thus ensure the integrity of the aggregate as a whole.</p>
+
+  <p>[s. <a href="https://martinfowler.com/bliki/DDD_Aggregate.html">Martin Fowler: DDD_Aggregate</a>]</p>
+  <h3 id="json-schema">JSON-Schema</h3>
+</blockquote>
+
+<p>All Master Data Models in Open Integration Hub use <a href="http://json-schema.org">JSON Schema</a> as the format that data is processed with.</p>
+
+<p>Open Integration Hub is able to validate data at runtime. As Master Data Models are split into sub-models, those sub-models must be processable independently.</p>
+
+<ul>
+  <li><strong>for every sub-model there must be a <em>seperate</em> JSON schema describing the entity or aggregate.</strong></li>
+</ul>
+
+<p>As there are situations where entities are reused in (i.e. are part of) two or more aggregates, it is of course adequate to encapsulate those entities in an additional schema file and reference them from the several sub-models to avoid redundancy.</p>
+
+<!--
+## Usage within Open Integration Hub
+### Metadata Repository
+### Data Hub
+### ID Linking
+### Integration Layer Service
+### Conflict Management
+-->
+:ET

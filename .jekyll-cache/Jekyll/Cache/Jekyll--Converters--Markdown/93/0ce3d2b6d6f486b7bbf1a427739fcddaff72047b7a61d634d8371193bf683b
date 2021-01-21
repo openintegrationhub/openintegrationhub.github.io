@@ -1,0 +1,111 @@
+I"�"<!-- Description Guidelines
+
+Please note:
+Use the full links to reference other files or images! Relative links will not work under our theme settings settings.
+-->
+
+<!-- please choose the appropriate batch and delete/comment the others  -->
+<p><img src="https://img.shields.io/badge/Status-Production-brightgreen.svg" alt="prod" /></p>
+
+<h1 id="audit-log-"><strong>Audit Log</strong> <!-- make sure spelling is consistent with other sources and within this document --></h1>
+
+<h2 id="introduction">Introduction</h2>
+<!-- 2 sentences: what does it do and how -->
+
+<p>The Audit Log receives, stores, and returns logging information about important user actions and system events. Messages spawned by other services are automatically stored, and can be retrieved via a REST API.</p>
+
+<p><a href="http://auditlog.openintegrationhub.com/api-docs/" class="btn fs-5 mb-4 mb-md-0">API Reference</a>
+<a href="https://github.com/openintegrationhub/openintegrationhub/tree/master/services/audit-log" class="btn fs-5 mb-4 mb-md-0">Implementation</a>
+<!--[Service File](){: .btn .fs-5 .mb-4 .mb-md-0 }--></p>
+
+<h2 id="technologies-used">Technologies used</h2>
+<!-- please name and elaborate on other technologies or standards the service uses -->
+<p><a href="https://www.mongodb.com/">MongoDB</a>: MongoDB is used as the Audit Log’s storage solution.</p>
+
+<h2 id="how-it-works">How it works</h2>
+<!-- describe core functionalities and underlying concepts in more detail -->
+<p>The Audit Log serves as a persistent, immutable repository for pieces of information that are important to the operation of the Open Integration Hub. It receives this information through the <a href="https://openintegrationhub.github.io//docs/Services/MessageOrientedMiddleware.html">Message Oriented Middleware</a>, sent by the other services.</p>
+
+<p>These messages are called <em>events</em>, and are saved as <em>logs</em>. Each event has a name, e.g. <code class="language-plaintext highlighter-rouge">user.created</code>, and a payload containing the relevant information. As each Service knows best what information would be relevant, the Audit Log makes no requirements as to the format of this payload, and instead simply accepts arbitrary JSON in its place.</p>
+
+<p>The Audit Log maintains a list of event names it listens for. Each time an event with a name from the list is spawned somewhere in the Open Integration Hub, the Audit Log automatically saves it as a log. Events with names that are not on this list are ignored by the Audit Log.</p>
+
+<h3 id="list-of-listened-for-events">List of listened-for events</h3>
+<p>The names of events generally follow the schema of <code class="language-plaintext highlighter-rouge">[context].[object].[action]</code>. This is the list of all event names that the Audit Log currently listens for:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>'iam.user.created',
+'iam.user.deleted',
+'iam.user.modified',
+'iam.user.removedFromTenant',
+'iam.user.assignedToTenant',
+'iam.user.loginFailed',
+'iam.tenant.created',
+'iam.tenant.deleted',
+'iam.tenant.modified',
+'iam.role.created',
+'iam.role.deleted',
+'iam.role.modified',
+'iam.token.created',
+'iam.token.deleted',
+'iam.token.modified',
+'iam.permission.created',
+'iam.permission.deleted',
+'iam.permission.modified',
+'secret-service.secret.created',
+'secret-service.secret.deleted',
+'secret-service.token.get',
+'metadata.domain.created',
+'metadata.domain.deleted',
+'metadata.domain.modified',
+'metadata.schema.created',
+'metadata.schema.deleted',
+'metadata.schema.modified',
+'flowrepo.flow.created',
+'flowrepo.flow.modified',
+'flowrepo.flow.deleted',
+</code></pre></div></div>
+
+<h3 id="log-schema">Log Schema</h3>
+<p>All logs are stored in this schema:</p>
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+     </span><span class="nl">"headers"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+       </span><span class="nl">"serviceName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+       </span><span class="nl">"createdAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+       </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="w">
+     </span><span class="p">},</span><span class="w">
+     </span><span class="nl">"payload"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+       </span><span class="nl">"user"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+       </span><span class="nl">"tenant"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="w">
+     </span><span class="p">}</span><span class="w">
+   </span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+<p>The <code class="language-plaintext highlighter-rouge">headers</code> object is automatically generated by the <a href="https://openintegrationhub.github.io//docs/Services/MessageOrientedMiddleware.html">Message Oriented Middleware</a>. As mentioned before, the <code class="language-plaintext highlighter-rouge">payload</code> object can contain arbitrary JSON. However, two keys are reserved: <code class="language-plaintext highlighter-rouge">user</code>, containing the id of the user that caused this event, and <code class="language-plaintext highlighter-rouge">tenant</code>, containing the id of the tenant in which this event has taken place. Both of these keys are optional, as events are not necessarily associated with a user or a tenant.</p>
+
+<p>Logs are immutable, and cannot be changed nor deleted by user input once they have been stored. The only time they are altered after the fact is when a user is deleted. In this case, the user’s id and username are anonymized in all logs that feature them.</p>
+
+<h3 id="audit-log-api">Audit Log API</h3>
+<p>The Audit Log offers a REST API for viewing and manually storing logs.</p>
+
+<p>For retrieving and viewing stored logs, the API offers a single endpoint <code class="language-plaintext highlighter-rouge">GET /logs</code>, which allows for detailed filtering of the results through query arguments. Regular users are limited to viewing logs that are directly associated with their own tenant, or with the user themselves. See the section “Ownership and Permissions” for further details.</p>
+
+<p>Additionally, there is another endpoint <code class="language-plaintext highlighter-rouge">POST /logs</code> that allows a user to manually save a log in the Audit Log. Please note that this end point exists primarily for testing and debugging purposes. During standard operation in a production environment, all logs should be automatically created by listening to events on the <a href="https://openintegrationhub.github.io//docs/Services/MessageOrientedMiddleware.html">Message Oriented Middleware</a>.</p>
+
+<p>For further information and examples about the API, please refer to the <a href="http://auditlog.openintegrationhub.com/api-docs/">API Reference</a>.</p>
+
+<h3 id="ownership-and-permissions">Ownership and Permissions</h3>
+<p>As the Audit Log stores information about system-wide events, regular users are heavily restricted in which logs they can view. They can only see logs whose <code class="language-plaintext highlighter-rouge">user</code> or <code class="language-plaintext highlighter-rouge">tenant</code> ids match their own. Furthermore, regular users are required to have the relevant permission to be able to view logs. For further information about permissions, please refer to the documentation of the <a href="https://openintegrationhub.github.io//docs/Services/IdentityManagement.html">Identity Management</a>.</p>
+
+<p>Open Integration Hub system administrators have neither of these restrictions, and can freely view all logs.</p>
+
+<h3 id="interaction-with-other-services">Interaction with other Services</h3>
+<p>The Audit Log can receive events from any service, but only directly interacts with two of them:</p>
+
+<ul>
+  <li>
+    <p><a href="https://openintegrationhub.github.io//docs/Services/MessageOrientedMiddleware.html">Message Oriented Middleware</a>: The Audit Log receives all events it is supposed to store through the Message Oriented Middleware.</p>
+  </li>
+  <li>
+    <p><a href="https://openintegrationhub.github.io//docs/Services/IdentityManagement.html">Identity Management</a>: The Audit Log requires a bearer token created by the Identity Management to determine which logs the current user is allowed to view.</p>
+  </li>
+</ul>
+:ET

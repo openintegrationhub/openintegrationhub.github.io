@@ -1,0 +1,180 @@
+I"�]<h1 id="deprecated-warning">Deprecated :warning:</h1>
+
+<p>This petstore example is only compatible with the legacy release of the Open Integration Hub. An updated example will be released in the future. Please see one of the existing connectors for an updated example.</p>
+
+<p><a href="https://github.com/openintegrationhub/snazzycontacts-adapter">Snazzy Contacts Adapter</a></p>
+
+<p><a href="https://github.com/openintegrationhubsnazzycontacts-transformer">Snazzy Contacts Transformer</a></p>
+
+<h1 id="nodejs-development-example">Node.js Development Example</h1>
+
+<p>Open Integration Hub supports <code class="language-plaintext highlighter-rouge">Node.js</code> programming language for building integration components such as Adapters and Transformers.</p>
+
+<p>To help you create an Adapter in <code class="language-plaintext highlighter-rouge">Node.js</code> we have created a simple <a href="https://github.com/openintegrationhub/petstore-component-nodejs">Petstore component in Node.js</a> which connects to the <a href="https://petstore.elastic.io/docs/">Petstore API</a>. This component is specified for the elastic.io iPaaS platform, which uses many Open Integration Hub services. Using elastic.io for learning the concepts makes it easier for you, as you can interact with the components via user interface - which is just more comfortable than using the framework alone. But don’t worry, the technological basics are the same.</p>
+
+<p>For now lets start with understanding the different parts a typical adapter:</p>
+
+<h2 id="petstore-component">Petstore Component</h2>
+
+<p>Let us have a look at the structure of the Petstore Component in Node.js:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>petstore-component-nodejs
+
+├── component.json                                          (1)
+├── lib
+│   ├── actions                                             (2)
+│   │   ├── createPetWithGenerators.js
+│   │   └── createPetWithPromise.js
+│   ├── schemas                                             (3)
+│   │   ├── createPet.in.json
+│   │   ├── createPet.out.json
+│   │   └── getPetsByStatus.out.json
+│   └── triggers                                            (4)
+│       ├── getPetsByStatusWithDynamicSelectModel.js
+│       ├── getPetsByStatusWithGenerators.js
+│       └── getPetsByStatusWithPromises.js
+├── logo.png                                                (5)
+├── package.json                                            (6)
+└── verifyCredentials.js                                    (7)
+</code></pre></div></div>
+
+<p>The Node.js components get built by NPM <code class="language-plaintext highlighter-rouge">run-script</code> which checks first the <code class="language-plaintext highlighter-rouge">package.json</code> (6) configuration file and starts initialising the <code class="language-plaintext highlighter-rouge">node</code> and <code class="language-plaintext highlighter-rouge">npm</code> versions and builds them. Next, the dependencies get downloaded and build. All node.js components must use the following dependencies:</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="dl">"</span><span class="s2">dependencies</span><span class="dl">"</span><span class="p">:</span> <span class="p">{</span>
+  <span class="dl">"</span><span class="s2">elasticio-sailor-nodejs</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">^2.2.0</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">elasticio-node</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">^0.0.8</span><span class="dl">"</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Sailor is the Node.js SDK. It makes your component a citizen of the platform by providing a simple programming model for components and ensuring a smooth communication with the platform.</p>
+
+<p>The <code class="language-plaintext highlighter-rouge">component.json</code> file (1) is the component descriptor interpreted by the platform to gather all the required information for presenting to the user in the platform user interface (UI). For example, you can define the component’s title in the component descriptor but also the component’s authentication mechanism. The descriptor is the only place to list the functionality provided by the component, the so called <code class="language-plaintext highlighter-rouge">triggers</code> and <code class="language-plaintext highlighter-rouge">actions</code>.</p>
+
+<p>The directory <code class="language-plaintext highlighter-rouge">lib</code> together with its sub-directories <strong>actions</strong> (2), <strong>schemas</strong> (3) and <strong>triggers</strong> (4) get defined in the <code class="language-plaintext highlighter-rouge">component.json</code> file. The Node.js sources are in the sub-directories <code class="language-plaintext highlighter-rouge">lib/actions</code> (2) and <code class="language-plaintext highlighter-rouge">lib/triggers</code> (4). The JSON schemas defining the component’s metadata  are in the sub-directory <code class="language-plaintext highlighter-rouge">lib/schemas</code> (3). We discuss them in more details <a href="#component-descriptor">later in this article</a>.</p>
+
+<p>If you have a logo for the component, you can place the file called <code class="language-plaintext highlighter-rouge">logo.png</code> (5) in the root directory of the component. Typically the logo of the API vendor gets used as component logo. If you did not provide any logo, the component will show a generic logo for your component.</p>
+
+<p>Last but not least, the <code class="language-plaintext highlighter-rouge">verifyCredentails.js</code> (7) file should contain the main verification mechanism for all the Node.js components built for the  platform. We cover this topic <a href="#verify-credentials">later in the article</a>.</p>
+
+<h2 id="component-descriptor">Component descriptor</h2>
+
+<p>As mentioned above, the <code class="language-plaintext highlighter-rouge">component.json</code> file is the component descriptor interpreted by the platform to gather all the required information about the component. Let’s explore the descriptor of the Petstore component:</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Petstore API (Node.js)"</span><span class="p">,</span><span class="w">                                       </span><span class="err">(</span><span class="mi">1</span><span class="err">)</span><span class="w">
+  </span><span class="nl">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Component for the Petstore API"</span><span class="p">,</span><span class="w">                         </span><span class="err">(</span><span class="mi">2</span><span class="err">)</span><span class="w">
+  </span><span class="nl">"credentials"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">                                                         </span><span class="err">(</span><span class="mi">3</span><span class="err">)</span><span class="w">
+    </span><span class="nl">"fields"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"apiKey"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"API key"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"required"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"viewClass"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TextFieldWithNoteView"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"note"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Please use &lt;b&gt;secret&lt;/b&gt; as API key."</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nl">"triggers"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">                                                            </span><span class="err">(</span><span class="mi">4</span><span class="err">)</span><span class="w">
+    </span><span class="err">...</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+  </span><span class="nl">"actions"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">                                                             </span><span class="err">(</span><span class="mi">5</span><span class="err">)</span><span class="w">
+    </span><span class="err">...</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+<p>The component descriptor above defines the component title (1) and description (2). It also defines the fields used to ask the user to provide input for authentication (3). In this case a single field is define in which the user will input the <code class="language-plaintext highlighter-rouge">API key</code> for the Petstore API so that the component can communicate with the API on user’s behalf. The verification process is in the <code class="language-plaintext highlighter-rouge">verifyCredentails.js</code> file as mentioned above.</p>
+
+<p>The triggers (4) and actions (5) properties define the component’s triggers and actions.</p>
+
+<h3 id="triggers">Triggers</h3>
+
+<p>Now let’s have a closer look on how to define the <code class="language-plaintext highlighter-rouge">triggers</code>. The example below demonstrates the triggers section from the <code class="language-plaintext highlighter-rouge">component.json</code> component descriptor file:</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nl">"triggers"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"getPetsByStatusWithGenerators"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">                                  </span><span class="err">(</span><span class="mi">1</span><span class="err">)</span><span class="w">
+      </span><span class="nl">"main"</span><span class="p">:</span><span class="w"> </span><span class="s2">"./lib/triggers/getPetsByStatusWithGenerators.js"</span><span class="p">,</span><span class="w">        </span><span class="err">(</span><span class="mi">2</span><span class="err">)</span><span class="w">
+      </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"polling"</span><span class="p">,</span><span class="w">                                                </span><span class="err">(</span><span class="mi">3</span><span class="err">)</span><span class="w">
+      </span><span class="nl">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Get Pets By Status With Generators"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"fields"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">                                                       </span><span class="err">(</span><span class="mi">4</span><span class="err">)</span><span class="w">
+        </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="nl">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Pet Status"</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"required"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"viewClass"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SelectView"</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"model"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"available"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Available"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"pending"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Pending"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"sold"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Sold"</span><span class="w">
+          </span><span class="p">},</span><span class="w">
+          </span><span class="nl">"prompt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Select Pet Status"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="nl">"metadata"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"out"</span><span class="p">:</span><span class="w"> </span><span class="s2">"./lib/schemas/getPetsByStatus.out.json"</span><span class="w">                 </span><span class="err">(</span><span class="mi">5</span><span class="err">)</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<p>The example above demonstrates that the trigger with id <code class="language-plaintext highlighter-rouge">getPetsByStatusWithGenerators</code> (1) gets implemented by the function described in the  <code class="language-plaintext highlighter-rouge">getPetsByStatusWithGenerators.js</code> file (2). The trigger is of <code class="language-plaintext highlighter-rouge">polling</code> type (3) meaning it will wake up periodically to poll for changes in the Petstore API. The triggers configuration is in the <code class="language-plaintext highlighter-rouge">fields</code> (4) and the out-metadata is in the file <code class="language-plaintext highlighter-rouge">getPetsByStatus.out.json</code> (5).</p>
+
+<h3 id="actions">Actions</h3>
+
+<p>Let us check also the <code class="language-plaintext highlighter-rouge">actions</code>. The example below demonstrates the actions section from the <code class="language-plaintext highlighter-rouge">component.json</code> component descriptor file:</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nl">"actions"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"createPetWithPromise"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">                                           </span><span class="err">(</span><span class="mi">1</span><span class="err">)</span><span class="w">
+      </span><span class="nl">"main"</span><span class="p">:</span><span class="w"> </span><span class="s2">"./lib/actions/createPetWithPromise.js"</span><span class="p">,</span><span class="w">                  </span><span class="err">(</span><span class="mi">2</span><span class="err">)</span><span class="w">
+      </span><span class="nl">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Create a Pet With Promise"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"metadata"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"in"</span><span class="p">:</span><span class="w"> </span><span class="s2">"./lib/schemas/createPet.in.json"</span><span class="p">,</span><span class="w">                        </span><span class="err">(</span><span class="mi">3</span><span class="err">)</span><span class="w">
+        </span><span class="nl">"out"</span><span class="p">:</span><span class="w"> </span><span class="s2">"./lib/schemas/createPet.out.json"</span><span class="w">                       </span><span class="err">(</span><span class="mi">4</span><span class="err">)</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<p>In the example above the action with id <code class="language-plaintext highlighter-rouge">createPetWithPromise</code> (1) gets implemented by the function described in the <code class="language-plaintext highlighter-rouge">createPetWithPromise.js</code> file (2). It is possible to give actions in the <code class="language-plaintext highlighter-rouge">fields</code> configurations like in the triggers part, however, this component has none of it. Compared to the triggers, the action has 2 metadata files. One is for in-metadata <code class="language-plaintext highlighter-rouge">createPet.in.json</code> (3) and the other is for out-metadata <code class="language-plaintext highlighter-rouge">createPet.out.json</code> (4).</p>
+
+<h2 id="verify-credentials">Verify Credentials</h2>
+
+<p>When creating an  component you may allow users to check entered credentials for validity, during the integration flow creation. This feature is useful when users need to type-in passwords, host-names, IP addresses, etc. Credentials verification is an optional step but it makes the user flow much more reliable and usable.</p>
+
+<p>For node.js component you can use any libraries and/or functionality at your disposal to authorise the user credentials. But for the platform to find and call your verification code you have to make sure that:</p>
+
+<ul>
+  <li>Your component has a <code class="language-plaintext highlighter-rouge">verifyCredentails.js</code> file in the <strong>root of the folder structure</strong></li>
+  <li>Your <code class="language-plaintext highlighter-rouge">verifyCredentials.js</code> file is a <a href="http://wiki.commonjs.org/wiki/Modules/1.1">common.js module</a></li>
+  <li>It returns one function that accepts <strong>two parameters</strong>: <code class="language-plaintext highlighter-rouge">credentials</code> and <code class="language-plaintext highlighter-rouge">cb</code> (callback).</li>
+  <li>All the credentials for verification gets passed through <strong>credentials</strong> parameter which is an object. This object can contain the properties that match or correspond to the account definition parameters from the <code class="language-plaintext highlighter-rouge">component.json</code>.</li>
+</ul>
+
+<p>Here is the skeleton structure for the verify Credentials for a reference. You are welcome to use it as a starting point to write your own <code class="language-plaintext highlighter-rouge">verifyCredentails.js</code>:</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// here you can place your variables</span>
+
+<span class="c1">// This function gets called by the platform to verify credentials</span>
+<span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="kd">function</span> <span class="nx">verifyCredentials</span><span class="p">(</span><span class="nx">credentials</span><span class="p">,</span> <span class="nx">cb</span><span class="p">)</span> <span class="p">{</span>
+<span class="err"> </span> <span class="err"> </span> <span class="c1">// In credentials you will find what users entered in account form</span>
+<span class="err"> </span> <span class="err"> </span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">'</span><span class="s1">Credentials passed for verification %j</span><span class="dl">'</span><span class="p">,</span> <span class="nx">credentials</span><span class="p">)</span>
+<span class="err"> </span> <span class="err"> </span> <span class="k">if</span> <span class="p">(</span><span class="kc">true</span><span class="p">)</span> <span class="p">{</span>
+<span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="c1">// Verified</span>
+<span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="k">return</span> <span class="nx">cb</span><span class="p">(</span><span class="kc">null</span><span class="p">,</span> <span class="p">{</span><span class="na">verified</span><span class="p">:</span> <span class="kc">true</span><span class="p">});</span>
+<span class="err"> </span> <span class="err"> </span> <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+<span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span><span class="c1">// Verification failed</span>
+<span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span><span class="k">return</span> <span class="nx">cb</span><span class="p">(</span><span class="kc">null</span> <span class="p">,</span> <span class="p">{</span><span class="na">verified</span><span class="p">:</span> <span class="kc">false</span><span class="p">});</span>
+<span class="err"> </span> <span class="err"> </span> <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>The use of any specific verification method depends on the project and the third party API that gets communicated the credentials with. We will not dive into details of every possible solution for your chosen third party API here.</p>
+
+<h2 id="start-your-own">Start your own</h2>
+<p>Now that you have the basics down, we suggest to start with determining what functionality your connector should include. Essential for that is the API you are connecting with.
+<a href="https://openintegrationhub.github.io//docs/Connectors/ActionsAndTriggers.html" class="btn fs-5 mb-4 mb-md-0">Actions and Triggers</a></p>
+
+<p>For a quick start, you can check out to our <a href="https://github.com/openintegrationhub/contacts-adapter-template">contacts adapter template</a>. It contains a baseline for all the functions you’ll need, which you can then adapt and expand for your own requirements.</p>
+
+<p>In the future, the sailor utility described earlier will be replaced by a new OIH-specific version called the Ferryman. The actual connector architecture and functionality will not be impacted by this. For more information about the Ferryman, check the <a href="https://github.com/openintegrationhub/openintegrationhub/tree/master/lib/ferryman">Ferryman documentation</a></p>
+
+<p>More advanced and optional additions to any connector include <a href="https://openintegrationhub.github.io//docs/Services/ConflictManagement.html">Conflict Management</a>.</p>
+:ET

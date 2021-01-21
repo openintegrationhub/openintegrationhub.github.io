@@ -1,0 +1,50 @@
+I"�
+<!-- Description Guidelines
+
+Please note:
+Use the full links to reference other files or images! Relative links will not work under our theme settings settings.
+-->
+
+<!-- please choose the appropriate batch and delete/comment the others  -->
+<p><img src="https://img.shields.io/badge/Status-Production-brightgreen.svg" alt="prod" /></p>
+
+<h1 id="message-oriented-middleware-"><strong>Message Oriented Middleware</strong> <!-- make sure spelling is consistent with other sources and within this document --></h1>
+
+<h2 id="introduction">Introduction</h2>
+<!-- 2 sentences: what does it do and how -->
+
+<p>The Message Oriented Middleware stores and routes messages while transferring them from senders to receivers.</p>
+
+<h2 id="technologies-used">Technologies used</h2>
+<!-- please name and elaborate on other technologies or standards the service uses -->
+<ul>
+  <li>RabbitMQ</li>
+</ul>
+
+<h2 id="how-it-works">How it works</h2>
+
+<!-- describe core functionalities and underlying concepts in more detail -->
+<p>An integration flow is represented by a directed acyclic graph in which
+nodes are represented by integration components communicating with a
+particular API or executing some custom logic. The edges of the
+integration graph define which of two components are connected.</p>
+
+<p>An integration flow is executed by number of <a href="https://kubernetes.io/docs/concepts/workloads/pods/pod/">Pods</a>,
+each representing a flow’s node, also called a <code class="language-plaintext highlighter-rouge">flow step</code>. The steps
+communicate which each other through a messaging queue, such as <a href="https://www.rabbitmq.com/">RabbitMQ</a>.
+The following diagram displays an example of an integration flow using
+a message broker.</p>
+
+<p><img src="Assets/MessageOrientedMiddleware.png" alt="Message Oriented Middleware" /></p>
+
+<p>In the diagram above <code class="language-plaintext highlighter-rouge">Step 1</code> is a trigger component producing data by
+polling an API periodically. The produced messages are sent to a queue
+connecting <code class="language-plaintext highlighter-rouge">Step 1</code> and <code class="language-plaintext highlighter-rouge">Step 2</code>. Because the component in <code class="language-plaintext highlighter-rouge">Step 2</code> is
+very slow, its consumption rate is lower than the publish rate. The
+result is that the queue is growing. That’s why 2 instances of <code class="language-plaintext highlighter-rouge">Step 2</code>
+are started, each consuming messages from the same queue. The message
+broker makes sure that the messages are sent to a single consumer only.</p>
+
+<h3 id="interaction-with-other-services">Interaction with other Services</h3>
+<!-- list and link the services this one interacts with and describe each interaction briefly (1-2 sentences) -->
+:ET

@@ -1,0 +1,42 @@
+I"ê<!-- Description Guidelines
+
+Please note:
+Use the full links to reference other files or images! Relative links will not work under our theme settings.
+-->
+
+<!-- please choose the appropriate batch and delete/comment the others  -->
+<p><img src="https://img.shields.io/badge/Status-Production-brightgreen.svg" alt="prod" /></p>
+
+<h1 id="snapshots-service">Snapshots service</h1>
+
+<h2 id="introduction">Introduction</h2>
+<p>This service is responsible for storing flow snapshots.</p>
+
+<h3 id="what-is-a-snapshot">What is a snapshot?</h3>
+<p>Snapshot is a feature of the OIH platform, which provides flows components a possibility to store some <code class="language-plaintext highlighter-rouge">state</code> between executions.
+A typical use case is to store some <code class="language-plaintext highlighter-rouge">timestamp</code> and use it to query records from a certain system, created after this <code class="language-plaintext highlighter-rouge">timestamp</code>,
+so that you would not need to query full list of records each time.</p>
+
+<p><a href="https://github.com/openintegrationhub/openintegrationhub/tree/master/services/snapshots-service" class="btn fs-5 mb-4 mb-md-0">API Reference</a>
+<a href="https://github.com/openintegrationhub/openintegrationhub/tree/master/services/snapshots-service" class="btn fs-5 mb-4 mb-md-0">Implementation</a>
+<!-- [Service File](){: .btn .fs-5 .mb-4 .mb-md-0 } --></p>
+
+<h2 id="technologies-used">Technologies used</h2>
+<ul>
+  <li>Node.js</li>
+  <li>Typescript</li>
+  <li>MongoDB</li>
+  <li>RabbitMQ</li>
+</ul>
+
+<h2 id="how-it-works">How it works</h2>
+<p>It connects to the RabbitMQ queue, which is in turn subscribed for the <code class="language-plaintext highlighter-rouge">snapshot</code> events, fired by flow components.
+The service consume the messages from the queue and writes it to the DB. The snapshots are then accessible via REST API.</p>
+
+<h3 id="interaction-with-other-services">Interaction with other Services</h3>
+<ul>
+  <li>Interacts with IAM to introspect provided IAM token.</li>
+  <li>Consumes <code class="language-plaintext highlighter-rouge">snapshot</code> events from flow components via RabbitMQ.</li>
+  <li>Component Orchestrator queries the service and provides snapshots to each flow component.</li>
+</ul>
+:ET

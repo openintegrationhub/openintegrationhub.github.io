@@ -1,0 +1,45 @@
+I"¸<!-- Description Guidelines
+
+Please note:
+Use the full links to reference other files or images! Relative links will not work under our theme settings settings.
+-->
+
+<!-- please choose the appropriate batch and delete/comment the others  -->
+<p><img src="https://img.shields.io/badge/Status-Production-brightgreen.svg" alt="prod" /></p>
+
+<h1 id="attachment-storage-service">Attachment Storage Service</h1>
+
+<h2 id="introduction">Introduction</h2>
+<p>Stores files involved in an integration.</p>
+
+<p><a href="http://attachment-storage-service.openintegrationhub.com/api-docs" class="btn fs-5 mb-4 mb-md-0">API Reference</a>
+<a href="https://github.com/openintegrationhub/openintegrationhub/tree/master/services/attachment-storage-service" class="btn fs-5 mb-4 mb-md-0">Implementation</a>
+<a href="https://github.com/openintegrationhub/openintegrationhub/tree/master/lib/attachment-storage-service" class="btn fs-5 mb-4 mb-md-0">Service File</a></p>
+
+<h2 id="technologies-used">Technologies used</h2>
+<ul>
+  <li>Node.js</li>
+  <li>Typescript</li>
+  <li>Redis</li>
+</ul>
+
+<h2 id="how-it-works">How it works</h2>
+<p>Provides the REST API for storing and getting files. As a backend uses Redis.</p>
+
+<h3 id="supported-content-types">Supported content types</h3>
+<ul>
+  <li>application/octet-stream</li>
+  <li>application/json</li>
+  <li>application/xml</li>
+  <li>text/xml</li>
+  <li>text/plain</li>
+  <li>text/csv</li>
+  <li>text/tsv</li>
+</ul>
+
+<h3 id="interaction-with-other-services">Interaction with other Services</h3>
+<ul>
+  <li>Interacts with IAM to introspect provided IAM token.</li>
+  <li>Flow components are able to store and get their attachments into the Attachment Storage Service via the REST API.</li>
+</ul>
+:ET

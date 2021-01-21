@@ -1,0 +1,861 @@
+I"QZ<!-- TOC depthFrom:1 depthTo:6 withLinks:1 updateOnSave:1 orderedList:0 -->
+
+<ul>
+  <li><a href="#objects">Objects</a>
+    <ul>
+      <li><a href="#person">Person</a></li>
+      <li><a href="#organization">Organization</a></li>
+      <li><a href="#address">Address</a></li>
+      <li><a href="#category">Category</a></li>
+      <li><a href="#contactdata">ContactData</a></li>
+      <li><a href="#calendar">Calendar</a></li>
+      <li><a href="#organizationtopersonrelationship">OrganizationToPersonRelationship</a></li>
+      <li><a href="#persontopersonrelationship">PersonToPersonRelationship</a></li>
+      <li><a href="#persontoorganizationrelationship">PersonToOrganizationRelationship</a></li>
+    </ul>
+  </li>
+</ul>
+
+<!-- /TOC -->
+
+<h1 id="objects">Objects</h1>
+<h2 id="person">Person</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Attribute</th>
+      <th>Type</th>
+      <th>Properties</th>
+      <th>Description</th>
+      <th>Example</th>
+      <th>Possible Enumeration Options</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>title</td>
+      <td>String</td>
+      <td>-</td>
+      <td>Academic degree of the person</td>
+      <td>“Dr.”</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>salutation</td>
+      <td>String</td>
+      <td>-</td>
+      <td>Salutation of the person</td>
+      <td>“Mrs.”</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <td>firstname</td>
+      <td>String</td>
+      <td>-</td>
+      <td>First name of the person</td>
+      <td>“Silke</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <td>middleName</td>
+      <td>String</td>
+      <td>-</td>
+      <td>Middle name of the person</td>
+      <td>“Sandra”</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <td>lastName</td>
+      <td>String</td>
+      <td>-</td>
+      <td>Last name of the person</td>
+      <td>“Schaefer”</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <td>gender</td>
+      <td>String</td>
+      <td>enum</td>
+      <td>Gender of the person</td>
+      <td>“female”</td>
+      <td>“male”, “female”, “intersexual”</td>
+    </tr>
+    <tr>
+      <td>birthday</td>
+      <td>Date-time</td>
+      <td>-</td>
+      <td>Birthday of the person</td>
+      <td>“1982-06-24”</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <td>notes</td>
+      <td>String</td>
+      <td>-</td>
+      <td>Personal notes for the person</td>
+      <td>“Met at the winter summit”</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <td>displayName</td>
+      <td>String</td>
+      <td>-</td>
+      <td>Displayed name of the person within the application</td>
+      <td>“SiSchaefer”</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <td>language</td>
+      <td>String</td>
+      <td>-</td>
+      <td>First language of the person</td>
+      <td>“German”</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <td>nickname</td>
+      <td>String</td>
+      <td>-</td>
+      <td>Nickname of the person within the application</td>
+      <td>“Sisa”</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <td>jobTitle</td>
+      <td>String</td>
+      <td>-</td>
+      <td>Job title of the person</td>
+      <td>“Sales Manager”</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <td>photo</td>
+      <td>String</td>
+      <td>-</td>
+      <td>Photo related to the person</td>
+      <td>http://example.org/photo.jpg</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <td>anniversary</td>
+      <td>date-time</td>
+      <td>-</td>
+      <td>Anniversary of the person</td>
+      <td>2018-07-01</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <td><a href="#category">categories</a></td>
+      <td>Array (of category objects)</td>
+      <td>-</td>
+      <td>Category the person falls into</td>
+      <td>A category object array</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <td><a href="#address">addresses</a></td>
+      <td>Array (of address objects)</td>
+      <td>-</td>
+      <td>Address of the person</td>
+      <td>An address object array</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <td><a href="#contactdata">contactData</a></td>
+      <td>Array (of contactData objects)</td>
+      <td>-</td>
+      <td>Contact data of a person</td>
+      <td>A contactData object array</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <td><a href="#persontoorganizationrelationship">PersonToOrganizationRelationship</a></td>
+      <td>Array (of personToOrganizationRelationships objects)</td>
+      <td>-</td>
+      <td>Relations of a person to organizations</td>
+      <td>A personToOrganizationRelationship object array</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <td><a href="#persontopersonrelationship">PersonToPersonRelationship</a></td>
+      <td>Array (of personToOrganizationRelationships objects)</td>
+      <td>-</td>
+      <td>Relations of two persons</td>
+      <td>An personToPersonRelationship object array</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <td><a href="#calendar">calendar</a></td>
+      <td>Array (of calendar objects)</td>
+      <td>-</td>
+      <td>Calendar information of the person</td>
+      <td>A calendar object array</td>
+      <td>-</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>In order to secure proper data integration, please satisfy the prescribed standard for the title and language attributes. This ensures that every connected application (and its connector) knows the format of incoming values. In the following a list of common title is presented:</p>
+
+<ul>
+  <li>dr.</li>
+  <li>dr.dr.</li>
+  <li>dr.mult.</li>
+  <li>dr.h.c.</li>
+  <li>prof.</li>
+  <li>prof.dr.</li>
+  <li>ph.d.</li>
+</ul>
+
+<p>The language attribute follows the <a href="https://en.wikipedia.org/wiki/IETF_language_tag"><strong>IETF language tags</strong></a> format. In this format <code class="language-plaintext highlighter-rouge">each language tag is composed of one or more "subtags" separated by hyphens (-). Each subtag is composed of basic Latin letters or digits only.</code>(<em>Source:</em> <a href="(https://en.wikipedia.org/wiki/IETF_language_tag)"><em>Wikipedia</em></a>. In the following a short list of the most used language tags is presented.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">English name for language</th>
+      <th style="text-align: left">Tag</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left">English</td>
+      <td style="text-align: left">en</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">English (United States)</td>
+      <td style="text-align: left">en-US</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">English (Great Britain)</td>
+      <td style="text-align: left">en-GB</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">French</td>
+      <td style="text-align: left">fr</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">German</td>
+      <td style="text-align: left">de</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Polish</td>
+      <td style="text-align: left">pl</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Dutch</td>
+      <td style="text-align: left">nl</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Finnish</td>
+      <td style="text-align: left">fi</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Swedish</td>
+      <td style="text-align: left">sv</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Italian</td>
+      <td style="text-align: left">it</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Spanish (Spain)</td>
+      <td style="text-align: left">es</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Portuguese (Portugal)</td>
+      <td style="text-align: left">pt</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Russian</td>
+      <td style="text-align: left">ru</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Portuguese (Brazil)</td>
+      <td style="text-align: left">pt-BR</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Spanish (Mexico)</td>
+      <td style="text-align: left">es-MX</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Chinese (PRC)</td>
+      <td style="text-align: left">zh-CN</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Chinese (Taiwan)</td>
+      <td style="text-align: left">zh-TW</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Japanese</td>
+      <td style="text-align: left">ja</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Korean</td>
+      <td style="text-align: left">ko</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="organization">Organization</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Attribute</th>
+      <th>Type</th>
+      <th>Properties</th>
+      <th>Description</th>
+      <th>Example</th>
+      <th>Possible Enumeration Options</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>name</td>
+      <td>String</td>
+      <td>-</td>
+      <td>Name of the organization</td>
+      <td>“Cloud Ecosystem e.V.”</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <td>logo</td>
+      <td>String</td>
+      <td>-</td>
+      <td>Logo of the organization</td>
+      <td>“http://example.org/logo.png”</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <td><a href="#category">category</a></td>
+      <td>Array (of category objects)</td>
+      <td>-</td>
+      <td>Category the organization falls into</td>
+      <td>A category object array</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <td><a href="#address">address</a></td>
+      <td>Array (of address objects)</td>
+      <td>-</td>
+      <td>Address of the organization</td>
+      <td>An address object array</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <td><a href="#contactdata">contactData</a></td>
+      <td>Array (of contactData objects)</td>
+      <td>-</td>
+      <td>Contact data of an organization</td>
+      <td>A contactData object array</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <td><a href="#organizationtopersonrelationship">OrganizationToPersonRelationship</a></td>
+      <td>Array (of personToOrganizationRelationships objects)</td>
+      <td>-</td>
+      <td>Relations of an organization to person</td>
+      <td>A personToOrganizationRelationship object array</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <td><a href="#organizationtoorganizationrelationship">OrganizationToOrganizationRelationship</a></td>
+      <td>Array (of personToOrganizationRelationships objects)</td>
+      <td>-</td>
+      <td>Relations of an organization to person</td>
+      <td>An OrganizationToOrganizationRelationship object array</td>
+      <td>-</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="address">Address</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Attribute</th>
+      <th>Type</th>
+      <th>Properties</th>
+      <th>Description</th>
+      <th>Example</th>
+      <th>Possible Enumeration Options</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>street</td>
+      <td>String</td>
+      <td>-</td>
+      <td>Street name of the address</td>
+      <td>“Hohestr.”</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <td>streetNumber</td>
+      <td>Number</td>
+      <td>-</td>
+      <td>Street number of the address</td>
+      <td>3</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <td>unit</td>
+      <td>String</td>
+      <td>-</td>
+      <td>Unit of the address</td>
+      <td>“a”</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <td>zipcode</td>
+      <td>String</td>
+      <td>-</td>
+      <td>Zipcode of the address</td>
+      <td>“50667”</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <td>city</td>
+      <td>String</td>
+      <td>-</td>
+      <td>City of the address</td>
+      <td>“Cologne”</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <td>district</td>
+      <td>String</td>
+      <td>-</td>
+      <td>District of the address</td>
+      <td>“Altstadt-Sued”</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <td>region</td>
+      <td>String</td>
+      <td>-</td>
+      <td>Region/County of the address</td>
+      <td>“NRW”</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <td>country</td>
+      <td>String</td>
+      <td>-</td>
+      <td>Country of the address</td>
+      <td>“Germany”</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <td>countryCode</td>
+      <td>String</td>
+      <td>-</td>
+      <td>Countrycode of the address</td>
+      <td>“DE”</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <td>primaryContact</td>
+      <td>String</td>
+      <td>-</td>
+      <td>Primary contact for the address</td>
+      <td>“Herbert Hermann”</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <td>label</td>
+      <td>String</td>
+      <td>-</td>
+      <td>Can be used for a textual description the address</td>
+      <td>primary</td>
+      <td>-</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="category">Category</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Attribute</th>
+      <th>Type</th>
+      <th>Properties</th>
+      <th>Description</th>
+      <th>Example</th>
+      <th>Possible Enumeration Options</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>name</td>
+      <td>String</td>
+      <td>-</td>
+      <td>Category the person / organization belongs to</td>
+      <td>“Customer”</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <td>label</td>
+      <td>String</td>
+      <td>-</td>
+      <td>Additional description of the category</td>
+      <td>“type a”</td>
+      <td>-</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="contactdata">ContactData</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Attribute</th>
+      <th>Type</th>
+      <th>Properties</th>
+      <th>Description</th>
+      <th>Example</th>
+      <th>Possible Enumeration Options</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>type</td>
+      <td>String</td>
+      <td>-</td>
+      <td>Type of the contact data</td>
+      <td>email</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <td>label</td>
+      <td>-</td>
+      <td>Used to specify the contact data</td>
+      <td>E.g. “Mobile” (type: phone) or “facebook” (type: social media)</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>value</td>
+      <td>String</td>
+      <td>-</td>
+      <td>Value of the contact data</td>
+      <td>email@example.org</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <td>description</td>
+      <td>string</td>
+      <td>-</td>
+      <td>Can be used to further describe the contact data</td>
+      <td>“Primary”</td>
+      <td> </td>
+    </tr>
+  </tbody>
+</table>
+
+<p>In order to secure proper data integration, please satisfy the prescribed standard for common contact data types. This ensures that every connected application (and its connector) knows the format of incoming values. In the following a list of common data types (and labels) is presented. If no further labelling is needed we suggest to leave the label field empty:</p>
+
+<p><strong>General contact types:</strong></p>
+<ul>
+  <li>email</li>
+  <li>phone</li>
+  <li>url</li>
+  <li>fax</li>
+  <li>social media</li>
+</ul>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: right">Type:</th>
+      <th style="text-align: left">email</th>
+      <th style="text-align: left">phone</th>
+      <th style="text-align: left">url</th>
+      <th style="text-align: left">fax</th>
+      <th style="text-align: left">social media</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: right"><strong>Labels</strong></td>
+      <td style="text-align: left">assistant</td>
+      <td style="text-align: left">privateMobile</td>
+      <td style="text-align: left">homepage</td>
+      <td style="text-align: left">assistant</td>
+      <td style="text-align: left">facebook</td>
+    </tr>
+    <tr>
+      <td style="text-align: right"> </td>
+      <td style="text-align: left">privateEmail</td>
+      <td style="text-align: left">privateLandline</td>
+      <td style="text-align: left">subscription</td>
+      <td style="text-align: left">privateFax</td>
+      <td style="text-align: left">xing</td>
+    </tr>
+    <tr>
+      <td style="text-align: right"> </td>
+      <td style="text-align: left">businessEmail</td>
+      <td style="text-align: left">assistant</td>
+      <td style="text-align: left"> </td>
+      <td style="text-align: left">businessFax</td>
+      <td style="text-align: left">linkedin</td>
+    </tr>
+    <tr>
+      <td style="text-align: right"> </td>
+      <td style="text-align: left">support</td>
+      <td style="text-align: left">businessMobile</td>
+      <td style="text-align: left"> </td>
+      <td style="text-align: left"> </td>
+      <td style="text-align: left">skype</td>
+    </tr>
+    <tr>
+      <td style="text-align: right"> </td>
+      <td style="text-align: left"> </td>
+      <td style="text-align: left">businessMobile</td>
+      <td style="text-align: left"> </td>
+      <td style="text-align: left"> </td>
+      <td style="text-align: left">slack</td>
+    </tr>
+    <tr>
+      <td style="text-align: right"> </td>
+      <td style="text-align: left"> </td>
+      <td style="text-align: left">support</td>
+      <td style="text-align: left"> </td>
+      <td style="text-align: left"> </td>
+      <td style="text-align: left">google+</td>
+    </tr>
+    <tr>
+      <td style="text-align: right"> </td>
+      <td style="text-align: left"> </td>
+      <td style="text-align: left"> </td>
+      <td style="text-align: left"> </td>
+      <td style="text-align: left"> </td>
+      <td style="text-align: left">twitter</td>
+    </tr>
+    <tr>
+      <td style="text-align: right"> </td>
+      <td style="text-align: left"> </td>
+      <td style="text-align: left"> </td>
+      <td style="text-align: left"> </td>
+      <td style="text-align: left"> </td>
+      <td style="text-align: left">youtube</td>
+    </tr>
+    <tr>
+      <td style="text-align: right"> </td>
+      <td style="text-align: left"> </td>
+      <td style="text-align: left"> </td>
+      <td style="text-align: left"> </td>
+      <td style="text-align: left"> </td>
+      <td style="text-align: left">reddit</td>
+    </tr>
+    <tr>
+      <td style="text-align: right"> </td>
+      <td style="text-align: left"> </td>
+      <td style="text-align: left"> </td>
+      <td style="text-align: left"> </td>
+      <td style="text-align: left"> </td>
+      <td style="text-align: left">flickr</td>
+    </tr>
+    <tr>
+      <td style="text-align: right"> </td>
+      <td style="text-align: left"> </td>
+      <td style="text-align: left"> </td>
+      <td style="text-align: left"> </td>
+      <td style="text-align: left"> </td>
+      <td style="text-align: left">stackoverflow</td>
+    </tr>
+    <tr>
+      <td style="text-align: right"> </td>
+      <td style="text-align: left"> </td>
+      <td style="text-align: left"> </td>
+      <td style="text-align: left"> </td>
+      <td style="text-align: left"> </td>
+      <td style="text-align: left">pinterest</td>
+    </tr>
+    <tr>
+      <td style="text-align: right"> </td>
+      <td style="text-align: left"> </td>
+      <td style="text-align: left"> </td>
+      <td style="text-align: left"> </td>
+      <td style="text-align: left"> </td>
+      <td style="text-align: left">wechat</td>
+    </tr>
+    <tr>
+      <td style="text-align: right"> </td>
+      <td style="text-align: left"> </td>
+      <td style="text-align: left"> </td>
+      <td style="text-align: left"> </td>
+      <td style="text-align: left"> </td>
+      <td style="text-align: left">qq</td>
+    </tr>
+    <tr>
+      <td style="text-align: right"> </td>
+      <td style="text-align: left"> </td>
+      <td style="text-align: left"> </td>
+      <td style="text-align: left"> </td>
+      <td style="text-align: left"> </td>
+      <td style="text-align: left">whatapp</td>
+    </tr>
+    <tr>
+      <td style="text-align: right"> </td>
+      <td style="text-align: left"> </td>
+      <td style="text-align: left"> </td>
+      <td style="text-align: left"> </td>
+      <td style="text-align: left"> </td>
+      <td style="text-align: left">viber</td>
+    </tr>
+    <tr>
+      <td style="text-align: right"> </td>
+      <td style="text-align: left"> </td>
+      <td style="text-align: left"> </td>
+      <td style="text-align: left"> </td>
+      <td style="text-align: left"> </td>
+      <td style="text-align: left">telegram</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="calendar">Calendar</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Attribute</th>
+      <th>Type</th>
+      <th>Properties</th>
+      <th>Description</th>
+      <th>Example</th>
+      <th>Possible Enumeration Options</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>calendar</td>
+      <td>String</td>
+      <td>-</td>
+      <td>URI to the persons’ calendar</td>
+      <td>http://cal.example.com/calA</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <td>requestCalendar</td>
+      <td>String</td>
+      <td>-</td>
+      <td>URL to request an appointment with the person</td>
+      <td>janedoe@example.com</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <td>busyCalendar</td>
+      <td>String</td>
+      <td>-</td>
+      <td>URL which described if the person is available or busy</td>
+      <td>http://www.example.com/busy/janedoe</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <td>label</td>
+      <td>String</td>
+      <td>-</td>
+      <td>Can be used for a textual description the calendar</td>
+      <td>primary</td>
+      <td>-</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="organizationtopersonrelationship">OrganizationToPersonRelationship</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Attribute</th>
+      <th>Type</th>
+      <th>Properties</th>
+      <th>Description</th>
+      <th>Example</th>
+      <th>Possible Enumeration Options</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>label</td>
+      <td>String</td>
+      <td>-</td>
+      <td>Describes the relationship between a person and an organization</td>
+      <td>“employee”</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <td>function</td>
+      <td>String</td>
+      <td>-</td>
+      <td>Function of the person within the organization</td>
+      <td>“project leader”</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <td>department</td>
+      <td>String</td>
+      <td>-</td>
+      <td>Name of the department of the person’s company</td>
+      <td>“Sales”</td>
+      <td>-</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="persontopersonrelationship">PersonToPersonRelationship</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Attribute</th>
+      <th>Type</th>
+      <th>Properties</th>
+      <th>Description</th>
+      <th>Example</th>
+      <th>Possible Enumeration Options</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>label</td>
+      <td>String</td>
+      <td>-</td>
+      <td>Describes the relationship between two persons</td>
+      <td>“employee”</td>
+      <td>-</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="persontoorganizationrelationship">PersonToOrganizationRelationship</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Attribute</th>
+      <th>Type</th>
+      <th>Properties</th>
+      <th>Description</th>
+      <th>Example</th>
+      <th>Possible Enumeration Options</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>label</td>
+      <td>String</td>
+      <td>-</td>
+      <td>Describes the relationship between two organizations</td>
+      <td>“employee”</td>
+      <td>-</td>
+    </tr>
+  </tbody>
+</table>
+:ET

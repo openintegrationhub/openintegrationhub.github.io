@@ -1,0 +1,54 @@
+I"d
+<!-- Description Guidelines
+
+Please note:
+Use the full links to reference other files or images! Relative links will not work under our theme settings settings.
+-->
+
+<!-- please choose the appropriate batch and delete/comment the others  -->
+<p><img src="https://img.shields.io/badge/Status-Production-brightgreen.svg" alt="prod" /></p>
+
+<h1 id="scheduler-"><strong>Scheduler</strong> <!-- make sure spelling is consistent with other sources and within this document --></h1>
+
+<h2 id="introduction">Introduction</h2>
+
+<!-- 2 sentences: what does it do and how -->
+<p>The service scheduler is responsible for a periodical execution of integration flows.</p>
+
+<!-- [API Reference](){: .btn .fs-5 .mb-4 .mb-md-0 } -->
+<p><a href="https://github.com/openintegrationhub/openintegrationhub/tree/master/services/scheduler" class="btn fs-5 mb-4 mb-md-0">Implementation</a>
+<a href="https://github.com/openintegrationhub/openintegrationhub/tree/master/lib/scheduler" class="btn fs-5 mb-4 mb-md-0">Service File</a></p>
+
+<h2 id="technologies-used">Technologies used</h2>
+
+<!-- please name and elaborate on other technologies or standards the service uses -->
+<ul>
+  <li>Cron-Deamon</li>
+</ul>
+
+<h2 id="how-it-works">How it works</h2>
+<!-- describe core functionalities and underlying concepts in more detail -->
+
+<p>In the Open Integration Hub there is a great number of active integration flows
+to be executed periodically. Each integration can be configured with a
+<a href="https://en.wikipedia.org/wiki/Cron">Cron</a> expression defining flow’s execution
+interval. Let’s consider the following Cron expression:</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">*</span>/3 <span class="k">*</span> <span class="k">*</span> <span class="k">*</span> <span class="k">*</span>
+</code></pre></div></div>
+
+<p>The cron expression above executes an integration flow at every 3rd
+minute starting from the flow’s start time.</p>
+
+<p>With the following Cron expression a flow is executed every Sunday at 6:00 am:</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>0 6 <span class="k">*</span> <span class="k">*</span> 7
+</code></pre></div></div>
+
+<p>The Scheduler iterates over all active integration flows and evaluates
+their Cron expressions. Is a flow due to be executed, Scheduler tells the
+Resource Coordinator to deploy the integration flow for execution.</p>
+
+<h3 id="interaction-with-other-services">Interaction with other Services</h3>
+<!-- list and link the services this one interacts with and describe each interaction briefly (1-2 sentences) -->
+:ET

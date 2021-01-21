@@ -1,0 +1,102 @@
+I"¢<p><img src="https://img.shields.io/badge/Status-Production-brightgreen.svg" alt="prod" /></p>
+
+<h1 id="address-model"><strong>Address Model</strong></h1>
+
+<h2 id="resources">Resources</h2>
+<!-- 2 sentences: what does it do and how -->
+<h4 id="uml-diagram">UML Diagram</h4>
+<p><a href="https://github.com/openintegrationhub/openintegrationhub.github.io/blob/master/assets/DataModels/Addresses/MasterDataModelAddress.svg" class="btn fs-5 mb-4 mb-md-0">UML Diagram</a></p>
+<h4 id="json-schema">JSON Schema</h4>
+<p><a href="https://github.com/openintegrationhub/openintegrationhub.github.io/blob/master/assets/DataModels/Addresses/personV2.json" class="btn fs-5 mb-4 mb-md-0">Person</a>
+<a href="https://github.com/openintegrationhub/openintegrationhub.github.io/blob/master/assets/DataModels/Addresses/organizationV2.json" class="btn fs-5 mb-4 mb-md-0">Organization</a>
+<a href="https://github.com/openintegrationhub/openintegrationhub.github.io/blob/master/assets/DataModels/Addresses/relationsV2.json" class="btn fs-5 mb-4 mb-md-0">Relation</a>
+<a href="https://github.com/openintegrationhub/openintegrationhub.github.io/blob/master/assets/DataModels/Addresses/sharedDefinitionsV2.json" class="btn fs-5 mb-4 mb-md-0">Shared Definitions</a></p>
+<h4 id="description-table">Description Table</h4>
+<p><a href="https://openintegrationhub.github.io//docs/Data%20Models/Addresses/AddressDescriptionTable.html" class="btn fs-5 mb-4 mb-md-0">Description Table</a></p>
+
+<h2 id="general-structure">General Structure</h2>
+
+<p>The addresses data model consists of different types of objects: <code class="language-plaintext highlighter-rouge">organizations</code> and <code class="language-plaintext highlighter-rouge">persons</code>. A <code class="language-plaintext highlighter-rouge">relations</code> object is used to describes the connections between other objects.</p>
+
+<p><img src="https://raw.githubusercontent.com/openintegrationhub/openintegrationhub.github.io/master/assets/DataModels/Addresses/MasterDataModelAddress.png" alt="" /></p>
+
+<h2 id="relations">Relations</h2>
+<p>Generally there are three types of relations:</p>
+<ul>
+  <li>Persons to organizations</li>
+  <li>Persons to persons</li>
+  <li>Organizations to organizations</li>
+</ul>
+
+<p>Creating a specific <code class="language-plaintext highlighter-rouge">relation</code> object allows for a more individualized expression of connection between entities than linking them directly. You can name a <code class="language-plaintext highlighter-rouge">relation</code> and thus categorize or tag relations. This way you could use the relation to describe a persons function within a company, a companies relationship with other companies (like subsidiaries or suppliers) as well as connection between real people.</p>
+
+<p>You can solve for example the following user stories:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">User Stories</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left">As a user I want to see the structure of a group of companies, to get a better overview of my business dealings.</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">As a user I want to assign one or more persons to an organization to communicate with all contacts of an organization</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">As a user I want to assign relations between contact persons of my customers to get an overview of their hierarchy.</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">As a user I want to see, if a specific person in an organization is the same person as in another organization</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="duplicates">Duplicates</h2>
+
+<p>In order to reflect that some people in the real world have multiple roles in one or many different organizations, or that one organization might have several locations, we allow duplicates and link them by modeling the relation.</p>
+
+<blockquote>
+  <p>Suppose you have a person who is the CEO of a company and he is also board member of an association.
+If you want to mail him in his role as a CEO you want to use the company mail address.
+If you want to mail him as a board member, you want to use the mail address from the association.
+For the example above, we will store the person with his contact details for his CEO role in the company and store another entity of this person for his role as a board member in the association. Then we link them via a <code class="language-plaintext highlighter-rouge">relation</code> and describe that relation as <strong>same person-relation</strong>.</p>
+</blockquote>
+
+<p>Some tools label the different kinds of mail accounts, but this does not scale.</p>
+
+<p>Here are some other example use cases you can solve the same way:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">User Stories</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left">As a user I want to see the function of a person in his organization.</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">As a user I want to assign a person to different organizations with different contact data to see different roles of the same person.</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">As a user I want to store same persons in different organizations, to get in contact with them currently at the time with the particular contact data.</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">As a user I want to store an organization, with several offices in different locations.</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="further-information">Further information</h2>
+<p>As an open standard we are of course trying to be compatible with existing models out there. So for this model other industry standards were analyzed. If you are interested in learning more about the concepts behind this model, check out the workgroup on GitHub.</p>
+
+<p><a href="https://github.com/openintegrationhub/Data-and-Domain-Models" class="btn fs-5 mb-4 mb-md-0">GitHub</a></p>
+
+<p>Do you have ideas, requirements or suggestions? Let us know and help to make this model more powerful.</p>
+
+<p><a href="https://github.com/openintegrationhub/Data-and-Domain-Models/blob/master/CONTRIBUTING.md" class="btn fs-5 mb-4 mb-md-0">Contribution Guide</a></p>
+:ET

@@ -1,0 +1,172 @@
+I"#<p><img src="https://img.shields.io/badge/Status-Production-brightgreen.svg" alt="prod" /></p>
+
+<h1 id="documents-model"><strong>Documents Model</strong></h1>
+
+<h2 id="resources">Resources</h2>
+
+<h4 id="uml-diagram">UML Diagram</h4>
+<p><a href="https://github.com/openintegrationhub/openintegrationhub.github.io/blob/master/assets/DataModels/Documents/DocumentModel.png" class="btn fs-5 mb-4 mb-md-0">Basic Version</a>
+<a href="https://github.com/openintegrationhub/openintegrationhub.github.io/blob/master/assets/DataModels/Documents/OIHDataModelDocumentMetadataSpecification.svg" class="btn fs-5 mb-4 mb-md-0">Metadata</a>
+<a href="https://github.com/openintegrationhub/openintegrationhub.github.io/blob/master/assets/DataModels/Documents/OIHDataModelDocuments.svg" class="btn fs-5 mb-4 mb-md-0">Extended Version</a></p>
+<h4 id="json-schema">JSON Schema</h4>
+<p><a href="https://github.com/openintegrationhub/openintegrationhub.github.io/blob/master/assets/DataModels/Documents/extended/Document.json" class="btn fs-5 mb-4 mb-md-0">Document</a>
+<a href="https://github.com/openintegrationhub/openintegrationhub.github.io/blob/master/assets/DataModels/Documents/extended/Folder.json" class="btn fs-5 mb-4 mb-md-0">Folder</a>
+<a href="https://github.com/openintegrationhub/openintegrationhub.github.io/blob/master/assets/DataModels/Documents/extended/Object.json" class="btn fs-5 mb-4 mb-md-0">Object</a>
+<a href="https://github.com/openintegrationhub/openintegrationhub.github.io/blob/master/assets/DataModels/Documents/extended/Relationjson" class="btn fs-5 mb-4 mb-md-0">Relation</a>
+<a href="https://github.com/openintegrationhub/openintegrationhub.github.io/blob/master/assets/DataModels/Documents/extended/sharedDocuments.json" class="btn fs-5 mb-4 mb-md-0">Shared Definitions</a></p>
+<h4 id="description-table">Description Table</h4>
+<p><a href="https://openintegrationhub.github.io//docs/Data%20Models/Documents/DocumentDescriptionTable.html" class="btn fs-5 mb-4 mb-md-0">Description Table</a></p>
+
+<h2 id="general-structure">General Structure</h2>
+
+<p>One challenge of this model is to fit a wide array of services dealing with documents.
+The features provided by heterogeneous services like Dropbox and other more advanced systems like SharePoint or ELO are far apart.</p>
+
+<p>In order to be suitable for all scenarios, this model is split into several implementations.</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">Basic</code>   		Sharing documents between services</li>
+  <li><code class="language-plaintext highlighter-rouge">Comfort</code>			Sharing documents and metadata between services</li>
+  <li><code class="language-plaintext highlighter-rouge">Extended</code>		Sharing documents, metadata, policies and sub-resources between services</li>
+</ul>
+
+<p>The <code class="language-plaintext highlighter-rouge">basic model</code> describes a basic implementation for sharing documents and files without the need of handling metadata or additional information.</p>
+
+<p><img src="https://raw.githubusercontent.com/openintegrationhub/openintegrationhub.github.io/master/assets/DataModels/Documents/DocumentModel.png" alt="Documents Basic Version" /></p>
+
+<p>For the <code class="language-plaintext highlighter-rouge">comfort model</code>, Metadata definitions can be additionally queried.</p>
+
+<p><img src="https://raw.githubusercontent.com/openintegrationhub/openintegrationhub.github.io/master/assets/DataModels/Documents/OIHDataModelDocumentMetadataSpecification.png" alt="Generic Metadata" /></p>
+
+<p>The <code class="language-plaintext highlighter-rouge">extended model</code> specification does contain all properties that are required in order to handle additional functionalities of DMS/ECM/EIM systems.</p>
+
+<p><img src="https://raw.githubusercontent.com/openintegrationhub/openintegrationhub.github.io/master/assets/DataModels/Documents/OIHDataModelDocuments.png" alt="Documents Extended Version" /></p>
+
+<p>The following may give you a better understanding of the variety of services and possible use cases.</p>
+
+<h3 id="managing-documents-by-specialized-systems">Managing documents by specialized systems</h3>
+
+<p>The following table classifies the complexity of document management or sharing services currently available.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Type</th>
+      <th>Description</th>
+      <th>Example</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>File storage</td>
+      <td>A service that can store documents (folders/ documents) in a hierarchically organized structure including limited metadata capabilities</td>
+      <td>FTP, S3, Network fileshare</td>
+    </tr>
+    <tr>
+      <td>Online file share</td>
+      <td>A service that can store information (folders/ documents) in a hierarchically organized structure. Allows sharing content easily. Some services do provide metadata capabilities.</td>
+      <td>DropBox, OneDrive, Box</td>
+    </tr>
+    <tr>
+      <td>ECM/EIM/Content services</td>
+      <td>A service that captures, stores, delivers, manages and organizes information based on additional metadata or hierarchically organized structures. In most cases DMS functionalities can be seen as a fundamental part of these services.</td>
+      <td>Alfresco, ELO, M-Files, OpenText, SharePoint</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="business-services-creating-documents">Business services creating documents</h3>
+
+<p>In addition to systems that have been specifically designed to capture, store, deliver and manage documents and information, there are additional services that have been designed in order to produce content.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Service/ System</th>
+      <th>Sample document types</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Inbox services</td>
+      <td>Incoming Invoices, Notifications, …</td>
+    </tr>
+    <tr>
+      <td>ERP</td>
+      <td>Outgoing Invoices, Purchase Orders, …</td>
+    </tr>
+  </tbody>
+</table>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">User Stories</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left">As a user I want to automatically send an email with the invoice created by the ERP system.</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">As a user I want to automatically store generated outgoing documents in the document management system.</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">As a user I want to use inbox services for digitalizing invoices for further processing.</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="business-services-consuming-documents">Business services consuming documents</h3>
+
+<p>From a companywide perspective, there are a variety of systems that generate or receive documents that are related to business transactions of other systems. If a document management system is used, these documents are centralized in a repository that contains information that refers to the business transaction.</p>
+
+<p>Therefore ERP or CRM systems can view a list of related documents from document management systems or third party sources. The following table lists systems that create business transactions.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Service/ System</th>
+      <th>Sample document types</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>CRM</td>
+      <td>Invoices, Purchase Orders, Billing documents, E-Mails, Communication, etc.</td>
+    </tr>
+    <tr>
+      <td>ERP</td>
+      <td>Invoices, Purchase Orders, Billing documents, etc.</td>
+    </tr>
+  </tbody>
+</table>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">User Stories</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left">As a user I want to view stored documents of the current invoice transaction in the ERP system. This gives me additional information like attached terms and conditions or the related delivery docket.</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">As a user I want to add additional documents while displaying the customer record in the CRM system.</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">As a user I want to pass all documents uploaded to a specific DropBox folder to be passed to the ERP system.</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="further-information">Further information</h2>
+<p>As an open standard we are of course trying to be compatible with existing models out there. So for this model other industry standards were analyzed. If you are interested in learning more about the concepts behind this model, check out the workgroup on GitHub.</p>
+
+<p><a href="https://github.com/openintegrationhub/Data-and-Domain-Models" class="btn fs-5 mb-4 mb-md-0">GitHub</a></p>
+
+<p>Do you have ideas, requirements or suggestions? Let us know and help to make this model more powerful.</p>
+
+<p><a href="https://github.com/openintegrationhub/Data-and-Domain-Models/blob/master/CONTRIBUTING.md" class="btn fs-5 mb-4 mb-md-0">Contribution Guide</a></p>
+:ET

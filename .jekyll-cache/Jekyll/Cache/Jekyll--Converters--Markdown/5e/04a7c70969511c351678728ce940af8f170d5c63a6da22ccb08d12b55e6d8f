@@ -1,0 +1,34 @@
+I"ö<!-- Description Guidelines
+
+Please note:
+Use the full links to reference other files or images! Relative links will not work under our theme settings.
+-->
+
+<!-- please choose the appropriate batch and delete/comment the others  -->
+<p><img src="https://img.shields.io/badge/Status-Production-brightgreen.svg" alt="prod" /></p>
+
+<h1 id="logging-service">Logging service</h1>
+
+<h2 id="introduction">Introduction</h2>
+<p>This service is responsible for providing a convenient API to access flow execution logs.</p>
+
+<p><a href="http://flow-repository.openintegrationhub.com/api-docs/" class="btn fs-5 mb-4 mb-md-0">API Reference</a>
+<a href="https://github.com/openintegrationhub/openintegrationhub/tree/master/services/logging-service" class="btn fs-5 mb-4 mb-md-0">Implementation</a>
+<!-- [Service File](){: .btn .fs-5 .mb-4 .mb-md-0 } --></p>
+
+<h2 id="technologies-used">Technologies used</h2>
+<ul>
+  <li>Node.js</li>
+  <li>Typescript</li>
+  <li>GCP Stack Driver</li>
+</ul>
+
+<h2 id="how-it-works">How it works</h2>
+<p>Each of flow components running in its own Docker container and write its logs to <code class="language-plaintext highlighter-rouge">stdout</code> and <code class="language-plaintext highlighter-rouge">stderr</code>.
+These log entries are being collected by GCP Stack Driver. This service allows to get the logs page by page using a convenient API.</p>
+
+<h3 id="interaction-with-other-services">Interaction with other Services</h3>
+<ul>
+  <li>Interacts with IAM to introspect provided IAM token.</li>
+</ul>
+:ET
