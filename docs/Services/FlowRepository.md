@@ -96,4 +96,6 @@ The Flow Repository interacts with these Services:
 
 - [Component Repository](https://openintegrationhub.github.io//docs/Services/ComponentRepository.html): Components used in an integration flow are specified as references to documents in the Component Repository.
 
+- [Template Repository](https://openintegrationhub.github.io//docs/Services/TemplateRepository.html): If a flow is generated from a template, it will contain a _fromTemplate_ reference to the generating template in the Template Repository.
+
 - [Secret Service](https://openintegrationhub.github.io//docs/Services/SecretService.html): If an integration flow uses sensitive data (such as login credentials), this data can be securely and opaquely stored in the Secret Service and then referenced.
