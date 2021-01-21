@@ -56,7 +56,6 @@ Within the framework of the OIH, a Flow is defined through a JSON definition, al
             "name":"Outlook Component",
             "function":"upsertPerson",
             "credentials_id":"5f7ef9da20f27900113b13c9"
-         },
          }
       ],
       "edges":[
