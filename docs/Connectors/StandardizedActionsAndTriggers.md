@@ -47,7 +47,7 @@ I have some contact data that I want to add to my CRM.  I don't necessarily know
 
 ##### Input Metadata
 
-- One input per field in the ID that is optional.  This field is marked as being the ID. (Check ID Linking...)
+- One input per field in the ID that is optional.  This field is marked as being the ID. (Check ID Linking...[ID Linking in Open Integration Hub](../../services/DataHub.md#id-linking))
 
 - Inputs for other fields on the body.  All fields that are not nullable and can’t be populated by the system on create should be required.
 
