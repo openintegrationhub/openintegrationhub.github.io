@@ -24,6 +24,5 @@ In case you need help or want to give us some feedback, head over to [GitHub](ht
 <div class="container-further">
     <a class="item" href="https://openintegrationhub.github.io//docs/Getting%20Started/LocalInstallationGuide.html">Local Setup</a>
     <a class="item" href="https://openintegrationhub.github.io/docs/Getting%20Started/GCPInstallationGuide.html">Google Cloud Platform Setup</a>
-    <a class="item" href="https://openintegrationhub.github.io//docs/Service%20Collaboration/ServiceCollaborationOverview.html">Service Collaboration</a>
 </div>
 </div>

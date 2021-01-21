@@ -6,11 +6,24 @@ permalink: /
 ---
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/openintegrationhub/openintegrationhub.github.io/master/assets/images/large-oih-vertikal-zentriert.png" alt="Open Integration Hub" width="300"/>
+  <img src="https://raw.githubusercontent.com/openintegrationhub/openintegrationhub.github.io/master/assets/images/large-oih-vertikal-zentriert.png" alt="Open Integration Hub" width="200"/>
 </p>
 <br>
 <br>
 
+# Welcome
+
+Hi there! Glad you are here. This is the documentation of [Open Integration Hub](https://www.openintegrationhub.org/?lang=en), a free and open source ([Apache 2.0](https://www.apache.org/licenses/LICENSE-2.0)) Integration Framework.
+
+You will find explanations of how it works, how to set it up and the idea behind each service. For the acutal code, as well as more technical information head to [GitHub](https://github.com/openintegrationhub/openintegrationhub).
+
+We are a community driven project. Please join us on [Slack](https://join.slack.com/t/openintegrationhub/shared_invite/zt-kwbj0osy-hgzhKJJmYn4tXeVN42udtg) or open issues on [GitHub](https://github.com/openintegrationhub/openintegrationhub/issues) to give feedback and ask your questions. Also mind the [Contribution Guidelines]().
+
+# What is Open Integration Hub?
+
+The Open Integration Hub is a framework for easy data exchange between business applications. It provides a technical integration layer for your product or project. It is not meant as an enduser-ready application, but rather to give you a flexible set of services to enrich or build your own solution. You can easily create asynchronous [integration flows]() and benefit from a wide range of standardized open source [integration components]().
+
+# Overview
 
 <div class="oih-docs-overview-container">
     <a class="item" href="https://openintegrationhub.github.io//docs/Getting%20Started/LocalInstallationGuide.html">
@@ -65,4 +78,5 @@ permalink: /
         <span class="description">Give us your questions and feedback</span>
 
     </a>
+
 </div>

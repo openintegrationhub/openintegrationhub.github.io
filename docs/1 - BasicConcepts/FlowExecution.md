@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Service Collaboration
+title: Flow Execution
 nav_order: 4
 has_children: true
 ---
@@ -13,7 +13,7 @@ has_children: true
 
 # Service Collaboration
 
-This document is designed to describe different service collaboration examples. It acts as a starting point to get an understanding of the Open Integration Hub.
+This document is designed to describes the basics of how flows are being executed. It acts as a starting point to get an understanding of the Open Integration Hub.
 Most of the examples are triggered by user interactions (e.g. starting a flow) and only the "happy path" i.e. success scenario is described.
 
 Each example is described through a graphical overview, a textual description, and pre-conditions.
@@ -38,7 +38,7 @@ This example describes the scenario of starting a flow. Once the user starts a f
 
 1. The user starts a flow using the flow repository's `REST API`.
 2. Flow Repository sets the flow's status from `inactive` to `starting` and raises the event `flow.starting`.
-3. There are three services listening to the event `flow.starting`:  Webhooks, Scheduler, and Component Orchestrator. Each of them examines the event's payload and decide if they need to react appropriately. We will discuss the exact reaction of `Webhooks` and `Scheduler` later in this document.
+3. There are three services listening to the event `flow.starting`: Webhooks, Scheduler, and Component Orchestrator. Each of them examines the event's payload and decide if they need to react appropriately. We will discuss the exact reaction of `Webhooks` and `Scheduler` later in this document.
 4. Upon receiving `flow.starting` event the `Component Orchestrator` starts deploying local compontents. Once all local components were deployed, `Component Orchestrator` raises the `flow.started` event regardless of whether used global components are running – **Keep in mind that global components need to be started manually. otherwise, warnings are thrown**
 5. Flow Repository receives the `flow.started` event and switches flow's status property from `starting` to `started`.
 6. Webhooks receives the `flow.started` event and starts receiving incoming HTTP calls for the given flow.
@@ -106,10 +106,10 @@ Please note that Scheduler ignores a flow if the following condition is met:
 
 Upon receiving `flow.starting` event the service checks if the `cron` property is set. If so, the service persist a data record in his local DB, but **doesn't start scheduling** the given flow yet. The following table demonstrates an example of such records.
 
-| flowId        | cron           |  dueExecution |
-| ------------- |:-------------:|:-------------:|
-| 58b41f5da9ee9d0018194bf3      | */3 * * * * | 2019-01-25T13:39:28.172 |
-| 5b62c91afd98ea00112d5404      | 15 14 * * 1-5      |  2019-01-27T14:15:00.00 |
+| flowId                   |      cron       |      dueExecution       |
+| ------------------------ | :-------------: | :---------------------: |
+| 58b41f5da9ee9d0018194bf3 | _/3 _ \* \* \*  | 2019-01-25T13:39:28.172 |
+| 5b62c91afd98ea00112d5404 | 15 14 \* \* 1-5 | 2019-01-27T14:15:00.00  |
 
 Upon receiving the `flow.started` event the service starts scheduling the flow executions by retrieving the flow data from its local DB and instructing `Component Orchestrator` by publishing the `flow.executed` event.
 
@@ -117,12 +117,12 @@ Upon receiving the `flow.stopping` event, the service deletes the record for the
 
 # Execute Polling Flow
 
-**Pre-Conditions:** 
+**Pre-Conditions:**
+
 - Starting a flow.
 - `cron` property is set
 
 As described in [scheduler section](#scheduler) when a flow is started the service starts scheduling the flow executions. Once a flows `cron` condition is met it publishes `flow.executed`.
-
 
 ![webhookPost](https://raw.githubusercontent.com/openintegrationhub/openintegrationhub.github.io/master/assets/images/ExecutePollingFlow.png)
 
@@ -130,7 +130,8 @@ Figure: _executePollingFlow_
 
 # Execute Webhook Flow
 
-**Pre-Conditions:** 
+**Pre-Conditions:**
+
 - Starting a flow.
 - `cron` property must **NOT** exist
 
@@ -167,7 +168,7 @@ The following example shows every step necessary to allow a user to request a fl
 6. Flow Repsitory checks if the user has the permission to request the resource.
 7. Flow repository responds with the requested information.
 
-Illustration of this process:  (Figur _requestResourceSuccess_).
+Illustration of this process: (Figur _requestResourceSuccess_).
 
 ![requestResourceSuccess](https://raw.githubusercontent.com/openintegrationhub/openintegrationhub.github.io/master/assets/images/requestResourceSuccess.png)
 
