@@ -34,6 +34,8 @@ The following guide helps to deploy the Open Integration Hub on the Google Cloud
   - [Creating Flows](#creating-flows)
   - [Starting Flows](#starting-flows)
   - [Lessons Learned](#lessons-learned)
+- [Notes](#notes)
+  - [GCP Ingress Behavior](#gcp-ingress-behavior)
 
 # Installation
 
@@ -58,20 +60,11 @@ For detailed information see: [Kubernetes Engine - Quickstart](https://cloud.goo
 Set up the basic Open Integration Hub infrastructure.
 If you want to change you namespace in the `namespace.yaml`, you also need to adjust the namespace in each service.yaml and deployment.yaml.
 
-Before your apply ingress also make sure to replace host entries:
-
-E.g for [iam](https://github.com/openintegrationhub/openintegrationhub/blob/master/platform/ingress.yaml#L11):
-
-```yaml
-host: iam.openintegrationhub.com
-```
-
-After you changed the host entries execute the following commands:
+Execute the following commands:
 
 1. `kubectl apply -f platform/namespace.yaml`
 2. `kubectl apply -f platform/rabbitmq.yaml`
 3. `kubectl apply -f platform/redis.yaml`
-4. `kubectl apply -f platform/ingress.yaml`
 
 ## Setup Storage
 
@@ -95,6 +88,20 @@ Deploy the Open Integration Hub Identity and Access Management (IAM). To do so, 
   - Optionally set the other values of the other keys. Standard value: 'somestring'
 - Execute `kubectl apply -f YOUR_TEMPORARY_FILE`
 - Execute `kubectl apply -f services/iam/k8s`
+
+Before you apply ingress for IAM also make sure to replace host entries:
+
+E.g for [iam](https://github.com/openintegrationhub/openintegrationhub/blob/master/platform/ingress.yaml#L11):
+
+```yaml
+host: iam.openintegrationhub.com
+```
+
+Next, comment out all services except for IAM in the `platform/ingress.yaml` file, and apply:
+
+ `kubectl apply -f platform/ingress.yaml`
+
+(for more information on staggered ingress deployment see the note on [GCP Ingress Behavior](#gcp-ingress-behavior))
 
 Wait until the service is fully deployed and ready. Afterwards, check if iam is existent on your cluster.
 
@@ -274,10 +281,27 @@ data:
   iamtoken: IAM TOKEN
 ```
 
+## Deploying Services
+
 Once you created the secret files, execute the following commands for each service:
 
 1. Execute `kubectl apply -f YOUR_TEMPORARY_FILE`
-2. Execute `kubectl apply -f services/CURRENT_SERVICE/k8s`
+2. Execute `kubectl apply -f services/CURRENT_SERVICE/k8s/service.yaml`
+3. Execute `kubectl apply -f services/CURRENT_SERVICE/k8s/deployment.yaml`
+
+After deploying your services, update your GCP Ingress to include the new services. Before you apply ingress, make sure to replace host entries to match your external domain:
+
+E.g for [iam](https://github.com/openintegrationhub/openintegrationhub/blob/master/platform/ingress.yaml#L11):
+
+```yaml
+host: iam.openintegrationhub.com
+```
+
+Comment out all non-deployed services in the `platform/ingress.yaml` file, and apply:
+
+ `kubectl apply -f platform/ingress.yaml`
+
+ (for more information on staggered ingress deployment see the note on [GCP Ingress Behavior](#gcp-ingress-behavior))
 
 ## Service Availability
 
@@ -304,163 +328,171 @@ The Open Integration Hub is now running and ought to function just as it would i
 - **Web UI**. A basic browser-based UI to control certain other services.
   - `YOUR Web-UI URL`
 
-  Most of these services have an OpenAPI documentation of their API available through the path `/api-docs`. You can also check the [API Reference Documentation](https://openintegrationhub.github.io/docs/API%20Reference/APIReferenceOverview.html). If you want to learn more about the services, check the [Service Documentation](https://openintegrationhub.github.io/docs/Services/Services.html) or their readmes in the `services` folder of the GitHub Repository: [Open Integration Hub Services](https://github.com/openintegrationhub/openintegrationhub/tree/master/services)
+Most of these services have an OpenAPI documentation of their API available through the path `/api-docs`. You can also check the [API Reference Documentation](https://openintegrationhub.github.io/docs/API%20Reference/APIReferenceOverview.html). If you want to learn more about the services, check the [Service Documentation](https://openintegrationhub.github.io/docs/Services/Services.html) or their readmes in the `services` folder of the GitHub Repository: [Open Integration Hub Services](https://github.com/openintegrationhub/openintegrationhub/tree/master/services)
 
-  # User Tutorial
+# User Tutorial
 
-  The following step-by-step guide will show you how you can add your first components and create a flow with these components via the web ui which you deployed already.
-  All actions are also performable via postman or similar tools.
+The following step-by-step guide will show you how you can add your first components and create a flow with these components via the web ui which you deployed already.
+All actions are also performable via postman or similar tools.
 
-  ## Creating Components
+## Creating Components
 
-  First, we have to create two components in order to have a source and target component.
+First, we have to create two components in order to have a source and target component.
 
-  Below you will find code snippets for two exemplary components. For the beginning we recommend to use those but feel free to use your own.
+Below you will find code snippets for two exemplary components. For the beginning we recommend to use those but feel free to use your own.
 
-  **Example 1:**
+**Example 1:**
 
-  ```json
-  {
-     "data":{
-        "distribution":{
-           "type":"docker",
-           "image":"elasticio/timer:ca9a6fea391ffa8f7c8593bd2a04143212ab63f6"
+```json
+{
+    "data":{
+      "distribution":{
+          "type":"docker",
+          "image":"elasticio/timer:ca9a6fea391ffa8f7c8593bd2a04143212ab63f6"
+      },
+      "access":"public",
+      "name":"Timer",
+      "description":"Timer component that periodically triggers flows on a given interval"
+    }
+}
+```
+
+**Example 2:**
+
+```json
+{
+    "data": {
+        "distribution": {
+            "type": "docker",
+            "image": "elasticio/code-component:7bc2535df2f8a35c3653455e5becc701b010d681"
         },
-        "access":"public",
-        "name":"Timer",
-        "description":"Timer component that periodically triggers flows on a given interval"
-     }
-  }
-  ```
+        "access": "public",
+        "name": "Node.js code",
+        "description": "Node.js code component that executes the provided code"
+      }
+}
+```
 
-  **Example 2:**
+The timer component is used to trigger flows on a provided interval, while the code component executes the code that was provided by the flow creator.
 
-  ```json
-  {
-      "data": {
-          "distribution": {
-              "type": "docker",
-              "image": "elasticio/code-component:7bc2535df2f8a35c3653455e5becc701b010d681"
+In order to add those components, visit the web ui (`web-ui.localoih.com`) and navigate to the `Components` section.
+
+<p align="left">
+  <img src="https://raw.githubusercontent.com/openintegrationhub/openintegrationhub.github.io/master/assets/images/menu.png" alt="Sublime's custom image" width="150"/>
+</p>
+
+Now click on the `ADD+` button. A popup window will appear where you can add the code provided above.
+
+<p align="left">
+  <img src="https://raw.githubusercontent.com/openintegrationhub/openintegrationhub.github.io/master/assets/images/AddComponent.png" alt="Sublime's custom image" width="1200"/>
+</p>
+
+<p align="left">
+  <img src="https://raw.githubusercontent.com/openintegrationhub/openintegrationhub.github.io/master/assets/images/popUpWindowComponent.PNG" alt="Sublime's custom image" width="300"/>
+</p>
+
+**GREAT!** You created your first component.
+
+Repeat this step for the second component.
+
+**!!** In order to create the flow in the next step you have to copy the `ids` of the components you just created. **!!**
+
+## Creating Flows
+
+Now that you successfully created two components it is time to create your first flow.
+
+Below you will find code snippets for an example flow. This excample flow periodically triggers the flow and sends request to webhook.site. For the beginning we recommend to use this flow but feel free to create your own.
+
+Please replace the `ADD COMPONENT ID HERE` with the `ids` you copied in the previous step. Furthermore please go to [](http://webhook.site/) and copy the link to you clipboard.
+Afterwards please replace the `ADD WEBHOOK URL HERE` with the link in your clipboard.
+
+```json
+{
+    "name":"Timer To Code Component Example",
+    "description:": "This flow periodically triggers the flow and sends request to webhook.site",
+    "graph":{
+      "nodes":[
+          {
+            "id":"step_1",
+            "componentId":"ADD COMPONENT ID HERE",
+            "function":"timer"
           },
-          "access": "public",
-          "name": "Node.js code",
-          "description": "Node.js code component that executes the provided code"
-        }
-  }
-  ```
+          {
+            "id":"step_2",
+            "componentId":"ADD COMPONENT ID HERE",
+            "function":"execute",
+            "fields":{
+                "code":"function* run() {console.log('Calling external URL');yield request.post({uri: 'ADD WEBHOOK URL HERE', body: msg, json: true});}"
+            }
+          }
+      ],
+      "edges":[
+          {
+            "source":"step_1",
+            "target":"step_2"
+          }
+      ]
+    },
+    "cron":"*/2 * * * *"
+}
+```
 
-  The timer component is used to trigger flows on a provided interval, while the code component executes the code that was provided by the flow creator.
+In order to add the flow, navigate to the `Flows` section.
 
-  In order to add those components, visit the web ui (`web-ui.localoih.com`) and navigate to the `Components` section.
+<p align="left">
+  <img src="https://raw.githubusercontent.com/openintegrationhub/openintegrationhub.github.io/master/assets/images//menuFlow.png" alt="Sublime's custom image" width="150"/>
+</p>
 
-  <p align="left">
-    <img src="https://raw.githubusercontent.com/openintegrationhub/openintegrationhub.github.io/master/assets/images/menu.png" alt="Sublime's custom image" width="150"/>
-  </p>
+Now click on the `ADD+` button. A popup window will appear where you can add the code provided above.
 
-  Now click on the `ADD+` button. A popup window will appear where you can add the code provided above.
+<p align="left">
+  <img src="https://raw.githubusercontent.com/openintegrationhub/openintegrationhub.github.io/master/assets/images/AddFlow.png" alt="Sublime's custom image" width="1200"/>
+</p>
 
-  <p align="left">
-    <img src="https://raw.githubusercontent.com/openintegrationhub/openintegrationhub.github.io/master/assets/images/AddComponent.png" alt="Sublime's custom image" width="1200"/>
-  </p>
+<p align="left">
+  <img src="https://raw.githubusercontent.com/openintegrationhub/openintegrationhub.github.io/master/assets/images/popUpWindowFlow.PNG" alt="Sublime's custom image" width="300"/>
+</p>
 
-  <p align="left">
-    <img src="https://raw.githubusercontent.com/openintegrationhub/openintegrationhub.github.io/master/assets/images/popUpWindowComponent.PNG" alt="Sublime's custom image" width="300"/>
-  </p>
+**GREAT!** You created your first flow.
 
-  **GREAT!** You created your first component.
+## Starting Flows
 
-  Repeat this step for the second component.
+Now that you have created two components and a flow, it is time to start this flow.
 
-  **!!** In order to create the flow in the next step you have to copy the `ids` of the components you just created. **!!**
+Stay in the flows section and look for the flow you just created. On the right side you will the a "play" symbol.
 
-  ## Creating Flows
+<p align="left">
+  <img src="https://raw.githubusercontent.com/openintegrationhub/openintegrationhub.github.io/master/assets/images/play.png" alt="Sublime's custom image" width="300"/>
+</p>
 
-  Now that you successfully created two components it is time to create your first flow.
+Click on it and the how the status changes from `inactive` to `starting`.
 
-  Below you will find code snippets for an example flow. This excample flow periodically triggers the flow and sends request to webhook.site. For the beginning we recommend to use this flow but feel free to create your own.
+<p align="left">
+  <img src="https://raw.githubusercontent.com/openintegrationhub/openintegrationhub.github.io/master/assets/images/inactive.PNG" alt="Sublime's custom image" width="500"/>
+</p>
 
-  Please replace the `ADD COMPONENT ID HERE` with the `ids` you copied in the previous step. Furthermore please go to [](http://webhook.site/) and copy the link to you clipboard.
-  Afterwards please replace the `ADD WEBHOOK URL HERE` with the link in your clipboard.
+<p align="left">
+  <img src="https://raw.githubusercontent.com/openintegrationhub/openintegrationhub.github.io/master/assets/images/starting.PNG" alt="Sublime's custom image" width="500"/>
+</p>
 
-  ```json
-  {
-     "name":"Timer To Code Component Example",
-     "description:": "This flow periodically triggers the flow and sends request to webhook.site",
-     "graph":{
-        "nodes":[
-           {
-              "id":"step_1",
-              "componentId":"ADD COMPONENT ID HERE",
-              "function":"timer"
-           },
-           {
-              "id":"step_2",
-              "componentId":"ADD COMPONENT ID HERE",
-              "function":"execute",
-              "fields":{
-                 "code":"function* run() {console.log('Calling external URL');yield request.post({uri: 'ADD WEBHOOK URL HERE', body: msg, json: true});}"
-              }
-           }
-        ],
-        "edges":[
-           {
-              "source":"step_1",
-              "target":"step_2"
-           }
-        ]
-     },
-     "cron":"*/2 * * * *"
-  }
-  ```
+After some time the status changes to `active` and the flow is running (you may have to refresh the site).
 
-  In order to add the flow, navigate to the `Flows` section.
+<p align="left">
+  <img src="https://raw.githubusercontent.com/openintegrationhub/openintegrationhub.github.io/master/assets/images/active.PNG" alt="Sublime's custom image" width="500"/>
+</p>
 
-  <p align="left">
-    <img src="https://raw.githubusercontent.com/openintegrationhub/openintegrationhub.github.io/master/assets/images//menuFlow.png" alt="Sublime's custom image" width="150"/>
-  </p>
+## Lessons Learned
 
-  Now click on the `ADD+` button. A popup window will appear where you can add the code provided above.
+In this tutorial you have learned...
 
-  <p align="left">
-    <img src="https://raw.githubusercontent.com/openintegrationhub/openintegrationhub.github.io/master/assets/images/AddFlow.png" alt="Sublime's custom image" width="1200"/>
-  </p>
+1. How to create components via the web ui
+2. How to create a flow within the Open Integration Hub using existing components
+3. How to start a flow and track its status
 
-  <p align="left">
-    <img src="https://raw.githubusercontent.com/openintegrationhub/openintegrationhub.github.io/master/assets/images/popUpWindowFlow.PNG" alt="Sublime's custom image" width="300"/>
-  </p>
+# Notes
 
-  **GREAT!** You created your first flow.
+## GCP Ingress Behavior
 
-  ## Starting Flows
+Using Google Kubernetes Engine creating an Ingress additionally creates a Load Balancer and its related Backend Services. Each Backend Service also has a Healthcheck created and assigned, which pings the root endpoint / of Pods to see if they are alive. This Healthcheck is used to determine if a pod is in a Healthy state and can have traffic sent to it.
 
-  Now that you have created two components and a flow, it is time to start this flow.
-
-  Stay in the flows section and look for the flow you just created. On the right side you will the a "play" symbol.
-
-  <p align="left">
-    <img src="https://raw.githubusercontent.com/openintegrationhub/openintegrationhub.github.io/master/assets/images/play.png" alt="Sublime's custom image" width="300"/>
-  </p>
-
-  Click on it and the how the status changes from `inactive` to `starting`.
-
-  <p align="left">
-    <img src="https://raw.githubusercontent.com/openintegrationhub/openintegrationhub.github.io/master/assets/images/inactive.PNG" alt="Sublime's custom image" width="500"/>
-  </p>
-
-  <p align="left">
-    <img src="https://raw.githubusercontent.com/openintegrationhub/openintegrationhub.github.io/master/assets/images/starting.PNG" alt="Sublime's custom image" width="500"/>
-  </p>
-
-  After some time the status changes to `active` and the flow is running (you may have to refresh the site).
-
-  <p align="left">
-    <img src="https://raw.githubusercontent.com/openintegrationhub/openintegrationhub.github.io/master/assets/images/active.PNG" alt="Sublime's custom image" width="500"/>
-  </p>
-
-  ## Lessons Learned
-
-  In this tutorial you have learned...
-
-  1. How to create components via the web ui
-  2. How to create a flow within the Open Integration Hub using existing components
-  3. How to start a flow and track its status
+When a Healthcheck is created, it will use the Readiness and Liveness probes from applicable Deployments, but only if they have already been applied to the Cluster. After creation, the Healthcheck does not track any changes to Deployments, so will not pick up the probe values later.
