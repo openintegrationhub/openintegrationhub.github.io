@@ -1,16 +1,9 @@
 ---
 layout: default
 title: Docker Development
-parent: Local Installation
-grand_parent: Getting Started
-nav_order: 2
+nav_order: 3
+parent: For Developers
 ---
-
-<p align="center">
-  <img src="https://raw.githubusercontent.com/openintegrationhub/openintegrationhub.github.io/master/assets/images/large-oih-vertikal-zentriert.png" alt="Open Integration Hub" width="300"/>
-</p>
-<br>
-<br>
 
 # Docker Compose (Linux)
 
@@ -37,7 +30,7 @@ Clone main repository
 git clone https://github.com/openintegrationhub/openintegrationhub.git
 ```
 
-**The following commands should all be run from ***src/*** directory**
+**The following commands should all be run from \***src/**\* directory**
 
 ```bash
 cd dev-tools/docker-compose/src
@@ -50,6 +43,7 @@ node packages/install
 ```
 
 **Make sure, your firewall allows tcp traffic from docker networks to host for following ports**
+
 - 3000+ (services port range)
 - 5672 (rabbitMQ)
 - 9090 (proxy to kubernetes cluster)
@@ -68,6 +62,7 @@ http://localhost:3000/
 
 and log in as default admin user
 "admin@openintegrationhub.com"/"somestring"
+
 ## 3. Monitoring
 
 In addition to the frontend, there are other monitoring tools available.
@@ -82,11 +77,9 @@ minikube dashboard
 
 to open Minikube Kubernetes Dashboard. Here you will find all details about deployments within the "flows" namespace.
 
-
 ### RabbitMQ Web Interface
 
 Just navigate to http://localhost:15672/ and log in with "guest"/"guest" to get details about the underlying message queue.
-
 
 ## 4. Testing
 

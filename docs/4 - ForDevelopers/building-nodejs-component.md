@@ -1,10 +1,10 @@
 ---
 layout: default
 title: Development Example for Node.js
-nav_order: 1
-parent: Connectors
+nav_order: 2
+parent: For Developers
+has children: true
 ---
-
 
 # Node.js Development Example
 
@@ -37,7 +37,7 @@ contacts-component-template
 │       └── resolver.js
 │   └── tranformations                                     (5)
 │       ├── organizationFromOih.js
-│       ├── organizationToOih.js 
+│       ├── organizationToOih.js
 │       ├── personFromOih.js
 │       └── personToOih.js
 
@@ -58,7 +58,6 @@ The `component.json` file (1) is the component descriptor interpreted by the pla
 
 The directory `lib` together with its sub-directories **actions** (2) and **triggers** (3) get defined in the `component.json` file. The Node.js sources are in the sub-directories `lib/actions` (2) and `lib/triggers` (3).
 
-
 ## Component descriptor
 
 As mentioned above, the `component.json` file is the component descriptor interpreted by the platform to gather all the required information about the component. Let’s explore the descriptor of the Petstore component:
@@ -76,6 +75,7 @@ As mentioned above, the `component.json` file is the component descriptor interp
   }
 }
 ```
+
 The component descriptor above defines the component title (1) and description (2). The triggers (3) and actions (4) properties define the component’s triggers and actions.
 
 ### Triggers
@@ -95,7 +95,7 @@ Now let’s have a closer look on how to define the `triggers`. A trigger is any
   }
 ```
 
-The example above demonstrates that the trigger with id `getPersonsPolling` (1) gets implemented by the function described in the  `getPersonsPolling.js` file (2). The metadata field `out` can optionally refer to an example of the kind of data this trigger generates.
+The example above demonstrates that the trigger with id `getPersonsPolling` (1) gets implemented by the function described in the `getPersonsPolling.js` file (2). The metadata field `out` can optionally refer to an example of the kind of data this trigger generates.
 
 ### Actions
 
@@ -130,11 +130,12 @@ Here's a short overview over each file and its intended purpose:
 
 ### Transformers
 
-This folder contains various tranformation functions from the components API to the OIH master model and vice versa. 
+This folder contains various tranformation functions from the components API to the OIH master model and vice versa.
 
 [Transformation Functions](https://openintegrationhub.github.io//docs/Connectors/TransformFunction.html){: .btn .fs-5 .mb-4 .mb-md-0 }
 
 ## Start your own
+
 Now that you have the basics down, we suggest to start with determining what functionality your connector should include. Essential for that is the API you are connecting with.
 [Actions and Triggers](https://openintegrationhub.github.io//docs/Connectors/ActionsAndTriggers.html){: .btn .fs-5 .mb-4 .mb-md-0 }
 

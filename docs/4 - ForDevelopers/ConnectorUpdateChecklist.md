@@ -2,7 +2,8 @@
 layout: default
 title: Guide to Update Old Connectors
 nav_order: 3
-parent: Connectors
+parent: Development Example for Node.js
+grand_parent: For Developers
 ---
 
 Open Integration Hub is an open and community driven project. Customization and individual implementation come with it's nature of being a generalized framework. This also results in integration components, which are open sourced by their creators, but sometimes adjusted to fit their individual needs.
@@ -64,7 +65,7 @@ https://github.com/openintegrationhub/contacts-adapter-template/blob/09965e800eb
 
 ### IDs
 
-In order to identify data records across the framework you will have to implement additional UIds  (Check ID Linking...[ID Linking in Open Integration Hub](../../services/DataHub.md#id-linking)):
+In order to identify data records across the framework you will have to implement additional UIds (Check ID Linking...[ID Linking in Open Integration Hub](../../services/DataHub.md#id-linking)):
 
 ```
 /*
@@ -90,6 +91,6 @@ You will have to implement these functions for each action and trigger like show
 
 ### Stuff you can delete
 
-- the `schema folder` is needed for the ID Linking( [ID Linking in Open Integration Hub](../../services/DataHub.md#id-linking))) and for a more sophisticated Mapping approach between different components.  
+- the `schema folder` is needed for the ID Linking( [ID Linking in Open Integration Hub](../../services/DataHub.md#id-linking))) and for a more sophisticated Mapping approach between different components.
 - `verifyCredentials.js` is only needed for the elastic.io and not for the Open Integration Hub.
 - `credentials` within the `component.json` is only needed for elastic.io UI. Depending on your implementation you may want to keep it. With regards to Open Integration Hub, it is not needed.

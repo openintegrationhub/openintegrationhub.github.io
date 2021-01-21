@@ -1,15 +1,9 @@
 ---
 layout: default
 title: Contribution Guidelines
-nav_order: 8
+parent: For Developers
+nav_order: 1
 ---
-
-<p align="center">
-  <img src="https://raw.githubusercontent.com/openintegrationhub/openintegrationhub.github.io/master/assets/images/large-oih-vertikal-zentriert.png" alt="Open Integration Hub" width="300"/>
-</p>
-<br>
-<br>
-
 
 # Contributor Guide
 
@@ -20,25 +14,24 @@ This document aggregates all information on how to contribute to the project.
 
 For technical specifications and guidelines like naming conventions, styleguides, definitions of done or operations, please refer to the corresponding workgroup and repository.
 
-
 # Table of Content
 
 Welcome to the Open Integration Hub Community!
 
--   [Before you get started](#before-you-get-started)
-    -   [Sign the Contributor License Agreement](#sign-the-cla)
-    -   [Code of Conduct](#code-of-conduct)
--   [How to contribute](#how-to-contribute)
-    -   [GitHub Workflow](#github-workflow)
-    -   [Pull Requests](#pull-requests)
-    -   [Issues](#issues)
--   [Where to contribute](#where-to-contribute)
-    -   [Understanding the structure](#understanding-the-structure)
-    -   [Committees](#committees)
-    -   [Workgroups](#workgroups)
-
+- [Before you get started](#before-you-get-started)
+  - [Sign the Contributor License Agreement](#sign-the-cla)
+  - [Code of Conduct](#code-of-conduct)
+- [How to contribute](#how-to-contribute)
+  - [GitHub Workflow](#github-workflow)
+  - [Pull Requests](#pull-requests)
+  - [Issues](#issues)
+- [Where to contribute](#where-to-contribute)
+  - [Understanding the structure](#understanding-the-structure)
+  - [Committees](#committees)
+  - [Workgroups](#workgroups)
 
 # Before you get started
+
 ## Sign the Contributor License Agreement
 
 It is important for you as a Contributor as well as the project and all it's users, that we are clear on who owns the code. All contributions have to be made according to the License Agreement.
@@ -53,12 +46,12 @@ The Open Integration Hub Project can only accept original source code from CLA s
 
 It is important to read and understand this legal agreement.
 
-
 ## Code of Conduct
 
 Please read and observe our [Code of Conduct](https://github.com/openintegrationhub/BusinessCommittee/blob/master/CODE_OF_CONDUCT.md).
 
 # How to contribute
+
 ## GitHub Workflow
 
 We follow the general GitHub workflow, if you are not familiar with working with GitHub, please refer to [the GitHub Workflow Guide](https://guides.github.com/introduction/flow/).
@@ -79,8 +72,8 @@ If you don't know whom to assign, choose: [@RobinBrinkmann](https://github.com/R
 
 For any issue (suggestion, bug, fix, etc.) there are fundamentally two ways an individual can contribute:
 
- - By helping to triage the issue: This can be done either by providing supporting details (a test case that demonstrates a bug), or providing suggestions on how to address the issue.
- - By helping to resolve the issue: Typically this is done either in the form of demonstrating that the issue reported is not a problem after all, or more often, by opening a Pull Request that changes some bit of something in Open Integration Hub in a concrete and reviewable manner.
+- By helping to triage the issue: This can be done either by providing supporting details (a test case that demonstrates a bug), or providing suggestions on how to address the issue.
+- By helping to resolve the issue: Typically this is done either in the form of demonstrating that the issue reported is not a problem after all, or more often, by opening a Pull Request that changes some bit of something in Open Integration Hub in a concrete and reviewable manner.
 
 # Where to contribute
 
@@ -109,7 +102,7 @@ Business Committee responsible for all community-facing topics, as well as topic
 
 ## Join the Community
 
-Do you have questions, ideas, feedback or just want to chat about integration? Please join our growing developer community on [Slack]( https://join.slack.com/t/openintegrationhub/shared_invite/zt-kwbj0osy-hgzhKJJmYn4tXeVN42udtg )! 
+Do you have questions, ideas, feedback or just want to chat about integration? Please join our growing developer community on [Slack](https://join.slack.com/t/openintegrationhub/shared_invite/zt-kwbj0osy-hgzhKJJmYn4tXeVN42udtg)!
 
 Contact: info@cloudecosystem.org
 

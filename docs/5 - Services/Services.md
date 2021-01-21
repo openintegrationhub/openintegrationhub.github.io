@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Services
-nav_order: 3
+nav_order: 6
 has_children: true
 ---
 
@@ -10,7 +10,6 @@ has_children: true
 </p>
 <br>
 <br>
-
 
 # Service Overview
 
@@ -24,8 +23,10 @@ The Open Integration Hub framework consists of a variety of service. This will g
                 <a class="item" href="https://openintegrationhub.github.io/docs/Services/IdentityManagement.html">Identity Access Management</a>
                 <a class="item" href="https://openintegrationhub.github.io/docs/Services/SecretService.html">Secret-Service</a>
                 <a class="item" href="https://openintegrationhub.github.io/docs/Services/FlowRepository.html">Flow Repository</a>
+                <a class="item" href="https://openintegrationhub.github.io/docs/Services/TemplateRepository.html">Template Repository</a>
                 <a class="item" href="https://openintegrationhub.github.io/docs/Services/ComponentRepository.html">Component Repository</a>
                 <a class="item" href="https://openintegrationhub.github.io/docs/Services/ComponentOrchestrator.html">Component Orchestrator</a>
+                <a class="item" href="https://openintegrationhub.github.io/docs/Services/Ferryman.html">Ferryman</a>
                 <a class="item" href="https://openintegrationhub.github.io/docs/Services/Scheduler.html">Scheduler</a>
                 <a class="item" href="https://openintegrationhub.github.io//docs/Services/AttachmentStorage.html">Attachment-Storage-Service</a>
                 <a class="item" href="https://openintegrationhub.github.io/docs/Services/Webhooks.html">Webhooks</a>
@@ -36,10 +37,10 @@ The Open Integration Hub framework consists of a variety of service. This will g
             <div class="inner-container">
                 <a class="item" href="#" style="flex-basis: calc(100% - 8px)">Reporting and Analytics APIs</a>
                 <a class="item" href="https://openintegrationhub.github.io/docs/Services/AuditLog.html">Audit Log</a>
-                <a class="item" href="#">Logging & Monitoring</a>
                 <a class="item" href="https://openintegrationhub.github.io/docs/Services/MetaDataRepository.html">Metadata Repository</a>
                 <a class="item" href="https://openintegrationhub.github.io/docs/Services/ConflictManagement.html">Conflict Management</a>
                 <a class="item" href="https://openintegrationhub.github.io//docs/Services/DataHub.html">Data Hub</a>
+                <a class="item" href="https://openintegrationhub.github.io//docs/Services/GovernanceService.html">Governance Service</a>
                 <a class="item" href="https://openintegrationhub.github.io/docs/Services/DispatcherService.html">Dispatcher Service</a>
                 <a class="item" href="https://openintegrationhub.github.io/docs/Services/IntegrationLayerService.html">Integration Layer Service</a>
             </div>
@@ -49,13 +50,4 @@ The Open Integration Hub framework consists of a variety of service. This will g
         </div>
     </div>
 
-
-
-
-
-    <div class="container-further">
-        <a class="item" href="https://openintegrationhub.github.io//docs/Getting%20Started/LocalInstallationGuide.html">Local Setup</a>
-        <a class="item" href="https://openintegrationhub.github.io//docs/Getting%20Started/GCPInstallationGuide.html">Google Cloud Platform Setup</a>
-        <a class="item" href="https://openintegrationhub.github.io//docs/Service%20Collaboration/ServiceCollaborationOverview.html">Service Collaboration</a>
-    </div>
 </div>

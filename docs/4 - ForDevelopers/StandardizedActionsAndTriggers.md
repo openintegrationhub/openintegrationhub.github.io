@@ -1,37 +1,36 @@
 ---
 layout: default
 title: Standardized Examples
-nav_order: 1
-parent: Actions and Triggers
-grand_parent: Connectors
+nav_order: 2
+parent: Development Example for Node.js
+grand_parent: For Developers
 ---
 
 # Descriptions of standardized actions or triggers
 
-
 ## Table of Contents
 
 - [Actions](#actions)
-  * [Upsert Object](#upsert-object)
-  * [Lookup Object (at most 1)](#lookup-object-at-most-1)
-  * [Lookup Objects (Plural)](#lookup-objects-plural)
-  * [Delete Object](#delete-object)
-  * [Make RAW Request](#make-raw-request)
-  * [Lookup Set Of Objects By Unique Criteria](#lookup-set-of-objects-by-unique-criteria)
-  * [Update Object](#update-object)
-  * [Create Object](#create-object)
-  * [Linking/Unlinking Objects](#linkingunlinking-objects)
-  * [Execute Query or Statement in Query Language](#execute-query-or-statement-in-query-language)
-  * [Perform Action/Evaluate Function](#perform-actionevaluate-function)
-  * [Assert Option(s) in Set(s)](#assert-options-in-sets)
-  * [Merge Objects](#merge-objects)
+  - [Upsert Object](#upsert-object)
+  - [Lookup Object (at most 1)](#lookup-object-at-most-1)
+  - [Lookup Objects (Plural)](#lookup-objects-plural)
+  - [Delete Object](#delete-object)
+  - [Make RAW Request](#make-raw-request)
+  - [Lookup Set Of Objects By Unique Criteria](#lookup-set-of-objects-by-unique-criteria)
+  - [Update Object](#update-object)
+  - [Create Object](#create-object)
+  - [Linking/Unlinking Objects](#linkingunlinking-objects)
+  - [Execute Query or Statement in Query Language](#execute-query-or-statement-in-query-language)
+  - [Perform Action/Evaluate Function](#perform-actionevaluate-function)
+  - [Assert Option(s) in Set(s)](#assert-options-in-sets)
+  - [Merge Objects](#merge-objects)
 - [Batch Actions](#batch-actions)
 - [Triggers](#triggers)
-  * [Get New and Updated Objects Polling](#get-new-and-updated-objects-polling)
-  * [Webhooks](#webhooks)
-  * [Bulk Extract](#bulk-extract)
+  - [Get New and Updated Objects Polling](#get-new-and-updated-objects-polling)
+  - [Webhooks](#webhooks)
+  - [Bulk Extract](#bulk-extract)
 
-It is important to define common rules on how a connector responds to changes and performs actions on generic domain objects.  
+It is important to define common rules on how a connector responds to changes and performs actions on generic domain objects.
 
 If connectors follow common behaviours, then it is possible to build integrations by combining connectors which are developed by different developers.
 
@@ -41,15 +40,15 @@ If connectors follow common behaviours, then it is possible to build integration
 
 ##### Example Use Case
 
-I have some contact data that I want to add to my CRM.  I don't necessarily know if there is already a contact in my CRM, so I want the connector to be smart and determine if the data needs to be matched to an existing contact or added to a new contract.
+I have some contact data that I want to add to my CRM. I don't necessarily know if there is already a contact in my CRM, so I want the connector to be smart and determine if the data needs to be matched to an existing contact or added to a new contract.
 
 #### Iteration 1: Upsert Object By ID
 
 ##### Input Metadata
 
-- One input per field in the ID that is optional.  This field is marked as being the ID. (Check ID Linking...[ID Linking in Open Integration Hub](../../services/DataHub.md#id-linking))
+- One input per field in the ID that is optional. This field is marked as being the ID. (Check ID Linking...[ID Linking in Open Integration Hub](../../services/DataHub.md#id-linking))
 
-- Inputs for other fields on the body.  All fields that are not nullable and can’t be populated by the system on create should be required.
+- Inputs for other fields on the body. All fields that are not nullable and can’t be populated by the system on create should be required.
 
 ##### Pseudo-Code
 
@@ -82,7 +81,7 @@ I have some contact data that I want to add to my CRM.  I don't necessarily know
 
 ##### Input Metadata Changes
 
-- The fields that are part of the upsert criteria are marked as being part of the criteria.  If the criteria is something other than the ID, they should be marked as required.
+- The fields that are part of the upsert criteria are marked as being part of the criteria. If the criteria is something other than the ID, they should be marked as required.
 
   (There is a hypothetical edge case here where the system auto-populates the unique criteria)
 
@@ -107,14 +106,16 @@ I have some contact data that I want to add to my CRM.  I don't necessarily know
     }
 
 ### Lookup Object (at most 1)
+
 ##### Example Use Case
-I have a contact who works for a company.  I have an ID or other distinguishing characteristic (e.g. legal name) of the company and I want to learn some detail about the company (e.g. number of employees).
+
+I have a contact who works for a company. I have an ID or other distinguishing characteristic (e.g. legal name) of the company and I want to learn some detail about the company (e.g. number of employees).
 
 #### Iteration 1: Lookup Object By ID
 
 ##### Input Metadata
 
-- One input per field in the ID.  Depending on the value of allowIdToBeOmitted this is optional or required.
+- One input per field in the ID. Depending on the value of allowIdToBeOmitted this is optional or required.
 
 ##### Pseudo-Code
 
@@ -184,9 +185,10 @@ I have a contact who works for a company.  I have an ID or other distinguishing 
       }
     }
 
-
 ### Lookup Objects (Plural)
+
 ##### Example Use Case
+
 I want to search my CRM for data based on some criteria.
 
 ##### Input Metadata
@@ -228,7 +230,7 @@ I want to search my CRM for data based on some criteria.
 
 ##### Output Data
 
-- An object, with  key `results` that has an array as its value.
+- An object, with key `results` that has an array as its value.
 
 ##### Gotcha’s to lookout for
 
@@ -240,7 +242,9 @@ I want to search my CRM for data based on some criteria.
 - How to get total number of matching objects
 
 ### Delete Object
+
 ##### Example Use Case
+
 I know the ID of a customer that I want to delete.
 
 #### Iteration 1: Delete Object By ID
@@ -292,25 +296,29 @@ I know the ID of a customer that I want to delete.
 
 ### Make RAW Request
 
-*This action has not been fully standardized.*
+_This action has not been fully standardized._
 
-A simple action to allow integrators to assemble requests to be sent to the system.  The component should expose the parts that vary in a typical request.  The component should handle authentication and error reporting.
+A simple action to allow integrators to assemble requests to be sent to the system. The component should expose the parts that vary in a typical request. The component should handle authentication and error reporting.
 
 ##### Example Use Case
+
 I'm a technically advanced user who wants to interact with a system in a way not permissible by the existing component actions but would like some simplification relative to using the REST component.
 
 ### Lookup Set Of Objects By Unique Criteria
-Given an array of information where each item in the array uniquely describes exactly one object.  It can be assumed that the array is short enough to reasonably fit the results in a single message.
+
+Given an array of information where each item in the array uniquely describes exactly one object. It can be assumed that the array is short enough to reasonably fit the results in a single message.
 
 ##### Example Use Case
-I salesperson is responsible for 0 to N accounts.  I would like to look up a piece of information for each account associated with the salesperson.
+
+I salesperson is responsible for 0 to N accounts. I would like to look up a piece of information for each account associated with the salesperson.
 
 #### Iteration 1: Lookup Object By ID
+
 #### Iteration 2: Lookup Object By Unique Criteria
 
 ##### Input Metadata
 
-- An array where each item has one input per field in the ID.  If the ID is a single field, this input can be a simple array (as opposed to an array of objects).  Required.
+- An array where each item has one input per field in the ID. If the ID is a single field, this input can be a simple array (as opposed to an array of objects). Required.
 
 ##### Pseudo-Code (Multi-Field ID Case)
 
@@ -360,6 +368,7 @@ I salesperson is responsible for 0 to N accounts.  I would like to look up a pie
 - Make sure to Url Encode IDs appearing in HTTP urls
 
 ##### Not defined now
+
 - Encode any IDs in URLs
 - Rebounds when an object is not found
 - There are different structures depending on the input structure
@@ -372,6 +381,7 @@ I salesperson is responsible for 0 to N accounts.  I would like to look up a pie
   - No other fields are required
 
 ##### Example Use Case
+
 I want to update the price of a product based on its SKU but I don't want to look up other required attributes such as name since I know those have already been set and are not changing.
 
 ### Create Object
@@ -383,12 +393,14 @@ Similar to upsert object but needed for the following cases:
 - Cases where the id of the object includes information in the object (e.g. The ID of a sales line is the sales order ID + SKU).
 
 ##### Example Use Case
+
 See above.
 
 ### Linking/Unlinking Objects
 
 - Given a many-to-many relationship in a system: create/update/remove a relationship between two objects.
 - In order to do this, the inbound metadata needs to include:
+
   - the types of the two objects
   - two sets of unique criteria which describe the two objects
   - Information about the relationship (e.g. if assigning user to company membership, identify the role of the user)
@@ -412,12 +424,15 @@ See above.
     ```
 
 ##### Example Use Case
-A student can be a participant in a class and a class can have many students.  Given a student ID and a course ID I want to enroll that student in that course.
+
+A student can be a participant in a class and a class can have many students. Given a student ID and a course ID I want to enroll that student in that course.
 
 ### Execute Query or Statement in Query Language
-Examples of this include constructing a query or statement in SQL, Salesforce’s SOQL, etc. Queries return a table of data when executed.  Statements do not reutrn results (other than execution statistics).
+
+Examples of this include constructing a query or statement in SQL, Salesforce’s SOQL, etc. Queries return a table of data when executed. Statements do not reutrn results (other than execution statistics).
 
 ##### Example Use Case
+
 Execute SQL query in SQL database
 
 ##### Input Metadata
@@ -460,26 +475,29 @@ Execute SQL query in SQL database
 ##### Output Data
 
 - If Query: Depends on mode
-- If Statement: Execution statistics if available.  Otherwise an empty object as a result.
+- If Statement: Execution statistics if available. Otherwise an empty object as a result.
 
 ### Perform Action/Evaluate Function
 
-*This action has not been fully standardized.*
+_This action has not been fully standardized._
 
 Examples of this include sendEmail, calculatePrice, etc.
 
 ### Assert Option(s) in Set(s)
+
 Given a field which can be set to a fixed list of options, ensure that this option exists in the list of selectable options.
 
 ##### Example Use Case
-You run a store where each product has a color.  The list of colors are finite (e.g. red, green, blue).  One day, you decide to add a new color option yellow.
+
+You run a store where each product has a color. The list of colors are finite (e.g. red, green, blue). One day, you decide to add a new color option yellow.
 
 ##### Input Metadata
 
 For each field in the object type where the populated data is a dropdown/multi-select
+
 - One input which identifies the option value that needs to be in the set. Optional
-- Inputs for any data related to the option being added.  Not applicable for all systems
-Iteration 2: Have the above receive an array
+- Inputs for any data related to the option being added. Not applicable for all systems
+  Iteration 2: Have the above receive an array
 
 ##### Pseudo-Code
 
@@ -529,20 +547,22 @@ Iteration 2: Have the above receive an array
 
 ### Merge Objects
 
-*This action has not been fully standardized.*
+_This action has not been fully standardized._
 
-Example: Contact merge.  There are usually two contacts, A and B with different IDs.  At the end of the merge, one ID remains with all external references to the other contact now pointing to the remaining contact.
+Example: Contact merge. There are usually two contacts, A and B with different IDs. At the end of the merge, one ID remains with all external references to the other contact now pointing to the remaining contact.
 
 ## Batch Actions
 
-*This set of actions has not been fully standardized.*
+_This set of actions has not been fully standardized._
 
-It is possible to make batch variants for many of the above actions.  The batch action should perform operations which behave as the other options described above.
+It is possible to make batch variants for many of the above actions. The batch action should perform operations which behave as the other options described above.
 
 ## Triggers
 
 ### Get New and Updated Objects Polling
+
 ##### Example Use Case
+
 I want to learn about changes to contacts in my CRM when they happen.
 
 ##### Input Metadata
@@ -601,7 +621,7 @@ N/A
 
 ##### Gotcha’s to lookout for
 
-- If `previousLastModified` is set to `lastSeenTime` and we have `lastModified >= previousLastModified` then each execution will include records from previous execution.  But if at the first execution `previousLastModified` could be equal `cfg.startTime` and we have `lastModified > previousLastModified` then we will lose objects whose last modified date is equal to the `cfg.startTime`.  This is why we compare `previousLastModified` and `cfg.startTime || new Date(0)` and if they are equal, use condition `lastModified >= previousLastModified,` else: `lastModified > previousLastModified,`
+- If `previousLastModified` is set to `lastSeenTime` and we have `lastModified >= previousLastModified` then each execution will include records from previous execution. But if at the first execution `previousLastModified` could be equal `cfg.startTime` and we have `lastModified > previousLastModified` then we will lose objects whose last modified date is equal to the `cfg.startTime`. This is why we compare `previousLastModified` and `cfg.startTime || new Date(0)` and if they are equal, use condition `lastModified >= previousLastModified,` else: `lastModified > previousLastModified,`
 - We use `lastModified <= maxTime` as it is more understandable for user.
 - We have `Single Page per Interval` default to yes because it is slightly safer.
 - TODO
