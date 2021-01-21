@@ -123,9 +123,9 @@ including functionality to
 
 ### Case 2
 
-- The list of business objects is dynamic
+- The list of business objects is dynamic 
 - The structure of the objects is dynamic (*Implied by above statement*)
-- The API does not support webhooks
+- The API does not support webhooks 
 
 #### Triggers
 
