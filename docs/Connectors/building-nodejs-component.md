@@ -35,7 +35,7 @@ contacts-component-template
 │       ├── authentication.js
 │       ├── helpers.js
 │       └── resolver.js
-│    └── tranformations                                     (5)
+│   └── tranformations                                     (5)
 │       ├── organizationFromOih.js
 │       ├── organizationToOih.js 
 │       ├── personFromOih.js
@@ -128,6 +128,11 @@ Here's a short overview over each file and its intended purpose:
 
 - `resolver.js`: Contains an example implementation of the OIH Conflict Management module. This is somewhat more advanced and beyond the scope of this guide. If you would like to know more, check the documentation of the [Conflict Management](https://openintegrationhub.github.io/docs/Services/ConflictManagement.html)
 
+### Transformers
+
+This folder contains various tranformation functions from the components API to the OIH master model and vice versa. 
+
+[Transformation Functions](https://openintegrationhub.github.io//docs/Connectors/TransformFunction.html){: .btn .fs-5 .mb-4 .mb-md-0 }
 
 ## Start your own
 Now that you have the basics down, we suggest to start with determining what functionality your connector should include. Essential for that is the API you are connecting with.

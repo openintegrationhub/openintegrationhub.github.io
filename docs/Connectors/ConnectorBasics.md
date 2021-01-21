@@ -23,7 +23,7 @@ An **connector** is a module for the syntactic connection of an external applica
 operations within the source system through the actions and the triggers that are provided to each individual connector.
 
 A **transform function** is responsible to semantically transform an incoming JSON object into another JSON object. The functionality is implemented in the component using the 
-new version of Ferryman and the imported necessary expressions on each connector. Therefore we have fewer steps on a flow while we still give the same functionality. 
+new version of Ferryman and the imported necessary expressions in each connector. Therefore we have fewer steps on a flow while we still give the same functionality. 
 
 
 

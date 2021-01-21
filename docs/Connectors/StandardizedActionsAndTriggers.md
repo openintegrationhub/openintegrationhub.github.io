@@ -31,7 +31,7 @@ grand_parent: Connectors
   * [Webhooks](#webhooks)
   * [Bulk Extract](#bulk-extract)
 
-It is important to define common rules on how an connector responds to changes and performs actions on generic domain objects.  
+It is important to define common rules on how a connector responds to changes and performs actions on generic domain objects.  
 
 If connectors follow common behaviours, then it is possible to build integrations by combining connectors which are developed by different developers.
 
@@ -47,7 +47,7 @@ I have some contact data that I want to add to my CRM.  I don't necessarily know
 
 ##### Input Metadata
 
-- One input per field in the ID that is optional.  This field is marked as being the ID.
+- One input per field in the ID that is optional.  This field is marked as being the ID. (Check ID Linking...)
 
 - Inputs for other fields on the body.  All fields that are not nullable and can’t be populated by the system on create should be required.
 

@@ -64,7 +64,7 @@ https://github.com/openintegrationhub/contacts-adapter-template/blob/09965e800eb
 
 ### IDs
 
-In order to identify data records across the framework you will have to implement additional UIds:
+In order to identify data records across the framework you will have to implement additional UIds (ID Linking ....):
 
 ```
 /*
