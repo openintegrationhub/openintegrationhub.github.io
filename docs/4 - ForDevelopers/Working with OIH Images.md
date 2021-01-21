@@ -5,12 +5,6 @@ nav_order: 5
 parent: For Developers
 ---
 
-<p align="center">
-  <img src="https://raw.githubusercontent.com/openintegrationhub/openintegrationhub.github.io/master/assets/images/large-oih-vertikal-zentriert.png" alt="Open Integration Hub" width="300"/>
-</p>
-<br>
-<br>
-
 # Working with the OIH Framework Images
 
 ## Monorepo Versions

@@ -1,14 +1,9 @@
 ---
 layout: default
 title: API Reference Documentation
-nav_order: 5
+parent: Reference Documentation
+nav_order: 1
 ---
-
-<p align="center">
-  <img src="https://raw.githubusercontent.com/openintegrationhub/openintegrationhub.github.io/master/assets/images/large-oih-vertikal-zentriert.png" alt="Open Integration Hub" width="300"/>
-</p>
-<br>
-<br>
 
 # API Reference Documentation
 

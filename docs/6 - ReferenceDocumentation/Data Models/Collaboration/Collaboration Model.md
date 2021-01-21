@@ -2,8 +2,8 @@
 layout: default
 title: Collaboration
 parent: Master Data Models
-has_children: true
-nav_order: 4
+nav_order: 3
+grand_parent: Reference Documentation
 ---
 
 ![prod](https://img.shields.io/badge/Status-Production-brightgreen.svg)
@@ -13,15 +13,19 @@ nav_order: 4
 ## Resources
 
 #### UML Diagram
+
 [UML Diagram](https://github.com/openintegrationhub/openintegrationhub.github.io/blob/master/assets/DataModels/Collaboration/OIH%20collaboration.png){: .btn .fs-5 .mb-4 .mb-md-0 }
+
 #### JSON Schema
+
 [Collabrotation](https://github.com/openintegrationhub/openintegrationhub.github.io/blob/master/assets/DataModels/Documents/collaborationElement.json){: .btn .fs-5 .mb-4 .mb-md-0 }
 [Calendar](https://github.com/openintegrationhub/openintegrationhub.github.io/blob/master/assets/DataModels/Documents/calendarEvent.json){: .btn .fs-5 .mb-4 .mb-md-0 }
 [e-mail](https://github.com/openintegrationhub/openintegrationhub.github.io/blob/master/assets/DataModels/Documents/email.json){: .btn .fs-5 .mb-4 .mb-md-0 }
 [TaskToTaskRelation](https://github.com/openintegrationhub/openintegrationhub.github.io/blob/master/assets/DataModels/Documents/TaskToTaskRelationjson){: .btn .fs-5 .mb-4 .mb-md-0 }
-#### Description Table
-[Description Table](https://openintegrationhub.github.io//docs/Data%20Models/Collaboration/CollaborationDescriptionTable.html){: .btn .fs-5 .mb-4 .mb-md-0 }
 
+#### Description Table
+
+[Description Table](https://openintegrationhub.github.io//docs/Data%20Models/Collaboration/CollaborationDescriptionTable.html){: .btn .fs-5 .mb-4 .mb-md-0 }
 
 ## General Structure
 
@@ -38,9 +42,8 @@ The models inherit the most important properties from this main `collaboration e
 
 ![Collaboration](https://raw.githubusercontent.com/openintegrationhub/openintegrationhub.github.io/master/assets/DataModels/Collaboration/OIH%20collaboration.png)
 
-
-
 ## Further information
+
 As an open standard we are of course trying to be compatible with existing models out there. So for this model other industry standards were analyzed. If you are interested in learning more about the concepts behind this model, check out the workgroup on GitHub.
 
 [GitHub](https://github.com/openintegrationhub/Data-and-Domain-Models){: .btn .fs-5 .mb-4 .mb-md-0 }

@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Flow Basics
+title: Integration Flows
 parent: Basic Concepts
 nav_order: 2
 has_children: false
@@ -17,13 +17,13 @@ A Flow can best be described as a simple directed graph, connecting components t
 The simplest, and probably most common example of a Flow is called an Integration Flow. It is used to transfer data from one application to another. Say you would like to transfer your contacts from your Google Contacts account to your Microsoft Outlook account. All you need for that are two components (called Connectors, as they connect with an external application): One to fetch your data from Google, the other to send it to Outlook.
 
 <p align="left">
-  <img src="https://raw.githubusercontent.com/openintegrationhub/openintegrationhub.github.io/master/assets/images//FlowExample1.png" alt="Simple Flow Graph" width="150"/>
+  <img src="https://raw.githubusercontent.com/openintegrationhub/openintegrationhub.github.io/master/assets/images//FlowExample1.png" alt="Simple Flow Graph" width="250"/>
 </p>
 
 If you decide you'd like to additonally send your contacts to a third destination such as Salesforce, it's as simple as adding a third component to your flow. The data received from Google would then automatically be delivered both destinations at once.
 
 <p align="left">
-  <img src="https://raw.githubusercontent.com/openintegrationhub/openintegrationhub.github.io/master/assets/images//FlowExample2.png" alt="Expanded Flow Graph" width="150"/>
+  <img src="https://raw.githubusercontent.com/openintegrationhub/openintegrationhub.github.io/master/assets/images//FlowExample2.png" alt="Expanded Flow Graph" width="250"/>
 </p>
 
 ## Flow Definition

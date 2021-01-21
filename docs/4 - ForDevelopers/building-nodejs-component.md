@@ -3,7 +3,7 @@ layout: default
 title: Development Example for Node.js
 nav_order: 2
 parent: For Developers
-has children: true
+has_children: true
 ---
 
 # Node.js Development Example
