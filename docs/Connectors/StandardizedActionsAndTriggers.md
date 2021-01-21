@@ -31,9 +31,9 @@ grand_parent: Connectors
   * [Webhooks](#webhooks)
   * [Bulk Extract](#bulk-extract)
 
-It is important to define common rules on how an adapter responds to changes and performs actions on generic domain objects.  
+It is important to define common rules on how a connector responds to changes and performs actions on generic domain objects.  
 
-If adapters follow common behaviours, then it is possible to build integrations by combining adapters which are developed by different developers.
+If connectors follow common behaviours, then it is possible to build integrations by combining connectors which are developed by different developers.
 
 ## Actions
 
@@ -47,7 +47,7 @@ I have some contact data that I want to add to my CRM.  I don't necessarily know
 
 ##### Input Metadata
 
-- One input per field in the ID that is optional.  This field is marked as being the ID.
+- One input per field in the ID that is optional.  This field is marked as being the ID. (Check ID Linking...[ID Linking in Open Integration Hub](../../services/DataHub.md#id-linking))
 
 - Inputs for other fields on the body.  All fields that are not nullable and can’t be populated by the system on create should be required.
 
@@ -611,7 +611,6 @@ N/A
 Receives data pushed to the Open Integration Hub from an external system.
 
 The webhook URL is being provided by the [Webhook Service](https://openintegrationhub.github.io/docs/Services/Webhooks.html) for each flow.
-
 
 ### Bulk Extract
 

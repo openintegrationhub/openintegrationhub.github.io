@@ -8,23 +8,23 @@ parent: Connectors
 
 # Node.js Development Example
 
-Open Integration Hub supports `Node.js` programming language for building integration components such as Adapters and Transformers.
+Open Integration Hub supports `Node.js` programming language for building integration components such as Components.
 
-To help you create an Adapter in `Node.js` we have created a simple template adapter component to start out with: [Contacts Adapter Template](https://github.com/openintegrationhub/contacts-adapter-template). It is a well-documented minimal adapter intended to fetch and push data of the Contacts domain from and to the SnazzyContacts API. It is built with modularity in mind, so that for your own case you should be able to re-use most of the code, needing only to switch out the parts specific to the API you would like to target.
+To help you create a Connector in `Node.js` we have created a simple template component to start out with: [Contacts Component Template](https://github.com/openintegrationhub/contacts-adapter-template). It is a well-documented minimal component intended to fetch and push data of the Contacts domain from and to the SnazzyContacts API. It is built with modularity in mind, so that for your own case you should be able to re-use most of the code, needing only to switch out the parts specific to the API you would like to target.
 
-For now lets start with understanding the different parts a typical adapter:
+For now lets start with understanding the different parts a typical component:
 
 ## Contacts Component
 
 Let us have a look at the structure of the Contacts Component in Node.js:
 
 ```
-contacts-adapter-template
+contacts-component-template
 
 ├── component.json                                          (1)
 ├── lib
 │   ├── actions                                             (2)
-│   │   ├── deleteOrganization.js
+│   │   ├── deletePerson.js
 │   │   ├── deleteOrganization.js
 │   │   ├── upsertOrganization.js
 │   │   └── upsertPerson.js
@@ -35,7 +35,13 @@ contacts-adapter-template
 │       ├── authentication.js
 │       ├── helpers.js
 │       └── resolver.js
-├── package.json                                            (5)
+│   └── tranformations                                     (5)
+│       ├── organizationFromOih.js
+│       ├── organizationToOih.js 
+│       ├── personFromOih.js
+│       └── personToOih.js
+
+├── package.json                                            (6)
 ```
 
 The Node.js components get built by NPM `run-script` which checks first the `package.json` (6) configuration file and starts initialising the `node` and `npm` versions and builds them. Next, the dependencies get downloaded and build. All node.js components must use the following dependency:
@@ -59,12 +65,12 @@ As mentioned above, the `component.json` file is the component descriptor interp
 
 ```json
 {
-  "title": "Contacts Adapter Template",                                       (1)
-  "description": "OIH contacts adapter example",                              (2)
-  "triggers": {                                                               (3)
+  "title": "Contacts Component Template",                                       (1)
+  "description": "OIH contacts component example",                              (2)
+  "triggers": {                                                                 (3)
     ...
     },
-  "actions": {                                                                (4)
+  "actions": {                                                                  (4)
     ...
     }
   }
@@ -122,6 +128,11 @@ Here's a short overview over each file and its intended purpose:
 
 - `resolver.js`: Contains an example implementation of the OIH Conflict Management module. This is somewhat more advanced and beyond the scope of this guide. If you would like to know more, check the documentation of the [Conflict Management](https://openintegrationhub.github.io/docs/Services/ConflictManagement.html)
 
+### Transformers
+
+This folder contains various tranformation functions from the components API to the OIH master model and vice versa. 
+
+[Transformation Functions](https://openintegrationhub.github.io//docs/Connectors/TransformFunction.html){: .btn .fs-5 .mb-4 .mb-md-0 }
 
 ## Start your own
 Now that you have the basics down, we suggest to start with determining what functionality your connector should include. Essential for that is the API you are connecting with.
