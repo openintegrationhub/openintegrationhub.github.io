@@ -12,14 +12,15 @@ Use the full links to reference other files or images! Relative links will not w
 -->
 
 <!-- please choose the appropriate batch and delete/comment the others  -->
-![prod](https://img.shields.io/badge/Status-Production-brightgreen.svg)
 
+![prod](https://img.shields.io/badge/Status-Production-brightgreen.svg)
 
 # **Secret Service** <!-- make sure spelling is consistent with other sources and within this document -->
 
 ## Introduction
 
 <!-- 2 sentences: what does it do and how -->
+
 The Secret Service is used to store and access securely client/user credentials
 
 [API Reference](http://skm.openintegrationhub.com/api-docs/){: .btn .fs-5 .mb-4 .mb-md-0 }
@@ -27,9 +28,11 @@ The Secret Service is used to store and access securely client/user credentials
 [Service File](https://github.com/openintegrationhub/openintegrationhub/tree/master/lib/secret-service){: .btn .fs-5 .mb-4 .mb-md-0 }
 
 ## Technologies used
+
 <!-- please name and elaborate on other technologies or standards the service uses -->
 
 ## How it works
+
 <!-- describe core functionalities and underlying concepts in more detail -->
 
 # Introduction
@@ -130,16 +133,16 @@ The JWT payload could contain as less as the secret ids required for this specif
 
 # Summary
 
-* Service account(s) or JWT for a connector to fetch secrets
-* Adapter communicates with an external application and requires user's secret
-  * Adapter either fetches the secrets itself from secrets service using it's own service account and context (context may be the flow or flow step, and thus limit the access only to secrets of flow owner)
-  * or receive the secret as env vars through a superordinate priveleged service
-* In case of OAuth access tokens, a separate service could be used to refresh access tokens (singleton) and all services using an access token must request it from this singleton service
-  * Advantage: only one token refresh, all depending connectors fetch the new access token from this service
-* Secrets are stored encrypted
-* Access control to secrets is based on IAM authentication and authorization mechanisms
-* Secret-Service has it's own mongodb, where it stores: secret\_id (secret is stored in vault, but referenced through secret\_id), owner (user or tenant)
-* Secret-Service can fetch and return a new access token using the refresh token it stored in vault
+- Service account(s) or JWT for a connector to fetch secrets
+- Adapter communicates with an external application and requires user's secret
+  - Adapter either fetches the secrets itself from secrets service using it's own service account and context (context may be the flow or flow step, and thus limit the access only to secrets of flow owner)
+  - or receive the secret as env vars through a superordinate priveleged service
+- In case of OAuth access tokens, a separate service could be used to refresh access tokens (singleton) and all services using an access token must request it from this singleton service
+  - Advantage: only one token refresh, all depending connectors fetch the new access token from this service
+- Secrets are stored encrypted
+- Access control to secrets is based on IAM authentication and authorization mechanisms
+- Secret-Service has it's own mongodb, where it stores: secret_id (secret is stored in vault, but referenced through secret_id), owner (user or tenant)
+- Secret-Service can fetch and return a new access token using the refresh token it stored in vault
 
 # Secrets management framework
 
@@ -153,13 +156,13 @@ For a list of secrets managements solutions (albeit focused more on infrastructu
 
 ## Requirements
 
-* Strong Encryption of stored secrets
-* HA capability
-* An open source project with a large community and activity
-* Maturity of the framework
-* Good documentation
-* Flexible storage choice
-* Enterprise ready
+- Strong Encryption of stored secrets
+- HA capability
+- An open source project with a large community and activity
+- Maturity of the framework
+- Good documentation
+- Flexible storage choice
+- Enterprise ready
 
 Compared to other solutions, we find that HashiCorp Vault [fits best](https://www.vaultproject.io/intro/vs/index.html) with our requirements.
 
@@ -168,8 +171,9 @@ Compared to other solutions, we find that HashiCorp Vault [fits best](https://ww
 In the section Access Control we mentioned an alternative where connectors fetch the secrets directly from the Secret-Service. This approach has an advantage if at some point either Secret-Service or a correlating service also manages OAuth access tokens. In practice, this means that a connector would call Secret-Service an request an access token of a specific OAuth secret. The Secret-Service can then either return the access token, if it has a valid one or fetch the access token using for example client id and client secret. If more than one connector rely on a single access token (an identical access token), then fetching and refreshing of an access token is done ideally by a singleton – in our case Secret-Service or a correlating service responsible for this types of requests.
 
 ### Interaction with other Services
+
 Secret Service can receive events from any service, but only directly interacts with two of them:
 
-- [Message Oriented Middleware](https://openintegrationhub.github.io/docs/Services/MessageOrientedMiddleware.html): It receives all events through the Message Oriented Middleware. It publishes several events for most important actions e.g. "secrets.secret.created".
+- [Message Oriented Middleware](https://openintegrationhub.github.io/docs/5%20-%20Services/MessageOrientedMiddleware.html): It receives all events through the Message Oriented Middleware. It publishes several events for most important actions e.g. "secrets.secret.created".
 
-- [Identity Management](https://openintegrationhub.github.io/docs/Services/IdentityManagement.html): It requires a bearer token created by the Identity Management to determine current user and check required permissions.
+- [Identity Management](https://openintegrationhub.github.io/docs/5%20-%20Services/IdentityManagement.html): It requires a bearer token created by the Identity Management to determine current user and check required permissions.

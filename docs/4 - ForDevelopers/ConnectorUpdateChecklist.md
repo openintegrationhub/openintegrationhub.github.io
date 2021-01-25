@@ -87,7 +87,7 @@ https://github.com/openintegrationhub/snazzycontacts-adapter/blob/45943075edb5bc
 
 In order to transform data from one schema to another you can either build a separate Transformer Component or use the [transform function within the ferryman](https://github.com/openintegrationhub/openintegrationhub/blob/master/lib/ferryman/lib/transformer.js).
 
-You will have to implement these functions for each action and trigger like shown in the general template:https://github.com/openintegrationhub/contacts-adapter-template/blob/09965e800eb7dd934a73b218cffcd428ff8aca8e/lib/triggers/getObjects.js#L19
+You will have to implement these functions for each action and trigger like shown in the general template: https://github.com/openintegrationhub/contacts-adapter-template/blob/09965e800eb7dd934a73b218cffcd428ff8aca8e/lib/triggers/getObjects.js#L19
 
 ### Stuff you can delete
 

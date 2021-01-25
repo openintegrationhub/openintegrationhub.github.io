@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Getting Started
+title: Deployment
 nav_order: 4
 has_children: true
 ---
@@ -22,7 +22,7 @@ In case you need help or want to give us some feedback, head over to [GitHub](ht
 
 <div class="oih-docs-learn-overview-container">
 <div class="container-further">
-    <a class="item" href="https://openintegrationhub.github.io//docs/Getting%20Started/LocalInstallationGuide.html">Local Setup</a>
-    <a class="item" href="https://openintegrationhub.github.io/docs/Getting%20Started/GCPInstallationGuide.html">Google Cloud Platform Setup</a>
+    <a class="item" href="https://openintegrationhub.github.io/docs/3%20-%20Deployment/LocalInstallationGuide.html">Local Setup</a>
+    <a class="item" href="https://openintegrationhub.github.io/docs/3%20-%20Deployment/GCPInstallationGuide.html">Google Cloud Platform Setup</a>
 </div>
 </div>

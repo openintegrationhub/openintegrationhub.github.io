@@ -12,16 +12,20 @@ Use the full links to reference other files or images! Relative links will not w
 -->
 
 <!-- please choose the appropriate batch and delete/comment the others  -->
+
 ![prod](https://img.shields.io/badge/Status-Production-brightgreen.svg)
 
 # **Data Hub**
 
 ## Introduction
+
 <!-- 2 sentences: what does it do and how -->
+
 The Data Hub is responsible for storing, retrieving and updating oihDataRecords. It functions as the central data storage (synchronized data) within the Open Integration Hub.
 
 [API Reference](http://data-hub.openintegrationhub.com/api-docs){: .btn .fs-5 .mb-4 .mb-md-0 }
 [Implementation](https://github.com/openintegrationhub/openintegrationhub/tree/master/services/data-hub){: .btn .fs-5 .mb-4 .mb-md-0 }
+
 <!--[Service File](){: .btn .fs-5 .mb-4 .mb-md-0 }-->
 
 ## Technologies used
@@ -32,7 +36,7 @@ The Data Hub is responsible for storing, retrieving and updating oihDataRecords.
 
 ### ID Linking
 
-As described in [update propagation](https://openintegrationhub.github.io/docs/Service%20Collaboration/updatePropagation.html) the Data Hub receives events by the SDF Adapter. These events contain meta information including the `applicationUid` of the source application and the `recordUid` of the incoming payload within the source application.
+As described in [update propagation](https://openintegrationhub.github.io/docs/1%20-%20BasicConcepts/updatePropagation.html) the Data Hub receives events by the SDF Adapter. These events contain meta information including the `applicationUid` of the source application and the `recordUid` of the incoming payload within the source application.
 
 The Data Hub stores information about each set of applicationUids and recordUids in an array called `refs`.
 In case of a create operation it creates an oihDataRecord and adds the refs array with one object in it i.e. `applicationUid` and `recordUid` of the source system.
@@ -86,5 +90,5 @@ The following code represents the structure of an oihDataRecord:
 
 ### Interaction with other Services
 
-- Dispatcher Service: Emits events for dispatcher service in order to enable the hub and spoke archticture (See: [update propagation](https://openintegrationhub.github.io/docs/Service%20Collaboration/updatePropagation.html)).
-- SDF Adapter: Receives events from SDF Adapter in order to create or update oihDataRecords (See: [update propagation](https://openintegrationhub.github.io/docs/Service%20Collaboration/updatePropagation.html)).
+- Dispatcher Service: Emits events for dispatcher service in order to enable the hub and spoke archticture (See: [update propagation](https://openintegrationhub.github.io/docs/1%20-%20BasicConcepts/updatePropagation.html)).
+- SDF Adapter: Receives events from SDF Adapter in order to create or update oihDataRecords (See: [update propagation](https://openintegrationhub.github.io/docs/1%20-%20BasicConcepts/updatePropagation.html)).

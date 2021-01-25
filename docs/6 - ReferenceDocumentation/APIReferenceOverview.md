@@ -24,7 +24,6 @@ The Open Integration Hub framework consists of a variety of services. Most servi
         <div class="column">
             <span class="headline">Smart Data Framework</span>
             <div class="inner-container">
-                <a class="item" href="#">Reporting and Analytics APIs</a>
                 <a class="item" href="http://auditlog.openintegrationhub.com/api-docs/">Audit Log</a>
                 <a class="item" href="http://metadata.openintegrationhub.com/api-docs/">Metadata Repository</a>
                 <a class="item" href="http://data-hub.openintegrationhub.com/api-docs">Data Hub</a>

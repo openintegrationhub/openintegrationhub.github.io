@@ -630,7 +630,7 @@ N/A
 
 Receives data pushed to the Open Integration Hub from an external system.
 
-The webhook URL is being provided by the [Webhook Service](https://openintegrationhub.github.io/docs/Services/Webhooks.html) for each flow.
+The webhook URL is being provided by the [Webhook Service](https://openintegrationhub.github.io/docs/5%20-%20Services/Webhooks.html) for each flow.
 
 ### Bulk Extract
 
