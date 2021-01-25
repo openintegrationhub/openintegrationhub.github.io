@@ -4,10 +4,10 @@ theme: just-the-docs
 title: Open Integration Hub
 description: Open Source Integration Framework
 
-url: "https://openintegrationhub.github.io"
+url: 'https://openintegrationhub.github.io'
 
 aux_links:
-  "Open Integration Hub on GitHub":
-    - "//github.com/openintegrationhub"
+  'Open Integration Hub on GitHub':
+    - '//github.com/openintegrationhub'
 
-footer_content: "Copyright &copy; 2020 <a href=\"https://cloudecosystem.org\">Cloud Ecosystem e.V.</a>"
+footer_content: 'Copyright &copy; 2021 <a href="https://cloudecosystem.org">Cloud Ecosystem e.V.</a>'

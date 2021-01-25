@@ -17,7 +17,7 @@ Hi there! Glad you are here. This is the documentation of [Open Integration Hub]
 
 You will find explanations of how it works, how to set it up and the idea behind each service. For the acutal code, as well as more technical information head to [GitHub](https://github.com/openintegrationhub/openintegrationhub).
 
-We are a community driven project. Please join us on [Slack](https://join.slack.com/t/openintegrationhub/shared_invite/zt-kwbj0osy-hgzhKJJmYn4tXeVN42udtg) or open issues on [GitHub](https://github.com/openintegrationhub/openintegrationhub/issues) to give feedback and ask your questions. Also mind the [Contribution Guidelines]().
+We are a community driven project. Please join us on [Slack](https://join.slack.com/t/openintegrationhub/shared_invite/zt-kwbj0osy-hgzhKJJmYn4tXeVN42udtg) or open issues on [GitHub](https://github.com/openintegrationhub/openintegrationhub/issues) to give feedback and ask your questions. Also mind the [Contribution Guidelines](https://openintegrationhub.github.io/docs/4%20-%20ForDevelopers/ContributionGuidelines.html).
 
 # What is Open Integration Hub?
 
