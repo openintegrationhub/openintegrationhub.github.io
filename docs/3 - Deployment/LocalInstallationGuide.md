@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Local Installation
-parent: Getting Started
+parent: Deployment
 nav_order: 1
 ---
 

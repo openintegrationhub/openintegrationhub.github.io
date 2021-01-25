@@ -1,7 +1,7 @@
 ---
 layout: default
 title: GCP Installation
-parent: Getting Started
+parent: Deployment
 nav_order: 2
 ---
 
