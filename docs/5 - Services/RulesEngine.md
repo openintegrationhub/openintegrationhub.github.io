@@ -104,3 +104,9 @@ The payload sent to the Orchestrator:
   "stepId": 3
 }
 ```
+
+## Expression Language approach
+
+Alternatively, we could make use of a custom expression language, e.g. https://github.com/TomFrost/Jexl a context-based expression parser and evaluator
+
+
