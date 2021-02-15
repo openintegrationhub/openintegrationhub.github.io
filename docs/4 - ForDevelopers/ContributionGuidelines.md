@@ -102,7 +102,7 @@ Business Committee responsible for all community-facing topics, as well as topic
 
 ## Join the Community
 
-Do you have questions, ideas, feedback or just want to chat about integration? Please join our growing developer community on [Slack](https://join.slack.com/t/openintegrationhub/shared_invite/zt-kwbj0osy-hgzhKJJmYn4tXeVN42udtg)!
+Do you have questions, ideas, feedback or just want to chat about integration? Please join our growing developer community on [Slack](https://join.slack.com/t/openintegrationhub/shared_invite/zt-mba97vn9-xus3ZbVxnMr2oQwGegIk5Q)!
 
 Contact: info@cloudecosystem.org
 
