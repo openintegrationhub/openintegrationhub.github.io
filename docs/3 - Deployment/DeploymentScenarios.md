@@ -27,6 +27,8 @@ The OIH is structured to be modular in nature. Only a few services are strictly 
 
 **Data Hub**. Long-term storage for flow content and snapshot data. Required for ID-Linking
 
+**Snap Shot Servie**. Saves the state of the last execution of a flow. Can prevent duplicate delivery of entries.
+
 **Webhooks Service**. Starts flows based on incoming calls.
 
 **Metadata Repository**. Create and modify master data models used by your connectors.
@@ -52,6 +54,8 @@ For executing a minimal flow at least the following OIH services have to be runn
 - Flow Repository
 
 - Component Repository
+
+- Snap Shot Service (Optional but highly recommend)
 
 If the flow is using global connectors, then they need to be started before. Non global connectors are started automatically by the Orchestrator
 
