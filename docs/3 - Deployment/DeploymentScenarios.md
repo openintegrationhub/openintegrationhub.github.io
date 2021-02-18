@@ -29,7 +29,7 @@ The OIH is structured to be modular in nature. Only a few services are strictly 
 
 **Data Hub**: Long-term storage for flow content and snapshot data. Required for ID-Linking
 
-**Secret Service**: Securely store authentication data for other applications, and execute Oauth authentication flows.
+**Secret Service**: Securely store authentication data for other applications, and execute OAuth authentication flows.
 
 **Snap Shot Service**: Saves the state of the last execution of a flow. Used to prevent duplicate delivery of entries in polling flows.
 
@@ -57,7 +57,7 @@ See also: [Flow execution](https://openintegrationhub.github.io/docs/1%20-%20Bas
 
 - Component Orchestrator
 
-- Scheduler and/or Webhook Service (depending weather polling flows or webhooks are used)
+- Scheduler and/or Webhook Service (depending on whether polling flows or webhooks are used)
 
 - Flow Repository
 
@@ -65,11 +65,11 @@ See also: [Flow execution](https://openintegrationhub.github.io/docs/1%20-%20Bas
 
 - Snap Shot Service (Optional but highly recommend for polling flows)
 
-If the flow is using global connectors, then those need to be manually started through the component repository. Non global connectors are started automatically by the Orchestrator
+If the flow is using global connectors, then those need to be manually started through the component repository. Non-global connectors are started automatically by the Orchestrator
 
 ## Flow Deployment with ID-linking
 
-With the ID-Linking feature of the OIH, external ids of data sets coming from a connectors are grouped and linked to one entry with a OIH-Id. This prevents duplicate entries in the connected systems and enables dynamic updating of existing entries in connected systems.
+With the ID-Linking feature of the OIH, external ids of data sets coming from connectors are grouped and linked to one entry with a OIH-Id. This prevents duplicate entries in the connected systems and enables dynamic updating of existing entries in connected systems.
 
 Required Services:
 
@@ -89,7 +89,7 @@ Required Services:
 
 ## Hub & Spoke
 
-The Hub & Spoke approach may be useful when you have scenarios in which you want to synchronize a shared data set among a large number of applications at once. Rather than requiring you to manually set up and run flows between every single involved application, it offers you an automated functionality to define a network of connected applications and have the necessary flows created and started automatically.
+The Hub & Spoke approach may be useful when you have scenarios in which you want to synchronize a shared data set among numerous applications at once. Rather than requiring you to manually set up and run flows between every single involved application, it offers you an automated functionality to define a network of connected applications and have the necessary flows created and started automatically.
 
 As a rule of thumb, the Hub & Spoke approach can be useful if you regularly want to synchronize a given data set between more than three applications. For synchronizations between fewer applications, traditional single directional flows generally offer you the same functionality at lesser overhead.
 
