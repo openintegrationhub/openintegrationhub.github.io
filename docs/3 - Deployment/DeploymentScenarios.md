@@ -78,7 +78,7 @@ Required Services:
 
 ## User-facing Flow Deployment
 
-If you wish to offer flow functionalities to users other than yourself, additional functionalities may be useful. The Secret Service will allow these users to save authentication data without the risk of that date being exposed to anybody else. Resources and Analytics as well as the Audit Log can aid you in tracking user activity. Finally, the UI offers a starting point for users to familiarize themselves with the OIH's capabilities.
+If you wish to offer flow functionalities to users other than yourself, additional functionalities may be useful. The Secret Service will allow these users to save authentication data without the risk of that data being exposed to anybody else. Resources and Analytics as well as the Audit Log can aid you in tracking user activity. Finally, the UI offers a starting point for users to familiarize themselves with the OIH's capabilities.
 
 Required Services:
 
@@ -89,7 +89,7 @@ Required Services:
 
 ## Hub & Spoke
 
-The Hub & Spoke approach may be useful when you have scenarios in which you want to synchronize a shared data set among a large number of applications at once. Rather than requiring you to manually set up and run flows between every single involved application, it offers you an automated functionality to define a network of connected applications and have the necessary flows created and started automatically. 
+The Hub & Spoke approach may be useful when you have scenarios in which you want to synchronize a shared data set among a large number of applications at once. Rather than requiring you to manually set up and run flows between every single involved application, it offers you an automated functionality to define a network of connected applications and have the necessary flows created and started automatically.
 
 As a rule of thumb, the Hub & Spoke approach can be useful if you regularly want to synchronize a given data set between more than three applications. For synchronizations between fewer applications, traditional single directional flows generally offer you the same functionality at lesser overhead.
 
