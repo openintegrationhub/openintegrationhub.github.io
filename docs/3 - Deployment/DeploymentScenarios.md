@@ -43,7 +43,9 @@ The OIH is structured to be modular in nature. Only a few services are strictly 
 
 *Attachment Storage Service*. Temporarily store larger files for easier handling in flows.
 
-## Basic flow based deployment
+*Reporting and Analytics*. Gathers and presents data about the overall activity within your OIH installation
+
+## Basic Flow Deployment
 
 For executing a minimal flow at least the following OIH services have to be running:
 
@@ -61,15 +63,27 @@ See also: [Flow execution](https://openintegrationhub.github.io/docs/1%20-%20Bas
 
 - Snap Shot Service (Optional but highly recommend for polling flows)
 
-If the flow is using global connectors, then they need to be started before. Non global connectors are started automatically by the Orchestrator
+If the flow is using global connectors, then those need to be manually started through the component repository. Non global connectors are started automatically by the Orchestrator
 
-## Flow based deployment with ID-linking
+## Flow Deployment with ID-linking
 
 With the ID-Linking feature of the OIH, external ids of data sets coming from a connectors are grouped and linked to one entry with a OIH-Id. This prevents duplicate entries in the connected systems and enables dynamic updating of existing entries in connected systems.
 
-For using the ID-Linking functionalities all the aforementioned services are required and additionally the following:
+Required Services:
 
+- Basic Flow Deployment
 - Data hub
+
+## User-facing Flow Deployment
+
+If you wish to offer flow functionalities to users other than yourself, additional functionalities may be useful. The Secret Service will allow these users to save authentication data without the risk of that date being exposed to anybody else. Resources and Analytics as well as the Audit Log can aid you in tracking user activity. Finally, the UI offers a starting point for users to familiarize themselves with the OIH's capabilities.
+
+Required Services:
+
+- Basic Flow Deployment
+- Secret Service
+- Web-UI
+- Audit Log
 
 ## Hub & Spoke
 
@@ -79,6 +93,6 @@ As a rule of thumb, the Hub & Spoke approach can be useful if you regularly want
 
 Required Services:
 
-- As Basic Flow Deployment
+- Basic Flow Deployment
 - Data Hub
 - Dispatcher Service
