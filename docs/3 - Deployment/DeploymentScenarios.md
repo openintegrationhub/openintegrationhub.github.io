@@ -61,6 +61,8 @@ If the flow is using global connectors, then they need to be started before. Non
 
 ## Flow based deployment with ID-linking
 
+With the ID-Linking feature of the OIH external ids of data sets coming from a connectors are linked to one entry with a OIH-Id. This prevents duplicate entries in the connected systems and enables to synchronize data easier.
+  
 For using the ID-Linking functionalities all the aforementioned services are required and additionally the following:
 
 - Data hub
