@@ -1,3 +1,10 @@
+---
+layout: default
+title: Service Communication
+parent: System Architecture
+nav_order: 2
+---
+
 # Service communication
 
 The sum of all conceivable possibilities for automated integration processes seems enormous. From the standardization and central administration of various contact details to the coordination and monitoring of manufacturing processes. Everything that is possible is increasingly being integrated in different ways. However, the heterogeneity of possible use cases leads to different requirements for a framework.
