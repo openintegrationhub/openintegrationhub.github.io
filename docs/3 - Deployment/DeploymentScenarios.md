@@ -17,7 +17,9 @@ The OIH is structured to be modular in nature. Only a few services are strictly 
 
 **Component Orchestrator**. Organizes the routing of the data transfer between the flow steps and starts required local components.
 
-**Scheduler**. Polls connectors on a regular schedule to feed the flow.
+**Scheduler**. Polls connectors on a regular schedule to feed the flow. (Required for polling flows)
+
+**Webhooks Service**. Executes flows based on incoming webhook calls. (Required to trigger flows based on a webhook)
 
 **Flow Repository**. Create, modify, and start/stop integration flows.
 
@@ -30,8 +32,6 @@ The OIH is structured to be modular in nature. Only a few services are strictly 
 **Secret Service**. Securely store authentication data for other applications, and execute Oauth authentication flows.
 
 **Snap Shot Service**. Saves the state of the last execution of a flow. Used to prevent duplicate delivery of entries in polling flows.
-
-**Webhooks Service**. Executes flows based on incoming webhook calls.
 
 **Metadata Repository**. Create and modify master data models used by your connectors.
 
@@ -53,7 +53,7 @@ For executing a minimal flow at least the following OIH services have to be runn
 
 - Component Orchestrator
 
-- Scheduler
+- Scheduler and/or Webhook Service (depending weather polling flows and webhooks are used)
 
 - Flow Repository
 
