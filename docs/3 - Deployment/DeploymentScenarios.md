@@ -53,8 +53,12 @@ For executing a minimal flow at least the following OIH services have to be runn
 
 - Component Repository
 
-If the flow is using global connectors, then they need to be started before. Non global connectors are started automatically by the Orchestrator
+If the flow is using global connectors, then they need to be started before. Non global connectors are started automatically by the Component Orchestrator
 
 ## Flow based deployment with ID-linking
+
+For using the ID-Linking functionalities all the aforementioned services are required and additionally the following:
+
+- Data hub
 
 ## Hub & Spoke
