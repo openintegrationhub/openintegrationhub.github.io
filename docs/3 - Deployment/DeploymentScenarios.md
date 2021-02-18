@@ -53,12 +53,16 @@ For executing a minimal flow at least the following OIH services have to be runn
 
 - Component Repository
 
-If the flow is using global connectors, then they need to be started before. Non global connectors are started automatically by the Component Orchestrator
+If the flow is using global connectors, then they need to be started before. Non global connectors are started automatically by the Orchestrator
 
 ## Flow based deployment with ID-linking
 
-For using the ID-Linking functionalities all the aforementioned services are required and additionally the following:
-
-- Data hub
-
 ## Hub & Spoke
+
+The Hub & Spoke approach may be useful when you have scenarios in which you want to synchronize a shared data set among a large number of applications at once. Rather than requiring you to manually set up and run flows between every single involved application, it offers you an automated functionality to define a network of connected applications and have the necessary flows created and started automatically. As a rule of thumb, the Hub & Spoke approach can be useful if you regularly want to synchronise a given data set between more than three applications. For synchronizations between fewer applications, traditional single directional flows generally offer you the same functionality at lesser overhead.
+
+Required Services:
+
+- As Basic Flow Deployment
+- Data Hub
+- Dispatcher Service
