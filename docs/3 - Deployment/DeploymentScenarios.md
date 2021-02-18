@@ -11,7 +11,11 @@ The OIH is structured to be modular in nature. Only a few services are strictly 
 
 ## Overview of services used in different deployments
 
-**Identity and Access Management**. Create and modify users, tenants, roles, and permissions.
+**Identity and Access Management (IAM)**. Create and modify users, tenants, roles, and permissions.
+
+**Component Orchestrator**. Organizes the routing of the data transfer between the flow steps and starts required local components.
+
+**Scheduler**. Polls connectors on a regular schedule to feed the flow.
 
 **Secret Service**. Securely store authentication data for other applications.
 
@@ -25,6 +29,8 @@ The OIH is structured to be modular in nature. Only a few services are strictly 
 
 **Data Hub**. Long-term storage for flow content and snapshot data. Required for ID-Linking
 
+**Webhooks Service**. Starts flows based on incoming calls.
+
 *Integration Layer Service*. Perform data operations such as merging or splitting objects.
 
 *Web UI*. A basic browser-based UI to control
@@ -34,6 +40,24 @@ The OIH is structured to be modular in nature. Only a few services are strictly 
 *Attachment Storage Service*. Temporarily store larger files for easier handling in flows.
 
 ## Basic flow based deployment
+
+For executing a minimal flow at least the following OIH services have to be running:
+
+- Identity and Access Management (IAM)
+
+- Component Orchestrator
+
+- Scheduler
+
+- Flow Repository
+
+- Component Repository
+
+- Secret Service
+
+- Metadata Repository
+
+If the flow is using global connectors, then they need to be started before. Non global connectors are started automatically by the Orchestrator
 
 ## Flow based deployment with ID-linking
 
