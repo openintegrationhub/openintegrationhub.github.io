@@ -13,7 +13,7 @@ The OIH is structured to be modular in nature. Only a few services are strictly 
 
 *Necessary:*
 
-**Identity and Access Management (IAM)**. Create and modify users, tenants, roles, and permissions.
+**Identity and Access Management (IAM)**. Create and modify users, tenants, roles, and permissions. Required to perform most API interactions on other services.
 
 **Component Orchestrator**. Organizes the routing of the data transfer between the flow steps and starts required local components.
 
@@ -53,7 +53,7 @@ See also: [Flow execution](https://openintegrationhub.github.io/docs/1%20-%20Bas
 
 - Component Orchestrator
 
-- Scheduler and/or Webhook Service (depending weather polling flows and webhooks are used)
+- Scheduler and/or Webhook Service (depending weather polling flows or webhooks are used)
 
 - Flow Repository
 
@@ -65,7 +65,7 @@ If the flow is using global connectors, then they need to be started before. Non
 
 ## Flow based deployment with ID-linking
 
-With the ID-Linking feature of the OIH external ids of data sets coming from a connectors are linked to one entry with a OIH-Id. This prevents duplicate entries in the connected systems and enables to synchronize data easier.
+With the ID-Linking feature of the OIH, external ids of data sets coming from a connectors are grouped and linked to one entry with a OIH-Id. This prevents duplicate entries in the connected systems and enables dynamic updating of existing entries in connected systems.
 
 For using the ID-Linking functionalities all the aforementioned services are required and additionally the following:
 
