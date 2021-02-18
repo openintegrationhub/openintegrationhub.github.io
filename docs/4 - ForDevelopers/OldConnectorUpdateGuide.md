@@ -56,12 +56,11 @@ You may also find [this PR](https://github.com/openintegrationhub/snazzycontacts
 
 Elastic.io uses a different mechanism to build images and deploy components for their platform. You need to add a dockerfile.
 
-You can just copy and adjust a Dockerfile and existing component under <a href="https://github.com/openintegrationhub">
+You can just copy and adjust a Dockerfile from an existing component under the [Open Integration Hub Organization](https://github.com/openintegrationhub) on GitHub.
 
 Importantly, the Dockerfile's entrypoint will need to point to ferryman's `runGlobal.js` script. An easy way to achieve this is to point your components npm start script to it, then simply call npm start from the Dockerfile. For an example, you can refer to the contacts connector template:
 
-<a href="https://github.com/openintegrationhub/contacts-adapter-template/blob/master/Dockerfile">
-<a href="https://github.com/openintegrationhub/contacts-adapter-template/blob/09965e800eb7dd934a73b218cffcd428ff8aca8e/package.json#L19">
+Go to the [template](https://github.com/openintegrationhub/contacts-adapter-template/blob/master/Dockerfile) or jump straight to the [line of code](https://github.com/openintegrationhub/contacts-adapter-template/blob/09965e800eb7dd934a73b218cffcd428ff8aca8e/package.json#L19)
 
 ### IDs
 
