@@ -21,8 +21,6 @@ The OIH is structured to be modular in nature. Only a few services are strictly 
 
 **Flow Repository**. Create, modify, and start/stop integration flows.
 
-**Metadata Repository**. Create and modify master data models used by your connectors.
-
 **Component Repository**. Store and modify connector components.
 
 *Optional:*
@@ -30,6 +28,8 @@ The OIH is structured to be modular in nature. Only a few services are strictly 
 **Data Hub**. Long-term storage for flow content and snapshot data. Required for ID-Linking
 
 **Webhooks Service**. Starts flows based on incoming calls.
+
+**Metadata Repository**. Create and modify master data models used by your connectors.
 
 *Integration Layer Service*. Perform data operations such as merging or splitting objects.
 
@@ -52,10 +52,6 @@ For executing a minimal flow at least the following OIH services have to be runn
 - Flow Repository
 
 - Component Repository
-
-- Secret Service
-
-- Metadata Repository
 
 If the flow is using global connectors, then they need to be started before. Non global connectors are started automatically by the Orchestrator
 
