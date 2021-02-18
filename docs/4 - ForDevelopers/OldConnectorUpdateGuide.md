@@ -56,16 +56,15 @@ You may also find [this PR](https://github.com/openintegrationhub/snazzycontacts
 
 Elastic.io uses a different mechanism to build images and deploy components for their platform. You need to add a dockerfile.
 
-You can just copy and adjust a Dockerfile and existing component under https://github.com/openintegrationhub
+You can just copy and adjust a Dockerfile from an existing component under the [Open Integration Hub Organization](https://github.com/openintegrationhub) on GitHub.
 
 Importantly, the Dockerfile's entrypoint will need to point to ferryman's `runGlobal.js` script. An easy way to achieve this is to point your components npm start script to it, then simply call npm start from the Dockerfile. For an example, you can refer to the contacts connector template:
 
-https://github.com/openintegrationhub/contacts-adapter-template/blob/master/Dockerfile
-https://github.com/openintegrationhub/contacts-adapter-template/blob/09965e800eb7dd934a73b218cffcd428ff8aca8e/package.json#L19
+Go to the [template](https://github.com/openintegrationhub/contacts-adapter-template/blob/master/Dockerfile) or jump straight to the [line of code](https://github.com/openintegrationhub/contacts-adapter-template/blob/09965e800eb7dd934a73b218cffcd428ff8aca8e/package.json#L19)
 
 ### IDs
 
-In order to identify data records across the framework you will have to implement additional UIds (Check ID Linking...[ID Linking in Open Integration Hub](../../services/DataHub.md#id-linking)):
+In order to identify data records across the framework you will have to implement additional UIds (Check [ID Linking in Open Integration Hub](https://openintegrationhub.github.io/docs/5%20-%20Services/DataHub.html)):
 
 ```
 /*
@@ -76,10 +75,9 @@ In order to identify data records across the framework you will have to implemen
     const { oihUid, recordUid } = msg.metadata;
 ```
 
-Please make sure that upsertFunctions point towards metadata.recordUid. For your reference please also check the general template: https://github.com/openintegrationhub/contacts-adapter-template/blob/master/lib/actions/upsertObject.js#L47
+Please make sure that upsertFunctions point towards metadata.recordUid. For your reference please also check the [general template](https://github.com/openintegrationhub/contacts-adapter-template/blob/master/lib/actions/upsertObject.js#L47).
 
-For ID-linking purposes you may also want to insert an applicationUid, as seen for example here:
-https://github.com/openintegrationhub/snazzycontacts-adapter/blob/45943075edb5bccf84b0cd51ea732fb30cc5add1/lib/actions/upsertOrganization.js#L36
+For ID-linking purposes you may also want to insert an applicationUid, as seen for example [here](https://github.com/openintegrationhub/snazzycontacts-adapter/blob/45943075edb5bccf84b0cd51ea732fb30cc5add1/lib/actions/upsertOrganization.js#L36).
 
 ## Optional
 
@@ -87,10 +85,9 @@ https://github.com/openintegrationhub/snazzycontacts-adapter/blob/45943075edb5bc
 
 In order to transform data from one schema to another you can either build a separate Transformer Component or use the [transform function within the ferryman](https://github.com/openintegrationhub/openintegrationhub/blob/master/lib/ferryman/lib/transformer.js).
 
-You will have to implement these functions for each action and trigger like shown in the general template: https://github.com/openintegrationhub/contacts-adapter-template/blob/09965e800eb7dd934a73b218cffcd428ff8aca8e/lib/triggers/getObjects.js#L19
+You will have to implement these functions for each action and trigger like shown in the [general template](https://github.com/openintegrationhub/contacts-adapter-template/blob/09965e800eb7dd934a73b218cffcd428ff8aca8e/lib/triggers/getObjects.js#L19)
 
 ### Stuff you can delete
 
-- the `schema folder` is needed for the ID Linking( [ID Linking in Open Integration Hub](../../services/DataHub.md#id-linking))) and for a more sophisticated Mapping approach between different components.
 - `verifyCredentials.js` is only needed for the elastic.io and not for the Open Integration Hub.
 - `credentials` within the `component.json` is only needed for elastic.io UI. Depending on your implementation you may want to keep it. With regards to Open Integration Hub, it is not needed.
