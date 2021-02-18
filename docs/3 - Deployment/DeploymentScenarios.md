@@ -47,7 +47,7 @@ The OIH is structured to be modular in nature. Only a few services are strictly 
 
 For executing a minimal flow at least the following OIH services have to be running:
 
-[Flow execution](https://openintegrationhub.github.io/docs/1%20-%20BasicConcepts/FlowExecution.html)
+See also: [Flow execution](https://openintegrationhub.github.io/docs/1%20-%20BasicConcepts/FlowExecution.html)
 
 - Identity and Access Management (IAM)
 
