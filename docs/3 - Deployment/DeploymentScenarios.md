@@ -13,37 +13,39 @@ The OIH is structured to be modular in nature. Only a few services are strictly 
 
 *Necessary:*
 
-**Identity and Access Management (IAM)**. Create and modify users, tenants, roles, and permissions. Required to perform most API interactions on other services.
+**Identity and Access Management (IAM)**: Create and modify users, tenants, roles, and permissions. Required to perform most API interactions on other services.
 
-**Component Orchestrator**. Organizes the routing of the data transfer between the flow steps and starts required local components.
+**Component Orchestrator**: Organizes the routing of the data transfer between the flow steps and starts required local components.
 
-**Scheduler**. Polls connectors on a regular schedule to feed the flow. (Required for polling flows)
+**Scheduler**: Polls connectors on a regular schedule to feed the flow. (Required for polling flows)
 
-**Webhooks Service**. Executes flows based on incoming webhook calls. (Required to trigger flows based on a webhook)
+**Webhooks Service**: Executes flows based on incoming webhook calls. (Required to trigger flows based on a webhook)
 
-**Flow Repository**. Create, modify, and start/stop integration flows.
+**Flow Repository**: Create, modify, and start/stop integration flows.
 
-**Component Repository**. Store and modify connector components.
+**Component Repository**: Store and modify connector components.
 
 *Optional:*
 
-**Data Hub**. Long-term storage for flow content and snapshot data. Required for ID-Linking
+**Data Hub**: Long-term storage for flow content and snapshot data. Required for ID-Linking
 
-**Secret Service**. Securely store authentication data for other applications, and execute Oauth authentication flows.
+**Secret Service**: Securely store authentication data for other applications, and execute Oauth authentication flows.
 
-**Snap Shot Service**. Saves the state of the last execution of a flow. Used to prevent duplicate delivery of entries in polling flows.
+**Snap Shot Service**: Saves the state of the last execution of a flow. Used to prevent duplicate delivery of entries in polling flows.
 
-**Metadata Repository**. Create and modify master data models used by your connectors.
+**Metadata Repository**: Create and modify master data models used by your connectors.
 
-*Integration Layer Service*. Perform data operations such as merging or splitting objects.
+**App-Directory**: Define apps connected by your flows and associate them with specified connectors and schemas used by them.
 
-*Web UI*. A basic browser-based UI to control
+**Integration Layer Service**: Perform data operations such as merging or splitting objects.
 
-*Audit Log*. View event logs spawned by the other services.
+**Web UI**: A basic browser-based UI to control
 
-*Attachment Storage Service*. Temporarily store larger files for easier handling in flows.
+**Audit Log**: View event logs spawned by the other services.
 
-*Reporting and Analytics*. Gathers and presents data about the overall activity within your OIH installation
+**Attachment Storage Service**: Temporarily store larger files for easier handling in flows.
+
+**Reporting and Analytics**: Gathers and presents data about the overall activity within your OIH installation
 
 ## Basic Flow Deployment
 
@@ -96,3 +98,4 @@ Required Services:
 - Basic Flow Deployment
 - Data Hub
 - Dispatcher Service
+- App-Directory
