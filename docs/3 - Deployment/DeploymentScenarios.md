@@ -11,13 +11,13 @@ The OIH is structured to be modular in nature. Only a few services are strictly 
 
 ## Overview of services used in different deployments
 
+*Necessary:*
+
 **Identity and Access Management (IAM)**. Create and modify users, tenants, roles, and permissions.
 
 **Component Orchestrator**. Organizes the routing of the data transfer between the flow steps and starts required local components.
 
 **Scheduler**. Polls connectors on a regular schedule to feed the flow.
-
-**Secret Service**. Securely store authentication data for other applications.
 
 **Flow Repository**. Create, modify, and start/stop integration flows.
 
@@ -27,9 +27,11 @@ The OIH is structured to be modular in nature. Only a few services are strictly 
 
 **Data Hub**. Long-term storage for flow content and snapshot data. Required for ID-Linking
 
-**Snap Shot Servie**. Saves the state of the last execution of a flow. Can prevent duplicate delivery of entries.
+**Secret Service**. Securely store authentication data for other applications, and execute Oauth authentication flows.
 
-**Webhooks Service**. Starts flows based on incoming calls.
+**Snap Shot Service**. Saves the state of the last execution of a flow. Used to prevent duplicate delivery of entries in polling flows.
+
+**Webhooks Service**. Executes flows based on incoming webhook calls.
 
 **Metadata Repository**. Create and modify master data models used by your connectors.
 
