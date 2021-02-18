@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Minikube Development
-nav_order: 4
+nav_order: 3
 parent: For Developers
 ---
 
