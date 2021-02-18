@@ -15,39 +15,32 @@ Here we will assume a setup consisting of the following services needed to run O
 
 A communication of between all services internally and externally takes place depending on the situation either by **authenticated REST** calls ​​of the respective API or by means of a **message queue** (MQ).
 
-## 1.1 Examples
+## 1. Examples
 
 In order to illustrate this, we would like to list a few examples here in a schematically reduced way:
 
 a) A user creates a flow
 
-`` User --REST--> Flow Repository ``
-
 b) A user creates a service account
-
-`` User --REST--> IAM ``
 
 c) A user starts a simple flow
 
-`` User --REST--> Flow Repository --MQ--> Component Orchestrator --REST--> IAM
-                                 |--MQ--> Scheduler
-                                 or--MQ--> Webhooks
-``
+The following illustration shows example a-c:
+![Connector](../../assets/images/communication.example.a-c.png)
 
 d) A flow (2 nodes) is executed
 
-``
-                                                                |-REST--> Snapshots Service                        |-REST--> Snapshots Service          
-Webhooks or Scheduler --MQ--> Component Orchestrator --MQ--> Flow Node 1 --MQ--> Component Orchestrator --MQ--> Flow Node 2 --MQ--> Component Orchestrator
-``
+The following illustration shows example d:
+![Connector](../../assets/images/communication.example.png)
 
-## 1.2 Forms of communication
 
-### 1.2.1 REST-API Call
+## 2. Forms of communication
+
+### 2.1 REST-API Call
 
 Most services can be addressed via a REST-API call. Here, data can either be transferred or requested (see a), or instructions can be carried out by the user (see c)
 
-### 1.2.2 Message queue
+### 2.2 Message queue
 There are two different forms of MQ communication. 
 
 **Services-Service communication** (see c) is managed and controlled via an event bus (link). 
