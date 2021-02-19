@@ -132,7 +132,7 @@ Here's a short overview over each file and its intended purpose:
 
 This folder contains various tranformation functions from the components API to the OIH master model and vice versa.
 
-[Transformation Functions](https://openintegrationhub.github.io//docs/Connectors/TransformFunction.html){: .btn .fs-5 .mb-4 .mb-md-0 } -->
+[Transformation Functions]({% link docs/BasicConcepts/TransformFunction.md %}){: .btn .fs-5 .mb-4 .mb-md-0 } -->
 
 ## Start your own
 
