@@ -174,6 +174,6 @@ In the section Access Control we mentioned an alternative where connectors fetch
 
 Secret Service can receive events from any service, but only directly interacts with two of them:
 
-- [Message Oriented Middleware](https://openintegrationhub.github.io/docs/5%20-%20Services/MessageOrientedMiddleware.html): It receives all events through the Message Oriented Middleware. It publishes several events for most important actions e.g. "secrets.secret.created".
+- [Message Oriented Middleware]({% link docs/Services/MessageOrientedMiddleware.md %}): It receives all events through the Message Oriented Middleware. It publishes several events for most important actions e.g. "secrets.secret.created".
 
 - [Identity Management](https://openintegrationhub.github.io/docs/5%20-%20Services/IdentityManagement.html): It requires a bearer token created by the Identity Management to determine current user and check required permissions.

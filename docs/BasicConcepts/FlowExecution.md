@@ -12,7 +12,7 @@ This document is designed to describes the basics of how flows are being execute
 Most of the examples are triggered by user interactions (e.g. starting a flow) and only the "happy path" i.e. success scenario is described.
 
 Each example is described through a graphical overview, a textual description, and pre-conditions.
-For further information for a specific version please have a look at the [services](https://openintegrationhub.github.io/docs/5%20-%20Services/Services.html).
+For further information for a specific version please have a look at the [services]({% link docs/Services/Services.md %}).
 
 - [Starting a flow](#starting-a-flow)
   - [Flow repository](#flow-repository)
@@ -44,7 +44,7 @@ Now let's discuss the individual services in detail:
 
 ## Flow repository
 
-[Service Documentation](https://openintegrationhub.github.io/docs/5%20-%20Services/FlowRepository.html)
+[Service Documentation]({% link docs/Services/FlowRepository.md %})
 
 - `POST /flows/{id}/start`: Used to start a flow
 - `POST /flows/{id}/stop`: Used to stop a flow
@@ -80,7 +80,7 @@ The `payload` property is an arbitrary object to be sent with the event. Flow re
 
 ## Webhooks
 
-[Service Documentation](https://openintegrationhub.github.io/docs/5%20-%20Services/Webhooks.html)
+[Service Documentation]({% link docs/Services/Webhooks.md %})
 
 Please note that Webhooks ignores a flow if the following condition is met:
 
@@ -93,7 +93,7 @@ Upon receiving the `flow.stopping` event, the service deletes the record for the
 
 ## Scheduler
 
-[Service Documentation](https://openintegrationhub.github.io/docs/5%20-%20Services/Scheduler.html)
+[Service Documentation]({% link docs/Services/Scheduler.md %})
 
 Please note that Scheduler ignores a flow if the following condition is met:
 

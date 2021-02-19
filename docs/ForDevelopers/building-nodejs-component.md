@@ -126,7 +126,7 @@ Here's a short overview over each file and its intended purpose:
 
 - `helpers.js`: Contains all the functions necessary for actually communicating with the target API. It sends the necessary requests using a HTTP client and formats the responses so that they can be used by the rest of the flow. Generally, this boils down to returning the body of the request response, and converting it to JSON if necessary.
 
-- `resolver.js`: Contains an example implementation of the OIH Conflict Management module. This is somewhat more advanced and beyond the scope of this guide. If you would like to know more, check the documentation of the [Conflict Management](https://openintegrationhub.github.io/docs/5%20-%20Services/ConflictManagement.html)
+- `resolver.js`: Contains an example implementation of the OIH Conflict Management module. This is somewhat more advanced and beyond the scope of this guide. If you would like to know more, check the documentation of the [Conflict Management]({% link docs/Services/ConflictManagement.md %})
 
 <!-- ### Transformers
 
@@ -137,9 +137,9 @@ This folder contains various tranformation functions from the components API to 
 ## Start your own
 
 Now that you have the basics down, we suggest to start with determining what functionality your connector should include. Essential for that is the API you are connecting with.
-[Actions and Triggers](https://openintegrationhub.github.io/docs/4%20-%20ForDevelopers/ActionsAndTriggers.html){: .btn .fs-5 .mb-4 .mb-md-0 }
+[Actions and Triggers]({% link docs/ForDevelopers/ActionsAndTriggers.md %}){: .btn .fs-5 .mb-4 .mb-md-0 }
 
-All communication between your connector and the OIH platform is handled by the Ferryman module. For more information about the Ferryman and the functionalities it offers, check the [Ferryman documentation](https://openintegrationhub.github.io/docs/5%20-%20Services/Ferryman.html)
+All communication between your connector and the OIH platform is handled by the Ferryman module. For more information about the Ferryman and the functionalities it offers, check the [Ferryman documentation]({% link docs/Services/Ferryman.md %})
 
 ## Connector Testing
 
