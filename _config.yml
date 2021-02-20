@@ -6,7 +6,7 @@ defaults:
     values:
       layout: "default"
 
-theme: just-the-docs
+#theme: just-the-docs
 
 title: Open Integration Hub
 description: Open Source Integration Framework
