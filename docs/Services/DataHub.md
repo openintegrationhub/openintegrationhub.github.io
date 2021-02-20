@@ -36,7 +36,7 @@ The Data Hub is responsible for storing, retrieving and updating oihDataRecords.
 
 ### ID Linking
 
-As described in [update propagation]({% link docs/BasicConcepts/updatePropagation.md %}) the Data Hub receives events by the SDF Adapter. These events contain meta information including the `applicationUid` of the source application and the `recordUid` of the incoming payload within the source application.
+As described in [update propagation]({{ site.baseurl }}{% link  docs/BasicConcepts/updatePropagation.md %}) the Data Hub receives events by the SDF Adapter. These events contain meta information including the `applicationUid` of the source application and the `recordUid` of the incoming payload within the source application.
 
 The Data Hub stores information about each set of applicationUids and recordUids in an array called `refs`.
 In case of a create operation it creates an oihDataRecord and adds the refs array with one object in it i.e. `applicationUid` and `recordUid` of the source system.
@@ -90,5 +90,5 @@ The following code represents the structure of an oihDataRecord:
 
 ### Interaction with other Services
 
-- Dispatcher Service: Emits events for dispatcher service in order to enable the hub and spoke archticture (See: [update propagation]({% link docs/BasicConcepts/updatePropagation.md %})).
-- SDF Adapter: Receives events from SDF Adapter in order to create or update oihDataRecords (See: [update propagation]({% link docs/BasicConcepts/updatePropagation.md %})).
+- Dispatcher Service: Emits events for dispatcher service in order to enable the hub and spoke archticture (See: [update propagation]({{ site.baseurl }}{% link  docs/BasicConcepts/updatePropagation.md %})).
+- SDF Adapter: Receives events from SDF Adapter in order to create or update oihDataRecords (See: [update propagation]({{ site.baseurl }}{% link  docs/BasicConcepts/updatePropagation.md %})).

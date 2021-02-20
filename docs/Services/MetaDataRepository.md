@@ -191,6 +191,6 @@ Therefore, the following structure is supposed:
 
 Meta Data Repository can receive events from any service, but only directly interacts with two of them:
 
-- [Message Oriented Middleware]({% link docs/Services/MessageOrientedMiddleware.md %}): It receives all events through the Message Oriented Middleware. It publishes several events for most important actions e.g. "metadata.domain.deleted".
+- [Message Oriented Middleware]({{ site.baseurl }}{% link  docs/Services/MessageOrientedMiddleware.md %}): It receives all events through the Message Oriented Middleware. It publishes several events for most important actions e.g. "metadata.domain.deleted".
 
-- [Identity Management]({% link docs/Services/IdentityManagement.md %}): It requires a bearer token created by the Identity Management to determine current user and check required permissions.
+- [Identity Management]({{ site.baseurl }}{% link  docs/Services/IdentityManagement.md %}): It requires a bearer token created by the Identity Management to determine current user and check required permissions.

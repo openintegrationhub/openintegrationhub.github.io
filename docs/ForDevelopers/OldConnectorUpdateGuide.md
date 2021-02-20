@@ -64,7 +64,7 @@ Go to the [template](https://github.com/openintegrationhub/contacts-adapter-temp
 
 ### IDs
 
-In order to identify data records across the framework you will have to implement additional UIds (Check [ID Linking in Open Integration Hub]({% link docs/Services/DataHub.md %})):
+In order to identify data records across the framework you will have to implement additional UIds (Check [ID Linking in Open Integration Hub]({{ site.baseurl }}{% link  docs/Services/DataHub.md %})):
 
 ```
 /*

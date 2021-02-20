@@ -22,7 +22,7 @@ The SDF adapter then sends the data to the Open Integration Hub (For more inform
 ## Smart Data Framework
 
 Once the message is received by the Data Hub it creates or updates an oihDataRecord. After the successful operation it emits an event which is then received by the Dispatcher Service.
-The Dispatcher looks up configurations in which the source-flowId matches the incoming flowId. After all targets have been identified, the Dispatcher sends the new/updated dataset to the SDF Adapter . Furthermore, it sends start request(s) to the flow repository which itself emits an event for component orchestrator (For more information: [Dispatcher Service]({% link docs/Services/DispatcherService.md %}), [Flow Repository]({% link docs/Services/FlowRepository.md %})). The component orchestrator send starts all needed containers.
+The Dispatcher looks up configurations in which the source-flowId matches the incoming flowId. After all targets have been identified, the Dispatcher sends the new/updated dataset to the SDF Adapter . Furthermore, it sends start request(s) to the flow repository which itself emits an event for component orchestrator (For more information: [Dispatcher Service]({{ site.baseurl }}{% link  docs/Services/DispatcherService.md %}), [Flow Repository]({{ site.baseurl }}{% link  docs/Services/FlowRepository.md %})). The component orchestrator send starts all needed containers.
 
 ## Target Flows
 
