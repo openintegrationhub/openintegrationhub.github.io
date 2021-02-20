@@ -16,7 +16,7 @@ Some important technologies you may want to change are:
 
 ### RabbitMQ
 
-Queues are at the core of any interaction within the system. They are used to push objects from one integration component to another, but also for the services to exchange events. [RabbitMQ](https://www.rabbitmq.com/) is therefore quite broadly used, for instance in our so called [Message Oriented Middleware]({% link docs/Services/MessageOrientedMiddleware.md %}). Check out the Basic Concepts to better understand what role it plays in the current architecutre.
+Queues are at the core of any interaction within the system. They are used to push objects from one integration component to another, but also for the services to exchange events. [RabbitMQ](https://www.rabbitmq.com/) is therefore quite broadly used, for instance in our so called [Message Oriented Middleware]({{ site.baseurl }}{% link  docs/Services/MessageOrientedMiddleware.md %}). Check out the Basic Concepts to better understand what role it plays in the current architecutre.
 
 ### MongoDB
 
