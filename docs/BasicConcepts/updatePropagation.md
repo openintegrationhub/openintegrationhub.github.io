@@ -26,7 +26,7 @@ The Dispatcher looks up configurations in which the source-flowId matches the in
 
 ## Target Flows
 
-Target flows always start with an instance of the SDF adapter. The SDF Adapter subscribes to a certain topic and passes the incoming message to transformer. After after a successful mapping, the Transformer passes the message to the adapter. The adapter then sends the data to the application and passes the recordUid of the entity to SDF adapter which sends it back to the Open Integration Hub for ID Linking (More on ID Linking: [ID Linking in Open Integration Hub](../../services/DataHub.md#id-linking)).
+Target flows always start with an instance of the SDF adapter. The SDF Adapter subscribes to a certain topic and passes the incoming message to transformer. After after a successful mapping, the Transformer passes the message to the adapter. The adapter then sends the data to the application and passes the recordUid of the entity to SDF adapter which sends it back to the Open Integration Hub for ID Linking (More on ID Linking: [ID Linking in Open Integration Hub]({% link docs/Services/DataHub.md %}#id-linking)).
 
 ## Create and Update Operations
 
