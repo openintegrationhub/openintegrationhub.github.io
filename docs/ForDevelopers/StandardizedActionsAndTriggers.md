@@ -630,7 +630,7 @@ N/A
 
 Receives data pushed to the Open Integration Hub from an external system.
 
-The webhook URL is being provided by the [Webhook Service]({{ site.baseurl }}{% link  docs/Services/Webhooks.md %}) for each flow.
+The webhook URL is being provided by the [Webhook Service]({{ site.baseurl }}{% link docs/Services/Webhooks.md %}) for each flow.
 
 ### Bulk Extract
 

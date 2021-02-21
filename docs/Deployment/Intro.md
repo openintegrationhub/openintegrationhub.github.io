@@ -22,7 +22,7 @@ In case you need help or want to give us some feedback, head over to [GitHub](ht
 
 <div class="oih-docs-learn-overview-container">
 <div class="container-further">
-    <a class="item" href="{{ site.baseurl }}{% link  docs/Deployment/LocalInstallationGuide.md %}">Local Setup</a>
-    <a class="item" href="{{ site.baseurl }}{% link  docs/Deployment/GCPInstallationGuide.md %}">Google Cloud Platform Setup</a>
+    <a class="item" href="{{ site.baseurl }}{% link docs/Deployment/LocalInstallationGuide.md %}">Local Setup</a>
+    <a class="item" href="{{ site.baseurl }}{% link docs/Deployment/GCPInstallationGuide.md %}">Google Cloud Platform Setup</a>
 </div>
 </div>

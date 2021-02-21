@@ -34,8 +34,8 @@ In addition to setting up the Open Integration Hub on a cloud infrastructure suc
 
 Besides the basic installation guide found here, the OIH monorepo provides two possible setups for a development environment. They are found in the `dev-tools/` folder in the monorepo.
 
-- The [minikube instructions]({{ site.baseurl }}{% link  docs/ForDevelopers/MinikubeInstallation.md %}) are based off of the basic local minikube installation found here. It adds the ability to optionally launch each service using local source code served over NFS instead of the public Docker image.
-- The [docker-compose installation]({{ site.baseurl }}{% link  docs/ForDevelopers/DockerInstallation.md %}) contains configuration files and helper scripts to run local services directly from Docker. It still relies on minikube to execute flows.
+- The [minikube instructions]({{ site.baseurl }}{% link docs/ForDevelopers/MinikubeInstallation.md %}) are based off of the basic local minikube installation found here. It adds the ability to optionally launch each service using local source code served over NFS instead of the public Docker image.
+- The [docker-compose installation]({{ site.baseurl }}{% link docs/ForDevelopers/DockerInstallation.md %}) contains configuration files and helper scripts to run local services directly from Docker. It still relies on minikube to execute flows.
 
 # Requirements
 
@@ -309,7 +309,7 @@ The Open Integration Hub is now running and ought to function just as it would i
 - **Web UI**. A basic browser-based UI to control certain other services.
   - `web-ui.localoih.com`
 
-Most of these services have an OpenAPI documentation of their API available through the path `/api-docs`. You can also check the [API Reference Documentation]({{ site.baseurl }}{% link  docs/ReferenceDocumentation/APIReferenceOverview.md %}). If you want to learn more about the services, check the [Service Documentation]({{ site.baseurl }}{% link  docs/Services/Services.md %}) or their readmes in the `services` folder of the GitHub Repository: [Open Integration Hub Services](https://github.com/openintegrationhub/openintegrationhub/tree/master/services)
+Most of these services have an OpenAPI documentation of their API available through the path `/api-docs`. You can also check the [API Reference Documentation]({{ site.baseurl }}{% link docs/ReferenceDocumentation/APIReferenceOverview.md %}). If you want to learn more about the services, check the [Service Documentation]({{ site.baseurl }}{% link docs/Services/Services.md %}) or their readmes in the `services` folder of the GitHub Repository: [Open Integration Hub Services](https://github.com/openintegrationhub/openintegrationhub/tree/master/services)
 
 # User Tutorial
 

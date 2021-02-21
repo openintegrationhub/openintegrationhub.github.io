@@ -52,7 +52,7 @@ On the other hand the user would like to `GET` a new/splitted object. In such a 
 
 ### Use case: Validating objects
 
-ILS is able to validate an object against a certain schema. This means that the incoming object could be validated against a custom schema, which the user can provide in `schema` object or the object could be validated against a schema which is already stored in [Meta Data Repository]({{ site.baseurl }}{% link  docs/Services/MetaDataRepository.md %}) as well. Then the user should provide an IAM `token`, `domainId` and `schemaUri`. The last two properties could be requested from [Meta Data Repository]({{ site.baseurl }}{% link  docs/Services/MetaDataRepository.md %}).
+ILS is able to validate an object against a certain schema. This means that the incoming object could be validated against a custom schema, which the user can provide in `schema` object or the object could be validated against a schema which is already stored in [Meta Data Repository]({{ site.baseurl }}{% link docs/Services/MetaDataRepository.md %}) as well. Then the user should provide an IAM `token`, `domainId` and `schemaUri`. The last two properties could be requested from [Meta Data Repository]({{ site.baseurl }}{% link docs/Services/MetaDataRepository.md %}).
 
 ### Integration Layer Service API
 
@@ -127,8 +127,8 @@ For `POST /chunks/validate`, the body format should have the following format:
 - `token`: An IAM Bearer token
 - `cid`: A _common identifier_ designating which fields are used to match objects to one another. Must be a key within the supplied payload
 - `def`: The definition against which objects are validated. Currently expected to be a JSON schema.
-- `domainId` - A `domainId` from [Meta Data Repository]({{ site.baseurl }}{% link  docs/Services/MetaDataRepository.md %})
-- `schemaUri` - A `schemaUri` for a certain schema from [Meta Data Repository]({{ site.baseurl }}{% link  docs/Services/MetaDataRepository.md %})
+- `domainId` - A `domainId` from [Meta Data Repository]({{ site.baseurl }}{% link docs/Services/MetaDataRepository.md %})
+- `schemaUri` - A `schemaUri` for a certain schema from [Meta Data Repository]({{ site.baseurl }}{% link docs/Services/MetaDataRepository.md %})
 - `payload`: The actual data object, in JSON format.
 
 To `GET /chunks/${ilaId}`, an `ilaId` must be supplied. This will return all objects marked as valid that have been saved with this `ilaId`.
@@ -145,4 +145,4 @@ The ILA is a generic component used to allow flows to communicate with the ILS. 
 
 The Integration Layer Service interacts with this Service:
 
-- [Meta Data Repository]({{ site.baseurl }}{% link  docs/Services/MetaDataRepository.md %}): If the user wants to validate an object against a schema from [Meta Data Repository]({{ site.baseurl }}{% link  docs/Services/MetaDataRepository.md %}), this schema must be fetched. For this purpose a bearer`token`, `domainId` and `schemaUri` must be provided.
+- [Meta Data Repository]({{ site.baseurl }}{% link docs/Services/MetaDataRepository.md %}): If the user wants to validate an object against a schema from [Meta Data Repository]({{ site.baseurl }}{% link docs/Services/MetaDataRepository.md %}), this schema must be fetched. For this purpose a bearer`token`, `domainId` and `schemaUri` must be provided.

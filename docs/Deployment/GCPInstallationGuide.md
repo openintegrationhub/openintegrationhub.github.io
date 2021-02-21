@@ -317,7 +317,7 @@ The Open Integration Hub is now running and ought to function just as it would i
 - **Web UI**. A basic browser-based UI to control certain other services.
   - `YOUR Web-UI URL`
 
-Most of these services have an OpenAPI documentation of their API available through the path `/api-docs`. You can also check the [API Reference Documentation]({$ link docs/ReferenceDocumentation/APIReferenceOverview.md %}). If you want to learn more about the services, check the [Service Documentation]({{ site.baseurl }}{% link  docs/Services/Services.md %}) or their readmes in the `services` folder of the GitHub Repository: [Open Integration Hub Services](https://github.com/openintegrationhub/openintegrationhub/tree/master/services)
+Most of these services have an OpenAPI documentation of their API available through the path `/api-docs`. You can also check the [API Reference Documentation]({$ link docs/ReferenceDocumentation/APIReferenceOverview.md %}). If you want to learn more about the services, check the [Service Documentation]({{ site.baseurl }}{% link docs/Services/Services.md %}) or their readmes in the `services` folder of the GitHub Repository: [Open Integration Hub Services](https://github.com/openintegrationhub/openintegrationhub/tree/master/services)
 
 # User Tutorial
 

@@ -27,7 +27,7 @@ grand_parent: Reference Documentation
 
 #### Description Table
 
-[Description Table]({{ site.baseurl }}{% link  docs/ReferenceDocumentation/DataModels/Addresses/AddressDescriptionTable.md %}){: .btn .fs-5 .mb-4 .mb-md-0 }
+[Description Table]({{ site.baseurl }}{% link docs/ReferenceDocumentation/DataModels/Addresses/AddressDescriptionTable.md %}){: .btn .fs-5 .mb-4 .mb-md-0 }
 
 ## General Structure
 

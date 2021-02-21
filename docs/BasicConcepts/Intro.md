@@ -13,6 +13,6 @@ has_children: true
 
 # Learn the Basics
 
-This section contains explanations of all basic concepts used in the Open Integration Hub. You will learn about [Integration Components]({$ link docs/BasicConcepts/ComponentsBasics.md }), which are your connection to any application or API. How you can use these components to exchange data between multiple systems via a [Flow]({{ site.baseurl }}{% link  docs/BasicConcepts/FlowBasics.md %}) and how [Flows are executed]({{ site.baseurl }}{% link  docs/BasicConcepts/FlowExecution.md %}).
+This section contains explanations of all basic concepts used in the Open Integration Hub. You will learn about [Integration Components]({% link docs/BasicConcepts/ComponentsBasics.md %}), which are your connection to any application or API. How you can use these components to exchange data between multiple systems via a [Flow]({{ site.baseurl }}{% link docs/BasicConcepts/FlowBasics.md %}) and how [Flows are executed]({{ site.baseurl }}{% link docs/BasicConcepts/FlowExecution.md %}).
 
-We encourage you to learn the basics first. If you want to get your hands dirty right away, you can also head over to the [Deplyoment Section]({{ site.baseurl }}{% link  docs/Deployment/Intro.md %}).
+We encourage you to learn the basics first. If you want to get your hands dirty right away, you can also head over to the [Deplyoment Section]({{ site.baseurl }}{% link docs/Deployment/Intro.md %}).
