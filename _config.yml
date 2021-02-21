@@ -1,12 +1,6 @@
-remote_theme: pmarsceill/just-the-docs
-defaults:
-  -
-    scope:
-      path: "docs" # an empty string here means all files in the project
-    values:
-      layout: "default"
 
-#theme: just-the-docs
+
+theme: just-the-docs
 
 title: Open Integration Hub
 description: Open Source Integration Framework
