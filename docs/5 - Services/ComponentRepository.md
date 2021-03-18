@@ -117,6 +117,5 @@ The Component Repository interacts with these Services:
 
 - [Component Orchestrator](https://openintegrationhub.github.io//docs/5%20-%20Services/ComponentOrchestrator.html): The Component-orchestrator gets the information it needs for the component used in a flow template from the Component-repository.
 
-- [Flow Repository](https://openintegrationhub.github.io//docs/5%20-%20Services/FlowRepository.html): The Template Repository interacts with the component repository and pulls the components assigned in each flow. The flows will contain a reference to the component.
 
 
