@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Deployment Scenarios
-parent: Deployment
+parent: Getting Started
 nav_order: 3
 ---
 
@@ -11,7 +11,7 @@ The OIH is structured to be modular in nature. Only a few services are strictly 
 
 ## Overview of services used in different deployments
 
-*Necessary:*
+_Necessary:_
 
 **Identity and Access Management (IAM)**: Create and modify users, tenants, roles, and permissions. Required to perform most API interactions on other services.
 
@@ -25,7 +25,7 @@ The OIH is structured to be modular in nature. Only a few services are strictly 
 
 **Component Repository**: Store and modify connector components.
 
-*Optional:*
+_Optional:_
 
 **Data Hub**: Long-term storage for flow content and snapshot data. Required for ID-Linking
 
