@@ -364,7 +364,7 @@ Below you will find code snippets for two exemplary components. For the beginnin
 
 The timer component is used to trigger flows on a provided interval, while the code component executes the code that was provided by the flow creator.
 
-In order to add those components, visit the web ui (`web-ui.localoih.com`) and navigate to the `Components` section.
+In order to add those components, visit the web ui (`web-ui.example.com`) and navigate to the `Components` section.
 
 <p align="left">
   <img src="https://raw.githubusercontent.com/openintegrationhub/openintegrationhub.github.io/master/assets/images/menu.png" alt="Sublime's custom image" width="150"/>
