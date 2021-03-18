@@ -20,6 +20,12 @@ A **Transform Function** is responsible to semantically transform an incoming JS
 The following illustration provides a holistic overview of a Component:
 ![Connector](https://raw.githubusercontent.com/openintegrationhub/openintegrationhub.github.io/master/assets/images/ConnectorsV3.png)
 
+## Deployment and Communication
+
+Whenever an OIH component is started, the OIH will fetch the most recent version of its image from its designated docker repository. It is then deployed as a [kubernetes deployment](https://kubernetes.io/docs/concepts/workloads/controllers/deployment/) in the same cluster as the OIH itself. A single such deployment of a Component can handle data from several sources at once, allowing for a number of simultaneous users while maintaining a low resource footprint.
+
+Communication between Components is handled through the OIH infrastructure. The OIH offers a standardized communication interface to Components, allowing any one Component to be able to natively communicate with any other Component. The direction and content of this communication is controlled by Flows, which are described further in [their own section](https://openintegrationhub.github.io/docs/1%20-%20BasicConcepts/FlowBasics.html).
+
 ## Open Source Components
 
 Like the Open Integration Hub services, components are also standardized that can be reused in any implementation of the framework. There are several contributors that provide a wide range of open source components already. So before you start your own, check out what's already there:
