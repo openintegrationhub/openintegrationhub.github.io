@@ -5,19 +5,17 @@ parent: Basic Concepts
 nav_order: 1
 ---
 
-# Components Guidelines
+# Components Basics
 
-The Open Integration Hub enables data synchronization across a variety of applications. To achive this goal we are using Components which are implemented individualy for each API. The Components
-are set to each and every step of data syncronization flow and speak to each other using the tranformation model functions from the new Ferryman library from OIH.
+## Overview
 
-A **Component** is the result of the union of the connector along with the transformation functions that are provided through the new Ferryman. It is the initialiser and translator of the data
-that comes in and goes out and it is assigned as a whole step in a OIH flow.
+The Open Integration Hub enables data synchronization across a variety of applications. To achive this goal we are using modular Components which are implemented individually for each API or desired function. These components are capable of passing data from one to another, allowing you to organize them in user-defined flows to pass data between systems with ease.
 
-An **connector** is a module for the syntactic connection of an external application and its data to the Open Integration Hub.Furthermore it provides functionalities to perform e.g. CRUD
-operations within the source system through the actions and the triggers that are provided to each individual connector.
+A **Component** is a lightweight assortment of functions packaged as a [Docker image](https://docs.docker.com/). The OIH runs these images as containerized applications, pass data into them, and execute the component's provided functions. While each component requires certain dependencies and format to be compatible with the OIH, they can contain and execute essentially arbitrary code, allowing you to cover a wide array of use-cases.
 
-A **transform function** is responsible to semantically transform an incoming JSON object into another JSON object. The functionality is implemented in the component using the
-new version of Ferryman and the imported necessary expressions in each connector. Therefore we have fewer steps on a flow while we still give the same functionality.
+A **Connector** is our term for a particular kind of component, and generally the most common one. It's a component specifically created for communicating with the API of an external system. They are most useful in the case of data transmission or synchronization. You can use a connector built for one system to fetch data from it, and then use a connector for another system to push that data into that system.
+
+A **Transform Function** is responsible to semantically transform an incoming JSON object into another JSON object. In order for Connectors to effectively communicate with one another, they need to transform that data into a shared master data format before passing it on. This can be done as part of the Component's innate functions, or by using provided OIH helper functions to transform it on the fly using [JSONata](https://jsonata.org/)
 
 The following illustration provides a holistic overview of a Component:
 ![Connector](https://raw.githubusercontent.com/openintegrationhub/openintegrationhub.github.io/master/assets/images/ConnectorsV3.png)
@@ -38,12 +36,12 @@ For a quick start in developing your own connector, we offer a pair templates to
 
 [node.js example](https://openintegrationhub.github.io//docs/Connectors/building-nodejs-component.html) -->
 
-If you prefer a real world example, the Snazzy Contacts and Wice components are a good place to get inspiration.
+If you prefer a real world example, the Snazzy Contacts and Wice connectors are a good place to get inspiration.
 
-[Snazzy Contacts Component](https://github.com/openintegrationhub/snazzycontacts-adapter)
+[Snazzy Contacts Connector](https://github.com/openintegrationhub/snazzycontacts-adapter)
 
 <!-- [Snazzy Contacts Transformer](https://github.com/openintegrationhubsnazzycontacts-transformer) -->
 
-[Wice Component](https://github.com/openintegrationhub/wicecrm-adapter)
+[Wice Connector](https://github.com/openintegrationhub/wicecrm-adapter)
 
 <!-- [Wice Transformer](https://github.com/openintegrationhub/wicecrm-transformer) -->
