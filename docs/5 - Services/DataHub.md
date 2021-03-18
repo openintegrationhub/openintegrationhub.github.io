@@ -21,7 +21,7 @@ Use the full links to reference other files or images! Relative links will not w
 
 <!-- 2 sentences: what does it do and how -->
 
-The Data Hub is responsible for storing, retrieving and updating data, primary meta data but can also store and process other data in a customizable content field. It functions as the central data storage within the Open Integration Hub.
+The Data Hub is responsible for storing, retrieving and updating data, primary metadata but can also store and process other data in a customizable content field. It functions as the central data storage within the Open Integration Hub.
 
 The stored data therefore includes the OIHDataRecord and the ApplicationDataRecord.
 
@@ -39,6 +39,18 @@ The ApplicationDataRecord can contain:
 
 Data from different sources can be synchronized via the Data Hub and combined under a single unique identifier (oihUid) to keep track of the current state of the data and enable synchronization between multiple sources.
 
+Additionally, the entire data of an entry can be stored in the content field of the data hub record. This is especially useful if the OIH is configured to operate in a Hub and Spoke manner.
+
+## Hub & Spoke
+
+In a Hub & Spoke configuration the data hub can severe as data source and reduce the amount of necessary operations and data transfers to synchronize all connected systems and avoid unwanted duplicates.
+
+For an overview of how updates can be handled via this approach see: [update propagation](https://openintegrationhub.github.io/docs/1%20-%20BasicConcepts/updatePropagation.html).
+
+The storage and retrieval of data is then automatically organized with the help of the [Dispatcher Service](https://openintegrationhub.github.io/docs/5%20-%20Services/DispatcherService.html).
+
+# API and Implementation
+
 [API Reference](http://data-hub.openintegrationhub.com/api-docs){: .btn .fs-5 .mb-4 .mb-md-0 }
 [Implementation](https://github.com/openintegrationhub/openintegrationhub/tree/master/services/data-hub){: .btn .fs-5 .mb-4 .mb-md-0 }
 
@@ -52,9 +64,9 @@ Data from different sources can be synchronized via the Data Hub and combined un
 
 Data can be added to the Data Hub and retrieved hub via an REST API. It is also possible to add data to existing entries.
 
-Furthermore it is possible to keep track of the modification history of an entry.
+Furthermore, it is possible to keep track of the modification history of an entry.
 
-Additionally the Data Hub can keep track of the unique id an entry has in the different connected system ie. ID-Linking.
+Additionally, the Data Hub can keep track of the unique ID an entry has in the different connected system i.e. ID-Linking.
 
 ### ID Linking
 
@@ -64,9 +76,9 @@ The Data Hub stores information about each set of applicationUids and recordUids
 In case of a create operation it creates an oihDataRecord and adds the refs array with one object in it i.e. `applicationUid` and `recordUid` of the source system.
 In case of an update operation it identifies the oihDataRecord by the incoming combination of `applicationUid` and `recordUid` and updates the content.
 
-In both cases, after the successful creation or update, it emits an event to dispatcher service containing either only the object that was received by sdf adapter (create) or the original object and in addition all existing combinations of `applicationUid` and `recordUid` (update).
+In both cases, after the successful creation or update, it emits an event to dispatcher service containing either only the object that was received by SDF Adapter (create) or the original object and in addition all existing combinations of `applicationUid` and `recordUid` (update).
 
-In case of a create operation the target applications adapter sends the `recordUid` of newly created data record to the SDF Adapter. The SDF Adapter then passes it to the DataHub, so that Data Hub can create a new reference in the `refs` array.
+In case of a create operation the target applications adapter sends the `recordUid` of newly created data record to the SDF Adapter. The SDF Adapter then passes it to the Data Hub, so that Data Hub can create a new reference in the `refs` array.
 
 The following code represents the structure of an oihDataRecord:
 
