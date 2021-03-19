@@ -1,17 +1,17 @@
 ---
 layout: default
 title: Deployment Scenarios
-parent: Deployment
-nav_order: 3
+parent: GettingStarted
+nav_order: 4
 ---
 
 # Deployment Scenarios
 
-The OIH is structured to be modular in nature. Only a few services are strictly necessary for basic functionalities, while others offer optional services to fulfill certain use cases. In this document, we will show you a few common deployment scenarios, detailing which services are necessary for each of them.
+The Open Integration Hub is structured to be modular in nature. Only a few services are strictly necessary for basic functionalities, while others offer optional services to fulfill certain use cases. In this document, we will show you a few common deployment scenarios, detailing which services are necessary for each of them.
 
 ## Overview of services used in different deployments
 
-*Necessary:*
+_Necessary:_
 
 **Identity and Access Management (IAM)**: Create and modify users, tenants, roles, and permissions. Required to perform most API interactions on other services.
 
@@ -25,7 +25,7 @@ The OIH is structured to be modular in nature. Only a few services are strictly 
 
 **Component Repository**: Store and modify connector components.
 
-*Optional:*
+_Optional:_
 
 **Data Hub**: Long-term storage for flow content and snapshot data. Required for ID-Linking
 
