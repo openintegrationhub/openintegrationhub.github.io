@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Local Installation
-parent: GettingStarted
+parent: Getting Started
 nav_order: 1
 ---
 
@@ -310,3 +310,13 @@ The Open Integration Hub is now running and ought to function just as it would i
   - `web-ui.example.com`
 
 Most of these services have an OpenAPI documentation of their API available through the path `/api-docs`. You can also check the [API Reference Documentation](https://openintegrationhub.github.io/docs/6%20-%20ReferenceDocumentation/APIReferenceOverview.html). If you want to learn more about the services, check the [Service Documentation](https://openintegrationhub.github.io/docs/5%20-%20Services/Services.html) or their readmes in the `services` folder of the GitHub Repository: [Open Integration Hub Services](https://github.com/openintegrationhub/openintegrationhub/tree/master/services)
+
+# User Guide
+
+After you deployed your own Open Integration Hub instance, check out the User Guide. You will learn how to setup your frist example flow using generic integration components.
+
+<div class="oih-docs-learn-overview-container">
+<div class="container-further">
+    <a class="item" href="https://openintegrationhub.github.io/docs/3%20-%20GettingStarted/UserGuide.html">User Guide</a>
+</div>
+</div>

@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Deployment Scenarios
-parent: GettingStarted
+parent: Getting Started
 nav_order: 4
 ---
 

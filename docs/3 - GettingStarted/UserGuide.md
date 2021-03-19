@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Local Installation
-parent: GettingStarted
+parent: Getting Started
 nav_order: 3
 ---
 

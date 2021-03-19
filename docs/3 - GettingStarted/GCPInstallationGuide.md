@@ -1,7 +1,7 @@
 ---
 layout: default
 title: GCP Installation
-parent: GettingStarted
+parent: Getting Started
 nav_order: 2
 ---
 
@@ -326,3 +326,13 @@ Most of these services have an OpenAPI documentation of their API available thro
 Using Google Kubernetes Engine creating an Ingress additionally creates a Load Balancer and its related Backend Services. Each Backend Service also has a Healthcheck created and assigned, which pings the root endpoint / of Pods to see if they are alive. This Healthcheck is used to determine if a pod is in a Healthy state and can have traffic sent to it.
 
 When a Healthcheck is created, it will use the Readiness and Liveness probes from applicable Deployments, but only if they have already been applied to the Cluster. After creation, the Healthcheck does not track any changes to Deployments, so will not pick up the probe values later.
+
+# User Guide
+
+After you deployed your own Open Integration Hub instance, check out the User Guide. You will learn how to setup your frist example flow using generic integration components.
+
+<div class="oih-docs-learn-overview-container">
+<div class="container-further">
+    <a class="item" href="https://openintegrationhub.github.io/docs/3%20-%20GettingStarted/UserGuide.html">User Guide</a>
+</div>
+</div>
