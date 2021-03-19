@@ -4,6 +4,7 @@ title: Component Repository
 parent: Services
 nav_order: 4
 ---
+
 <!-- Description Guidelines
 
 Please note:
@@ -11,23 +12,28 @@ Use the full links to reference other files or images! Relative links will not w
 -->
 
 <!-- please choose the appropriate batch and delete/comment the others  -->
+
 ![prod](https://img.shields.io/badge/Status-Production-brightgreen.svg)
 
 # Component Repository
 
 ## Introduction
-The Component Repository stores information about integration components such as adapters & transformer.
+
+The Component Repository stores information about integration components.
 
 [API Reference](http://component-repository.openintegrationhub.com/api-docs/){: .btn .fs-5 .mb-4 .mb-md-0 }
 [Implementation](https://github.com/openintegrationhub/openintegrationhub/tree/master/services/component-repository){: .btn .fs-5 .mb-4 .mb-md-0 }
 [Service File](https://github.com/openintegrationhub/openintegrationhub/tree/master/lib/component-repository){: .btn .fs-5 .mb-4 .mb-md-0 }
 
 ## Technologies used
+
 - [Node.js](https://nodejs.org)
 - [MongoDB](https://www.mongodb.com)
 - [Kubernetes](https://kubernetes.io/)
 - [Docker](https://www.docker.com/)
+
 ## How it works
+
 <!-- describe core functionalities and underlying concepts in more detail -->
 
 Integration components are lightweight and stand-alone Docker images that include everything needed to run the
@@ -37,47 +43,46 @@ For example, for Java component the parent images provides the JDK and for Node.
 [NPM](https://www.npmjs.com/) and [Node.js](https://nodejs.org).
 
 The component images are stored in a [Docker Registry](https://docs.docker.com/registry/). A Docker Registry is a
-stateless, highly scalable storage for Docker images. Any open source integration component can be store and
-distributed in/from [Docker Cloud](https://cloud.docker.com) so that they would be available to any OIH installations
-(cloud or on-prem) out of the box. For `private` components private Docker Registry can be maintained locally so that
-no components are exposed to the cloud. Each on prem installation could decide whether to use private repos on Docker
-Cloud or installing a private Docker Registry on prem for their private components.
+stateless, highly scalable storage for Docker images. Any open source integration component can be stored and
+distributed in/from [Docker Cloud](https://cloud.docker.com) so that they are available to any Open Integration Hub installation
+(cloud or on premise) out of the box. For `private` components, a private Docker Registry can be maintained locally so that
+no components are exposed to the cloud. Each on premise installation could decide whether to use private repos on Docker
+Cloud or installing a private Docker Registry on premise for their private components.
 
 ### Components
 
-A component is described by a JSON document, containing all information required to be used by flows. The main part of the component is its image version pulled from dockerhub and its id which is used in the flows. For (a minimal) example:
+A component is described by a JSON document, containing all information required to be used by flows. The two most important parts of a component are the 'image version' pulled from dockerhub and its 'id' which is used in the flows. For (a minimal) example:
 
 ```json
 {
   "distribution": {
-    "type": 'docker',
-    "image": 'juanspada/shopify:latest'
+    "type": "docker",
+    "image": "juanspada/shopify:latest"
   },
-  "access": 'public',
+  "access": "public",
   "isGlobal": true,
   "active": false,
-  "name": 'shopify',
-  "description": 'generated connector for shopify',
+  "name": "shopify",
+  "description": "generated connector for shopify",
   "descriptor": {
     "actions": [],
     "triggers": []
   },
   "owners": [
     {
-      "id": 'string',
-      "type": 'user'
+      "id": "string",
+      "type": "user"
     },
     {
-      "id": '5f5632f3743e880011fd4b35',
-      "type": 'user'
+      "id": "5f5632f3743e880011fd4b35",
+      "type": "user"
     }
   ],
-  "createdAt": '2021-03-03T11:51:55.065Z',
-  "updatedAt": '2021-03-03T15:18:09.861Z',
-  "id": '603f785b9fa556001b96f9b1'
+  "createdAt": "2021-03-03T11:51:55.065Z",
+  "updatedAt": "2021-03-03T15:18:09.861Z",
+  "id": "603f785b9fa556001b96f9b1"
 }
 ```
-
 
 For a full overview and more details, please refer to the Schemas section in the [API Reference](http://component-repository.openintegrationhub.com/api-docs/).
 
@@ -89,25 +94,23 @@ The Component Repository offers a REST API through which components can be saved
 
 ---
 
-| endpoint                       | method | description                                                         | comments                                                                              |
-| ------------------------------ | :----: | ------------------------------------------------------------------- | ------------------------------------------------------------------------------------- |
-| /components                    |  GET   | Returns a list of all components          |                                                                                     |
-| /components                    |  POST  | Stores a new component                                        | The supplied data is validated for completeness and errors                                                               |
-| /components/{id}               |  GET   | Returns one particular component by ID                               |                                                                                     |
-| /components/{id}               | DELETE | Deletes a components by ID                                            |                                                                                     |
-| /components/{id}               | PATCH  | Updates a components with new data                                    |                                                                                     |
-| /components/global/{id}/start  | POST   | Starts a global component with ID                                    |                                                                                     |
-| /components/global/{id}/stop   | POST   | Stops a global component with ID                                   |                                                                                     |
+| endpoint                      | method | description                            | comments                                                   |
+| ----------------------------- | :----: | -------------------------------------- | ---------------------------------------------------------- |
+| /components                   |  GET   | Returns a list of all components       |                                                            |
+| /components                   |  POST  | Stores a new component                 | The supplied data is validated for completeness and errors |
+| /components/{id}              |  GET   | Returns one particular component by ID |                                                            |
+| /components/{id}              | DELETE | Deletes a components by ID             |                                                            |
+| /components/{id}              | PATCH  | Updates a components with new data     |                                                            |
+| /components/global/{id}/start |  POST  | Starts a global component with ID      |                                                            |
+| /components/global/{id}/stop  |  POST  | Stops a global component with ID       |                                                            |
 
 For further details and examples, please refer to the [API Reference](http://component-repository.openintegrationhub.com/api-docs/)
-
 
 ### Ownership and Permissions
 
 Each component contains an array of _owners_. A component which is not global can only be accessed if the current user (as identified by their bearer token) is among those owners.
 
 Additionally, manipulation of components limited and defined by the permissions of the current user. For further information about permissions, please refer to the documentation of the [Identity Management](https://openintegrationhub.github.io//docs/5%20-%20Services/IdentityManagement.html).
-
 
 ### Interaction with other Services
 
@@ -116,6 +119,3 @@ The Component Repository interacts with these Services:
 - [Identity Management](https://openintegrationhub.github.io//docs/5%20-%20Services/IdentityManagement.html): The Component Repository relies on a bearer token supplied by the Identity Management to determine which components the current user may see, and which actions they may take.
 
 - [Component Orchestrator](https://openintegrationhub.github.io//docs/5%20-%20Services/ComponentOrchestrator.html): The Component-orchestrator gets the information it needs for the component used in a flow template from the Component-repository.
-
-
-
