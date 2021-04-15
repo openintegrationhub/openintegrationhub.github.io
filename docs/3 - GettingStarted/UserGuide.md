@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Local Installation
+title: User Guide
 parent: Getting Started
 nav_order: 3
 ---
