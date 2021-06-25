@@ -15,7 +15,7 @@ permalink: /
 
 Hi there! Glad you are here. This is the documentation of [Open Integration Hub](https://www.openintegrationhub.org/?lang=en), a free and open source ([Apache 2.0](https://www.apache.org/licenses/LICENSE-2.0)) Integration Framework.
 
-You will find explanations of how it works, how to set it up and the idea behind each service. For the acutal code, as well as more technical information head to [GitHub](https://github.com/openintegrationhub/openintegrationhub).
+You will find explanations of how it works, how to set it up and the idea behind each service. For the actual code, as well as more technical information head to [GitHub](https://github.com/openintegrationhub/openintegrationhub).
 
 We are a community driven project. Please join us on [Slack](https://join.slack.com/t/openintegrationhub/shared_invite/zt-mba97vn9-xus3ZbVxnMr2oQwGegIk5Q) or open issues on [GitHub](https://github.com/openintegrationhub/openintegrationhub/issues) to give feedback and ask your questions. Also mind the [Contribution Guidelines](https://openintegrationhub.github.io/docs/4%20-%20ForDevelopers/ContributionGuidelines.html).
 
