@@ -9,7 +9,7 @@ nav_order: 1
 
 ## Overview
 
-The Open Integration Hub enables data synchronization across a variety of applications. To achive this goal we are using modular Components which are implemented individually for each API or desired function. These components are capable of passing data from one to another, allowing you to organize them in user-defined flows to pass data between systems with ease.
+The Open Integration Hub enables data synchronization across a variety of applications. To achieve this goal we are using modular Components which are implemented individually for each API or desired function. These components are capable of passing data from one to another, allowing you to organize them in user-defined flows to pass data between systems with ease.
 
 A **Component** is a lightweight assortment of functions packaged as a [Docker image](https://docs.docker.com/). The OIH runs these images as containerized applications, pass data into them, and execute the component's provided functions. While each component requires certain dependencies and format to be compatible with the OIH, they can contain and execute essentially arbitrary code, allowing you to cover a wide array of use-cases.
 
