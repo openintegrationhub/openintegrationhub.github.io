@@ -48,7 +48,7 @@ The Node.js components get built by NPM `run-script` which checks first the `pac
 
 ```javascript
 "dependencies": {
-  "@openintegrationhub/ferryman": "^1.1.3",
+  "@openintegrationhub/ferryman": "^1.5.5",
 }
 ```
 
