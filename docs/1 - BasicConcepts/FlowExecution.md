@@ -8,7 +8,7 @@ has_children: false
 
 # Flow Execution
 
-This document is designed to describes the basics of how flows are being executed. It acts as a starting point to get an understanding of the Open Integration Hub.
+This document is designed to describe the basics of how flows are being executed. It acts as a starting point to get an understanding of the Open Integration Hub.
 Most of the examples are triggered by user interactions (e.g. starting a flow) and only the "happy path" i.e. success scenario is described.
 
 Each example is described through a graphical overview, a textual description, and pre-conditions.
@@ -34,7 +34,7 @@ This example describes the scenario of starting a flow. Once the user starts a f
 1. The user starts a flow using the flow repository's `REST API`.
 2. Flow Repository sets the flow's status from `inactive` to `starting` and raises the event `flow.starting`.
 3. There are three services listening to the event `flow.starting`: Webhooks, Scheduler, and Component Orchestrator. Each of them examines the event's payload and decide if they need to react appropriately. We will discuss the exact reaction of `Webhooks` and `Scheduler` later in this document.
-4. Upon receiving `flow.starting` event the `Component Orchestrator` starts deploying local compontents. Once all local components were deployed, `Component Orchestrator` raises the `flow.started` event regardless of whether used global components are running – **Keep in mind that global components need to be started manually. otherwise, warnings are thrown**
+4. Upon receiving `flow.starting` event the `Component Orchestrator` starts deploying local components. Once all local components were deployed, `Component Orchestrator` raises the `flow.started` event regardless of whether used global components are running – **Keep in mind that global components need to be started manually. otherwise, warnings are thrown**
 5. Flow Repository receives the `flow.started` event and switches flow's status property from `starting` to `started`.
 6. Webhooks receives the `flow.started` event and starts receiving incoming HTTP calls for the given flow.
 7. Scheduler receives the `flow.started` event and starts scheduling the flow, according to its cron property.
@@ -157,7 +157,7 @@ The following example shows every step necessary to allow a user to request a fl
 
 1. User logs in into IAM. (e.g. Basic Auth)
 2. IAM responds with an access token token.
-3. User uses this access token to request a cetrain resource (e.g. a specific flow by id).
+3. User uses this access token to request a certain resource (e.g. a specific flow by id).
 4. Flow repository introspects the token at specific IAM endpoint (services accounts receive a permanent token when they first register) using IAM utils (middleware).
 5. IAM responds with user information such as username, tenant, tenant specific role and user permissions related to this token.
 6. Flow Repsitory checks if the user has the permission to request the resource.
