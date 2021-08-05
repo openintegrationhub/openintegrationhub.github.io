@@ -67,7 +67,7 @@ A component is described by a JSON document, containing all information required
   "repository": "https://github.com/openintegrationhub/Shopify-Component",
   "maintainer": "",
   "actions": {},
-  "triggers": {}
+  "triggers": {},
   "owners": [
     {
       "id": "string",
