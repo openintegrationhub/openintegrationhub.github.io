@@ -64,10 +64,10 @@ A component is described by a JSON document, containing all information required
   "active": false,
   "name": "shopify",
   "description": "generated connector for shopify",
-  "descriptor": {
-    "actions": [],
-    "triggers": []
-  },
+  "repository": "https://github.com/openintegrationhub/Shopify-Component",
+  "maintainer": "",
+  "actions": {},
+  "triggers": {},
   "owners": [
     {
       "id": "string",
@@ -103,8 +103,13 @@ The Component Repository offers a REST API through which components can be saved
 | /components/{id}              | PATCH  | Updates a components with new data     |                                                            |
 | /components/global/{id}/start |  POST  | Starts a global component with ID      |                                                            |
 | /components/global/{id}/stop  |  POST  | Stops a global component with ID       |                                                            |
+| /enrich/{id}                  |  PATCH | Automatically finds component data     | Will attempt to fetch action/trigger data                  |
 
 For further details and examples, please refer to the [API Reference](http://component-repository.openintegrationhub.com/api-docs/)
+
+#### Automatic Enrichment
+
+Through the use of the `/enrich/id` endpoint, the component repository can attempt to automatically fill out information about the component's available actions and triggers from a public github repository. The repository's URL can be either provided as a query string (see also the API documentation), or alternatively it will fallback on the content of the component's `repository` field. If the provided github repository is found, the component repository will check the component.json (if present) and copy its functions data to the component's entry. Additionally, if the component.json specifies schema files used as part of its actions and triggers, the component repository will also attempt to find and append that information. 
 
 ### Ownership and Permissions
 
