@@ -59,6 +59,8 @@ Execute the following commands:
 2. `kubectl apply -f platform/rabbitmq.yaml`
 3. `kubectl apply -f platform/redis.yaml`
 
+Note: _This creates a basic functional deployment of redis and rabbitmq each. For your use case, you may want a more custom configuration. Please refer to their respective documentations._ 
+
 ## Setup Storage
 
 Next, you need to make sure to setup / connect to a storage solution such as [MongoDB Atlas](https://www.mongodb.com/cloud/atlas).
