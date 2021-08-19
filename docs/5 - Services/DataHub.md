@@ -41,6 +41,19 @@ Data from different sources can be synchronized via the Data Hub and combined un
 
 Additionally, the entire data of an entry can be stored in the content field of the Data Hub record. This is especially useful if the OIH is configured to operate in a _Hub & Spoke_ manner.
 
+## Data import
+Existing data can be imported into the Data Hub via the Import tool. This is especially useful when using the Hub and Spoke feature of data hub to import existing data from multiple sources into the hub and potentially interlink the data.
+Please note that the data stored in Data Hub might be transformed into an existing data model (e.g. person and organization).
+API spec for data import:
+
+POST {datahub-api-endpoint}/data/import
+
+## Data Export
+Data Hub provides a REST endpoint to export existing data. Please note that the Data Hub exports only the internally stored and previously transformed data. To export the initially received raw data, please see the Raw Data Storage (RDS) specification. Also, RDS is an optional feature and only stores raw data if your connectors were previously configured accordingly.
+API spec for data export:
+
+GET {datahub-api-endpoint}/data
+
 ## Hub & Spoke
 
 In a _Hub & Spoke_ configuration, the Data Hub can serve as data source and reduce the amount of necessary operations and data transfers needed to synchronize all connected systems, while avoiding unwanted duplicates.
@@ -51,7 +64,7 @@ The storage and retrieval of data is then automatically organized with the help 
 
 # API and Implementation
 
-[API Reference](http://data-hub.openintegrationhub.com/api-docs){: .btn .fs-5 .mb-4 .mb-md-0 }
+[API Reference](https://data-hub.openintegrationhub.com/api-docs){: .btn .fs-5 .mb-4 .mb-md-0 }
 [Implementation](https://github.com/openintegrationhub/openintegrationhub/tree/master/services/data-hub){: .btn .fs-5 .mb-4 .mb-md-0 }
 
 <!--[Service File](){: .btn .fs-5 .mb-4 .mb-md-0 }-->
