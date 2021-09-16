@@ -210,4 +210,4 @@ As described above, a flow policy is evaluated before it is passed into the step
 
 ### Further Reading
 
-- Governance Service technical documentation and source code: https://github.com/openintegrationhub/openintegrationhub/tree/master/services/governance-service
+- Governance Service technical documentation and source code: [https://github.com/openintegrationhub/openintegrationhub/tree/master/services/governance-service](https://github.com/openintegrationhub/openintegrationhub/tree/master/services/governance-service)
