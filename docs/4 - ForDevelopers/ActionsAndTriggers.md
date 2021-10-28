@@ -14,7 +14,7 @@ Note that this distinction is only a convention to more easily understand a comp
 
 ## Triggers
 
-As mentioned above, Triggers are generally responsible for fetching and/or receiving data from external sources and introducing it into an integration flow. There are two general types of triggers, distinguished by when and how they are triggered:
+Triggers are generally responsible for fetching and/or receiving data from external sources and introducing it into an integration flow. There are two general types of triggers, distinguished by when and how they are triggered:
 
 ### Polling Triggers
 
@@ -29,3 +29,20 @@ Generally, when using polling triggers you do not wish to fetch the same identic
 ### Webhook Triggers
 
 As the name suggests, webhook triggers are triggered through external incoming webhooks. External systems can post data to an URL exposed by the OIH's [Webhook Service](https://openintegrationhub.github.io/docs/5%20-%20Services/Webhooks.html), and this data is then passed directly to a webhook trigger. As such, a webhook trigger does not need to independently fetch data, only receive it. In this case, its role consists primarily of verifying the integrity of the received data, and optionally to transform it.
+
+## Actions
+
+The role of actions is to receive data from other components and then act upon that data. The most common action is transferring this data to an external destination, but it could also involve transforming the data or analyzing it. Some common examples of actions are:
+
+### Insert Data
+
+In this case, the action simply takes whichever data it received and inserts it into a destination system, creating a new entry there. A purely insert-type action does not double-check whether an identical object is already present in the target system. As such is it possible that duplicate objects are inserted in the target system if they passed to the action several times.
+
+### Update Data
+
+An update type action attempts to update an already existing object in the target system. How this object is identified or addressed depends on the target API and usage context. Some APIs may offer a search function to find the existing object, in which case the action could use this function to identify the correct object to update. Alternatively, the action could also make use of the OIH ID-Linking functionality: [https://openintegrationhub.github.io//docs/5%20-%20Services/DataHub.html#id-linking](https://openintegrationhub.github.io//docs/5%20-%20Services/DataHub.html#id-linking). If a matching existing object can't be found, the action aborts.
+
+### Upsert Data
+
+An Upsert action is a combination of an insert and an update action. In this case, the action first executes a lookup to ascertain whether the received data object is already present in the target system. If it is, then the found object is updated. Otherwise, the a new data object is inserted.
+
