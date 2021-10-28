@@ -10,7 +10,7 @@ grand_parent: For Developers
 
 Actions and Triggers are the two primary types of functions offered by components. As a general guideline, Triggers are responsible for fetching and receiving data from external sources, whereas Actions receive data from other components and then act upon that data in some fashion, such as by modifying it or transferring it to an external destination. Most simple integrations have a component executing a trigger at the beginning, fetching data from one place, and a component executing an action at the end, posting that data elsewhere.
 
-Note that this distinction is only a convention to more easily understand a component's capabilities. On the software level, both actions and triggers are treated the same.
+Note that this distinction is only a convention to more easily understand a component's capabilities. Both actions and triggers can contain largely arbitrary code, and are treated the same on a software level.
 
 ## Triggers
 
@@ -40,9 +40,13 @@ In this case, the action simply takes whichever data it received and inserts it 
 
 ### Update Data
 
-An update type action attempts to update an already existing object in the target system. How this object is identified or addressed depends on the target API and usage context. Some APIs may offer a search function to find the existing object, in which case the action could use this function to identify the correct object to update. Alternatively, the action could also make use of the OIH ID-Linking functionality: [https://openintegrationhub.github.io//docs/5%20-%20Services/DataHub.html#id-linking](https://openintegrationhub.github.io//docs/5%20-%20Services/DataHub.html#id-linking). If a matching existing object can't be found, the action aborts.
+An update type action attempts to update an already existing object in the target system. How this object is identified or addressed depends on the target API and usage context. Some APIs may offer a search function to find the existing object, in which case the action could use this function to identify the correct object to update. Alternatively, the action could also make use of the OIH [ID-Linking functionality](https://openintegrationhub.github.io//docs/5%20-%20Services/DataHub.html#id-linking). If a matching existing object can't be found, the action aborts.
 
 ### Upsert Data
 
 An Upsert action is a combination of an insert and an update action. In this case, the action first executes a lookup to ascertain whether the received data object is already present in the target system. If it is, then the found object is updated. Otherwise, the a new data object is inserted.
+
+### Transformation
+
+Actions can also be used to transform data from one schema to another. However, unless it is a particularly specific or elaborate kind of transformation, it's not usually necessary to create an action entirely for this purpose. More commonly, other triggers and actions include transformations as part of their other functionalities, or instead rely on transformation functionalities offered by the [OIH Ferryman](https://github.com/openintegrationhub/openintegrationhub/tree/master/lib/ferryman#transformer-interface).
 
