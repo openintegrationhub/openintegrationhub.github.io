@@ -34,7 +34,7 @@ In addition to setting up the Open Integration Hub on a cloud infrastructure suc
 
 Besides the basic installation guide found here, the OIH monorepo provides two possible setups for a development environment. They are found in the `dev-tools/` folder in the monorepo.
 
-- The [minikube instructions](https://openintegrationhub.github.io/docs/4%20-%20ForDevelopers/MinikubeInstallation.html) are based off of the basic local minikube installation found here. It adds the ability to optionally launch each service using local source code served over NFS instead of the public Docker image.
+- The [minikube instructions](https://openintegrationhub.github.io/docs/4%20-%20ForDevelopers/MinikubeInstallation.html) provides the ability to deploy each service from its public Docker image or using local source code served over NFS. It is activated using the `setup.sh` script in the folder. This script automates all the steps found here.
 - The [docker-compose installation](https://openintegrationhub.github.io/docs/4%20-%20ForDevelopers/DockerInstallation.html) contains configuration files and helper scripts to run local services directly from Docker. It still relies on minikube to execute flows.
 
 # Requirements
@@ -126,13 +126,16 @@ If you're using Docker for Desktop it overwrites the acutal kubectl version. Thi
 
 ## Basic Open Integration Hub Infrastructure Setup
 
-**Please make sure to clone the [monorepo](https://github.com/openintegrationhub/openintegrationhub) before you start. You will need the files in the minikube folder.**
+**Please make sure to clone the [monorepo](https://github.com/openintegrationhub/openintegrationhub) before you start. You will need the files in the *dev-tools/minikube* folder.**
 
-Set up the basic Open Integration Hub infrastructure. To do this, simply execute
+Set up the basic Open Integration Hub infrastructure. To do this, from the `dev-tools/minikube` directory, simply execute
 
 `kubectl apply -f ./1-Platform`
 
-This may take a while to finish. You can use `minikube dashboard` to check the status of the various deployments. Once they are all ready, you can proceed.
+This may take a while to finish. You can use `minikube dashboard` to check the status of the various deployments. Once they are all ready, you can proceed. If you would like to deploy any services from their local source code, you also need to setup the local volume
+
+`kubectl apply -f ./1.1-CodeVolume`
+`kubectl apply -f ./1.2-CodeClaim`
 
 ## Host Rules Setup
 
@@ -280,7 +283,7 @@ Ordinarily, each service would have its own secret for security reasons, but thi
 
 ## Service Deployment
 
-Deploy the remaining services via the following command. This may take a while.
+For each service, you must decide whether to deploy it from the public volume or from source. Each service folder contains a YAML file for both options. If you are deploying manually, you must deactivate the options which you do not want to use. This can be accomplished by changing the filename to remove the `.yaml` extension, or by deleting the file. Using the *setup.sh* script automates this process using the `-d` option flag. Then deploy the services via the following command. This may take a while.
 
     kubectl apply -Rf ./4-Services
 

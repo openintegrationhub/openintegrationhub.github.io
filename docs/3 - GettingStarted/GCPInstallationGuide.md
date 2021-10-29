@@ -48,7 +48,7 @@ For detailed information see: [Kubernetes Engine - Quickstart](https://cloud.goo
 
 ## Basic Open Integration Hub Infrastructure Setup
 
-**Please make sure to clone the [monorepo](https://github.com/openintegrationhub/openintegrationhub) before you start. You will need the files in the minikube folder.**
+**Please make sure to clone the [monorepo](https://github.com/openintegrationhub/openintegrationhub) before you start. You will need the files in the *dev-tools/minikube* folder.**
 
 Set up the basic Open Integration Hub infrastructure.
 If you want to change you namespace in the `namespace.yaml`, you also need to adjust the namespace in each service.yaml and deployment.yaml.
@@ -64,11 +64,11 @@ Note: _This creates a basic functional deployment of redis and rabbitmq each. Fo
 ## Setup Storage
 
 Next, you need to make sure to setup / connect to a storage solution such as [MongoDB Atlas](https://www.mongodb.com/cloud/atlas).
-Optionally, the mongodb.yaml provided under `platform/mongodb.yaml` could be used. To do so:
+Alternatively, to deploy locally, the mongodb.yaml provided under `platform/mongodb.yaml` could be used. To do so:
 
-- apply minikube/1-Platform/volume.yaml
-- apply minikube/1-Platform/volumeClaim.yaml
-- apply minikube/1-Platform/platform/mongodb.yaml
+- apply dev-tools/minikube/1-Platform/2-volume.yaml
+- apply dev-tools/minikube/1-Platform/3-volumeClaim.yaml
+- apply dev-tools/minikube/1-Platform/mongodb.yaml
 
 Note: _We suggest to use the first variant i.e. an external storage solution_
 

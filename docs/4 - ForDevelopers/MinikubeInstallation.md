@@ -20,7 +20,7 @@ The minikube-based development setup enables users to bring up a local implement
 
 The development environment requires:
 
-- minikube
+- minikube >= 1.23.0
 - kubectl
 - python3
 - curl
@@ -80,7 +80,7 @@ If you're using Docker for Desktop it overwrites the acutal kubectl version. Thi
     <img src="https://img.shields.io/badge/Mac-green.svg" height="30">
 </div>
 
-The OIH Framework requires the <i>ingress</i> addon for kubernetes. This is not supported via Docker Bridge for Mac and Windows. Therefore, on these Operating Systems, minikube must be started with the flag `--vm=true`. This is handled in the setup script. More information can be found on the <a href="https://github.com/kubernetes/minikube/issues/7332">minikube Github page</a>.
+The OIH Framework requires the <i>ingress</i> addon for kubernetes. This is not supported via Docker Bridge for Mac and Windows on older versions of minikube. Therefore, minikube must be at a minimum version of 1.23.0. For older versions, you can refer to previous releases of the OIH framework(< 21.2.0) for the appropriate setup script. More information can be found on the <a href="https://github.com/kubernetes/minikube/issues/7332">minikube Github page</a>.
 
 </div>
 
@@ -104,7 +104,7 @@ From the $OIH_ROOT/dev-tools/minikube folder, call the setup script
 bash ./setup.sh
 ```
 
-The script will check for prerequisites, and attempt to build all services. The script automates the steps found in the minikube Local Installation Guide on the parent page.
+The script will check for prerequisites, and attempt to build all services. The script automates the steps found in the minikube Local Installation Guide.
 
 Additionally, the following options may be sent in the arguments to `setup.sh`.
 
