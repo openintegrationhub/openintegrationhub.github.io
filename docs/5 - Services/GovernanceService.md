@@ -55,7 +55,9 @@ Additionally, the Governance Service manages default and user created functions,
 
 ### Data Provenance
 
-The "Data Provenance" function of the Governance Service is intended to allow users to reconstruct their data's path through the OIH from the very first time it was synchronized up until the current moment. This way, the data owner will be able to track all origins and destinations of their data, and whether it has been modified inside the OIH. This way, the data owner will be made more capable of complying with data governance policies and laws, such as the GDPR.
+The "Data Provenance" function of the Governance Service is intended to allow users to reconstruct their data's path through the OIH from the very first time it was synchronized up until the current moment.
+
+This way, the data owner will be able to track all origins and destinations of their data, and whether it has been modified inside the OIH. This way, the data owner will be made more capable of complying with data governance policies and laws, such as the GDPR.
 
 To this end, the Governance Service is capable of receiving metadata about certain events, such as a data object being transmitted from one application to another, and stores it as a detailed data provenance event. These events can then be retrieved, filtered, and searched using the Service's API.
 
@@ -234,6 +236,7 @@ Returns an object with the total amounts of:
 - updated
 - created
 - deleted
+
 for each connector
 
 
