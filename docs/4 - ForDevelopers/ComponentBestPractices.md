@@ -37,7 +37,7 @@ A request to delete an object would look like this:
     "recordUid": "String",
   },
 "data": {
-    "deleteRequested": '1642683883'
+    "deleteRequested": "1642683883"
   }
 ```
 
@@ -52,9 +52,9 @@ If a delete request of this format is received and processed, a component should
     "recordUid": "String",
   },
 "data": {
-    "delete": enum('pending', 'confirmed', 'denied', 'failed'),
-    "signature": 'optional',
-    "timestamp": '123456789'
+    "delete": enum("pending", "confirmed", "denied", "failed"),
+    "signature": "optional",
+    "timestamp": "123456789"
   }
 ```
 
