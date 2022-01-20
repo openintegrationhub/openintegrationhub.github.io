@@ -46,6 +46,10 @@ An update type action attempts to update an already existing object in the targe
 
 An Upsert action is a combination of an insert and an update action. In this case, the action first executes a lookup to ascertain whether the received data object is already present in the target system. If it is, then the found object is updated. Otherwise, the a new data object is inserted.
 
+### Delete Data
+
+A delete action attempts to remove an existing object from the target system using a supplied ID. As this is a particularly sensitive operation that may result in data loss, a component should implement additional safeguards that ensure a delete is only executed when the flow is configured to allow it. Additionally, it is recommended to make use of the [Data Provenance](https://openintegrationhub.github.io/docs/5%20-%20Services/GovernanceService.html#data-provenance) functionality in order to be able to keep a record of any executed delete actions.
+
 ### Transformation
 
 Actions can also be used to transform data from one schema to another. However, unless it is a particularly specific or elaborate kind of transformation, it's not usually necessary to create an action entirely for this purpose. More commonly, other triggers and actions include transformations as part of their other functionalities, or instead rely on transformation functionalities offered by the [OIH Ferryman](https://github.com/openintegrationhub/openintegrationhub/tree/master/lib/ferryman#transformer-interface).
