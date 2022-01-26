@@ -5,7 +5,7 @@ parent: Services
 nav_order: 19
 --- -->
 
-# **Workflow Repository - DRAFT & Concept - Not a ready-to-use Service yet!**
+# **Workflow Repository - Concept**
 
 ## Introduction
 
