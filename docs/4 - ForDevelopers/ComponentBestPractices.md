@@ -1,9 +1,9 @@
 ---
 layout: default
 title: Component Best Practices
-nav_order: 4
-parent: Development Example for Node.js
-grand_parent: For Developers
+nav_order: 7
+parent: For Developers
+has_children: false
 ---
 
 # Best Practices for Component Development
