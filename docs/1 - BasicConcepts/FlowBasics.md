@@ -80,3 +80,11 @@ Each node contains these fields:
 - credentials_id: Communication with external applications generally requires a set of credentials. These can be securely stored in the OIH Secret Service and referenced by their ID here
 
 The edges are more self-explanatory, each containing a source and a target, which refers to an id field of a node.
+
+### Credentials and Secrets
+
+As integration flows frequently interact with external systems, it is often necessary to pass access credentials into flows. In order to do so without the risk of exposing these credentials to other users of the OIH, the Flow Repository relies on the Secret Service. To do so, you need to:
+
+- Create a new secret inside the Secret Service containing the access credentials you will need. This can be an API key, a Oauth token, or a number of other authentication tokens. For more detail, please refer to the [Secret Service Documentation](https://openintegrationhub.github.io//docs/5%20-%20Services/SecretService.html)
+- The Secret Service will return an id of this created secret. In the relevant node, enter this id under the field `credentials_id`
+- Once the flow executes, the node will automatically fetch the contents of this secret, allowing the component to use the stored credentials without the risk of exposure
