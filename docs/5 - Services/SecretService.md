@@ -23,17 +23,19 @@ Use the full links to reference other files or images! Relative links will not w
 
 The Secret Service is used to store and access securely client/user credentials
 
-[API Reference](http://skm.openintegrationhub.com/api-docs/){: .btn .fs-5 .mb-4 .mb-md-0 }
-[Implementation](https://github.com/openintegrationhub/openintegrationhub/tree/master/services/secret-service){: .btn .fs-5 .mb-4 .mb-md-0 }
-[Service File](https://github.com/openintegrationhub/openintegrationhub/tree/master/lib/secret-service){: .btn .fs-5 .mb-4 .mb-md-0 }
+[API Reference](http://skm.openintegrationhub.com/api-docs/)
+[Implementation](https://github.com/openintegrationhub/openintegrationhub/tree/master/services/secret-service)
 
 ## Technologies used
 
-<!-- please name and elaborate on other technologies or standards the service uses -->
+Node.JS
+MongoDB
+crypto
+OAuth
 
 ## How it works
 
-<!-- describe core functionalities and underlying concepts in more detail -->
+This service is used to securely store and access client secrets/credentials (e.g. Basic Auth, OAuth tokens, etc.). This service can also create OAuth flows, such as 3-legged and also automatically refresh OAuth accessTokens if a valid refreshToken exists. The primary use-case is to allow connectors to fetch data from external APIs on behalf of the user.
 
 # Introduction
 
@@ -53,122 +55,104 @@ Additionally, it is essential to have a sophisticated audit logging for all oper
 
 # Secret Service
 
-A dedicated service should carry out the management of keys and secrets. Keys need to have at least one owner and the ownership should be validated through OIH IAM. Additionally, the underlying vault framework should be interchangeable through an abstraction layer, thus ensuring a stable public API.
+Tenant and user specific secrets are stored in this service. Infrastructure specific secrets, such as k8s Config Maps or IAM Tokens are not part of it. Secrets have at least one owner. Each secret element has an array of owners. Although, ideally no secret should have two different users as owners, in some cases this is required, which we will touch on later. 
 
-The Secret-Service will provide a CRUD-API for keys, which can be accessed by other privileged services, e.g. flow operator or even connector, as well as the users. The API may look similar to current elastic.io credentials API <https://api.elastic.io/v2/docs/#credentials>
+The Secret-Service will provide a CRUD-API for keys, which can be accessed by other privileged services, e.g. flow operator or connectors, as well as the users. 
 
-Proposal for secret structure
+Secret document structure. An example with an OAuth 2 secret:
 
 ```javascript
 {
-  "_id": "59f9f2ba112f28001921f274",
-  "type":"credential",
-  "name": "MySecret",
-  "attributes": {
-    "keys":{
-      "host":"sftp.company.org",
-      "username":"testuser",
-      "password":"testpassword"
-    }
-  },
-  "owners": [
-    {
-        "entityType": "USER",
-        "entityId": "59f747c33f1d3c001901a44e"
+    "_id" : ObjectId("61d8550ae4b4931adb279676"),
+    "encryptedFields" : [],
+    "__t" : "S_OA2_AUTHORIZATION_CODE",
+    "owners" : [ 
+        {
+            "id" : "5bffec9902586f630df98a73",
+            "type" : "USER"
+        }
+    ],
+    "type" : "OA2_AUTHORIZATION_CODE",
+    "value" : {
+        "authClientId" : ObjectId("5e05f5b06202450d1fdc15a2"),
+        "accessToken" : "EwBgA+l3BAAUFyCt+7N9khsYleqxRpqgu....xY0kCPl8C",
+        "scope" : "https://outlook.office.com/Calendars.Read https://outlook.office.com/Contacts.Read",
+        "expires" : "2022-02-04T12:06:30.170Z",
+        "refreshToken" : "M.R3_BAY.-CX4aFsEiqAPkuopSmJgjjI...eeV5b!feI4nD8ASHt8X9OyIUC2udFinVr",
+        "externalId" : "hello@example.com"
     },
-    {
-        "entityType": "USER",
-        "entityId": "59f747c33f1d3c001901a44f"
-    },
-    {
-        "entityType": "TENANT",
-        "entityId": "59f747c33f1d3c001901a43e"
-    }
-  ],
-  "meta":{}
+    "name" : "hello@example.com",
+    "createdAt" : ISODate("2022-01-07T14:58:18.214Z"),
+    "updatedAt" : ISODate("2022-02-04T11:06:30.191Z"),
+    "__v" : 0,
+    "lockedAt" : null
 }
 ```
+
+# Auth clients
+
+An auth client manages the communication with an external identity provider, e.g. OAuth2 tokens. It containts the clientId and clientSecret of OIH platform provider, which are required to create and update OAuth flows. After registering your application with the 3rd party (e.g. Google), create an auth client and add your clientId and clientSecret. You must also register the callback URL redirectUri of Secrets-Service with the third party. In case of OAuth/OAuth2, you should also define the auth and token in endpoints. See the OpenAPI spec for AuthClient model definition.
+
+Example of a Microsoft Oauth2 auth client:
+
+```
+{
+  "predefinedScope" : "offline_access",
+  "endpoints" : {
+    "auth" : "https://login.microsoftonline.com/common/oauth2/v2.0/authorize?prompt=select_account&scope={{scope}}&response_mode=query&state={{state}}&redirect_uri={{redirectUri}}&response_type=code&client_id={{clientId}}",
+    "token" : "https://login.microsoftonline.com/common/oauth2/v2.0/token",
+    "userinfo" : "https://login.microsoftonline.com/common/openid/userinfo"
+  },
+  "clientId" : "${CLIENT_ID}",
+  "clientSecret" : "${CLIENT_SECRET}",
+  "redirectUri" : "https://${CALLBACK_URL_BASE}/hook",
+  "mappings" : {
+    "externalId" : {
+      "source" : "access_token",
+      "key" : "unique_name"
+    },
+    "scope" : {
+      "key" : "scope"
+    }
+  },
+  "__t" : "A_OA2_AUTHORIZATION_CODE",
+  "type" : "OA2_AUTHORIZATION_CODE",
+  "name" : "Microsoft oAuth2",
+  "owners" : [
+  ]
+}
+```
+
 
 # Access control
 
-To enforce authentication and authorization, the Secret-Service service must also store the owner or owner group, e.g. secret is owned by user with id XYZ. Similar to current elastic.io model, flow and credentials can have a group (workspace in elastic.io documentation) as an owner. If each user has at least her own private group and each tenant likewise, then the credentials owner can be described as an array of groups.
+Only secret owners can access a secret. Multiple users can be owners a signle secret. This is because some OAuth providers only allow a single refresh-/access token to be issued to a user at a time. If a user were to have two secrets with the same credentials, then refreshing one secret would automatically invalidate the second secret. For any given OAuth 2 owner, when a secret is created, we know which authClient is used and which identity the secret has in the target system. The combination of authClient and secret value determine if an existing secret will receive an new owner or a new secret is created.
 
-![Credentials ownership](Assets/credentials-relationship.png)
+Once a secret is created, sensitive fields (e.g. password, accessToken, refreshToken) aren't returned via the REST-API when requesting a secret. Sensitive data in a secret (password, accessToken, refreshToken) are masked with stars *** and aren't displayed plain in the response. To see the raw data, the requester must have the `secrets.secret.readRaw` permission (see IAM).
 
-Credential ownership ensures, that only users belonging to the correct group/workspace are allowed to read/modify the secrets.
+Apart from users, connectors also require access to credentials, e.g. when the user creates a flow and configures her credentials to be used in a specific flow step. The connectors also require the sensitive fields in order to be authorized to perform a request with the given 3rd party.
+Currently, this handled by the orchestrator. For each connector, the orchestrator create a temporary IAM token for the connector and appends the `secrets.secret.readRaw` permission to this IAM token. This allows the connectors to use the accessToken for requests, but the risk of exposing these secrets to users is reduced.
 
-Apart from users, connectors also require access to credentials, e.g. when the user creates a flow and configures her credentials to be used in a specific flow step.
 
-There are two alternatives to solve this
+# CRYPTO (encryption) for secrets
 
-1. The service responsible for connector instantiation provides the connector with all required secrets
-2. Each connector receives a token with which it can fetch the secrets from Secret-Service
+All sensitive fields (listed in src/constant) of every secret will be encrypted before they get stored into database. By default aes-256-cbc is used to provide fast and secure encryption. Therefore, you need to specify a key adapter to supply users with the keys and setup encryption. Users receive decrypted secrets only if a valid key is provided.
 
-With the second alternative we can make sure, that each connector has access only to specific secrets by providing them with a corresponding JWT token from IAM service. This JWT token would contain as a claim the user's group-id. This in return allows the Secret-Service to verify that the connector accesses only the credentials it actually is authorizes to read. Still, this seems a bit over-engineered compared to the first one. The second alternative does however make sense if it combined with the feature of AccessToken Auto-Refreshing.
+All secrets are encrypted by default. You can disable this by setting the CRYPTO_DISABLED="true" env var. (!) If you wish to use secrets encryption, make sure you provide the CRYPTO_KEY env var with your encryption key. Otherwise a random encryption key will be generated each time you start this service.
 
-As IAM currently does not have or support the concept of groups, we will implement the access control in the first phase as a tuple of entityType and entityId, e.g.
+**Default Settings**
+- CRYPTO_DISABLED: false - Turns on encryption.
+- CRYPTO_ALG_HASH: sha256 - Hashing of externalId to obfuscate private data.
+- CRYPTO_ALG_ENCRYPTION: aes-256-cbc - Default algorithm used for encryption.
+- CRYPTO_OUTPUT_ENCODING: latin1 - Charset of encryption output.
 
-```javascript
-{
-    "entityType": "USER",
-    "entityId": "59f747c33f1d3c001901a44e"
-},
-{
-    "entityType": "TENANT",
-    "entityId": "59f747c33f1d3c001901a44f"
-}
-```
-
-and later as only a groupId, which must also exist in IAM.
-
-The following diagram illustrates both alternatives.
-
-![Passing credentials to connectors](Assets/skm-2.png)
-
-# Flows, Connectors and Credentials
-
-In an integration flow, each connector represented as a node, could receive it's own JWT token containing the claims to access those credentials, which are required in this specific step. This could be accomplished for example through scheduler or flow manager, which ever is responsible for creation of connector instances and passing of environment variables to them. The connector then can fetch all required secrets from Secret-Service and provide the JWT token containing the claims. The Secret-Service validates the request and returns the secrets, if the connector is authorized to access them.
-
-The JWT payload could contain as less as the secret ids required for this specific integration step. The same ids could be present in the flow data payload, which the connector receives from the queue upon initialization.
-
-# Summary
-
-- Service account(s) or JWT for a connector to fetch secrets
-- Adapter communicates with an external application and requires user's secret
-  - Adapter either fetches the secrets itself from secrets service using it's own service account and context (context may be the flow or flow step, and thus limit the access only to secrets of flow owner)
-  - or receive the secret as env vars through a superordinate priveleged service
-- In case of OAuth access tokens, a separate service could be used to refresh access tokens (singleton) and all services using an access token must request it from this singleton service
-  - Advantage: only one token refresh, all depending connectors fetch the new access token from this service
-- Secrets are stored encrypted
-- Access control to secrets is based on IAM authentication and authorization mechanisms
-- Secret-Service has it's own mongodb, where it stores: secret_id (secret is stored in vault, but referenced through secret_id), owner (user or tenant)
-- Secret-Service can fetch and return a new access token using the refresh token it stored in vault
-
-# Secrets management framework
-
-Our research for a suitable and mature solution lead us to HashiCorp Vault, which we will be using for our prototypical implementation. Other solutions should be possible to integrate, as the Secret-Service acts also as an abstraction layer of the underlying vault framework. This allows to interchange the vault framework through other solutions, as long as the Secret-Service API persists.
-
-For a list of secrets managements solutions (albeit focused more on infrastructure and possible not up-to-date) please see this comparison list:
-
-<https://gist.github.com/maxvt/bb49a6c7243163b8120625fc8ae3f3cd>
-
-<https://www.vaultproject.io/intro/vs/index.html>
-
-## Requirements
-
-- Strong Encryption of stored secrets
-- HA capability
-- An open source project with a large community and activity
-- Maturity of the framework
-- Good documentation
-- Flexible storage choice
-- Enterprise ready
-
-Compared to other solutions, we find that HashiCorp Vault [fits best](https://www.vaultproject.io/intro/vs/index.html) with our requirements.
 
 # Access Token Auto-Refreshing
 
-In the section Access Control we mentioned an alternative where connectors fetch the secrets directly from the Secret-Service. This approach has an advantage if at some point either Secret-Service or a correlating service also manages OAuth access tokens. In practice, this means that a connector would call Secret-Service an request an access token of a specific OAuth secret. The Secret-Service can then either return the access token, if it has a valid one or fetch the access token using for example client id and client secret. If more than one connector rely on a single access token (an identical access token), then fetching and refreshing of an access token is done ideally by a singleton – in our case Secret-Service or a correlating service responsible for this types of requests.
+Whenever an accessToken is fetched, Secret service checks if the secret has an `expires` property (`value.expires`). If a predefined threshold (for example <5 min) is reached, the secret will be automatically refreshed before returning to the requester. All OAuth secrets are refreshed on-demand and never periodically. Should the refreshToken expire due to inactivity, the document will be flaged with an error. Whenever the OAuth provider returns a new refreshToken, it is automatically refreshed on the secret document as well.
+
+Secret service is a HA capable service and can run in a replica set. A secret can be requested by multiple connectors simultaniously. If an accessToken needs to be refreshed, we have a race condition. Whenever a secrets is refreshed, the document is locked via the `lockedAt` property. A subsequent secret service process/node will recongnize that the document is locked, backoff and retry shortly afterwards. This ensures, that the secret is updated only once and all requesters will potentially wait a few milliseconds longer for the request to be processed.
+
 
 ### Interaction with other Services
 
