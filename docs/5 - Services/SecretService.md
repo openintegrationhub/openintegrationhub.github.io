@@ -154,7 +154,37 @@ Whenever an accessToken is fetched, Secret service checks if the secret has an `
 Secret service is a HA capable service and can run in a replica set. A secret can be requested by multiple connectors simultaniously. If an accessToken needs to be refreshed, we have a race condition. Whenever a secrets is refreshed, the document is locked via the `lockedAt` property. A subsequent secret service process/node will recongnize that the document is locked, backoff and retry shortly afterwards. This ensures, that the secret is updated only once and all requesters will potentially wait a few milliseconds longer for the request to be processed.
 
 
-### Interaction with other Services
+# Special features
+
+### externalId
+
+A secret can have an `externalId` under value. This is a human readable representation of the account name/username/email. OAuth 2 providers sometimes return different responses – for example a JSON which contains everythign vs a JWT without username. In order to extract all required metadata and to create a uniform secret, we use `preprocessor`s. A `preprocessor` as simple JavaScript module, which receives the freshly extracted secret and can perform additional async operations to determine other fields, such as the `externalId`. You can add a preprocessor as an `adapter` to Secret service (src/adapter/preprocessor/) and add it to the corresponding auth-client.preprocessor in the `auth-clients` MongoDB collection. Here is an example of a GitHub preprocessor
+
+```
+const rp = require('request-promise');
+
+module.exports = async ({
+    secret,
+    tokenResponse,
+}) => {
+    const resp = await rp.get({
+        uri: 'https://api.clickup.com/api/v2/user',
+        headers: {
+            Authorization: tokenResponse.access_token,
+        },
+        json: true,
+    });
+
+    secret.value.externalId = resp.user.email || resp.user.username;
+
+    return secret;
+};
+
+```
+
+
+
+# Interaction with other Services
 
 Secret Service can receive events from any service, but only directly interacts with two of them:
 
