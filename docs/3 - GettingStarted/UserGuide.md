@@ -20,15 +20,13 @@ Below you will find a code snippets for an exemplary component. For the beginnin
 
 ```json
 {
-  "data": {
-    "distribution": {
-      "type": "docker",
-      "image": "openintegrationhub/code-component:latest"
-    },
-    "access": "public",
-    "name": "Node.js code",
-    "description": "Node.js code component that executes the provided code"
-  }
+  "distribution": {
+    "type": "docker",
+    "image": "openintegrationhub/code-component:latest"
+  },
+  "access": "public",
+  "name": "Node.js code",
+  "description": "Node.js code component that executes the provided code"
 }
 ```
 
