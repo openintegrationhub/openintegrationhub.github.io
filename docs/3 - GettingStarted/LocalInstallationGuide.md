@@ -300,7 +300,7 @@ The Open Integration Hub is now running and ought to function just as it would i
 - **Audit Log**. View event logs spawned by the other services.
   - `auditlog.example.com`
 - **Metadata Repository**. Create and modify master data models used by your connectors.
-  - `metadata.example.com`
+  - `metadata.example.com` *(external service)*
 - **Component Repository**. Store and modify connector components.
   - `component-repository.example.com`
 - **Attachment Storage Service**. Temporarily store larger files for easier handling in flows.
@@ -308,11 +308,17 @@ The Open Integration Hub is now running and ought to function just as it would i
 - **Data Hub**. Long-term storage for flow content.
   - `data-hub.example.com`
 - **Integration Layer Service**. Perform data operations such as merging or splitting objects.
-  - `ils.example.com`
+  - `ils.example.com` *(external service)*
 - **Web UI**. A basic browser-based UI to control certain other services.
   - `web-ui.example.com`
 
-Most of these services have an OpenAPI documentation of their API available through the path `/api-docs`. You can also check the [API Reference Documentation](https://openintegrationhub.github.io/docs/6%20-%20ReferenceDocumentation/APIReferenceOverview.html). If you want to learn more about the services, check the [Service Documentation](https://openintegrationhub.github.io/docs/5%20-%20Services/Services.html) or their readmes in the `services` folder of the GitHub Repository: [Open Integration Hub Services](https://github.com/openintegrationhub/openintegrationhub/tree/master/services)
+Most of these services have an OpenAPI documentation of their API available through the path `/api-docs`. You can also check the [API Reference Documentation](https://openintegrationhub.github.io/docs/6%20-%20ReferenceDocumentation/APIReferenceOverview.html).
+
+If you want to learn more about the monorepo services, check the [Service Documentation](https://openintegrationhub.github.io/docs/5%20-%20Services/Services.html) or their readmes in the `services` folder of the GitHub Repository: [Open Integration Hub Services](https://github.com/openintegrationhub/openintegrationhub/tree/master/services)
+
+For external services the documentation is in an external folder. For example the [template repository](https://github.com/openintegrationhub/template-repository).
+
+For more information see also: [Monorepo services and external services](https://openintegrationhub.github.io/docs/5%20-%20Services/ServiceTypes.html)
 
 # User Guide
 
