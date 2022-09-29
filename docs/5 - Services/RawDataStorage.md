@@ -24,9 +24,11 @@ Use the full links to reference other files or images! Relative links will not w
 As the name implies, Raw Data Storage (RDS), can be used to store all raw data received by connectors.
 It receives messages containing raw, untransformed, and unformatted data to store their payload inside a database
 
+This service, an additional service and therefore in its own repository.
+
 <!-- [API Reference](){: .btn .fs-5 .mb-4 .mb-md-0 }-->
 [API Reference](https://rds.openintegrationhub.com/api-docs/){: .btn .fs-5 .mb-4 .mb-md-0 }
-[Implementation](https://github.com/openintegrationhub/openintegrationhub/tree/master/services/rds){: .btn .fs-5 .mb-4 .mb-md-0 }
+[Implementation](https://github.com/openintegrationhub/raw-data-storage-service){: .btn .fs-5 .mb-4 .mb-md-0 }
 
 ## How it works
 

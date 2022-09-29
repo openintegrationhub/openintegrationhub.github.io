@@ -17,11 +17,11 @@ Use the full links to reference other files or images! Relative links will not w
 # Attachment Storage Service
 
 ## Introduction
-Stores files involved in an integration. 
+Stores files involved in an integration. This service an additional service and therefore in it's own repository
 
 [API Reference](http://attachment-storage-service.openintegrationhub.com/api-docs){: .btn .fs-5 .mb-4 .mb-md-0 }
-[Implementation](https://github.com/openintegrationhub/openintegrationhub/tree/master/services/attachment-storage-service){: .btn .fs-5 .mb-4 .mb-md-0 }
-[Service File](https://github.com/openintegrationhub/openintegrationhub/tree/master/lib/attachment-storage-service){: .btn .fs-5 .mb-4 .mb-md-0 }
+[Implementation](https://github.com/openintegrationhub/attachment-storage-service){: .btn .fs-5 .mb-4 .mb-md-0 }
+[Service File](https://github.com/openintegrationhub/attachment-storage-service/tree/feat/initial-project/lib){: .btn .fs-5 .mb-4 .mb-md-0 }
 
 ## Technologies used
 - Node.js

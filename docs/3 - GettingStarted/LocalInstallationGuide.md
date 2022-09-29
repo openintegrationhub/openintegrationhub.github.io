@@ -304,7 +304,7 @@ The Open Integration Hub is now running and ought to function just as it would i
 - **Component Repository**. Store and modify connector components.
   - `component-repository.example.com`
 - **Attachment Storage Service**. Temporarily store larger files for easier handling in flows.
-  - `attachment-storage-service.example.com`
+  - `attachment-storage-service.example.com` *(Additional service)*
 - **Data Hub**. Long-term storage for flow content.
   - `data-hub.example.com`
 - **Integration Layer Service**. Perform data operations such as merging or splitting objects.

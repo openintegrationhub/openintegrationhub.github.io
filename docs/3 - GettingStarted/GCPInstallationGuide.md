@@ -59,7 +59,7 @@ Execute the following commands:
 2. `kubectl apply -f platform/rabbitmq.yaml`
 3. `kubectl apply -f platform/redis.yaml`
 
-Note: _This creates a basic functional deployment of redis and rabbitmq each. For your use case, you may want a more custom configuration. Please refer to their respective documentations._ 
+Note: _This creates a basic functional deployment of redis and rabbitmq each. For your use case, you may want a more custom configuration. Please refer to their respective documentations._
 
 ## Setup Storage
 
@@ -250,12 +250,22 @@ _Request Body:_
 
 The returned token is the service token that will be used by the other services to authenticate themselves to the IAM. Copy the value, encode it in _base64_ (for encoding you can use online tools such as: <https://www.base64encode.org/>), and then paste it into the secret files for each of the services listed at the [beginning](#service-account-creation) of this chapter.
 
+### Organisation of the services
+
+OIH Services are divided in core services and additional services. Core services are in the [openintegrationhub mono repository]/https://github.com/openintegrationhub/openintegrationhub) in the services folder.
+
+All other services are in their seperate repository. For example the [template repository](https://github.com/openintegrationhub/template-repository).
+
 ### Secret Creation
 
-For each services listed in `./services` a secret file is needed. Thus, the following steps need to be performed for every service:
+
+For each core services listed in `./services` a secret file is needed. Each additional service has a own secret file in its repository.
+
+Thus, the following steps need to be performed for every service:
 
 - Replace `metadata.name` with the current service name
-- `Data` must include all `secretKeyRef`s from the `./k8s/deployment.yaml` of each service. E.g. flow repository: [flow-repository deployment.yaml](https://github.com/openintegrationhub/openintegrationhub/blob/master/services/flow-repository/k8s/deployment.yaml#L20-L29)
+- `Data` must include all `secretKeyRef`s from the `./k8s/deployment.yaml` of each service. E.g. for a core service like the flow repository: [flow-repository deployment.yaml](https://github.com/openintegrationhub/openintegrationhub/blob/master/services/flow-repository/k8s/deployment.yaml#L20-L29)
+- For additional services the deployment file is in its repository, for example [here](https://github.com/openintegrationhub/template-repository/tree/main/k8s/deployment) for the [template repository](https://github.com/openintegrationhub/template-repository).
 - For each service that was listed at the [beginning](#service-account-creation) of this chapter make sure to add the persistent token as the value for the **iamtoken**.
 
 Example secret file for **flow-repository**:
@@ -280,9 +290,14 @@ Once you created the secret files, execute the following commands for each servi
 2. Execute `kubectl apply -f services/CURRENT_SERVICE/k8s/service.yaml`
 3. Execute `kubectl apply -f services/CURRENT_SERVICE/k8s/deployment.yaml`
 
+E.g for [iam](https://github.com/openintegrationhub/openintegrationhub/blob/master/platform/ingress.yaml#L11):
+
+**Note:** Additional services have their configuration files in their repository in the folder `/k8s/deployment`.
+E.g for [template repository](https://github.com/openintegrationhub/template-repository/tree/main/k8s/deployment):
+
+
 After deploying your services, update your GCP Ingress to include the new services. Before you apply ingress, make sure to replace host entries to match your external domain:
 
-E.g for [iam](https://github.com/openintegrationhub/openintegrationhub/blob/master/platform/ingress.yaml#L11):
 
 ```yaml
 host: iam.openintegrationhub.com
@@ -306,15 +321,15 @@ The Open Integration Hub is now running and ought to function just as it would i
   - `YOUR Flow-Repository URL`
 - **Audit Log**. View event logs spawned by the other services.
   - `YOUR Audit-Log URL`
-- **Metadata Repository**. Create and modify master data models used by your connectors.
+- **Metadata Repository**. Create and modify master data models used by your connectors. *(Additional service)*
   - `YOUR Meta-Data-Repository URL`
 - **Component Repository**. Store and modify connector components.
   - `YOUR Component-Repository URL`
-- **Attachment Storage Service**. Temporarily store larger files for easier handling in flows.
+- **Attachment Storage Service**. Temporarily store larger files for easier handling in flows. *(Additional service)*
   - `YOUR Attachment-Storage-Service URL`
 - **Data Hub**. Long-term storage for flow content.
   - `YOUR Data-Hub URL`
-- **Integration Layer Service**. Perform data operations such as merging or splitting objects.
+- **Integration Layer Service**. Perform data operations such as merging or splitting objects. *(Additional service)*
   - `YOUR Integration-Layer-Service URL`
 - **Web UI**. A basic browser-based UI to control certain other services.
   - `YOUR Web-UI URL`

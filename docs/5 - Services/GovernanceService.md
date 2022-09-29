@@ -25,8 +25,10 @@ The Governance Service serves as the central repository for all data governance-
 
 Besides that, it provides functionalities for displaying said data and for validating policies against provided data.
 
+This service, an additional service and therefore in its own repository.
+
 [API Reference](http://governance-service.openintegrationhub.com/api-docs/){: .btn .fs-5 .mb-4 .mb-md-0 }
-[Implementation](https://github.com/openintegrationhub/openintegrationhub/tree/master/services/governance-service){: .btn .fs-5 .mb-4 .mb-md-0 }
+[Implementation](https://github.com/openintegrationhub/governance-service){: .btn .fs-5 .mb-4 .mb-md-0 }
 
 <!-- [Service File](){: .btn .fs-5 .mb-4 .mb-md-0 } -->
 
