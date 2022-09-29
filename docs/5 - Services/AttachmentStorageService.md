@@ -17,7 +17,7 @@ Use the full links to reference other files or images! Relative links will not w
 # Attachment Storage Service
 
 ## Introduction
-Stores files involved in an integration. This service an additional service and therefore in it's own repository
+Stores files involved in an integration. This service, is an external service and therefore in its own repository.
 
 [API Reference](http://attachment-storage-service.openintegrationhub.com/api-docs){: .btn .fs-5 .mb-4 .mb-md-0 }
 [Implementation](https://github.com/openintegrationhub/attachment-storage-service){: .btn .fs-5 .mb-4 .mb-md-0 }

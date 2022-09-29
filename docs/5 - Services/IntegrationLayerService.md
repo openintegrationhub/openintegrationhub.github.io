@@ -23,7 +23,7 @@ Use the full links to reference other files or images! Relative links will not w
 
 The Integration Layer Service receives data objects from one or several incoming flows, applies some business logic (such as a merge or split), validates them against a supplied schema, and provides the resulting valid objects as input to other flows. ILS can temporarily store these objects. Objects can be posted to the ILS through a REST-API, and be retrieved the same way.
 
-This service, an additional service and therefore in its own repository.
+This service, an external service and therefore in its own repository.
 
 [API Reference](http://ils.openintegrationhub.com/api-docs/){: .btn .fs-5 .mb-4 .mb-md-0 }
 [Implementation](https://github.com/openintegrationhub/integration-layer-service){: .btn .fs-5 .mb-4 .mb-md-0 }

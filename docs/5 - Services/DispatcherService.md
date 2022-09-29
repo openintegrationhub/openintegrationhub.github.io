@@ -23,7 +23,7 @@ Use the full links to reference other files or images! Relative links will not w
 
 The Dispatcher Service is responsible for routing messages between individual connector flows. This allows for the exchange of data in a centralized fashion via the Hub & Spoke model.
 
-This service, an additional service and therefore in its own repository.
+This service, an external service and therefore in its own repository.
 
 [API Reference](http://dispatcher-service.openintegrationhub.com/api-docs/){: .btn .fs-5 .mb-4 .mb-md-0 }
 [Implementation](https://github.com/openintegrationhub/dispatcher-service){: .btn .fs-5 .mb-4 .mb-md-0 }

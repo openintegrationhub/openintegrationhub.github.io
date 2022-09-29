@@ -23,7 +23,7 @@ Use the full links to reference other files or images! Relative links will not w
 
 The Meta Data Repository is responsible for storing domains and their master data models. The models stored within this service are consulted for different tasks such as data validation. The meta models are also used by the transformer to map the incoming data onto the Open Integration Hub standard.
 
-This service, an additional service and therefore in its own repository.
+This service, an external service and therefore in its own repository.
 
 [API Reference](http://metadata.openintegrationhub.com/api-docs/){: .btn .fs-5 .mb-4 .mb-md-0 }
 [Implementation](https://github.com/openintegrationhub/meta-data-repository){: .btn .fs-5 .mb-4 .mb-md-0 }

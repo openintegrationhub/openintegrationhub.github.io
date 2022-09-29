@@ -23,7 +23,7 @@ Use the full links to reference other files or images! Relative links will not w
 
 The Template Repository is responsible for storing, retrieving and updating the integration flow templates. Additionally, it can be used to generate integration flows.
 
-This service, an additional service and therefore in its own repository.
+This service, an external service and therefore in its own repository.
 
 [API Reference](http://template-repository.openintegrationhub.com/api-docs/){: .btn .fs-5 .mb-4 .mb-md-0 }
 [Implementation](https://github.com/openintegrationhub/template-repository){: .btn .fs-5 .mb-4 .mb-md-0 }

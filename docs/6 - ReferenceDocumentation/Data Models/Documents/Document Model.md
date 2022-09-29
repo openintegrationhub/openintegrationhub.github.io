@@ -67,7 +67,7 @@ The following table classifies the complexity of document management or sharing 
 
 ### Business services creating documents
 
-In addition to systems that have been specifically designed to capture, store, deliver and manage documents and information, there are additional services that have been designed in order to produce content.
+In addition to systems that have been specifically designed to capture, store, deliver and manage documents and information, there are external services that have been designed in order to produce content.
 
 | Service/ System | Sample document types                   |
 | --------------- | --------------------------------------- |
